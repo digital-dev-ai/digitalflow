@@ -1,0 +1,25 @@
+[2025-05-28T07:28:41.469+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-28T07:28:41.719+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.preprocess_group.img_preprocess_task manual__2025-05-28T07:28:29.907000+00:00 map_index=5 [queued]>
+[2025-05-28T07:28:41.832+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.preprocess_group.img_preprocess_task manual__2025-05-28T07:28:29.907000+00:00 map_index=5 [queued]>
+[2025-05-28T07:28:41.834+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-28T07:28:42.009+0000] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): preprocess_group.img_preprocess_task> on 2025-05-28 07:28:29.907000+00:00
+[2025-05-28T07:28:42.025+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=45767) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-05-28T07:28:42.027+0000] {standard_task_runner.py:72} INFO - Started process 45864 to run task
+[2025-05-28T07:28:42.031+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'preprocess_group.img_preprocess_task', 'manual__2025-05-28T07:28:29.907000+00:00', '--job-id', '97', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpbtypy4ue', '--map-index', '5']
+[2025-05-28T07:28:42.046+0000] {standard_task_runner.py:105} INFO - Job 97: Subtask preprocess_group.img_preprocess_task
+[2025-05-28T07:28:42.277+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.preprocess_group.img_preprocess_task manual__2025-05-28T07:28:29.907000+00:00 map_index=5 [running]> on host 293edbf976f9
+[2025-05-28T07:28:43.227+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='preprocess_group.img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-28T07:28:29.907000+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-28T07:28:29.907000+00:00'
+[2025-05-28T07:28:43.229+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-28T07:28:43.230+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-28T07:28:43.252+0000] {logging_mixin.py:190} INFO - Current task name:preprocess_group.img_preprocess_task state:running start_date:2025-05-28 07:28:41.725939+00:00
+[2025-05-28T07:28:43.269+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-28T07:28:43.271+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-28T07:28:45.199+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/temp/0e86ebb5-467c-48e5-bd02-dcf24b6b1521.png
+[2025-05-28T07:28:45.305+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-28T07:28:45.307+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=preprocess_group.img_preprocess_task, run_id=manual__2025-05-28T07:28:29.907000+00:00, map_index=5, execution_date=20250528T072829, start_date=20250528T072841, end_date=20250528T072845
+[2025-05-28T07:28:45.473+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-28T07:28:45.475+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-28T07:28:45.483+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-28 07:28:29.962745+00:00
+[2025-05-28T07:28:45.484+0000] {logging_mixin.py:190} INFO - Task hostname:293edbf976f9 operator:_PythonDecoratedOperator
+[2025-05-28T07:28:46.280+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-28T07:28:46.343+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,9 @@
+[2025-05-26T06:35:15.769+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T06:35:15.960+0000] {taskinstance.py:2604} INFO - Dependencies not met for <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=2 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state.
+[2025-05-26T06:35:15.963+0000] {local_task_job_runner.py:166} INFO - Task is not able to be run
+[2025-05-26T07:42:39.899+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T07:42:41.044+0000] {taskinstance.py:2604} INFO - Dependencies not met for <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=2 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state.
+[2025-05-26T07:42:41.058+0000] {local_task_job_runner.py:166} INFO - Task is not able to be run
+[2025-05-26T07:44:57.066+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T07:44:57.626+0000] {taskinstance.py:2604} INFO - Dependencies not met for <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=2 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state.
+[2025-05-26T07:44:57.645+0000] {local_task_job_runner.py:166} INFO - Task is not able to be run

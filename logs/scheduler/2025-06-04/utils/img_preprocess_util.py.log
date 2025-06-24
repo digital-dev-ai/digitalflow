@@ -1,0 +1,140 @@
+[2025-06-04T04:52:22.787+0000] {processor.py:186} INFO - Started process (PID=3159) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:22.788+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:52:22.789+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:52:22.789+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:22.794+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:52:22.793+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 57
+    save_path = Path(result_map["folder_path"]) / 
+                                                  ^
+SyntaxError: invalid syntax
+[2025-06-04T04:52:22.795+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:22.811+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.030 seconds
+[2025-06-04T04:52:53.238+0000] {processor.py:186} INFO - Started process (PID=3168) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:53.239+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:52:53.242+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:52:53.241+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:53.252+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:52:53.250+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 57
+    save_path = Path(result_map["folder_path"]) / 
+                                                  ^
+SyntaxError: invalid syntax
+[2025-06-04T04:52:53.253+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:52:53.283+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.057 seconds
+[2025-06-04T04:53:23.530+0000] {processor.py:186} INFO - Started process (PID=3177) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:23.531+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:53:23.533+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:23.532+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:23.538+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:23.537+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 57
+    save_path = Path(result_map["folder_path"]) / 
+                                                  ^
+SyntaxError: invalid syntax
+[2025-06-04T04:53:23.539+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:23.556+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.031 seconds
+[2025-06-04T04:53:53.986+0000] {processor.py:186} INFO - Started process (PID=3186) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:53.987+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:53:53.988+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:53.988+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:53.993+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:53.992+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 57
+    save_path = Path(result_map["folder_path"]) / 
+                                                  ^
+SyntaxError: invalid syntax
+[2025-06-04T04:53:53.994+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:54.011+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.030 seconds
+[2025-06-04T04:53:56.061+0000] {processor.py:186} INFO - Started process (PID=3188) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:56.061+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:53:56.067+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:56.066+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:56.102+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:53:56.100+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 8, in <module>
+    from dags.utils.file_util import file_copy
+ModuleNotFoundError: No module named 'dags'
+[2025-06-04T04:53:56.102+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:53:56.116+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.062 seconds
+[2025-06-04T04:54:26.538+0000] {processor.py:186} INFO - Started process (PID=3197) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:26.538+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:54:26.540+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:54:26.540+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:26.572+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:54:26.571+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 8, in <module>
+    from dags.utils.file_util import file_copy
+ModuleNotFoundError: No module named 'dags'
+[2025-06-04T04:54:26.573+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:26.589+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.060 seconds
+[2025-06-04T04:54:57.001+0000] {processor.py:186} INFO - Started process (PID=3206) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:57.002+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:54:57.003+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:54:57.003+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:57.035+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:54:57.034+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/utils/img_preprocess_util.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/utils/img_preprocess_util.py", line 8, in <module>
+    from dags.utils.file_util import file_copy
+ModuleNotFoundError: No module named 'dags'
+[2025-06-04T04:54:57.036+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:54:57.051+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.061 seconds
+[2025-06-04T04:55:05.116+0000] {processor.py:186} INFO - Started process (PID=3207) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:05.117+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:55:05.118+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:05.118+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:05.120+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:05.120+0000] {dagbag.py:366} INFO - File /opt/airflow/dags/utils/img_preprocess_util.py assumed to contain no DAGs. Skipping.
+[2025-06-04T04:55:05.121+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:05.135+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.027 seconds
+[2025-06-04T04:55:21.391+0000] {processor.py:186} INFO - Started process (PID=3216) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:21.392+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:55:21.395+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:21.394+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:21.397+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:21.397+0000] {dagbag.py:366} INFO - File /opt/airflow/dags/utils/img_preprocess_util.py assumed to contain no DAGs. Skipping.
+[2025-06-04T04:55:21.398+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:21.412+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.035 seconds
+[2025-06-04T04:55:27.501+0000] {processor.py:186} INFO - Started process (PID=3217) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:27.502+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:55:27.505+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:27.504+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:27.508+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:27.507+0000] {dagbag.py:366} INFO - File /opt/airflow/dags/utils/img_preprocess_util.py assumed to contain no DAGs. Skipping.
+[2025-06-04T04:55:27.509+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:27.530+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.042 seconds
+[2025-06-04T04:55:58.036+0000] {processor.py:186} INFO - Started process (PID=3226) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:58.037+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:55:58.039+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:58.039+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:58.042+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:55:58.042+0000] {dagbag.py:366} INFO - File /opt/airflow/dags/utils/img_preprocess_util.py assumed to contain no DAGs. Skipping.
+[2025-06-04T04:55:58.043+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:55:58.059+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.045 seconds
+[2025-06-04T04:56:28.540+0000] {processor.py:186} INFO - Started process (PID=3235) to work on /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:56:28.542+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/utils/img_preprocess_util.py for tasks to queue
+[2025-06-04T04:56:28.545+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:56:28.544+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:56:28.549+0000] {logging_mixin.py:190} INFO - [2025-06-04T04:56:28.548+0000] {dagbag.py:366} INFO - File /opt/airflow/dags/utils/img_preprocess_util.py assumed to contain no DAGs. Skipping.
+[2025-06-04T04:56:28.550+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/utils/img_preprocess_util.py
+[2025-06-04T04:56:28.571+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/utils/img_preprocess_util.py took 0.051 seconds

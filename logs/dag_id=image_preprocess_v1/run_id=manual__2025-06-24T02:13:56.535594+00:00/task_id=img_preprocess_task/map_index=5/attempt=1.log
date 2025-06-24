@@ -1,0 +1,207 @@
+[2025-06-24T11:14:04.782+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T11:14:04.809+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T02:13:56.535594+00:00 map_index=5 [queued]>
+[2025-06-24T11:14:04.827+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T02:13:56.535594+00:00 map_index=5 [queued]>
+[2025-06-24T11:14:04.828+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T11:14:04.854+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-24 02:13:56.535594+00:00
+[2025-06-24T11:14:04.864+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=32756) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T11:14:04.866+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'img_preprocess_task', 'manual__2025-06-24T02:13:56.535594+00:00', '--job-id', '3711', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpqzx6_mza', '--map-index', '5']
+[2025-06-24T11:14:04.867+0900] {standard_task_runner.py:72} INFO - Started process 32818 to run task
+[2025-06-24T11:14:04.872+0900] {standard_task_runner.py:105} INFO - Job 3711: Subtask img_preprocess_task
+[2025-06-24T11:14:04.927+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T02:13:56.535594+00:00 map_index=5 [running]> on host f6d4228a9eb8
+[2025-06-24T11:14:05.041+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T02:13:56.535594+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T02:13:56.535594+00:00'
+[2025-06-24T11:14:05.044+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T11:14:05.050+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_f759222e-4238-4df1-b859-717c7ab0d00d_pre', 'folder_path': '2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag1'}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag2'}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-24T11:14:05.053+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-24T11:14:05.055+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-24T11:14:16.772+0900] {logging_mixin.py:190} INFO - osd 1 5.0 5.0 40 1378077 [1147124, 1103419, 1056717, 1009342, 963195, 916174, 864015, 810582, 762056, 708953, 661785, 615068, 568429, 523458, 483937, 440854, 399160, 357593, 316280, 274512, 237321, 277421, 322206, 368047, 416366, 467785, 521253, 572014, 629767, 688349, 746227, 804957, 868197, 929506, 993000, 1056114, 1120624, 1184447, 1250847, 1315775, 1378077]
+[2025-06-24T11:14:34.563+0900] {logging_mixin.py:190} INFO - osd 2 0.0 -5.0 0 2969089 [2969089, 2884754, 2804586, 2719361, 2630448, 2545471, 2460214, 2371774, 2289007, 2195360, 2112884, 2025544, 1940170, 1861179, 1774915, 1695519, 1613260, 1537132, 1466941, 1389035, 1316549, 1390197, 1467983, 1538286, 1613017, 1692680, 1768613, 1850292, 1922933, 2000330, 2079736, 2154792, 2240153, 2318692, 2402947, 2483912, 2565137, 2651911, 2735906, 2815983, 2901853]
+[2025-06-24T11:14:51.166+0900] {logging_mixin.py:190} INFO - osd 3 5.0 5.0 40 4928260 [4654314, 4571535, 4493772, 4411364, 4336091, 4252804, 4170380, 4077089, 3987252, 3898575, 3809763, 3721078, 3626778, 3537895, 3444020, 3355053, 3260864, 3166710, 3073196, 2980726, 2889337, 2987426, 3087679, 3187782, 3289497, 3391511, 3488840, 3590564, 3688915, 3793123, 3892882, 3989905, 4089553, 4190160, 4297545, 4394217, 4500144, 4601339, 4710734, 4816538, 4928260]
+[2025-06-24T11:15:14.388+0900] {logging_mixin.py:190} INFO - osd 4 10.0 5.0 40 7425888 [7368194, 7239891, 7111375, 6982959, 6855560, 6726417, 6592018, 6458512, 6332355, 6198540, 6074072, 5937007, 5811100, 5675632, 5545733, 5418090, 5289285, 5156382, 5023239, 4891939, 4772217, 4885463, 5010168, 5137533, 5266982, 5392017, 5518317, 5647461, 5781739, 5907156, 6047419, 6176625, 6315044, 6447093, 6586901, 6729888, 6865990, 7004516, 7142973, 7282725, 7425888]
+[2025-06-24T11:15:14.573+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-24T11:15:15.342+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d/ag1.png
+[2025-06-24T11:15:15.446+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-24T11:15:30.114+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d/rotate2_1.png
+[2025-06-24T11:15:35.312+0900] {logging_mixin.py:190} INFO - osd 1 180 180 0.51 Japanese 0.3
+[2025-06-24T11:15:39.746+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d/rotate2_2.png
+[2025-06-24T11:15:41.633+0900] {logging_mixin.py:190} INFO - osd 2 360 180 0.42 Japanese 0.56
+[2025-06-24T11:15:44.808+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d/rotate2_3.png
+[2025-06-24T11:15:46.784+0900] {logging_mixin.py:190} INFO - osd 3 540 180 0.51 Japanese 0.3
+[2025-06-24T11:15:49.583+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/2e9fc73e-71f4-4cb7-81f5-5788e206df54/f759222e-4238-4df1-b859-717c7ab0d00d/rotate2_4.png
+[2025-06-24T11:15:50.988+0900] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-06-24T11:15:50.989+0900] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-06-24T11:15:50.992+0900] {process_utils.py:132} INFO - Sending 15 to group 32818. PIDs of all processes in the group: [32889, 32818]
+[2025-06-24T11:15:50.993+0900] {process_utils.py:87} INFO - Sending the signal 15 to group 32818
+[2025-06-24T11:15:50.993+0900] {taskinstance.py:3094} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-06-24T11:15:51.002+0900] {taskinstance.py:3095} ERROR - Stacktrace: 
+  File "/home/***/.local/bin/***", line 8, in <module>
+    sys.exit(main())
+  File "/home/***/.local/lib/python3.12/site-packages/***/__main__.py", line 62, in main
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 64, in wrapper
+    providers_configuration_loaded(func)(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/providers_configuration_loader.py", line 55, in wrapped_function
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 237, in worker
+    _run_command_with_daemon_option(
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 50, in _run_command_with_daemon_option
+    run_command_with_daemon_option(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/daemon_utils.py", line 86, in run_command_with_daemon_option
+    callback()
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 230, in run_celery_worker
+    celery_app.worker_main(options)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 391, in worker_main
+    self.start(argv=argv)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 371, in start
+    celery.main(args=argv, standalone_mode=False)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/base.py", line 135, in caller
+    return f(ctx, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/worker.py", line 356, in worker
+    worker.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/worker/worker.py", line 202, in start
+    self.blueprint.start(self)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 365, in start
+    return self.obj.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/base.py", line 130, in start
+    self.on_start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/prefork.py", line 109, in on_start
+    P = self._pool = Pool(processes=self.limit,
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 464, in __init__
+    super().__init__(processes, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1046, in __init__
+    self._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 482, in _create_worker_process
+    return super()._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1158, in _create_worker_process
+    w.start()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 120, in start
+    self._popen = self._Popen(self)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/context.py", line 331, in _Popen
+    return Popen(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 22, in __init__
+    self._launch(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 77, in _launch
+    code = process_obj._bootstrap()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 323, in _bootstrap
+    self.run()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 651, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 139, in execute_command
+    _execute_in_fork(command_to_exec, celery_task_id)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 171, in _execute_in_fork
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 254, in _run_task_by_selected_method
+    return _run_task_by_local_task_job(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 322, in _run_task_by_local_task_job
+    ret = run_job(job=job_runner.job, execute_callable=job_runner._execute)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 421, in run_job
+    return execute_job(job, execute_callable=execute_callable)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 450, in execute_job
+    ret = execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/local_task_job_runner.py", line 171, in _execute
+    self.task_runner.start()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 55, in start
+    self.process = self._start_by_fork()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 64, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 568, in text_orientation_set
+    osd = pytesseract.image_to_osd(rgb)
+  File "/home/***/.local/lib/python3.12/site-packages/pytesseract/pytesseract.py", line 621, in image_to_osd
+    return {
+  File "/home/***/.local/lib/python3.12/site-packages/pytesseract/pytesseract.py", line 624, in <lambda>
+    Output.STRING: lambda: run_and_get_output(*args),
+  File "/home/***/.local/lib/python3.12/site-packages/pytesseract/pytesseract.py", line 352, in run_and_get_output
+    run_tesseract(**kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/pytesseract/pytesseract.py", line 282, in run_tesseract
+    with timeout_manager(proc, timeout) as error_string:
+  File "/usr/local/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+  File "/home/***/.local/lib/python3.12/site-packages/pytesseract/pytesseract.py", line 144, in timeout_manager
+    yield proc.communicate()[1]
+  File "/usr/local/lib/python3.12/subprocess.py", line 1211, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File "/usr/local/lib/python3.12/subprocess.py", line 2123, in _communicate
+    ready = selector.select(timeout)
+  File "/usr/local/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3095, in signal_handler
+    self.log.error("Stacktrace: \n%s", "".join(traceback.format_stack()))
+
+[2025-06-24T11:15:51.038+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T11:15:51.054+0900] {process_utils.py:80} INFO - Process psutil.Process(pid=32889, status='terminated', started='11:15:48') (32889) terminated with exit code None
+[2025-06-24T11:15:51.055+0900] {process_utils.py:80} INFO - Process psutil.Process(pid=32818, status='terminated', exitcode=0, started='11:14:03') (32818) terminated with exit code 0

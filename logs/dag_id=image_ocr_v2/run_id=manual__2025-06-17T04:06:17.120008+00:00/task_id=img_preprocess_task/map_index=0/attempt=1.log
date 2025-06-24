@@ -1,0 +1,177 @@
+[2025-06-17T13:06:21.549+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-17T13:06:21.579+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-17T04:06:17.120008+00:00 map_index=0 [queued]>
+[2025-06-17T13:06:21.595+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-17T04:06:17.120008+00:00 map_index=0 [queued]>
+[2025-06-17T13:06:21.595+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-17T13:06:21.613+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-17 04:06:17.120008+00:00
+[2025-06-17T13:06:21.623+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=3926) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-17T13:06:21.626+0900] {standard_task_runner.py:72} INFO - Started process 3935 to run task
+[2025-06-17T13:06:21.626+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_ocr_v2', 'img_preprocess_task', 'manual__2025-06-17T04:06:17.120008+00:00', '--job-id', '853', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpovpgx57d', '--map-index', '0']
+[2025-06-17T13:06:21.629+0900] {standard_task_runner.py:105} INFO - Job 853: Subtask img_preprocess_task
+[2025-06-17T13:06:21.685+0900] {task_command.py:467} INFO - Running <TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-17T04:06:17.120008+00:00 map_index=0 [running]> on host f6d4228a9eb8
+[2025-06-17T13:06:21.790+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_ocr_v2' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-17T04:06:17.120008+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-17T04:06:17.120008+00:00'
+[2025-06-17T13:06:21.796+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-17T13:06:21.799+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_126c221b-b095-45ea-b384-68748e99cd58_pre', 'folder_path': '5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set5', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': True}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': True}}, {'name': 'threshold', 'param': {}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': []}
+[2025-06-17T13:06:21.800+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-17T13:06:21.800+0900] {logging_mixin.py:190} INFO - step : calc_angle_set5
+[2025-06-17T13:06:22.210+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-5.0.png
+[2025-06-17T13:06:22.633+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-4.8.png
+[2025-06-17T13:06:23.099+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-4.6.png
+[2025-06-17T13:06:23.588+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-4.3999999999999995.png
+[2025-06-17T13:06:24.022+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-4.199999999999999.png
+[2025-06-17T13:06:24.431+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-3.999999999999999.png
+[2025-06-17T13:06:24.854+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-3.799999999999999.png
+[2025-06-17T13:06:25.264+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-3.5999999999999988.png
+[2025-06-17T13:06:25.670+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-3.3999999999999986.png
+[2025-06-17T13:06:26.063+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-3.1999999999999984.png
+[2025-06-17T13:06:26.462+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-2.9999999999999982.png
+[2025-06-17T13:06:26.872+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-2.799999999999998.png
+[2025-06-17T13:06:27.325+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-2.599999999999998.png
+[2025-06-17T13:06:27.792+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-2.3999999999999977.png
+[2025-06-17T13:06:28.183+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-2.1999999999999975.png
+[2025-06-17T13:06:28.587+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-1.9999999999999973.png
+[2025-06-17T13:06:29.005+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-1.7999999999999972.png
+[2025-06-17T13:06:29.420+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-1.599999999999997.png
+[2025-06-17T13:06:29.800+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-1.3999999999999968.png
+[2025-06-17T13:06:30.189+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-1.1999999999999966.png
+[2025-06-17T13:06:30.553+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-0.9999999999999964.png
+[2025-06-17T13:06:30.929+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-0.7999999999999963.png
+[2025-06-17T13:06:31.321+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-0.5999999999999961.png
+[2025-06-17T13:06:31.697+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-0.3999999999999959.png
+[2025-06-17T13:06:32.073+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_-0.19999999999999574.png
+[2025-06-17T13:06:32.450+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.440892098500626e-15.png
+[2025-06-17T13:06:32.823+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_0.20000000000000462.png
+[2025-06-17T13:06:33.211+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_0.4000000000000048.png
+[2025-06-17T13:06:33.683+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_0.600000000000005.png
+[2025-06-17T13:06:34.197+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_0.8000000000000052.png
+[2025-06-17T13:06:34.585+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_1.0000000000000053.png
+[2025-06-17T13:06:34.975+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_1.2000000000000055.png
+[2025-06-17T13:06:35.361+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_1.4000000000000057.png
+[2025-06-17T13:06:35.739+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_1.6000000000000059.png
+[2025-06-17T13:06:36.125+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_1.800000000000006.png
+[2025-06-17T13:06:36.512+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_2.000000000000006.png
+[2025-06-17T13:06:36.909+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_2.2000000000000064.png
+[2025-06-17T13:06:37.412+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_2.4000000000000066.png
+[2025-06-17T13:06:37.908+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_2.6000000000000068.png
+[2025-06-17T13:06:38.287+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_2.800000000000007.png
+[2025-06-17T13:06:38.679+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_3.000000000000007.png
+[2025-06-17T13:06:39.059+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_3.2000000000000064.png
+[2025-06-17T13:06:39.448+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_3.4000000000000075.png
+[2025-06-17T13:06:39.834+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_3.6000000000000085.png
+[2025-06-17T13:06:40.225+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_3.800000000000008.png
+[2025-06-17T13:06:40.608+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.000000000000007.png
+[2025-06-17T13:06:40.986+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.200000000000008.png
+[2025-06-17T13:06:41.379+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.400000000000009.png
+[2025-06-17T13:06:41.770+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.6000000000000085.png
+[2025-06-17T13:06:42.151+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_4.800000000000008.png
+[2025-06-17T13:06:42.538+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/5b128330-ee16-4026-88ad-e434e7c5dec9/126c221b-b095-45ea-b384-68748e99cd58/rotate5_1_5.000000000000009.png
+[2025-06-17T13:06:42.567+0900] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 61, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 580, in calc_angle_set5
+    print(f"osd {idx}",total_angle,best_angle,scores.index(max(scores),max(scores)))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: 2622 is not in list
+[2025-06-17T13:06:42.575+0900] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=image_ocr_v2, task_id=img_preprocess_task, run_id=manual__2025-06-17T04:06:17.120008+00:00, map_index=0, execution_date=20250617T040617, start_date=20250617T040621, end_date=20250617T040642
+[2025-06-17T13:06:42.599+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-17T13:06:42.600+0900] {standard_task_runner.py:124} ERROR - Failed to execute job 853 for task img_preprocess_task (2622 is not in list; 3935)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 61, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 580, in calc_angle_set5
+    print(f"osd {idx}",total_angle,best_angle,scores.index(max(scores),max(scores)))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: 2622 is not in list
+[2025-06-17T13:06:42.619+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-06-17T13:06:42.646+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-17T13:06:42.651+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,22 @@
+[2025-06-23T15:46:08.974+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-23T15:46:09.188+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-23T06:45:10.371530+00:00 map_index=5 [queued]>
+[2025-06-23T15:46:09.234+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-23T06:45:10.371530+00:00 map_index=5 [queued]>
+[2025-06-23T15:46:09.245+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-23T15:46:09.274+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-23 06:45:10.371530+00:00
+[2025-06-23T15:46:09.299+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'img_preprocess_task', 'manual__2025-06-23T06:45:10.371530+00:00', '--job-id', '2904', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpx_a2pvyw', '--map-index', '5']
+[2025-06-23T15:46:09.293+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2979) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-23T15:46:09.311+0900] {standard_task_runner.py:72} INFO - Started process 3044 to run task
+[2025-06-23T15:46:09.305+0900] {standard_task_runner.py:105} INFO - Job 2904: Subtask img_preprocess_task
+[2025-06-23T15:46:09.444+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-23T06:45:10.371530+00:00 map_index=5 [running]> on host f6d4228a9eb8
+[2025-06-23T15:46:09.843+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-23T06:45:10.371530+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-23T06:45:10.371530+00:00'
+[2025-06-23T15:46:09.851+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-23T15:46:09.855+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_88459986-db17-4228-b0e2-1104b5c0b555_pre', 'folder_path': '31593426-6725-4589-b0dd-1b665117e33a/88459986-db17-4228-b0e2-1104b5c0b555', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-23T15:46:09.861+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-23T15:46:09.885+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-23T15:46:26.436+0900] {job.py:229} INFO - Heartbeat recovered after 11.37 seconds
+[2025-06-23T15:47:15.249+0900] {logging_mixin.py:190} INFO - osd 1 5.0 5.0 40 1510551 [1366990, 1314893, 1259083, 1202740, 1146850, 1089080, 1034233, 977565, 922714, 863940, 811477, 759254, 707668, 657837, 614576, 570934, 527798, 485035, 441834, 399913, 362158, 404942, 452655, 501714, 553236, 606342, 661078, 713761, 770805, 830151, 888330, 945163, 1008989, 1069495, 1131409, 1193589, 1256992, 1320441, 1385376, 1449680, 1510551]
+[2025-06-23T15:47:36.971+0900] {job.py:229} INFO - Heartbeat recovered after 17.86 seconds
+[2025-06-23T15:48:38.475+0900] {job.py:229} INFO - Heartbeat recovered after 11.54 seconds
+[2025-06-23T15:48:40.537+0900] {logging_mixin.py:190} INFO - osd 2 0.0 -5.0 0 3108777 [3108777, 3025239, 2945158, 2859405, 2770703, 2686790, 2601669, 2514181, 2431018, 2338527, 2256313, 2169026, 2083404, 2002032, 1913069, 1831768, 1747509, 1670189, 1597580, 1518169, 1445286, 1516427, 1592503, 1661903, 1735715, 1813399, 1887713, 1967262, 2040012, 2117851, 2194724, 2270267, 2356027, 2433851, 2517295, 2596238, 2677112, 2763620, 2846823, 2924822, 3011030]

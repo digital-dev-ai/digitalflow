@@ -1,0 +1,29 @@
+[2025-05-26T06:37:47.487+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T06:37:47.519+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2025-05-26T06:37:41.903336+00:00 map_index=1 [queued]>
+[2025-05-26T06:37:47.684+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2025-05-26T06:37:41.903336+00:00 map_index=1 [queued]>
+[2025-05-26T06:37:47.684+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-26T06:37:47.700+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): grayscale_task> on 2025-05-26 06:37:41.903336+00:00
+[2025-05-26T06:37:47.708+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=866) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-05-26T06:37:47.710+0000] {standard_task_runner.py:72} INFO - Started process 874 to run task
+[2025-05-26T06:37:47.710+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'grayscale_task', 'manual__2025-05-26T06:37:41.903336+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmp7if5d6pw', '--map-index', '1']
+[2025-05-26T06:37:47.712+0000] {standard_task_runner.py:105} INFO - Job 28: Subtask grayscale_task
+[2025-05-26T06:37:47.772+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2025-05-26T06:37:41.903336+00:00 map_index=1 [running]> on host b0d7fbab896a
+[2025-05-26T06:37:47.859+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='grayscale_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-26T06:37:41.903336+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-26T06:37:41.903336+00:00'
+[2025-05-26T06:37:47.860+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-26T06:37:47.861+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-26T06:37:47.861+0000] {logging_mixin.py:190} INFO - Current task name:grayscale_task state:running start_date:2025-05-26 06:37:47.520135+00:00
+[2025-05-26T06:37:47.862+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-26T06:37:47.862+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-26T06:37:47.863+0000] {logging_mixin.py:190} INFO - ----------file_path /opt/***/data/upload/test/스크린샷 2025-05-23 141009.png
+[2025-05-26T06:37:47.934+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/result/test/스크린샷 2025-05-23 141009.png
+[2025-05-26T06:37:47.957+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-26T06:37:47.958+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=grayscale_task, run_id=manual__2025-05-26T06:37:41.903336+00:00, map_index=1, execution_date=20250526T063741, start_date=20250526T063747, end_date=20250526T063747
+[2025-05-26T06:37:47.981+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-26T06:37:47.982+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-26T06:37:47.982+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-26 06:37:41.925115+00:00
+[2025-05-26T06:37:47.983+0000] {logging_mixin.py:190} INFO - Task hostname:b0d7fbab896a operator:_PythonDecoratedOperator
+[2025-05-26T06:37:48.007+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-26T06:37:48.095+0000] {taskinstance.py:3901} INFO - 3 downstream tasks scheduled from follow-on schedule check
+[2025-05-26T06:37:48.098+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

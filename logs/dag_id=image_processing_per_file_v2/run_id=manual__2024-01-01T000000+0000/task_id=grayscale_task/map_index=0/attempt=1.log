@@ -1,0 +1,62 @@
+[2025-05-26T06:35:16.068+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T06:35:16.224+0000] {taskinstance.py:2604} INFO - Dependencies not met for <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state.
+[2025-05-26T06:35:16.226+0000] {local_task_job_runner.py:166} INFO - Task is not able to be run
+[2025-05-26T07:42:39.568+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T07:42:40.696+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-05-26T07:42:40.786+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-05-26T07:42:40.794+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-26T07:42:40.928+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): grayscale_task> on 2024-01-01 00:00:00+00:00
+[2025-05-26T07:42:40.981+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2619) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-05-26T07:42:41.022+0000] {standard_task_runner.py:72} INFO - Started process 2669 to run task
+[2025-05-26T07:42:40.993+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'grayscale_task', 'manual__2024-01-01T00:00:00+00:00', '--job-id', '260', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpdccsz1vt', '--map-index', '0']
+[2025-05-26T07:42:41.034+0000] {standard_task_runner.py:105} INFO - Job 260: Subtask grayscale_task
+[2025-05-26T07:42:41.292+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [running]> on host b0d7fbab896a
+[2025-05-26T07:42:41.660+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='grayscale_task' AIRFLOW_CTX_EXECUTION_DATE='2024-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-01T00:00:00+00:00'
+[2025-05-26T07:42:41.672+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-26T07:42:41.694+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-26T07:42:41.697+0000] {logging_mixin.py:190} INFO - Current task name:grayscale_task state:running start_date:2025-05-26 07:42:40.708533+00:00
+[2025-05-26T07:42:41.700+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-26T07:42:41.702+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-26T07:42:41.703+0000] {logging_mixin.py:190} INFO - ----------file_path /opt/***/data/upload/test/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:42:42.771+0000] {logging_mixin.py:190} INFO - gray: /opt/***/data/temp/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:42:42.772+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/temp/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:42:42.808+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-26T07:42:42.809+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=grayscale_task, run_id=manual__2024-01-01T00:00:00+00:00, map_index=0, execution_date=20240101T000000, start_date=20250526T074240, end_date=20250526T074242
+[2025-05-26T07:42:42.871+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-26T07:42:42.872+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-26T07:42:42.872+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:None
+[2025-05-26T07:42:42.876+0000] {logging_mixin.py:190} INFO - Task hostname:b0d7fbab896a operator:_PythonDecoratedOperator
+[2025-05-26T07:42:42.907+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-26T07:42:43.062+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-26T07:42:43.074+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-05-26T07:44:56.011+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T07:44:56.694+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-05-26T07:44:56.759+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [queued]>
+[2025-05-26T07:44:56.760+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-26T07:44:56.865+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): grayscale_task> on 2024-01-01 00:00:00+00:00
+[2025-05-26T07:44:56.924+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2804) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-05-26T07:44:56.931+0000] {standard_task_runner.py:72} INFO - Started process 2828 to run task
+[2025-05-26T07:44:56.930+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'grayscale_task', 'manual__2024-01-01T00:00:00+00:00', '--job-id', '296', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpjkzcptrm', '--map-index', '0']
+[2025-05-26T07:44:56.948+0000] {standard_task_runner.py:105} INFO - Job 296: Subtask grayscale_task
+[2025-05-26T07:44:57.071+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.grayscale_task manual__2024-01-01T00:00:00+00:00 map_index=0 [running]> on host b0d7fbab896a
+[2025-05-26T07:44:57.362+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='grayscale_task' AIRFLOW_CTX_EXECUTION_DATE='2024-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-01T00:00:00+00:00'
+[2025-05-26T07:44:57.364+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-26T07:44:57.365+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-26T07:44:57.373+0000] {logging_mixin.py:190} INFO - Current task name:grayscale_task state:running start_date:2025-05-26 07:44:56.695722+00:00
+[2025-05-26T07:44:57.374+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-26T07:44:57.374+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-26T07:44:57.376+0000] {logging_mixin.py:190} INFO - ----------file_path /opt/***/data/upload/test/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:44:58.459+0000] {logging_mixin.py:190} INFO - gray: /opt/***/data/temp/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:44:58.460+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/temp/스크린샷 2025-05-20 182000 - 복사본 (2).png
+[2025-05-26T07:44:58.533+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-26T07:44:58.536+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=grayscale_task, run_id=manual__2024-01-01T00:00:00+00:00, map_index=0, execution_date=20240101T000000, start_date=20250526T074456, end_date=20250526T074458
+[2025-05-26T07:44:58.649+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-26T07:44:58.655+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-26T07:44:58.656+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:None
+[2025-05-26T07:44:58.656+0000] {logging_mixin.py:190} INFO - Task hostname:b0d7fbab896a operator:_PythonDecoratedOperator
+[2025-05-26T07:44:58.718+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-26T07:44:58.744+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

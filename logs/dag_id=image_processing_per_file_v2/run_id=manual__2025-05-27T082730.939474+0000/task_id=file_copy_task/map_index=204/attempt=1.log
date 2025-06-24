@@ -1,0 +1,27 @@
+[2025-05-27T08:39:43.234+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-27T08:39:44.149+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=204 [queued]>
+[2025-05-27T08:39:44.740+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=204 [queued]>
+[2025-05-27T08:39:44.743+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-27T08:39:45.062+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): file_copy_task> on 2025-05-27 08:27:30.939474+00:00
+[2025-05-27T08:39:45.199+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'file_copy_task', 'manual__2025-05-27T08:27:30.939474+00:00', '--job-id', '660', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpn4w5ezj1', '--map-index', '204']
+[2025-05-27T08:39:45.203+0000] {standard_task_runner.py:105} INFO - Job 660: Subtask file_copy_task
+[2025-05-27T08:39:45.245+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=22836) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-05-27T08:39:45.252+0000] {standard_task_runner.py:72} INFO - Started process 22949 to run task
+[2025-05-27T08:39:45.752+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=204 [running]> on host d13339a4a574
+[2025-05-27T08:39:47.056+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='file_copy_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-27T08:27:30.939474+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-27T08:27:30.939474+00:00'
+[2025-05-27T08:39:47.068+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-27T08:39:47.086+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-27T08:39:47.090+0000] {logging_mixin.py:190} INFO - Current task name:file_copy_task state:running start_date:2025-05-27 08:39:44.156518+00:00
+[2025-05-27T08:39:47.091+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-27T08:39:47.156+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-27T08:39:47.248+0000] {logging_mixin.py:190} INFO - copy: /opt/***/data/result/test/스크린샷 2025-05-23 135629 - 복사본 (5) - 복사본.png
+[2025-05-27T08:39:47.261+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/result/test/스크린샷 2025-05-23 135629 - 복사본 (5) - 복사본.png
+[2025-05-27T08:39:47.514+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-27T08:39:47.525+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=file_copy_task, run_id=manual__2025-05-27T08:27:30.939474+00:00, map_index=204, execution_date=20250527T082730, start_date=20250527T083944, end_date=20250527T083947
+[2025-05-27T08:39:47.818+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-27T08:39:47.826+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-27T08:39:47.847+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-27 08:27:30.973127+00:00
+[2025-05-27T08:39:47.848+0000] {logging_mixin.py:190} INFO - Task hostname:d13339a4a574 operator:_PythonDecoratedOperator
+[2025-05-27T08:39:48.128+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-27T08:39:49.214+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-27T08:39:49.251+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

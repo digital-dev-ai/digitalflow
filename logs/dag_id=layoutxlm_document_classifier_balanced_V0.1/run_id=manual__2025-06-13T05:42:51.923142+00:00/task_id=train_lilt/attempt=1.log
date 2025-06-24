@@ -1,0 +1,86 @@
+[2025-06-13T14:43:01.345+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-13T14:43:01.431+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.train_lilt manual__2025-06-13T05:42:51.923142+00:00 [queued]>
+[2025-06-13T14:43:01.468+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.train_lilt manual__2025-06-13T05:42:51.923142+00:00 [queued]>
+[2025-06-13T14:43:01.470+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-13T14:43:01.519+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): train_lilt> on 2025-06-13 05:42:51.923142+00:00
+[2025-06-13T14:43:01.535+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=273) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-13T14:43:01.541+0900] {standard_task_runner.py:72} INFO - Started process 274 to run task
+[2025-06-13T14:43:01.544+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'layoutxlm_document_classifier_balanced_V0.1', 'train_lilt', 'manual__2025-06-13T05:42:51.923142+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp4qqubqbg']
+[2025-06-13T14:43:01.548+0900] {standard_task_runner.py:105} INFO - Job 20: Subtask train_lilt
+[2025-06-13T14:43:01.719+0900] {task_command.py:467} INFO - Running <TaskInstance: layoutxlm_document_classifier_balanced_V0.1.train_lilt manual__2025-06-13T05:42:51.923142+00:00 [running]> on host f6d4228a9eb8
+[2025-06-13T14:43:02.057+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='layoutxlm_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='train_lilt' AIRFLOW_CTX_EXECUTION_DATE='2025-06-13T05:42:51.923142+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-13T05:42:51.923142+00:00'
+[2025-06-13T14:43:02.060+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-13T14:43:09.352+0900] {logging_mixin.py:190} WARNING - Some weights of LiltForSequenceClassification were not initialized from the model checkpoint at SCUT-DLVCLab/lilt-roberta-en-base and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[2025-06-13T14:43:09.371+0900] {logging_mixin.py:190} INFO - Epoch 1
+[2025-06-13T14:43:35.303+0900] {logging_mixin.py:190} INFO - Batch 1 loss: 0.6591796875
+[2025-06-13T14:44:00.844+0900] {logging_mixin.py:190} INFO - Batch 2 loss: nan
+[2025-06-13T14:44:27.458+0900] {logging_mixin.py:190} INFO - Batch 3 loss: nan
+[2025-06-13T14:44:53.166+0900] {logging_mixin.py:190} INFO - Batch 4 loss: nan
+[2025-06-13T14:45:19.914+0900] {logging_mixin.py:190} INFO - Batch 5 loss: nan
+[2025-06-13T14:45:45.973+0900] {logging_mixin.py:190} INFO - Batch 6 loss: nan
+[2025-06-13T14:46:12.243+0900] {logging_mixin.py:190} INFO - Batch 7 loss: nan
+[2025-06-13T14:46:38.302+0900] {logging_mixin.py:190} INFO - Batch 8 loss: nan
+[2025-06-13T14:47:04.071+0900] {logging_mixin.py:190} INFO - Batch 9 loss: nan
+[2025-06-13T14:47:30.215+0900] {logging_mixin.py:190} INFO - Batch 10 loss: nan
+[2025-06-13T14:48:00.029+0900] {logging_mixin.py:190} INFO - Batch 11 loss: nan
+[2025-06-13T14:48:26.690+0900] {logging_mixin.py:190} INFO - Batch 12 loss: nan
+[2025-06-13T14:48:52.814+0900] {logging_mixin.py:190} INFO - Batch 13 loss: nan
+[2025-06-13T14:49:20.321+0900] {logging_mixin.py:190} INFO - Batch 14 loss: nan
+[2025-06-13T14:49:45.755+0900] {logging_mixin.py:190} INFO - Batch 15 loss: nan
+[2025-06-13T14:50:12.209+0900] {logging_mixin.py:190} INFO - Batch 16 loss: nan
+[2025-06-13T14:50:38.200+0900] {logging_mixin.py:190} INFO - Batch 17 loss: nan
+[2025-06-13T14:51:04.494+0900] {logging_mixin.py:190} INFO - Batch 18 loss: nan
+[2025-06-13T14:51:31.440+0900] {logging_mixin.py:190} INFO - Batch 19 loss: nan
+[2025-06-13T14:51:57.534+0900] {logging_mixin.py:190} INFO - Batch 20 loss: nan
+[2025-06-13T14:52:24.434+0900] {logging_mixin.py:190} INFO - Batch 21 loss: nan
+[2025-06-13T14:52:51.908+0900] {logging_mixin.py:190} INFO - Batch 22 loss: nan
+[2025-06-13T14:53:16.961+0900] {logging_mixin.py:190} INFO - Batch 23 loss: nan
+[2025-06-13T14:53:42.398+0900] {logging_mixin.py:190} INFO - Batch 24 loss: nan
+[2025-06-13T14:54:08.449+0900] {logging_mixin.py:190} INFO - Batch 25 loss: nan
+[2025-06-13T14:54:35.899+0900] {logging_mixin.py:190} INFO - Batch 26 loss: nan
+[2025-06-13T14:55:01.981+0900] {logging_mixin.py:190} INFO - Batch 27 loss: nan
+[2025-06-13T14:55:26.699+0900] {logging_mixin.py:190} INFO - Batch 28 loss: nan
+[2025-06-13T14:55:53.408+0900] {logging_mixin.py:190} INFO - Batch 29 loss: nan
+[2025-06-13T14:56:19.281+0900] {logging_mixin.py:190} INFO - Batch 30 loss: nan
+[2025-06-13T14:56:45.028+0900] {logging_mixin.py:190} INFO - Batch 31 loss: nan
+[2025-06-13T14:57:11.747+0900] {logging_mixin.py:190} INFO - Batch 32 loss: nan
+[2025-06-13T14:57:37.981+0900] {logging_mixin.py:190} INFO - Batch 33 loss: nan
+[2025-06-13T14:58:04.348+0900] {logging_mixin.py:190} INFO - Batch 34 loss: nan
+[2025-06-13T14:58:29.061+0900] {logging_mixin.py:190} INFO - Batch 35 loss: nan
+[2025-06-13T14:58:55.189+0900] {logging_mixin.py:190} INFO - Batch 36 loss: nan
+[2025-06-13T14:59:24.270+0900] {logging_mixin.py:190} INFO - Batch 37 loss: nan
+[2025-06-13T14:59:50.824+0900] {logging_mixin.py:190} INFO - Batch 38 loss: nan
+[2025-06-13T15:00:18.692+0900] {logging_mixin.py:190} INFO - Batch 39 loss: nan
+[2025-06-13T15:00:45.048+0900] {logging_mixin.py:190} INFO - Batch 40 loss: nan
+[2025-06-13T15:01:10.481+0900] {logging_mixin.py:190} INFO - Batch 41 loss: nan
+[2025-06-13T15:01:36.204+0900] {logging_mixin.py:190} INFO - Batch 42 loss: nan
+[2025-06-13T15:02:05.091+0900] {logging_mixin.py:190} INFO - Batch 43 loss: nan
+[2025-06-13T15:02:31.711+0900] {logging_mixin.py:190} INFO - Batch 44 loss: nan
+[2025-06-13T15:02:57.059+0900] {logging_mixin.py:190} INFO - Batch 45 loss: nan
+[2025-06-13T15:03:24.046+0900] {logging_mixin.py:190} INFO - Batch 46 loss: nan
+[2025-06-13T15:03:50.967+0900] {logging_mixin.py:190} INFO - Batch 47 loss: nan
+[2025-06-13T15:04:17.513+0900] {logging_mixin.py:190} INFO - Batch 48 loss: nan
+[2025-06-13T15:04:47.048+0900] {logging_mixin.py:190} INFO - Batch 49 loss: nan
+[2025-06-13T15:05:13.963+0900] {logging_mixin.py:190} INFO - Batch 50 loss: nan
+[2025-06-13T15:05:39.504+0900] {logging_mixin.py:190} INFO - Batch 51 loss: nan
+[2025-06-13T15:06:06.451+0900] {logging_mixin.py:190} INFO - Batch 52 loss: nan
+[2025-06-13T15:06:32.863+0900] {logging_mixin.py:190} INFO - Batch 53 loss: nan
+[2025-06-13T15:06:58.708+0900] {logging_mixin.py:190} INFO - Batch 54 loss: nan
+[2025-06-13T15:07:25.977+0900] {logging_mixin.py:190} INFO - Batch 55 loss: nan
+[2025-06-13T15:07:53.335+0900] {logging_mixin.py:190} INFO - Batch 56 loss: nan
+[2025-06-13T15:08:19.468+0900] {logging_mixin.py:190} INFO - Batch 57 loss: nan
+[2025-06-13T15:08:45.402+0900] {logging_mixin.py:190} INFO - Batch 58 loss: nan
+[2025-06-13T15:09:11.712+0900] {logging_mixin.py:190} INFO - Batch 59 loss: nan
+[2025-06-13T15:09:39.739+0900] {logging_mixin.py:190} INFO - Batch 60 loss: nan
+[2025-06-13T15:10:06.496+0900] {logging_mixin.py:190} INFO - Batch 61 loss: nan
+[2025-06-13T15:10:33.248+0900] {logging_mixin.py:190} INFO - Batch 62 loss: nan
+[2025-06-13T15:10:34.142+0900] {logging_mixin.py:190} INFO - 모델 저장 완료: /opt/***/data/class/a_class/classify/model
+[2025-06-13T15:10:34.184+0900] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-13T15:10:34.221+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-13T15:10:34.223+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=layoutxlm_document_classifier_balanced_V0.1, task_id=train_lilt, run_id=manual__2025-06-13T05:42:51.923142+00:00, execution_date=20250613T054251, start_date=20250613T054301, end_date=20250613T061034
+[2025-06-13T15:10:34.489+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-13T15:10:34.545+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-13T15:10:34.551+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

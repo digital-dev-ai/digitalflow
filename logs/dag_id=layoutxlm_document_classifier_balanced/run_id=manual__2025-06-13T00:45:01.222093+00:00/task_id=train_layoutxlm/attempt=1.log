@@ -1,0 +1,25 @@
+[2025-06-13T00:45:30.629+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-13T00:45:30.648+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced.train_layoutxlm manual__2025-06-13T00:45:01.222093+00:00 [queued]>
+[2025-06-13T00:45:30.657+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced.train_layoutxlm manual__2025-06-13T00:45:01.222093+00:00 [queued]>
+[2025-06-13T00:45:30.658+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-13T00:45:30.672+0000] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): train_layoutxlm> on 2025-06-13 00:45:01.222093+00:00
+[2025-06-13T00:45:30.682+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=12020) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-13T00:45:30.684+0000] {standard_task_runner.py:72} INFO - Started process 12028 to run task
+[2025-06-13T00:45:30.684+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'layoutxlm_document_classifier_balanced', 'train_layoutxlm', 'manual__2025-06-13T00:45:01.222093+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpk4_d_874']
+[2025-06-13T00:45:30.688+0000] {standard_task_runner.py:105} INFO - Job 16: Subtask train_layoutxlm
+[2025-06-13T00:45:30.734+0000] {task_command.py:467} INFO - Running <TaskInstance: layoutxlm_document_classifier_balanced.train_layoutxlm manual__2025-06-13T00:45:01.222093+00:00 [running]> on host 1b4dc43139a5
+[2025-06-13T00:45:30.829+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='layoutxlm_document_classifier_balanced' AIRFLOW_CTX_TASK_ID='train_layoutxlm' AIRFLOW_CTX_EXECUTION_DATE='2025-06-13T00:45:01.222093+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-13T00:45:01.222093+00:00'
+[2025-06-13T00:45:30.831+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-13T00:45:37.469+0000] {logging_mixin.py:190} INFO - 모델 학습 준비 완료
+[2025-06-13T00:45:37.470+0000] {logging_mixin.py:190} INFO - - 총 데이터셋 크기: 36
+[2025-06-13T00:45:37.471+0000] {logging_mixin.py:190} INFO - - True 샘플: 18개
+[2025-06-13T00:45:37.471+0000] {logging_mixin.py:190} INFO - - False 샘플: 18개
+[2025-06-13T00:45:37.471+0000] {logging_mixin.py:190} INFO - - 모델 저장 경로: /opt/***/data/class/a_class/classify/model
+[2025-06-13T00:45:37.692+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-13T00:45:37.707+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-13T00:45:37.708+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=layoutxlm_document_classifier_balanced, task_id=train_layoutxlm, run_id=manual__2025-06-13T00:45:01.222093+00:00, execution_date=20250613T004501, start_date=20250613T004530, end_date=20250613T004537
+[2025-06-13T00:45:37.952+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-13T00:45:38.005+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-13T00:45:38.012+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

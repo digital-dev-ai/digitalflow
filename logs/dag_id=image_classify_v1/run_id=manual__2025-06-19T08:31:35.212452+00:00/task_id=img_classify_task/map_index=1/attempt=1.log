@@ -1,0 +1,20 @@
+[2025-06-19T17:32:30.960+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-19T17:32:30.988+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-19T08:31:35.212452+00:00 map_index=1 [queued]>
+[2025-06-19T17:32:31.002+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-19T08:31:35.212452+00:00 map_index=1 [queued]>
+[2025-06-19T17:32:31.002+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-19T17:32:31.018+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_classify_task> on 2025-06-19 08:31:35.212452+00:00
+[2025-06-19T17:32:31.032+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=8042) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-19T17:32:31.036+0900] {standard_task_runner.py:72} INFO - Started process 8088 to run task
+[2025-06-19T17:32:31.035+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'img_classify_task', 'manual__2025-06-19T08:31:35.212452+00:00', '--job-id', '1650', '--raw', '--subdir', 'DAGS_FOLDER/img_classify.py', '--cfg-path', '/tmp/tmp3l4wuqfs', '--map-index', '1']
+[2025-06-19T17:32:31.037+0900] {standard_task_runner.py:105} INFO - Job 1650: Subtask img_classify_task
+[2025-06-19T17:32:31.092+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.img_classify_task manual__2025-06-19T08:31:35.212452+00:00 map_index=1 [running]> on host f6d4228a9eb8
+[2025-06-19T17:32:31.181+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='img_classify_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-19T08:31:35.212452+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-19T08:31:35.212452+00:00'
+[2025-06-19T17:32:31.182+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-19T17:32:40.182+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '40e5dacd-8429-4571-ba28-3434173e4517', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-007.jpg', 'result': {'process_id': '_66e3ae1f-a752-4751-a284-b63ea504b100_pre', 'folder_path': '40e5dacd-8429-4571-ba28-3434173e4517/66e3ae1f-a752-4751-a284-b63ea504b100', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {'_result': '/opt/***/data/temp/40e5dacd-8429-4571-ba28-3434173e4517/66e3ae1f-a752-4751-a284-b63ea504b100/_result.png'}}, 'classify': {'a_class': {'pred': 0, 'confidence': 0.5453650951385498}}}
+[2025-06-19T17:32:40.234+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-19T17:32:40.236+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_classify_v1, task_id=img_classify_task, run_id=manual__2025-06-19T08:31:35.212452+00:00, map_index=1, execution_date=20250619T083135, start_date=20250619T083230, end_date=20250619T083240
+[2025-06-19T17:32:40.311+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-19T17:32:40.337+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-19T17:32:40.350+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

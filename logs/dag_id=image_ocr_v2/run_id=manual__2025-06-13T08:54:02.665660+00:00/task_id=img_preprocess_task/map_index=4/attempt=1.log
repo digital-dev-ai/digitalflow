@@ -1,0 +1,40 @@
+[2025-06-13T17:54:12.177+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-13T17:54:12.205+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-13T08:54:02.665660+00:00 map_index=4 [queued]>
+[2025-06-13T17:54:12.218+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-13T08:54:02.665660+00:00 map_index=4 [queued]>
+[2025-06-13T17:54:12.219+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-13T17:54:12.233+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-13 08:54:02.665660+00:00
+[2025-06-13T17:54:12.240+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=3316) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-13T17:54:12.241+0900] {standard_task_runner.py:72} INFO - Started process 3333 to run task
+[2025-06-13T17:54:12.242+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_ocr_v2', 'img_preprocess_task', 'manual__2025-06-13T08:54:02.665660+00:00', '--job-id', '59', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmphfc21357', '--map-index', '4']
+[2025-06-13T17:54:12.244+0900] {standard_task_runner.py:105} INFO - Job 59: Subtask img_preprocess_task
+[2025-06-13T17:54:12.289+0900] {task_command.py:467} INFO - Running <TaskInstance: image_ocr_v2.img_preprocess_task manual__2025-06-13T08:54:02.665660+00:00 map_index=4 [running]> on host f6d4228a9eb8
+[2025-06-13T17:54:12.389+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_ocr_v2' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-13T08:54:02.665660+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-13T08:54:02.665660+00:00'
+[2025-06-13T17:54:12.394+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-13T17:54:12.398+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_14051db6-805d-4c88-9fec-27e25a8583a0_pre', 'folder_path': 'e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'save', 'param': {'key': 'rotate1'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'save', 'param': {'key': 'rotate2'}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'scale1', 'param': {'width': 500, 'height': 500}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': []}
+[2025-06-13T17:54:12.399+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-13T17:54:12.402+0900] {logging_mixin.py:190} INFO - step : calc_angle_set1
+[2025-06-13T17:54:12.484+0900] {logging_mixin.py:190} INFO - angle1 :  0 0.608262553449233 -89.28345066611483 -89.25148585819451 90.44383166785866 90.52415507024762
+[2025-06-13T17:54:12.609+0900] {logging_mixin.py:190} INFO - angle2 :  0.608262553449233 0.009679104146236739 -89.87530862011141 -89.84413591355141 89.87903794288125 89.87912300736653
+[2025-06-13T17:54:12.611+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-13T17:54:12.779+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate1.png
+[2025-06-13T17:54:12.793+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-13T17:54:18.831+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_1.png
+[2025-06-13T17:54:20.338+0900] {logging_mixin.py:190} INFO - osd 1 270 270 5.41 Latin 0.11
+[2025-06-13T17:54:26.700+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_2.png
+[2025-06-13T17:54:28.109+0900] {logging_mixin.py:190} INFO - osd 2 450 180 2.36 Latin 1.2
+[2025-06-13T17:54:33.937+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_3.png
+[2025-06-13T17:54:35.311+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-13T17:54:35.472+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2.png
+[2025-06-13T17:54:35.488+0900] {logging_mixin.py:190} INFO - step : threshold
+[2025-06-13T17:54:35.608+0900] {logging_mixin.py:190} INFO - step : morphology1
+[2025-06-13T17:54:35.621+0900] {logging_mixin.py:190} INFO - step : scale1
+[2025-06-13T17:54:35.627+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-13T17:54:35.635+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/classify_preprocess.png
+[2025-06-13T17:54:35.639+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': 'e6e4e283-a4f8-47ac-ad77-779f0d0df725', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-017.jpg', 'preprocess_list': [{'process_id': '_14051db6-805d-4c88-9fec-27e25a8583a0_pre', 'folder_path': 'e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'save', 'param': {'key': 'rotate1'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'save', 'param': {'key': 'rotate2'}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'scale1', 'param': {'width': 500, 'height': 500}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': [{'key': 'rotate1', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate1.png'}, {'key': 'rotate2_1', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_1.png'}, {'key': 'rotate2_2', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_2.png'}, {'key': 'rotate2_3', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2_3.png'}, {'key': 'rotate2', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/rotate2.png'}, {'key': 'classify_preprocess', 'path': '/opt/***/data/temp/e6e4e283-a4f8-47ac-ad77-779f0d0df725/14051db6-805d-4c88-9fec-27e25a8583a0/classify_preprocess.png'}]}]}
+[2025-06-13T17:54:35.668+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-13T17:54:35.669+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_ocr_v2, task_id=img_preprocess_task, run_id=manual__2025-06-13T08:54:02.665660+00:00, map_index=4, execution_date=20250613T085402, start_date=20250613T085412, end_date=20250613T085435
+[2025-06-13T17:54:35.735+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-13T17:54:35.758+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-13T17:54:35.759+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

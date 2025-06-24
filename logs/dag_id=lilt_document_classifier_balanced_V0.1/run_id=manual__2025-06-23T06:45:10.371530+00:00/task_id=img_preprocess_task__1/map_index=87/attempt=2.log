@@ -1,0 +1,34 @@
+[2025-06-23T16:22:03.556+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-23T16:22:03.722+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-23T06:45:10.371530+00:00 map_index=87 [queued]>
+[2025-06-23T16:22:04.105+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-23T06:45:10.371530+00:00 map_index=87 [queued]>
+[2025-06-23T16:22:04.145+0900] {taskinstance.py:2867} INFO - Starting attempt 2 of 2
+[2025-06-23T16:22:04.257+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task__1> on 2025-06-23 06:45:10.371530+00:00
+[2025-06-23T16:22:04.320+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=6872) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-23T16:22:04.341+0900] {standard_task_runner.py:72} INFO - Started process 6881 to run task
+[2025-06-23T16:22:04.343+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'img_preprocess_task__1', 'manual__2025-06-23T06:45:10.371530+00:00', '--job-id', '3357', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp_97q10k_', '--map-index', '87']
+[2025-06-23T16:22:04.350+0900] {standard_task_runner.py:105} INFO - Job 3357: Subtask img_preprocess_task__1
+[2025-06-23T16:22:04.574+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-23T06:45:10.371530+00:00 map_index=87 [running]> on host f6d4228a9eb8
+[2025-06-23T16:22:05.122+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task__1' AIRFLOW_CTX_EXECUTION_DATE='2025-06-23T06:45:10.371530+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-23T06:45:10.371530+00:00'
+[2025-06-23T16:22:05.134+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-23T16:22:05.158+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_77404829-212c-4676-9d80-5166d91aed32_pre', 'folder_path': '632cd489-ac27-4c10-a5c8-12ccff3d7616/77404829-212c-4676-9d80-5166d91aed32', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-23T16:22:05.179+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-23T16:22:05.181+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-23T16:22:12.154+0900] {logging_mixin.py:190} INFO - osd 1 -5.0 -5.0 0 2070 [2070, 1918, 1766, 1543, 1336, 1123, 939, 718, 508, 282, 51, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-23T16:22:19.802+0900] {logging_mixin.py:190} INFO - osd 2 0.0 5.0 40 7772 [5453, 5273, 5112, 4975, 4798, 4634, 4455, 4341, 4147, 4003, 3826, 3667, 3483, 3281, 3057, 2864, 2701, 2481, 2286, 2063, 1847, 2022, 2225, 2379, 2573, 2720, 2870, 3074, 3168, 3365, 3598, 4094, 4538, 4991, 5359, 5819, 6279, 6665, 6993, 7449, 7772]
+[2025-06-23T16:22:27.635+0900] {logging_mixin.py:190} INFO - osd 3 -5.0 -5.0 0 20585 [20585, 20140, 19547, 18904, 18265, 17645, 16974, 16342, 15677, 15097, 14386, 13682, 13045, 12225, 11467, 10778, 10054, 9283, 8510, 7729, 7223, 7424, 7876, 8276, 8704, 9138, 9470, 9912, 10345, 10639, 11085, 11515, 11881, 12158, 12563, 12946, 13188, 13573, 13948, 14201, 14561]
+[2025-06-23T16:22:38.427+0900] {logging_mixin.py:190} INFO - osd 4 0.0 5.0 40 44980 [36464, 35775, 34978, 34028, 33155, 32010, 31007, 30066, 28807, 27820, 26687, 25450, 24494, 23723, 23184, 22419, 21774, 20930, 20367, 19552, 19061, 20250, 21654, 22871, 24405, 25650, 27021, 28309, 29749, 30970, 32449, 33747, 34978, 36413, 37648, 39001, 40412, 41740, 42893, 44183, 44980]
+[2025-06-23T16:22:38.616+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-23T16:22:46.072+0900] {logging_mixin.py:190} INFO - osd 1 180 180 8.02 Latin 0.42
+[2025-06-23T16:22:56.237+0900] {logging_mixin.py:190} INFO - osd 2 break  180 0 7.81 Latin 2.22
+[2025-06-23T16:22:56.247+0900] {logging_mixin.py:190} INFO - step : load
+[2025-06-23T16:22:56.270+0900] {logging_mixin.py:190} INFO - step : rotate
+[2025-06-23T16:22:56.374+0900] {logging_mixin.py:190} INFO - step : rotate
+[2025-06-23T16:22:57.934+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/632cd489-ac27-4c10-a5c8-12ccff3d7616/77404829-212c-4676-9d80-5166d91aed32/_result.png
+[2025-06-23T16:22:58.045+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '632cd489-ac27-4c10-a5c8-12ccff3d7616', 'file_path': '/opt/***/data/class/a_class/classify/ready/false/copied_89_2026358413_2026358418.png', 'false': {'process_id': '_77404829-212c-4676-9d80-5166d91aed32_pre', 'folder_path': '632cd489-ac27-4c10-a5c8-12ccff3d7616/77404829-212c-4676-9d80-5166d91aed32', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {'_result': '/opt/***/data/temp/632cd489-ac27-4c10-a5c8-12ccff3d7616/77404829-212c-4676-9d80-5166d91aed32/_result.png'}}}
+[2025-06-23T16:22:58.165+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-23T16:22:58.166+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=img_preprocess_task__1, run_id=manual__2025-06-23T06:45:10.371530+00:00, map_index=87, execution_date=20250623T064510, start_date=20250623T072203, end_date=20250623T072258
+[2025-06-23T16:22:58.312+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-23T16:22:58.381+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-23T16:22:58.387+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

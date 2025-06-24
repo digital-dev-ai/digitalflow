@@ -1,0 +1,114 @@
+[2025-05-26T05:44:03.244+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T05:44:03.266+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.get_file_list_task manual__2025-05-26T05:43:54.406771+00:00 [queued]>
+[2025-05-26T05:44:03.407+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.get_file_list_task manual__2025-05-26T05:43:54.406771+00:00 [queued]>
+[2025-05-26T05:44:03.408+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-26T05:44:03.423+0000] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): get_file_list_task> on 2025-05-26 05:43:54.406771+00:00
+[2025-05-26T05:44:03.432+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=97) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-05-26T05:44:03.434+0000] {standard_task_runner.py:72} INFO - Started process 99 to run task
+[2025-05-26T05:44:03.434+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'get_file_list_task', 'manual__2025-05-26T05:43:54.406771+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmph504c39h']
+[2025-05-26T05:44:03.435+0000] {standard_task_runner.py:105} INFO - Job 8: Subtask get_file_list_task
+[2025-05-26T05:44:03.487+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.get_file_list_task manual__2025-05-26T05:43:54.406771+00:00 [running]> on host b0d7fbab896a
+[2025-05-26T05:44:03.551+0000] {abstractoperator.py:783} ERROR - Exception rendering Jinja template for task 'get_file_list_task', field 'op_kwargs'. Template: {'folder_path': XComArg(<Task(_PythonDecoratedOperator): read_config_task>, 'target_dir')}
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 775, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 175, in render_template
+    return value.resolve(context, include_xcom=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom_arg.py", line 468, in resolve
+    raise XComNotFound(ti.dag_id, task_id, self.key)
+airflow.exceptions.XComNotFound: XComArg result from read_config_task at image_processing_per_file_v2 with key="target_dir" is not found!
+[2025-05-26T05:44:03.564+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3117, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3540, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1442, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 775, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 175, in render_template
+    return value.resolve(context, include_xcom=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom_arg.py", line 468, in resolve
+    raise XComNotFound(ti.dag_id, task_id, self.key)
+airflow.exceptions.XComNotFound: XComArg result from read_config_task at image_processing_per_file_v2 with key="target_dir" is not found!
+[2025-05-26T05:44:03.569+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-05-26T05:44:03.569+0000] {logging_mixin.py:190} INFO - Task start:2025-05-26 05:44:03.267409+00:00 end:2025-05-26 05:44:03.568511+00:00 duration:0.301102
+[2025-05-26T05:44:03.570+0000] {logging_mixin.py:190} INFO - Task:<Task(_PythonDecoratedOperator): get_file_list_task> dag:<DAG: image_processing_per_file_v2> dagrun:<DagRun image_processing_per_file_v2 @ 2025-05-26 05:43:54.406771+00:00: manual__2025-05-26T05:43:54.406771+00:00, state:running, queued_at: 2025-05-26 05:43:54.429797+00:00. externally triggered: True>
+[2025-05-26T05:44:03.570+0000] {logging_mixin.py:190} INFO - Failure caused by XComArg result from read_config_task at image_processing_per_file_v2 with key="target_dir" is not found!
+[2025-05-26T05:44:03.571+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=image_processing_per_file_v2, task_id=get_file_list_task, run_id=manual__2025-05-26T05:43:54.406771+00:00, execution_date=20250526T054354, start_date=20250526T054403, end_date=20250526T054403
+[2025-05-26T05:44:03.599+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-26T05:44:03.600+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 8 for task get_file_list_task (XComArg result from read_config_task at image_processing_per_file_v2 with key="target_dir" is not found!; 99)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3117, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3540, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1442, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 775, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 175, in render_template
+    return value.resolve(context, include_xcom=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom_arg.py", line 468, in resolve
+    raise XComNotFound(ti.dag_id, task_id, self.key)
+airflow.exceptions.XComNotFound: XComArg result from read_config_task at image_processing_per_file_v2 with key="target_dir" is not found!
+[2025-05-26T05:44:03.650+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-05-26T05:44:03.677+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-26T05:44:03.682+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

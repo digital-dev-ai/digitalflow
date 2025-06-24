@@ -1,0 +1,29 @@
+[2025-06-16T14:53:15.527+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-16T14:53:15.703+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-16T05:52:15.879802+00:00 map_index=23 [queued]>
+[2025-06-16T14:53:15.848+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-16T05:52:15.879802+00:00 map_index=23 [queued]>
+[2025-06-16T14:53:15.853+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-16T14:53:15.968+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task__1> on 2025-06-16 05:52:15.879802+00:00
+[2025-06-16T14:53:16.007+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'layoutxlm_document_classifier_balanced_V0.1', 'img_preprocess_task__1', 'manual__2025-06-16T05:52:15.879802+00:00', '--job-id', '296', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp4_s1zlsp', '--map-index', '23']
+[2025-06-16T14:53:16.013+0900] {standard_task_runner.py:105} INFO - Job 296: Subtask img_preprocess_task__1
+[2025-06-16T14:53:16.022+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=5381) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-16T14:53:16.031+0900] {standard_task_runner.py:72} INFO - Started process 5436 to run task
+[2025-06-16T14:53:16.088+0900] {task_command.py:467} INFO - Running <TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task__1 manual__2025-06-16T05:52:15.879802+00:00 map_index=23 [running]> on host f6d4228a9eb8
+[2025-06-16T14:53:16.252+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='layoutxlm_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task__1' AIRFLOW_CTX_EXECUTION_DATE='2025-06-16T05:52:15.879802+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-16T05:52:15.879802+00:00'
+[2025-06-16T14:53:16.265+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-16T14:53:16.277+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_75133e65-f40f-4f8c-9a1d-994d23c127c3_pre', 'folder_path': '71772a76-b042-4d93-818e-384afeeff7cc/75133e65-f40f-4f8c-9a1d-994d23c127c3', 'step_list': [{'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': []}
+[2025-06-16T14:53:16.287+0900] {logging_mixin.py:190} INFO - step : calc_angle_set1
+[2025-06-16T14:53:16.331+0900] {logging_mixin.py:190} INFO - angle1 :  0 28.412847766962344 0.06221037676175456 -90.0 127.62542415901409 75.96375653207353
+[2025-06-16T14:53:16.461+0900] {logging_mixin.py:190} INFO - angle2 :  28.412847766962344 -3.9692474375372164 -28.26801064626069 -118.02544929477116 103.851419013805 26.56505117707799
+[2025-06-16T14:53:16.472+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-16T14:53:25.318+0900] {logging_mixin.py:190} INFO - step : threshold
+[2025-06-16T14:53:25.332+0900] {logging_mixin.py:190} INFO - step : morphology1
+[2025-06-16T14:53:25.352+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-16T14:53:25.419+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/71772a76-b042-4d93-818e-384afeeff7cc/75133e65-f40f-4f8c-9a1d-994d23c127c3/classify_preprocess.png
+[2025-06-16T14:53:25.437+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '71772a76-b042-4d93-818e-384afeeff7cc', 'file_path': '/opt/***/data/class/a_class/classify/origin/false/copied_4_0000288289.png', 'false': {'process_id': '_75133e65-f40f-4f8c-9a1d-994d23c127c3_pre', 'folder_path': '71772a76-b042-4d93-818e-384afeeff7cc/75133e65-f40f-4f8c-9a1d-994d23c127c3', 'step_list': [{'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': [{'key': 'classify_preprocess', 'path': '/opt/***/data/temp/71772a76-b042-4d93-818e-384afeeff7cc/75133e65-f40f-4f8c-9a1d-994d23c127c3/classify_preprocess.png'}]}}
+[2025-06-16T14:53:25.544+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-16T14:53:25.546+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=layoutxlm_document_classifier_balanced_V0.1, task_id=img_preprocess_task__1, run_id=manual__2025-06-16T05:52:15.879802+00:00, map_index=23, execution_date=20250616T055215, start_date=20250616T055315, end_date=20250616T055325
+[2025-06-16T14:53:25.682+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-16T14:53:25.761+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-16T14:53:25.773+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

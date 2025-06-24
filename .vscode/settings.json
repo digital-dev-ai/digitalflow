@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "data": true,
+    "logs": true
+  }
+}

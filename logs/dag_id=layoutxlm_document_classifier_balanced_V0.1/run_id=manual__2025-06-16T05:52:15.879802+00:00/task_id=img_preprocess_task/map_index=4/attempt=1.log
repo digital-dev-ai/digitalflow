@@ -1,0 +1,27 @@
+[2025-06-16T14:52:28.320+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-16T14:52:28.388+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-16T05:52:15.879802+00:00 map_index=4 [queued]>
+[2025-06-16T14:52:28.413+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-16T05:52:15.879802+00:00 map_index=4 [queued]>
+[2025-06-16T14:52:28.416+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-16T14:52:28.447+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-16 05:52:15.879802+00:00
+[2025-06-16T14:52:28.456+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=4854) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-16T14:52:28.462+0900] {standard_task_runner.py:72} INFO - Started process 4897 to run task
+[2025-06-16T14:52:28.459+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'layoutxlm_document_classifier_balanced_V0.1', 'img_preprocess_task', 'manual__2025-06-16T05:52:15.879802+00:00', '--job-id', '253', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp_nju1k5u', '--map-index', '4']
+[2025-06-16T14:52:28.464+0900] {standard_task_runner.py:105} INFO - Job 253: Subtask img_preprocess_task
+[2025-06-16T14:52:28.577+0900] {task_command.py:467} INFO - Running <TaskInstance: layoutxlm_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-16T05:52:15.879802+00:00 map_index=4 [running]> on host f6d4228a9eb8
+[2025-06-16T14:52:28.787+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='layoutxlm_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-16T05:52:15.879802+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-16T05:52:15.879802+00:00'
+[2025-06-16T14:52:28.795+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-16T14:52:28.816+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_b105c6f3-aa5f-4cd5-9762-8531d477d648_pre', 'folder_path': 'b7021cdf-37a2-4380-8046-b13113afbdd7/b105c6f3-aa5f-4cd5-9762-8531d477d648', 'step_list': [{'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': []}
+[2025-06-16T14:52:28.823+0900] {logging_mixin.py:190} INFO - step : calc_angle_set1
+[2025-06-16T14:52:28.972+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-16T14:52:47.477+0900] {logging_mixin.py:190} INFO - step : threshold
+[2025-06-16T14:52:47.483+0900] {logging_mixin.py:190} INFO - step : morphology1
+[2025-06-16T14:52:47.564+0900] {logging_mixin.py:190} INFO - step : save
+[2025-06-16T14:52:47.748+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/b7021cdf-37a2-4380-8046-b13113afbdd7/b105c6f3-aa5f-4cd5-9762-8531d477d648/classify_preprocess.png
+[2025-06-16T14:52:47.774+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': 'b7021cdf-37a2-4380-8046-b13113afbdd7', 'file_path': '/opt/***/data/class/a_class/classify/origin/true/종로 우성빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1.png', 'true': {'process_id': '_b105c6f3-aa5f-4cd5-9762-8531d477d648_pre', 'folder_path': 'b7021cdf-37a2-4380-8046-b13113afbdd7/b105c6f3-aa5f-4cd5-9762-8531d477d648', 'step_list': [{'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 3}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle2', 'iterations': 3}}, {'name': 'threshold', 'param': {}}, {'name': 'morphology1', 'param': {}}, {'name': 'save', 'param': {'key': 'classify_preprocess'}}], 'result_file_list': [{'key': 'classify_preprocess', 'path': '/opt/***/data/temp/b7021cdf-37a2-4380-8046-b13113afbdd7/b105c6f3-aa5f-4cd5-9762-8531d477d648/classify_preprocess.png'}]}}
+[2025-06-16T14:52:47.938+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-16T14:52:47.951+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=layoutxlm_document_classifier_balanced_V0.1, task_id=img_preprocess_task, run_id=manual__2025-06-16T05:52:15.879802+00:00, map_index=4, execution_date=20250616T055215, start_date=20250616T055228, end_date=20250616T055247
+[2025-06-16T14:52:48.174+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-16T14:52:48.367+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-16T14:52:48.398+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

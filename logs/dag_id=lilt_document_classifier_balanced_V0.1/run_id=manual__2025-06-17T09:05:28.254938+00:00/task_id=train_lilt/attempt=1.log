@@ -1,0 +1,32 @@
+[2025-06-17T18:06:21.265+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-17T18:06:21.331+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.train_lilt manual__2025-06-17T09:05:28.254938+00:00 [queued]>
+[2025-06-17T18:06:21.369+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.train_lilt manual__2025-06-17T09:05:28.254938+00:00 [queued]>
+[2025-06-17T18:06:21.371+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-17T18:06:21.425+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): train_lilt> on 2025-06-17 09:05:28.254938+00:00
+[2025-06-17T18:06:21.450+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=9592) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-17T18:06:21.456+0900] {standard_task_runner.py:72} INFO - Started process 9601 to run task
+[2025-06-17T18:06:21.459+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'train_lilt', 'manual__2025-06-17T09:05:28.254938+00:00', '--job-id', '960', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmprzoq1gb8']
+[2025-06-17T18:06:21.468+0900] {standard_task_runner.py:105} INFO - Job 960: Subtask train_lilt
+[2025-06-17T18:06:21.655+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.train_lilt manual__2025-06-17T09:05:28.254938+00:00 [running]> on host f6d4228a9eb8
+[2025-06-17T18:06:22.009+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='train_lilt' AIRFLOW_CTX_EXECUTION_DATE='2025-06-17T09:05:28.254938+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-17T09:05:28.254938+00:00'
+[2025-06-17T18:06:22.015+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-17T18:06:28.151+0900] {logging_mixin.py:190} WARNING - Some weights of LiltForSequenceClassification were not initialized from the model checkpoint at SCUT-DLVCLab/lilt-roberta-en-base and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[2025-06-17T18:06:28.171+0900] {logging_mixin.py:190} INFO - Epoch 1
+[2025-06-17T18:08:54.583+0900] {logging_mixin.py:190} INFO - Epoch 1 훈련 손실: 0.6983
+[2025-06-17T18:09:11.000+0900] {logging_mixin.py:190} INFO - Epoch 1 검증 손실: 0.6925, 정확도: 100.00%
+[2025-06-17T18:09:11.001+0900] {logging_mixin.py:190} INFO - Epoch 2
+[2025-06-17T18:11:58.002+0900] {logging_mixin.py:190} INFO - Epoch 2 훈련 손실: 0.6964
+[2025-06-17T18:12:14.263+0900] {logging_mixin.py:190} INFO - Epoch 2 검증 손실: 0.6934, 정확도: 100.00%
+[2025-06-17T18:12:14.264+0900] {logging_mixin.py:190} INFO - Epoch 3
+[2025-06-17T18:14:40.103+0900] {logging_mixin.py:190} INFO - Epoch 3 훈련 손실: 0.7039
+[2025-06-17T18:14:57.318+0900] {logging_mixin.py:190} INFO - Epoch 3 검증 손실: 0.6964, 정확도: 100.00%
+[2025-06-17T18:14:59.016+0900] {logging_mixin.py:190} INFO - 모델 저장 완료: /opt/***/data/class/a_class/classify/model
+[2025-06-17T18:14:59.109+0900] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-17T18:14:59.127+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-17T18:14:59.129+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=train_lilt, run_id=manual__2025-06-17T09:05:28.254938+00:00, execution_date=20250617T090528, start_date=20250617T090621, end_date=20250617T091459
+[2025-06-17T18:14:59.476+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-17T18:14:59.530+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-17T18:14:59.536+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

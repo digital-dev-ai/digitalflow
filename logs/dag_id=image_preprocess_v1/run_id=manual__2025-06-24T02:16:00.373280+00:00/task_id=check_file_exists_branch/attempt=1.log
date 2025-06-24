@@ -1,0 +1,23 @@
+[2025-06-24T11:16:04.391+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T11:16:04.471+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.check_file_exists_branch manual__2025-06-24T02:16:00.373280+00:00 [queued]>
+[2025-06-24T11:16:04.542+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.check_file_exists_branch manual__2025-06-24T02:16:00.373280+00:00 [queued]>
+[2025-06-24T11:16:04.546+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T11:16:04.622+0900] {taskinstance.py:2890} INFO - Executing <Task(_BranchPythonDecoratedOperator): check_file_exists_branch> on 2025-06-24 02:16:00.373280+00:00
+[2025-06-24T11:16:04.649+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=32912) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T11:16:04.656+0900] {standard_task_runner.py:72} INFO - Started process 32921 to run task
+[2025-06-24T11:16:04.658+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'check_file_exists_branch', 'manual__2025-06-24T02:16:00.373280+00:00', '--job-id', '3714', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpjd8g644j']
+[2025-06-24T11:16:04.666+0900] {standard_task_runner.py:105} INFO - Job 3714: Subtask check_file_exists_branch
+[2025-06-24T11:16:04.726+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.check_file_exists_branch manual__2025-06-24T02:16:00.373280+00:00 [running]> on host f6d4228a9eb8
+[2025-06-24T11:16:04.804+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='check_file_exists_branch' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T02:16:00.373280+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T02:16:00.373280+00:00'
+[2025-06-24T11:16:04.806+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T11:16:04.810+0900] {python.py:240} INFO - Done. Returned value was: get_file_info_list_task
+[2025-06-24T11:16:04.810+0900] {branch.py:38} INFO - Branch into get_file_info_list_task
+[2025-06-24T11:16:04.811+0900] {skipmixin.py:233} INFO - Following branch ('get_file_info_list_task',)
+[2025-06-24T11:16:04.818+0900] {skipmixin.py:281} INFO - Skipping tasks [('end_task', -1)]
+[2025-06-24T11:16:04.847+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T11:16:04.848+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=check_file_exists_branch, run_id=manual__2025-06-24T02:16:00.373280+00:00, execution_date=20250624T021600, start_date=20250624T021604, end_date=20250624T021604
+[2025-06-24T11:16:04.928+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-24T11:16:05.076+0900] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-24T11:16:05.085+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

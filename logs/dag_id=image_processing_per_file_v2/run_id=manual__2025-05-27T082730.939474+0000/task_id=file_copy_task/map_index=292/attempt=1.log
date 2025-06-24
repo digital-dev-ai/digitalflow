@@ -1,0 +1,26 @@
+[2025-05-27T08:41:30.975+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-27T08:41:31.302+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=292 [queued]>
+[2025-05-27T08:41:32.192+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=292 [queued]>
+[2025-05-27T08:41:32.215+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-27T08:41:32.361+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): file_copy_task> on 2025-05-27 08:27:30.939474+00:00
+[2025-05-27T08:41:32.462+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'file_copy_task', 'manual__2025-05-27T08:27:30.939474+00:00', '--job-id', '751', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpb6uo9xbk', '--map-index', '292']
+[2025-05-27T08:41:32.472+0000] {standard_task_runner.py:105} INFO - Job 751: Subtask file_copy_task
+[2025-05-27T08:41:32.552+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=23611) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-05-27T08:41:32.573+0000] {standard_task_runner.py:72} INFO - Started process 23733 to run task
+[2025-05-27T08:41:32.638+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-27T08:27:30.939474+00:00 map_index=292 [running]> on host d13339a4a574
+[2025-05-27T08:41:33.442+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='file_copy_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-27T08:27:30.939474+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-27T08:27:30.939474+00:00'
+[2025-05-27T08:41:33.451+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-27T08:41:33.451+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-27T08:41:33.452+0000] {logging_mixin.py:190} INFO - Current task name:file_copy_task state:running start_date:2025-05-27 08:41:31.310914+00:00
+[2025-05-27T08:41:33.459+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-27T08:41:33.462+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-27T08:41:33.568+0000] {logging_mixin.py:190} INFO - copy: /opt/***/data/result/test/스크린샷 2025-05-23 141009 - 복사본 - 복사본 - 복사본 (6) - 복사본.png
+[2025-05-27T08:41:33.569+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/result/test/스크린샷 2025-05-23 141009 - 복사본 - 복사본 - 복사본 (6) - 복사본.png
+[2025-05-27T08:41:33.699+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-27T08:41:33.738+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=file_copy_task, run_id=manual__2025-05-27T08:27:30.939474+00:00, map_index=292, execution_date=20250527T082730, start_date=20250527T084131, end_date=20250527T084133
+[2025-05-27T08:41:33.932+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-27T08:41:33.933+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-27T08:41:33.939+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-27 08:27:30.973127+00:00
+[2025-05-27T08:41:33.940+0000] {logging_mixin.py:190} INFO - Task hostname:d13339a4a574 operator:_PythonDecoratedOperator
+[2025-05-27T08:41:34.060+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-27T08:41:34.120+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

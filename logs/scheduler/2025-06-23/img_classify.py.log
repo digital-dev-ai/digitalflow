@@ -1,0 +1,406 @@
+[2025-06-23T09:00:10.911+0900] {processor.py:186} INFO - Started process (PID=37273) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:10.911+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:00:10.913+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:10.912+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:14.690+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:14.705+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:14.704+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:00:14.715+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:14.715+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:00:14.732+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.827 seconds
+[2025-06-23T09:00:45.268+0900] {processor.py:186} INFO - Started process (PID=37318) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:45.268+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:00:45.270+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:45.270+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:48.992+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:00:49.008+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:49.008+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:00:49.019+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:00:49.019+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:00:49.057+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.794 seconds
+[2025-06-23T09:01:19.397+0900] {processor.py:186} INFO - Started process (PID=37363) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:19.398+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:01:19.400+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:19.399+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:23.275+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:23.289+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:23.289+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:01:23.301+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:23.301+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:01:23.318+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.925 seconds
+[2025-06-23T09:01:53.876+0900] {processor.py:186} INFO - Started process (PID=37408) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:53.877+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:01:53.878+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:53.878+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:57.611+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:01:57.624+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:57.624+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:01:57.635+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:01:57.635+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:01:57.650+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.779 seconds
+[2025-06-23T09:02:28.271+0900] {processor.py:186} INFO - Started process (PID=37454) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:02:28.271+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:02:28.273+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:02:28.273+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:02:32.065+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:02:32.079+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:02:32.078+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:02:32.090+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:02:32.090+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:02:32.106+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.840 seconds
+[2025-06-23T09:03:02.671+0900] {processor.py:186} INFO - Started process (PID=37498) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:02.672+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:03:02.674+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:02.673+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:06.575+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:06.592+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:06.591+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:03:06.603+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:06.603+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:03:06.620+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.953 seconds
+[2025-06-23T09:03:36.949+0900] {processor.py:186} INFO - Started process (PID=37543) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:36.950+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:03:36.952+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:36.952+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:40.674+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:03:40.690+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:40.689+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:03:40.710+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:03:40.709+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:03:40.730+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.785 seconds
+[2025-06-23T09:04:12.081+0900] {processor.py:186} INFO - Started process (PID=37596) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:12.081+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:04:12.083+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:12.083+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:18.109+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:18.126+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:18.125+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:04:18.137+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:18.137+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:04:18.154+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 6.078 seconds
+[2025-06-23T09:04:49.198+0900] {processor.py:186} INFO - Started process (PID=37650) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:49.198+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:04:49.200+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:49.200+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:53.704+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:04:53.733+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:53.732+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:04:53.749+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:04:53.748+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:04:53.770+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.579 seconds
+[2025-06-23T09:05:24.805+0900] {processor.py:186} INFO - Started process (PID=37704) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:05:24.806+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:05:24.808+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:05:24.807+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:05:28.511+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:05:28.526+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:05:28.525+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:05:28.537+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:05:28.537+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:05:28.553+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.753 seconds
+[2025-06-23T09:05:58.880+0900] {processor.py:186} INFO - Started process (PID=37741) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:05:58.883+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:05:58.889+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:05:58.887+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:06:02.814+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:06:02.832+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:06:02.832+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:06:02.844+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:06:02.844+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:06:02.868+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.014 seconds
+[2025-06-23T09:06:33.549+0900] {processor.py:186} INFO - Started process (PID=37787) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:06:33.550+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:06:33.552+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:06:33.552+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:06:37.505+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:06:37.521+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:06:37.521+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:06:37.532+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:06:37.532+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:06:37.546+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.006 seconds
+[2025-06-23T09:07:07.877+0900] {processor.py:186} INFO - Started process (PID=37832) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:07.877+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:07:07.879+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:07.878+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:11.780+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:11.795+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:11.794+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:07:11.807+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:11.806+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:07:11.821+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.950 seconds
+[2025-06-23T09:07:42.297+0900] {processor.py:186} INFO - Started process (PID=37883) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:42.298+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:07:42.299+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:42.299+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:46.218+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:07:46.233+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:46.233+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:07:46.244+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:07:46.244+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:07:46.263+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.972 seconds
+[2025-06-23T09:08:17.084+0900] {processor.py:186} INFO - Started process (PID=37929) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:17.086+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:08:17.092+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:17.091+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:20.995+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:21.010+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:21.009+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:08:21.020+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:21.020+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:08:21.035+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.978 seconds
+[2025-06-23T09:08:51.333+0900] {processor.py:186} INFO - Started process (PID=37974) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:51.335+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:08:51.341+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:51.339+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:55.532+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:08:55.548+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:55.547+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:08:55.559+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:08:55.559+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:08:55.574+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.266 seconds
+[2025-06-23T09:09:25.942+0900] {processor.py:186} INFO - Started process (PID=38019) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:09:25.944+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:09:25.950+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:09:25.949+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:09:29.952+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:09:29.968+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:09:29.967+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:09:29.978+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:09:29.978+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:09:29.993+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.077 seconds
+[2025-06-23T09:10:00.358+0900] {processor.py:186} INFO - Started process (PID=38064) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:00.360+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:10:00.367+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:00.365+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:04.469+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:04.483+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:04.483+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:10:04.494+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:04.493+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:10:04.509+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.179 seconds
+[2025-06-23T09:10:34.712+0900] {processor.py:186} INFO - Started process (PID=38109) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:34.714+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:10:34.722+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:34.720+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:38.809+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:10:38.824+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:38.823+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:10:38.836+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:10:38.835+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:10:38.852+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.167 seconds
+[2025-06-23T09:11:09.750+0900] {processor.py:186} INFO - Started process (PID=38154) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:09.752+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:11:09.758+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:09.757+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:13.819+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:13.833+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:13.833+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:11:13.844+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:13.844+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:11:13.863+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.139 seconds
+[2025-06-23T09:11:44.402+0900] {processor.py:186} INFO - Started process (PID=38205) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:44.404+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:11:44.412+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:44.410+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:48.468+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:11:48.484+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:48.483+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:11:48.496+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:11:48.496+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:11:48.512+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.136 seconds
+[2025-06-23T09:12:18.971+0900] {processor.py:186} INFO - Started process (PID=38250) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:18.973+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:12:18.979+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:18.977+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:23.189+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:23.204+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:23.204+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:12:23.216+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:23.216+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:12:23.232+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.285 seconds
+[2025-06-23T09:12:53.362+0900] {processor.py:186} INFO - Started process (PID=38296) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:53.364+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:12:53.371+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:53.369+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:57.709+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:12:57.723+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:57.723+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:12:57.734+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:12:57.733+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:12:57.749+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.414 seconds
+[2025-06-23T09:13:28.271+0900] {processor.py:186} INFO - Started process (PID=38342) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:13:28.274+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:13:28.280+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:13:28.278+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:13:32.546+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:13:32.565+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:13:32.564+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:13:32.579+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:13:32.579+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:13:32.601+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.357 seconds
+[2025-06-23T09:14:02.993+0900] {processor.py:186} INFO - Started process (PID=38388) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:02.996+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:14:03.002+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:03.000+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:07.057+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:07.072+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:07.071+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:14:07.082+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:07.082+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:14:07.098+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.133 seconds
+[2025-06-23T09:14:37.683+0900] {processor.py:186} INFO - Started process (PID=38433) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:37.686+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:14:37.692+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:37.690+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:41.833+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:14:41.848+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:41.848+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:14:41.861+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:14:41.861+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:14:41.878+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.219 seconds
+[2025-06-23T09:15:12.037+0900] {processor.py:186} INFO - Started process (PID=38484) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:12.040+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:15:12.046+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:12.045+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:16.191+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:16.211+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:16.211+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:15:16.223+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:16.223+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:15:16.241+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.229 seconds
+[2025-06-23T09:15:46.467+0900] {processor.py:186} INFO - Started process (PID=38529) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:46.469+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:15:46.475+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:46.474+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:50.398+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:15:50.412+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:50.412+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:15:50.423+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:15:50.423+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:15:50.440+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.998 seconds
+[2025-06-23T09:16:21.604+0900] {processor.py:186} INFO - Started process (PID=38591) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:16:21.605+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:16:21.608+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:16:21.608+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:16:26.139+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:16:26.164+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:16:26.164+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:16:26.178+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:16:26.177+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:16:26.198+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.609 seconds
+[2025-06-23T09:16:57.010+0900] {processor.py:186} INFO - Started process (PID=38637) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:16:57.011+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:16:57.013+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:16:57.012+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:17:00.939+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:17:00.955+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:17:00.955+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:17:00.966+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:17:00.965+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:17:00.982+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.977 seconds
+[2025-06-23T09:17:31.331+0900] {processor.py:186} INFO - Started process (PID=38690) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:17:31.332+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:17:31.333+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:17:31.333+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:17:38.190+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:17:38.206+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:17:38.205+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:17:38.218+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:17:38.218+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:17:38.233+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 6.907 seconds
+[2025-06-23T09:18:08.771+0900] {processor.py:186} INFO - Started process (PID=38730) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:08.773+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:18:08.779+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:08.778+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:12.588+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:12.604+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:12.604+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:18:12.615+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:12.615+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:18:12.630+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.885 seconds
+[2025-06-23T09:18:42.885+0900] {processor.py:186} INFO - Started process (PID=38780) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:42.888+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:18:42.894+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:42.892+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:46.934+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:18:46.949+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:46.948+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:18:46.959+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:18:46.959+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:18:46.975+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.117 seconds
+[2025-06-23T09:19:17.730+0900] {processor.py:186} INFO - Started process (PID=38825) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:17.733+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:19:17.739+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:17.737+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:21.766+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:21.780+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:21.780+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:19:21.792+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:21.792+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:19:21.809+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.103 seconds
+[2025-06-23T09:19:52.688+0900] {processor.py:186} INFO - Started process (PID=38870) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:52.691+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:19:52.696+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:52.695+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:56.761+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:19:56.776+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:56.775+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:19:56.787+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:19:56.787+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:19:56.803+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.140 seconds
+[2025-06-23T09:20:27.251+0900] {processor.py:186} INFO - Started process (PID=38915) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:20:27.253+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:20:27.259+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:20:27.257+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:20:31.406+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:20:31.421+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:20:31.420+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:20:31.435+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:20:31.434+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:20:31.451+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.225 seconds
+[2025-06-23T09:21:03.061+0900] {processor.py:186} INFO - Started process (PID=38978) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:03.062+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:21:03.064+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:03.064+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:07.222+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:07.238+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:07.237+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:21:07.249+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:07.248+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:21:07.264+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.208 seconds
+[2025-06-23T09:21:37.906+0900] {processor.py:186} INFO - Started process (PID=39023) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:37.907+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:21:37.909+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:37.908+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:42.037+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:21:42.054+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:42.054+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:21:42.066+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:21:42.066+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:21:42.087+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.184 seconds
+[2025-06-23T09:22:12.432+0900] {processor.py:186} INFO - Started process (PID=39068) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:12.434+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:22:12.436+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:12.436+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:16.441+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:16.458+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:16.458+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:22:16.470+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:16.469+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:22:16.485+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.062 seconds
+[2025-06-23T09:22:46.657+0900] {processor.py:186} INFO - Started process (PID=39112) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:46.660+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:22:46.667+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:46.666+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:51.744+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:22:51.763+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:51.762+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:22:51.776+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:22:51.776+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:22:51.798+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 5.170 seconds
+[2025-06-23T09:23:22.001+0900] {processor.py:186} INFO - Started process (PID=39157) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:23:22.004+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:23:22.011+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:23:22.009+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:23:26.158+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:23:26.173+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:23:26.173+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:23:26.189+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:23:26.188+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:23:26.211+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.239 seconds
+[2025-06-23T09:23:56.396+0900] {processor.py:186} INFO - Started process (PID=39202) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:23:56.397+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:23:56.400+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:23:56.399+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:24:00.394+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:24:00.409+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:24:00.409+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:24:00.420+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:24:00.420+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:24:00.437+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.052 seconds
+[2025-06-23T09:24:30.704+0900] {processor.py:186} INFO - Started process (PID=39247) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:24:30.707+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:24:30.713+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:24:30.711+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:24:34.895+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:24:34.911+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:24:34.910+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:24:34.922+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:24:34.922+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:24:34.940+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.260 seconds
+[2025-06-23T09:25:05.267+0900] {processor.py:186} INFO - Started process (PID=39292) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:05.269+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:25:05.275+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:05.274+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:09.667+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:09.683+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:09.683+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:25:09.695+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:09.695+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:25:09.712+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.472 seconds
+[2025-06-23T09:25:40.647+0900] {processor.py:186} INFO - Started process (PID=39346) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:40.647+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:25:40.649+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:40.648+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:44.689+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:25:44.722+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:44.722+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:25:44.744+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:25:44.744+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:25:44.760+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.119 seconds
+[2025-06-23T09:26:14.850+0900] {processor.py:186} INFO - Started process (PID=39389) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:14.852+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:26:14.854+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:14.853+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:18.939+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:18.955+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:18.955+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:26:18.966+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:18.966+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:26:18.982+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.142 seconds
+[2025-06-23T09:26:49.449+0900] {processor.py:186} INFO - Started process (PID=39435) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:49.450+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:26:49.454+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:49.453+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:53.504+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:26:53.519+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:53.518+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:26:53.532+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:26:53.531+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:26:53.548+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.111 seconds
+[2025-06-23T09:27:23.963+0900] {processor.py:186} INFO - Started process (PID=39479) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:27:23.966+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:27:23.971+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:27:23.970+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:27:28.239+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:27:28.253+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:27:28.253+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:27:28.264+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:27:28.264+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:27:28.280+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.343 seconds
+[2025-06-23T09:27:58.436+0900] {processor.py:186} INFO - Started process (PID=39524) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:27:58.437+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:27:58.439+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:27:58.439+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:28:02.938+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:28:02.954+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:28:02.953+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:28:02.965+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:28:02.964+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:28:02.980+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.551 seconds
+[2025-06-23T09:28:33.171+0900] {processor.py:186} INFO - Started process (PID=39569) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:28:33.172+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:28:33.174+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:28:33.173+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:28:37.227+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:28:37.243+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:28:37.243+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:28:37.257+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:28:37.257+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:28:37.273+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.110 seconds
+[2025-06-23T09:29:07.775+0900] {processor.py:186} INFO - Started process (PID=39614) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:07.777+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:29:07.784+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:07.783+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:11.958+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:11.974+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:11.973+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:29:11.985+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:11.984+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:29:12.002+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.251 seconds
+[2025-06-23T09:29:42.461+0900] {processor.py:186} INFO - Started process (PID=39659) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:42.463+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:29:42.469+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:42.467+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:46.814+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:29:46.829+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:46.828+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:29:46.840+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:29:46.840+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:29:46.861+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.425 seconds
+[2025-06-23T09:30:18.717+0900] {processor.py:186} INFO - Started process (PID=39728) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:18.718+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:30:18.719+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:18.719+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:22.597+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:22.620+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:22.620+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:30:22.631+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:22.631+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:30:22.647+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.935 seconds
+[2025-06-23T09:30:53.380+0900] {processor.py:186} INFO - Started process (PID=39775) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:53.380+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:30:53.382+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:53.381+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:57.230+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:30:57.244+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:57.244+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:30:57.255+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:30:57.255+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:30:57.271+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 3.896 seconds
+[2025-06-23T09:31:27.729+0900] {processor.py:186} INFO - Started process (PID=39820) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:31:27.730+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:31:27.732+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:31:27.732+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:31:31.723+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:31:31.737+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:31:31.737+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:31:31.749+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:31:31.749+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:31:31.763+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.042 seconds
+[2025-06-23T09:32:02.085+0900] {processor.py:186} INFO - Started process (PID=39857) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:02.087+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:32:02.094+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:02.092+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:06.341+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:06.357+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:06.357+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:32:06.369+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:06.369+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:32:06.389+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.332 seconds
+[2025-06-23T09:32:37.006+0900] {processor.py:186} INFO - Started process (PID=39902) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:37.009+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:32:37.017+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:37.016+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:41.367+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:32:41.381+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:41.381+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:32:41.393+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:32:41.393+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:32:41.409+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.431 seconds
+[2025-06-23T09:33:12.303+0900] {processor.py:186} INFO - Started process (PID=39947) to work on /opt/airflow/dags/img_classify.py
+[2025-06-23T09:33:12.303+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/img_classify.py for tasks to queue
+[2025-06-23T09:33:12.305+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:33:12.305+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:33:16.511+0900] {processor.py:925} INFO - DAG(s) 'image_classify_v1' retrieved from /opt/airflow/dags/img_classify.py
+[2025-06-23T09:33:16.528+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:33:16.528+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-23T09:33:16.540+0900] {logging_mixin.py:190} INFO - [2025-06-23T09:33:16.540+0900] {dag.py:4180} INFO - Setting next_dagrun for image_classify_v1 to None, run_after=None
+[2025-06-23T09:33:16.563+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/img_classify.py took 4.266 seconds

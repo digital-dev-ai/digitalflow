@@ -1,0 +1,27 @@
+[2025-05-27T09:01:01.330+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-27T09:01:01.553+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.preprocess_group.grayscale_task manual__2025-05-27T08:58:50.827042+00:00 map_index=78 [queued]>
+[2025-05-27T09:01:01.700+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.preprocess_group.grayscale_task manual__2025-05-27T08:58:50.827042+00:00 map_index=78 [queued]>
+[2025-05-27T09:01:01.709+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-27T09:01:01.907+0000] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): preprocess_group.grayscale_task> on 2025-05-27 08:58:50.827042+00:00
+[2025-05-27T09:01:02.004+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=33343) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-05-27T09:01:02.010+0000] {standard_task_runner.py:72} INFO - Started process 33395 to run task
+[2025-05-27T09:01:02.058+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'preprocess_group.grayscale_task', 'manual__2025-05-27T08:58:50.827042+00:00', '--job-id', '1061', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpz17wchz1', '--map-index', '78']
+[2025-05-27T09:01:02.110+0000] {standard_task_runner.py:105} INFO - Job 1061: Subtask preprocess_group.grayscale_task
+[2025-05-27T09:01:02.705+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.preprocess_group.grayscale_task manual__2025-05-27T08:58:50.827042+00:00 map_index=78 [running]> on host d13339a4a574
+[2025-05-27T09:01:03.365+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='preprocess_group.grayscale_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-27T08:58:50.827042+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-27T08:58:50.827042+00:00'
+[2025-05-27T09:01:03.376+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-27T09:01:03.420+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-27T09:01:03.437+0000] {logging_mixin.py:190} INFO - Current task name:preprocess_group.grayscale_task state:running start_date:2025-05-27 09:01:01.556313+00:00
+[2025-05-27T09:01:03.438+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-27T09:01:03.439+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-27T09:01:03.451+0000] {logging_mixin.py:190} INFO - ----------file_path /opt/***/data/upload/test/스크린샷 2025-05-21 172720 - 복사본 (3) - 복사본.png
+[2025-05-27T09:01:05.031+0000] {logging_mixin.py:190} INFO - gray: /opt/***/data/temp/스크린샷 2025-05-21 172720 - 복사본 (3) - 복사본.png
+[2025-05-27T09:01:05.041+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/temp/스크린샷 2025-05-21 172720 - 복사본 (3) - 복사본.png
+[2025-05-27T09:01:05.332+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-27T09:01:05.345+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=preprocess_group.grayscale_task, run_id=manual__2025-05-27T08:58:50.827042+00:00, map_index=78, execution_date=20250527T085850, start_date=20250527T090101, end_date=20250527T090105
+[2025-05-27T09:01:05.514+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-27T09:01:05.536+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-27T09:01:05.554+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-27 08:58:50.983771+00:00
+[2025-05-27T09:01:05.568+0000] {logging_mixin.py:190} INFO - Task hostname:d13339a4a574 operator:_PythonDecoratedOperator
+[2025-05-27T09:01:05.700+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-27T09:01:05.737+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

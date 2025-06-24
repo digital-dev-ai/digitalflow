@@ -1,0 +1,7 @@
+{
+    "RESULT_FOLDER": "/opt/airflow/data/result",
+    "TEMP_FOLDER": "/opt/airflow/data/temp",
+    "UPLOAD_FOLDER": "/opt/airflow/data/upload",
+    "CLASS_FOLDER": "/opt/airflow/data/class",
+    "NONE_CLASS_FOLDER": "/opt/airflow/data/none_class"
+}

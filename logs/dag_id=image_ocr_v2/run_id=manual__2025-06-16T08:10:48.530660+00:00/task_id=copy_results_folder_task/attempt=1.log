@@ -1,0 +1,47 @@
+[2025-06-16T17:11:16.706+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-16T17:11:16.796+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_ocr_v2.copy_results_folder_task manual__2025-06-16T08:10:48.530660+00:00 [queued]>
+[2025-06-16T17:11:16.835+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_ocr_v2.copy_results_folder_task manual__2025-06-16T08:10:48.530660+00:00 [queued]>
+[2025-06-16T17:11:16.837+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-16T17:11:16.896+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): copy_results_folder_task> on 2025-06-16 08:10:48.530660+00:00
+[2025-06-16T17:11:16.917+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=10987) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-16T17:11:16.924+0900] {standard_task_runner.py:72} INFO - Started process 10989 to run task
+[2025-06-16T17:11:16.926+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_ocr_v2', 'copy_results_folder_task', 'manual__2025-06-16T08:10:48.530660+00:00', '--job-id', '595', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpjzrafcyo']
+[2025-06-16T17:11:16.936+0900] {standard_task_runner.py:105} INFO - Job 595: Subtask copy_results_folder_task
+[2025-06-16T17:11:17.114+0900] {task_command.py:467} INFO - Running <TaskInstance: image_ocr_v2.copy_results_folder_task manual__2025-06-16T08:10:48.530660+00:00 [running]> on host f6d4228a9eb8
+[2025-06-16T17:11:17.485+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_ocr_v2' AIRFLOW_CTX_TASK_ID='copy_results_folder_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-16T08:10:48.530660+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-16T08:10:48.530660+00:00'
+[2025-06-16T17:11:17.490+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-16T17:11:17.503+0900] {logging_mixin.py:190} INFO - 5
+[2025-06-16T17:11:17.530+0900] {logging_mixin.py:190} INFO - 4
+[2025-06-16T17:11:17.545+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/424da478-3317-4662-b119-f30b7b0c3ebd/7e830781-28f4-46d9-9464-9047f21b09d8/rotate3_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_7e830781-28f4-46d9-9464-9047f21b09d8_pre_rotate3_1.png
+[2025-06-16T17:11:17.561+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/424da478-3317-4662-b119-f30b7b0c3ebd/7e830781-28f4-46d9-9464-9047f21b09d8/rotate2_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_7e830781-28f4-46d9-9464-9047f21b09d8_pre_rotate2_1.png
+[2025-06-16T17:11:17.573+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/424da478-3317-4662-b119-f30b7b0c3ebd/7e830781-28f4-46d9-9464-9047f21b09d8/rotate2_2.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_7e830781-28f4-46d9-9464-9047f21b09d8_pre_rotate2_2.png
+[2025-06-16T17:11:17.585+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/424da478-3317-4662-b119-f30b7b0c3ebd/7e830781-28f4-46d9-9464-9047f21b09d8/classify_preprocess.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_7e830781-28f4-46d9-9464-9047f21b09d8_pre_classify_preprocess.png
+[2025-06-16T17:11:17.587+0900] {logging_mixin.py:190} INFO - 4
+[2025-06-16T17:11:17.599+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/3cc4aa11-b38a-4b68-98e0-1fa44a304369/099912dd-bdb5-4541-a222-e457acc360a1/rotate3_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_099912dd-bdb5-4541-a222-e457acc360a1_pre_rotate3_1.png
+[2025-06-16T17:11:17.613+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/3cc4aa11-b38a-4b68-98e0-1fa44a304369/099912dd-bdb5-4541-a222-e457acc360a1/rotate2_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_099912dd-bdb5-4541-a222-e457acc360a1_pre_rotate2_1.png
+[2025-06-16T17:11:17.626+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/3cc4aa11-b38a-4b68-98e0-1fa44a304369/099912dd-bdb5-4541-a222-e457acc360a1/rotate2_2.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_099912dd-bdb5-4541-a222-e457acc360a1_pre_rotate2_2.png
+[2025-06-16T17:11:17.637+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/3cc4aa11-b38a-4b68-98e0-1fa44a304369/099912dd-bdb5-4541-a222-e457acc360a1/classify_preprocess.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_099912dd-bdb5-4541-a222-e457acc360a1_pre_classify_preprocess.png
+[2025-06-16T17:11:17.640+0900] {logging_mixin.py:190} INFO - 4
+[2025-06-16T17:11:17.653+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c1eeea8b-603f-4e81-864b-269861b8b6f6/144a30be-4f05-4b5d-85b6-cb5af4602f60/rotate3_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_144a30be-4f05-4b5d-85b6-cb5af4602f60_pre_rotate3_1.png
+[2025-06-16T17:11:17.666+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c1eeea8b-603f-4e81-864b-269861b8b6f6/144a30be-4f05-4b5d-85b6-cb5af4602f60/rotate2_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_144a30be-4f05-4b5d-85b6-cb5af4602f60_pre_rotate2_1.png
+[2025-06-16T17:11:17.676+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c1eeea8b-603f-4e81-864b-269861b8b6f6/144a30be-4f05-4b5d-85b6-cb5af4602f60/rotate2_2.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_144a30be-4f05-4b5d-85b6-cb5af4602f60_pre_rotate2_2.png
+[2025-06-16T17:11:17.687+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c1eeea8b-603f-4e81-864b-269861b8b6f6/144a30be-4f05-4b5d-85b6-cb5af4602f60/classify_preprocess.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_144a30be-4f05-4b5d-85b6-cb5af4602f60_pre_classify_preprocess.png
+[2025-06-16T17:11:17.689+0900] {logging_mixin.py:190} INFO - 4
+[2025-06-16T17:11:17.700+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/13508304-df56-400c-ae7b-2902fd902c15/bb7820f8-89c1-4faa-b50d-495861a48f34/rotate3_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_bb7820f8-89c1-4faa-b50d-495861a48f34_pre_rotate3_1.png
+[2025-06-16T17:11:17.713+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/13508304-df56-400c-ae7b-2902fd902c15/bb7820f8-89c1-4faa-b50d-495861a48f34/rotate2_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_bb7820f8-89c1-4faa-b50d-495861a48f34_pre_rotate2_1.png
+[2025-06-16T17:11:17.724+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/13508304-df56-400c-ae7b-2902fd902c15/bb7820f8-89c1-4faa-b50d-495861a48f34/rotate2_2.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_bb7820f8-89c1-4faa-b50d-495861a48f34_pre_rotate2_2.png
+[2025-06-16T17:11:17.733+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/13508304-df56-400c-ae7b-2902fd902c15/bb7820f8-89c1-4faa-b50d-495861a48f34/classify_preprocess.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_bb7820f8-89c1-4faa-b50d-495861a48f34_pre_classify_preprocess.png
+[2025-06-16T17:11:17.736+0900] {logging_mixin.py:190} INFO - 4
+[2025-06-16T17:11:17.745+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5f486a12-5af9-44c4-9f12-19621eb9cd98/21e08f57-be81-4636-aea7-bbd7dcbedb46/rotate3_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_21e08f57-be81-4636-aea7-bbd7dcbedb46_pre_rotate3_1.png
+[2025-06-16T17:11:17.758+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5f486a12-5af9-44c4-9f12-19621eb9cd98/21e08f57-be81-4636-aea7-bbd7dcbedb46/rotate2_1.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_21e08f57-be81-4636-aea7-bbd7dcbedb46_pre_rotate2_1.png
+[2025-06-16T17:11:17.771+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5f486a12-5af9-44c4-9f12-19621eb9cd98/21e08f57-be81-4636-aea7-bbd7dcbedb46/rotate2_2.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_21e08f57-be81-4636-aea7-bbd7dcbedb46_pre_rotate2_2.png
+[2025-06-16T17:11:17.782+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5f486a12-5af9-44c4-9f12-19621eb9cd98/21e08f57-be81-4636-aea7-bbd7dcbedb46/classify_preprocess.png → /opt/***/data/result/manual__2025-06-16T08:10:48.530660+00:00/_21e08f57-be81-4636-aea7-bbd7dcbedb46_pre_classify_preprocess.png
+[2025-06-16T17:11:17.784+0900] {logging_mixin.py:190} INFO - 총 20개의 파일이 복사되었습니다.
+[2025-06-16T17:11:17.786+0900] {python.py:240} INFO - Done. Returned value was: {'total_copied': 20}
+[2025-06-16T17:11:17.850+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-16T17:11:17.852+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_ocr_v2, task_id=copy_results_folder_task, run_id=manual__2025-06-16T08:10:48.530660+00:00, execution_date=20250616T081048, start_date=20250616T081116, end_date=20250616T081117
+[2025-06-16T17:11:17.978+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-16T17:11:18.043+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-16T17:11:18.049+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

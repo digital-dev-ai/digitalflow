@@ -1,0 +1,21 @@
+[2025-06-23T11:10:11.140+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-23T11:10:11.154+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_no_preprc_V0.1.init_task manual__2025-06-23T02:10:09.186866+00:00 [queued]>
+[2025-06-23T11:10:11.162+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_no_preprc_V0.1.init_task manual__2025-06-23T02:10:09.186866+00:00 [queued]>
+[2025-06-23T11:10:11.162+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-23T11:10:11.175+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): init_task> on 2025-06-23 02:10:09.186866+00:00
+[2025-06-23T11:10:11.184+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=92942) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-23T11:10:11.185+0900] {standard_task_runner.py:72} INFO - Started process 92951 to run task
+[2025-06-23T11:10:11.186+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_no_preprc_V0.1', 'init_task', 'manual__2025-06-23T02:10:09.186866+00:00', '--job-id', '2472', '--raw', '--subdir', 'DAGS_FOLDER/model_class_create_dag.py', '--cfg-path', '/tmp/tmppyo6uok0']
+[2025-06-23T11:10:11.188+0900] {standard_task_runner.py:105} INFO - Job 2472: Subtask init_task
+[2025-06-23T11:10:11.228+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_no_preprc_V0.1.init_task manual__2025-06-23T02:10:09.186866+00:00 [running]> on host f6d4228a9eb8
+[2025-06-23T11:10:11.299+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_no_preprc_V0.1' AIRFLOW_CTX_TASK_ID='init_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-23T02:10:09.186866+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-23T02:10:09.186866+00:00'
+[2025-06-23T11:10:11.304+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-23T11:10:11.316+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-23T11:10:11.329+0900] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-23T11:10:11.343+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-23T11:10:11.344+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_no_preprc_V0.1, task_id=init_task, run_id=manual__2025-06-23T02:10:09.186866+00:00, execution_date=20250623T021009, start_date=20250623T021011, end_date=20250623T021011
+[2025-06-23T11:10:11.407+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-23T11:10:11.442+0900] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-23T11:10:11.446+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,20 @@
+[2025-06-19T13:26:31.952+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-19T13:26:31.985+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.image_classify_task_group.img_classify_task manual__2025-06-19T04:25:45.190590+00:00 map_index=1 [queued]>
+[2025-06-19T13:26:32.002+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.image_classify_task_group.img_classify_task manual__2025-06-19T04:25:45.190590+00:00 map_index=1 [queued]>
+[2025-06-19T13:26:32.003+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-19T13:26:32.019+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): image_classify_task_group.img_classify_task> on 2025-06-19 04:25:45.190590+00:00
+[2025-06-19T13:26:32.032+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=49812) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-19T13:26:32.035+0900] {standard_task_runner.py:72} INFO - Started process 49865 to run task
+[2025-06-19T13:26:32.037+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'image_classify_task_group.img_classify_task', 'manual__2025-06-19T04:25:45.190590+00:00', '--job-id', '1258', '--raw', '--subdir', 'DAGS_FOLDER/img_classify.py', '--cfg-path', '/tmp/tmpwrny0_6_', '--map-index', '1']
+[2025-06-19T13:26:32.044+0900] {standard_task_runner.py:105} INFO - Job 1258: Subtask image_classify_task_group.img_classify_task
+[2025-06-19T13:26:32.103+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.image_classify_task_group.img_classify_task manual__2025-06-19T04:25:45.190590+00:00 map_index=1 [running]> on host f6d4228a9eb8
+[2025-06-19T13:26:32.211+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='image_classify_task_group.img_classify_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-19T04:25:45.190590+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-19T04:25:45.190590+00:00'
+[2025-06-19T13:26:32.214+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-19T13:26:40.986+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '4ca59076-e5b1-40f7-a893-083c5dfc16b1', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-007.jpg', 'result': {'process_id': '_d159f776-106e-4d43-85e6-428c3f6952be_pre', 'folder_path': '4ca59076-e5b1-40f7-a893-083c5dfc16b1/d159f776-106e-4d43-85e6-428c3f6952be', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {'_result': '/opt/***/data/temp/4ca59076-e5b1-40f7-a893-083c5dfc16b1/d159f776-106e-4d43-85e6-428c3f6952be/_result.png'}}, 'classify': {'a_class': {'pred': 0, 'confidence': 0.5362105965614319}}}
+[2025-06-19T13:26:41.019+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-19T13:26:41.020+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_classify_v1, task_id=image_classify_task_group.img_classify_task, run_id=manual__2025-06-19T04:25:45.190590+00:00, map_index=1, execution_date=20250619T042545, start_date=20250619T042631, end_date=20250619T042641
+[2025-06-19T13:26:41.100+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-19T13:26:41.125+0900] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-19T13:26:41.127+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

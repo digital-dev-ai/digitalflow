@@ -1,0 +1,142 @@
+[2025-06-19T18:02:54.156+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-19T18:02:54.186+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.img_preprocess_task manual__2025-06-19T09:02:28.125954+00:00 map_index=4 [queued]>
+[2025-06-19T18:02:54.201+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.img_preprocess_task manual__2025-06-19T09:02:28.125954+00:00 map_index=4 [queued]>
+[2025-06-19T18:02:54.202+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-19T18:02:54.221+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-19 09:02:28.125954+00:00
+[2025-06-19T18:02:54.234+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=8930) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-19T18:02:54.236+0900] {standard_task_runner.py:72} INFO - Started process 8979 to run task
+[2025-06-19T18:02:54.237+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'img_preprocess_task', 'manual__2025-06-19T09:02:28.125954+00:00', '--job-id', '1678', '--raw', '--subdir', 'DAGS_FOLDER/img_classify.py', '--cfg-path', '/tmp/tmprab04uj9', '--map-index', '4']
+[2025-06-19T18:02:54.239+0900] {standard_task_runner.py:105} INFO - Job 1678: Subtask img_preprocess_task
+[2025-06-19T18:02:54.287+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.img_preprocess_task manual__2025-06-19T09:02:28.125954+00:00 map_index=4 [running]> on host f6d4228a9eb8
+[2025-06-19T18:02:54.412+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-19T09:02:28.125954+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-19T09:02:28.125954+00:00'
+[2025-06-19T18:02:54.416+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-19T18:02:54.421+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_a340c951-9de8-4b49-b215-e9519d5c9b40_pre', 'folder_path': '26cfa0c6-86ef-4d89-8993-d0b8e1f7c431/a340c951-9de8-4b49-b215-e9519d5c9b40', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set1', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-19T18:02:54.427+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-19T18:02:54.431+0900] {logging_mixin.py:190} INFO - step : calc_angle_set1
+[2025-06-19T18:02:54.576+0900] {logging_mixin.py:190} INFO - angle1 :  0 90.60826255344924 90.71654933388517 90.74851414180549 90.44383166785866 90.52415507024762
+[2025-06-19T18:02:54.758+0900] {logging_mixin.py:190} INFO - angle2 :  90.60826255344924 89.99180150592812 180.1246913798886 180.12475925739858 -0.12096205711875398 -0.16128255645588765
+[2025-06-19T18:02:54.938+0900] {logging_mixin.py:190} INFO - angle3 :  180.60006405937736 90.04546532083931 90.18713851639643 90.15594893310991 89.91941527182404 89.91935856202686
+[2025-06-19T18:02:55.053+0900] {logging_mixin.py:190} INFO - angle4 :  270.64552938021666 89.96611802152654 180.09351859950897 180.09351859950897 -0.16128255645588765 -0.16128255645588765
+[2025-06-19T18:02:55.144+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-19T18:03:04.527+0900] {logging_mixin.py:190} INFO - osd 1 270 270 3.39 Latin 0.34
+[2025-06-19T18:03:11.339+0900] {logging_mixin.py:190} INFO - osd 2 450 180 3.84 Latin 2.33
+[2025-06-19T18:03:18.711+0900] {logging_mixin.py:190} INFO - osd 3 break  450 0 6.21 Latin 0.18
+[2025-06-19T18:03:18.712+0900] {logging_mixin.py:190} INFO - step : load
+[2025-06-19T18:03:18.713+0900] {logging_mixin.py:190} INFO - step : rotate
+[2025-06-19T18:03:18.716+0900] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 64, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 626, in rotate
+    rotated = _rotate(img_np_bgr,angle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 681, in _rotate
+    h, w = img_np_bgr.shape[:2]
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'shape'
+[2025-06-19T18:03:18.725+0900] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=image_classify_v1, task_id=img_preprocess_task, run_id=manual__2025-06-19T09:02:28.125954+00:00, map_index=4, execution_date=20250619T090228, start_date=20250619T090254, end_date=20250619T090318
+[2025-06-19T18:03:18.752+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-19T18:03:18.753+0900] {standard_task_runner.py:124} ERROR - Failed to execute job 1678 for task img_preprocess_task ('NoneType' object has no attribute 'shape'; 8979)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 64, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 626, in rotate
+    rotated = _rotate(img_np_bgr,angle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/tasks/img_preprocess_task.py", line 681, in _rotate
+    h, w = img_np_bgr.shape[:2]
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'shape'
+[2025-06-19T18:03:18.813+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-06-19T18:03:18.831+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-19T18:03:18.834+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

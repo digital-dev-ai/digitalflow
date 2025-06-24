@@ -1,0 +1,7 @@
+maria_db_conn:
+  conn_type: MySQL
+  host: 192.168.10.18
+  login: digitalflow
+  password: digital10
+  port: 3306
+  schema: dococr

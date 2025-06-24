@@ -1,0 +1,20 @@
+[2025-06-19T15:07:52.613+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-19T15:07:52.629+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.clear_temp_folder_task manual__2025-06-19T06:07:50.737515+00:00 [queued]>
+[2025-06-19T15:07:52.637+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.clear_temp_folder_task manual__2025-06-19T06:07:50.737515+00:00 [queued]>
+[2025-06-19T15:07:52.638+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-19T15:07:52.653+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): clear_temp_folder_task> on 2025-06-19 06:07:50.737515+00:00
+[2025-06-19T15:07:52.661+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=61672) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-19T15:07:52.663+0900] {standard_task_runner.py:72} INFO - Started process 61689 to run task
+[2025-06-19T15:07:52.663+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'clear_temp_folder_task', 'manual__2025-06-19T06:07:50.737515+00:00', '--job-id', '1310', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmp3j378qmx']
+[2025-06-19T15:07:52.665+0900] {standard_task_runner.py:105} INFO - Job 1310: Subtask clear_temp_folder_task
+[2025-06-19T15:07:52.702+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.clear_temp_folder_task manual__2025-06-19T06:07:50.737515+00:00 [running]> on host f6d4228a9eb8
+[2025-06-19T15:07:52.774+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='clear_temp_folder_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-19T06:07:50.737515+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-19T06:07:50.737515+00:00'
+[2025-06-19T15:07:52.775+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-19T15:07:52.779+0900] {python.py:240} INFO - Done. Returned value was: Cleared folder: /opt/***/data/temp/manual__2025-06-19T06:07:50.737515+00:00
+[2025-06-19T15:07:52.799+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-19T15:07:52.800+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=clear_temp_folder_task, run_id=manual__2025-06-19T06:07:50.737515+00:00, execution_date=20250619T060750, start_date=20250619T060752, end_date=20250619T060752
+[2025-06-19T15:07:52.845+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-19T15:07:52.872+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-19T15:07:52.875+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

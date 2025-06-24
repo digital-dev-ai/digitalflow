@@ -1,0 +1,20 @@
+lsmod | grep kvm
+#결과가 없으면 다음 명령어
+#sudo modprobe kvm_intel
+
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl gnupg
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu noble stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+
+#https://www.docker.com/products/docker-desktop/ 접속하여 
+#Download Docker Desktop 눌러서 리눅스용 다운로드
+#다운로드한 파일 경로로 설정하여 다음 명령어 실행
+
+sudo apt install ~/Downloads/docker-desktop-amd64.deb
+
+#정상동작 확인
+docker --version
+docker compose version
+

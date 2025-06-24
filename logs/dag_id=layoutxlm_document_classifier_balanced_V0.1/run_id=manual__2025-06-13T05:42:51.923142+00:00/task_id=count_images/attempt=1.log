@@ -1,0 +1,23 @@
+[2025-06-13T14:42:54.117+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-13T14:42:54.180+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.count_images manual__2025-06-13T05:42:51.923142+00:00 [queued]>
+[2025-06-13T14:42:54.212+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: layoutxlm_document_classifier_balanced_V0.1.count_images manual__2025-06-13T05:42:51.923142+00:00 [queued]>
+[2025-06-13T14:42:54.214+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-13T14:42:54.263+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): count_images> on 2025-06-13 05:42:51.923142+00:00
+[2025-06-13T14:42:54.279+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=264) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-13T14:42:54.285+0900] {standard_task_runner.py:72} INFO - Started process 265 to run task
+[2025-06-13T14:42:54.287+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'layoutxlm_document_classifier_balanced_V0.1', 'count_images', 'manual__2025-06-13T05:42:51.923142+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpnrl0re7g']
+[2025-06-13T14:42:54.292+0900] {standard_task_runner.py:105} INFO - Job 17: Subtask count_images
+[2025-06-13T14:42:54.464+0900] {task_command.py:467} INFO - Running <TaskInstance: layoutxlm_document_classifier_balanced_V0.1.count_images manual__2025-06-13T05:42:51.923142+00:00 [running]> on host f6d4228a9eb8
+[2025-06-13T14:42:54.765+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='layoutxlm_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='count_images' AIRFLOW_CTX_EXECUTION_DATE='2025-06-13T05:42:51.923142+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-13T05:42:51.923142+00:00'
+[2025-06-13T14:42:54.769+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-13T14:42:55.441+0900] {logging_mixin.py:190} INFO - TRUE_IMAGE_DIR 파일 개수: 31
+[2025-06-13T14:42:55.443+0900] {logging_mixin.py:190} INFO - FALSE_IMAGE_DIR 파일 개수: 31
+[2025-06-13T14:42:55.446+0900] {logging_mixin.py:190} INFO - NONE_DOC_IMAGE_DIR 파일 개수: 39996
+[2025-06-13T14:42:55.447+0900] {python.py:240} INFO - Done. Returned value was: {'true_count': 31, 'false_count': 31, 'none_doc_count': 39996}
+[2025-06-13T14:42:55.527+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-13T14:42:55.529+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=layoutxlm_document_classifier_balanced_V0.1, task_id=count_images, run_id=manual__2025-06-13T05:42:51.923142+00:00, execution_date=20250613T054251, start_date=20250613T054254, end_date=20250613T054255
+[2025-06-13T14:42:55.662+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-13T14:42:55.776+0900] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-13T14:42:55.783+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

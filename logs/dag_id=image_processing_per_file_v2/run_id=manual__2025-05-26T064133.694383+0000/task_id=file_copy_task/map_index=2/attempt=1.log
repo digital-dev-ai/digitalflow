@@ -1,0 +1,28 @@
+[2025-05-26T06:41:45.329+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-05-26T06:41:45.649+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-26T06:41:33.694383+00:00 map_index=2 [queued]>
+[2025-05-26T06:41:45.669+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-26T06:41:33.694383+00:00 map_index=2 [queued]>
+[2025-05-26T06:41:45.671+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-05-26T06:41:45.706+0000] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): file_copy_task> on 2025-05-26 06:41:33.694383+00:00
+[2025-05-26T06:41:45.721+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1025) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-05-26T06:41:45.730+0000] {standard_task_runner.py:72} INFO - Started process 1043 to run task
+[2025-05-26T06:41:45.736+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_processing_per_file_v2', 'file_copy_task', 'manual__2025-05-26T06:41:33.694383+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpnx2fq92b', '--map-index', '2']
+[2025-05-26T06:41:45.737+0000] {standard_task_runner.py:105} INFO - Job 54: Subtask file_copy_task
+[2025-05-26T06:41:45.841+0000] {task_command.py:467} INFO - Running <TaskInstance: image_processing_per_file_v2.file_copy_task manual__2025-05-26T06:41:33.694383+00:00 map_index=2 [running]> on host b0d7fbab896a
+[2025-05-26T06:41:46.074+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_processing_per_file_v2' AIRFLOW_CTX_TASK_ID='file_copy_task' AIRFLOW_CTX_EXECUTION_DATE='2025-05-26T06:41:33.694383+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-26T06:41:33.694383+00:00'
+[2025-05-26T06:41:46.080+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-05-26T06:41:46.080+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-05-26T06:41:46.081+0000] {logging_mixin.py:190} INFO - Current task name:file_copy_task state:running start_date:2025-05-26 06:41:45.649826+00:00
+[2025-05-26T06:41:46.081+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 and current dag run status:running
+[2025-05-26T06:41:46.082+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-05-26T06:41:46.122+0000] {python.py:240} INFO - Done. Returned value was: /opt/***/data/result/스크린샷 2025-05-21 181632.png
+[2025-05-26T06:41:46.185+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-05-26T06:41:46.188+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_processing_per_file_v2, task_id=file_copy_task, run_id=manual__2025-05-26T06:41:33.694383+00:00, map_index=2, execution_date=20250526T064133, start_date=20250526T064145, end_date=20250526T064146
+[2025-05-26T06:41:46.278+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-05-26T06:41:46.281+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-05-26T06:41:46.283+0000] {logging_mixin.py:190} INFO - Dag name:image_processing_per_file_v2 queued_at:2025-05-26 06:41:33.706891+00:00
+[2025-05-26T06:41:46.283+0000] {logging_mixin.py:190} INFO - Task hostname:b0d7fbab896a operator:_PythonDecoratedOperator
+[2025-05-26T06:41:46.333+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-05-26T06:41:46.366+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-26T06:41:46.370+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

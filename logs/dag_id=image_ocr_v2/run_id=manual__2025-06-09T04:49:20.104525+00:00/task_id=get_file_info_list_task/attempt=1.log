@@ -1,0 +1,20 @@
+[2025-06-09T04:49:22.716+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-09T04:49:22.733+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_ocr_v2.get_file_info_list_task manual__2025-06-09T04:49:20.104525+00:00 [queued]>
+[2025-06-09T04:49:22.741+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_ocr_v2.get_file_info_list_task manual__2025-06-09T04:49:20.104525+00:00 [queued]>
+[2025-06-09T04:49:22.742+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-09T04:49:22.754+0000] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): get_file_info_list_task> on 2025-06-09 04:49:20.104525+00:00
+[2025-06-09T04:49:22.760+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1973) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-09T04:49:22.761+0000] {standard_task_runner.py:72} INFO - Started process 1975 to run task
+[2025-06-09T04:49:22.762+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_ocr_v2', 'get_file_info_list_task', 'manual__2025-06-09T04:49:20.104525+00:00', '--job-id', '39', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpastxqvox']
+[2025-06-09T04:49:22.764+0000] {standard_task_runner.py:105} INFO - Job 39: Subtask get_file_info_list_task
+[2025-06-09T04:49:22.801+0000] {task_command.py:467} INFO - Running <TaskInstance: image_ocr_v2.get_file_info_list_task manual__2025-06-09T04:49:20.104525+00:00 [running]> on host 85194d6fbd18
+[2025-06-09T04:49:22.866+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_ocr_v2' AIRFLOW_CTX_TASK_ID='get_file_info_list_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T04:49:20.104525+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-09T04:49:20.104525+00:00'
+[2025-06-09T04:49:22.868+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-09T04:49:22.870+0000] {python.py:240} INFO - Done. Returned value was: [{'file_id': 'f4615407-198c-48e4-959b-18477f52e40d', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-011.jpg'}, {'file_id': '86abe9ef-ed41-4142-b828-eb4adc3243df', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-007.jpg'}, {'file_id': 'db6b444b-7624-4c55-a00b-9753f4e30634', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-005.jpg'}, {'file_id': 'ef7fdb44-45b7-481a-951b-e051d4a0d4c0', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-013.jpg'}, {'file_id': '3e119ea8-d6c5-49fd-9c36-f78b9a650cdb', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-017.jpg'}]
+[2025-06-09T04:49:22.893+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-09T04:49:22.894+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_ocr_v2, task_id=get_file_info_list_task, run_id=manual__2025-06-09T04:49:20.104525+00:00, execution_date=20250609T044920, start_date=20250609T044922, end_date=20250609T044922
+[2025-06-09T04:49:22.942+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-09T04:49:23.013+0000] {taskinstance.py:3901} INFO - 5 downstream tasks scheduled from follow-on schedule check
+[2025-06-09T04:49:23.015+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,31 @@
+[2025-06-19T15:31:16.423+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-19T15:31:16.444+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.copy_results_folder_task manual__2025-06-19T06:30:37.653725+00:00 [queued]>
+[2025-06-19T15:31:16.454+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.copy_results_folder_task manual__2025-06-19T06:30:37.653725+00:00 [queued]>
+[2025-06-19T15:31:16.455+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-19T15:31:16.469+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): copy_results_folder_task> on 2025-06-19 06:30:37.653725+00:00
+[2025-06-19T15:31:16.476+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=62241) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-19T15:31:16.478+0900] {standard_task_runner.py:72} INFO - Started process 62250 to run task
+[2025-06-19T15:31:16.478+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'copy_results_folder_task', 'manual__2025-06-19T06:30:37.653725+00:00', '--job-id', '1330', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpkwt18gxo']
+[2025-06-19T15:31:16.481+0900] {standard_task_runner.py:105} INFO - Job 1330: Subtask copy_results_folder_task
+[2025-06-19T15:31:16.534+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.copy_results_folder_task manual__2025-06-19T06:30:37.653725+00:00 [running]> on host f6d4228a9eb8
+[2025-06-19T15:31:16.630+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='copy_results_folder_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-19T06:30:37.653725+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-19T06:30:37.653725+00:00'
+[2025-06-19T15:31:16.632+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-19T15:31:16.635+0900] {logging_mixin.py:190} INFO - 5
+[2025-06-19T15:31:16.642+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-19T15:31:16.652+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/876d8fa9-443c-48fd-a232-7f526ad26879/62adc0f1-2bd2-4008-a128-d8784b672bac/_result.png → /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class/_62adc0f1-2bd2-4008-a128-d8784b672bac_pre__result.png
+[2025-06-19T15:31:16.653+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-19T15:31:16.661+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/4bcf1995-d674-4dce-aebd-1472d6302e99/cc72c08b-d6c2-4e53-8b71-bba01a8e6058/_result.png → /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class/_cc72c08b-d6c2-4e53-8b71-bba01a8e6058_pre__result.png
+[2025-06-19T15:31:16.662+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-19T15:31:16.670+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/03775447-941d-44bd-9d60-32376c0917da/79d62c47-ee7f-4cc1-a079-212924cd7ef1/_result.png → /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class/_79d62c47-ee7f-4cc1-a079-212924cd7ef1_pre__result.png
+[2025-06-19T15:31:16.671+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-19T15:31:16.678+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/79a689d2-952b-4331-aaaa-e5b7f63104f7/c7a134a3-5af7-464b-9621-50c4683dd647/_result.png → /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class/_c7a134a3-5af7-464b-9621-50c4683dd647_pre__result.png
+[2025-06-19T15:31:16.682+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-19T15:31:16.689+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8bb148d9-734d-484b-83fd-8546350e51af/4ed634ba-b438-469b-96c7-f6f94f89bd43/_result.png → /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class/_4ed634ba-b438-469b-96c7-f6f94f89bd43_pre__result.png
+[2025-06-19T15:31:16.690+0900] {python.py:240} INFO - Done. Returned value was: /opt/***/data/temp/manual__2025-06-19T06:30:37.653725+00:00/a_class
+[2025-06-19T15:31:16.706+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-19T15:31:16.707+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=copy_results_folder_task, run_id=manual__2025-06-19T06:30:37.653725+00:00, execution_date=20250619T063037, start_date=20250619T063116, end_date=20250619T063116
+[2025-06-19T15:31:16.743+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-19T15:31:16.756+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-19T15:31:16.761+0900] {local_task_job_runner.py:245} INFO - ::endgroup::
