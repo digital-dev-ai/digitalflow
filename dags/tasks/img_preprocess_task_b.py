@@ -9,6 +9,7 @@ import uuid
 from utils import file_util
 from utils import type_convert_util
 from airflow.models import Variable,XCom
+from collections import Counter
 import pytesseract
 from scipy.ndimage import interpolation as inter
 
@@ -19,21 +20,23 @@ result_map = {}           # 최종 결과 파일 경로 관리
 @task
 def img_preprocess_task(step_info:dict,file_info:dict,result_key:str="result")->dict:
     process_id = str(uuid.uuid4())
+    print("empty map check",work_in_progress_map,result_map)
     result_map["process_id"] = f"_{process_id}_pre"
     result_map["folder_path"] = str(Path(file_info["file_id"]) / process_id)
     result_map["step_list"] = step_info["step_list"]
     result_map["result_file_map"] = {}
     function_map = {
         #common
-        "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"key"},
-        "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"key"},
-        "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"key"},
+        "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
+        "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
+        "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
         #set
-        "calc_angle_set1": {"function": calc_angle_set1, "input_type": "np_bgr", "output_type": "np_bgr","param":"key,iterations,iter_save"},
-        "calc_angle_set2": {"function": calc_angle_set2, "input_type": "np_bgr", "output_type": "np_bgr","param":"key,iterations,iter_save"},
-        "calc_angle_set3": {"function": calc_angle_set3, "input_type": "np_bgr", "output_type": "np_bgr","param":"key,iterations,iter_save"},
-        "calc_angle_set4": {"function": calc_angle_set4, "input_type": "np_bgr", "output_type": "np_bgr","param":"key,iterations,iter_save"},
-        "text_orientation_set": {"function": text_orientation_set, "input_type": "np_bgr", "output_type": "np_bgr","param":"key,iterations,iter_save"},
+        "calc_angle_set1": {"function": calc_angle_set1, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+        "calc_angle_set2": {"function": calc_angle_set2, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,delta,limit,iterations,iter_save"},
+        "calc_angle_set3": {"function": calc_angle_set3, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+        "calc_angle_set4": {"function": calc_angle_set4, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+        "text_orientation_set": {"function": text_orientation_set, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+        "del_blank_set1": {"function": del_blank_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "padding"},
         #preprocess
         "scale1": {"function": scale1, "input_type": "np_bgr", "output_type": "np_bgr"},
         "gray": {"function": gray, "input_type": "np_bgr", "output_type": "np_gray"},
@@ -43,16 +46,15 @@ def img_preprocess_task(step_info:dict,file_info:dict,result_key:str="result")->
         "morphology1": {"function": morphology1, "input_type": "np_bgr", "output_type": "np_bgr"},
         "canny": {"function": canny, "input_type": "np_bgr", "output_type": "np_bgr"},
         "thinner": {"function": thinner, "input_type": "np_bgr", "output_type": "np_bgr"},
-        "before_angle1": {"function": before_angle1, "input_type": "np_bgr", "output_type": "np_gray","param":"key"},
-        "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"key"},
-        "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":"key"},
-        "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"key"},
-        "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"key"},
+        "before_angle1": {"function": before_angle1, "input_type": "np_bgr", "output_type": "np_gray","param":""},
+        "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"angle_key"},
+        "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":""},
+        "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"angle_key"},
+        "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key"},
         
         "line_tracking": {"function": line_tracking, "input_type": "np_gray", "output_type": "np_gray","param":"iter_save"},
         
     }
-    print("empty map check",work_in_progress_map,result_map)
     file_path = file_info["file_path"]
     output = file_path
     before_output_type = "file_path"
@@ -68,17 +70,17 @@ def img_preprocess_task(step_info:dict,file_info:dict,result_key:str="result")->
     file_info[result_key]=result_map
     return file_info
 
-def cache(file_path:str,key:str)->str:
-    work_in_progress_map[f"filepath_{key}"] = file_path
+def cache(file_path:str,cache_key:str)->str:
+    work_in_progress_map[f"filepath_{cache_key}"] = file_path
     return file_path
 
-def load(_,key:str)->str:
-    return work_in_progress_map[f"filepath_{key}"]
+def load(_,cache_key:str)->str:
+    return work_in_progress_map[f"filepath_{cache_key}"]
 
-def save(file_path:str,key:str)->str:
-    save_path = Path(TEMP_FOLDER) / result_map["folder_path"] / f"{key}.png"
+def save(file_path:str,save_key:str)->str:
+    save_path = Path(TEMP_FOLDER) / result_map["folder_path"] / f"{save_key}.png"
     save_path = file_util.file_copy(file_path,save_path)
-    result_map["result_file_map"][key]=save_path
+    result_map["result_file_map"][save_key]=save_path
     return file_path
 
 def scale1(img_np_bgr:np.ndarray,width:int,height:int) -> np.ndarray:
@@ -203,6 +205,42 @@ def thinner(img_np_bgr: np.ndarray) -> np.ndarray:
     edges = cv2.erode(img_np_bgr, kernel, iterations=1)
     return edges
 
+def del_blank_set1(img_np_bgr: np.ndarray, padding: int = 5) -> np.ndarray:
+    """
+    이미지에서 불필요한 상하좌우 공백을 제거하고 약간의 여백(padding)을 줍니다.
+    :param img_np_bgr: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
+    :param padding: 잘라낸 이미지 주위에 추가할 픽셀 수
+    :return: 공백이 제거된 BGR numpy 배열
+    """
+    # 1. 그레이스케일 변환 및 이진화 (콘텐츠를 흰색으로)
+    gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
+    # 배경이 주로 흰색(255)이므로, 콘텐츠(검정)를 찾기 위해 반전(THRESH_BINARY_INV)
+    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+
+    # 2. 콘텐츠 영역 찾기
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    if not contours:
+        # 콘텐츠가 없으면 원본 반환
+        print("콘텐츠가 없습니다.")
+        return img_np_bgr
+
+    # 3. 모든 콘텐츠를 포함하는 하나의 큰 바운딩 박스 계산
+    all_points = np.concatenate(contours, axis=0)
+    x, y, w, h = cv2.boundingRect(all_points)
+
+    # 4. 패딩 적용
+    h_img, w_img = img_np_bgr.shape[:2]
+    x_start = max(0, x - padding)
+    y_start = max(0, y - padding)
+    x_end = min(w_img, x + w + padding)
+    y_end = min(h_img, y + h + padding)
+
+    # 5. 원본 이미지에서 해당 영역 잘라내기
+    cropped_img = img_np_bgr[y_start:y_end, x_start:x_end]
+    print('공백 제거 완료')
+    return cropped_img
+
 def calc_angle_set1(img_np_bgr: np.ndarray,key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
     """
     다각형 근사화를 활용한 표 인식 및 미세회전
@@ -278,7 +316,7 @@ def before_angle1(img_np_bgr: np.ndarray) -> np.ndarray:
     _, thresh = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     return thresh
 
-def calc_angle1(img_np_gray: np.ndarray, key: str) -> float:
+def calc_angle1(img_np_gray: np.ndarray, angle_key: str) -> float:
     # 윤곽선 검출
     contours, _ = cv2.findContours(img_np_gray, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # 가장 큰 윤곽선 선택
@@ -289,7 +327,7 @@ def calc_angle1(img_np_gray: np.ndarray, key: str) -> float:
     
     if not len(approx) == 4:
         print("표의 4꼭지점을 찾을 수 없습니다.")
-        work_in_progress_map[f"angle_{key}"] = 0
+        work_in_progress_map[f"angle_{angle_key}"] = 0
         return img_np_gray
     else:
         corners = approx.reshape(4, 2)
@@ -314,10 +352,10 @@ def calc_angle1(img_np_gray: np.ndarray, key: str) -> float:
         # 보정 각도 출력 및 반환 (가로선 기준 또는 평균, 필요에 따라 선택)
         print(f"가로선 보정 각도: {correction_angle_top:.2f}도")
         print(f"세로선 보정 각도: {correction_angle_left:.2f}도")
-        work_in_progress_map[f"angle_{key}"] = (correction_angle_top*correction_angle_left)/2 * -1
+        work_in_progress_map[f"angle_{angle_key}"] = (correction_angle_top*correction_angle_left)/2 * -1
         return img_np_gray
 
-def calc_angle_set2(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
+def calc_angle_set2(img_np_bgr:np.ndarray,angle_key:str,delta:float=0.25,limit:int=5,iterations:int=3,iter_save:bool=False) -> np.ndarray:
     """
     각도별 커널 탐색을 활용한 수평선/수직선 인식 및 미세회전
     문서 방향 조정을 위해 text_orientation_set과 함께 사용 추천
@@ -327,8 +365,7 @@ def calc_angle_set2(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
     idx=1
     
     while idx<=iterations:
-        delta = 0.25
-        limit = 5
+        # delta 간격으로 limit값의 ± 범위를 돌려보며 적절한 각도 탐색 
         angles = np.arange(-limit, limit + delta, delta)
         scores = []
         
@@ -338,8 +375,10 @@ def calc_angle_set2(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
 
         def long_kernal_score(arr, angle):
             i=0
+            #짧은선
             horizon_kernel = np.ones((min_length, 1), np.uint8)
             vertical_kernel = np.ones((1, min_length), np.uint8)
+            #긴선
             horizon_kernel2 = np.ones((min_length2, 1), np.uint8)
             vertical_kernel2 = np.ones((1, min_length2), np.uint8)
             
@@ -360,33 +399,43 @@ def calc_angle_set2(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
             # # 1-4. 에지 검출 (Canny)
             # edges = cv2.Canny(lines_inv, 50, 150, apertureSize=3)
         
-            #3,3으로 팽창
-            dilated = cv2.dilate(arr, np.ones((3, 3), np.uint8), iterations=1)
-            
+            #3,3 커널을 사용하여 침식(검정 늘어남)
+            eroded = cv2.erode(arr, np.ones((3, 3), np.uint8), iterations=1)
+
             # data = inter.rotate(arr, angle, reshape=False, order=0)
-            data = _rotate(dilated,angle)
+            data = _rotate(eroded,angle)
             
             # 1-1. 그레이스케일
             gray = cv2.cvtColor(data, cv2.COLOR_BGR2GRAY)
             # 1-2. 이진화 (표 경계를 명확하게)
             thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
                         
+            # 임시 저장
+            if iter_save:
+                file = type_convert_util.convert_type(thresh,"np_bgr","file_path")
+                save(file,f"rotate21_{idx}_{angle}")
+
+            #짧은 선과 긴 선을 기준으로 침식(검정 늘어남)=>
+            #1-2이진화에서 반전한 이미지를 침식했으므로 실제로는 검정 수직수평선을 찾아 길이를 1 줄임
+            #긴 선일수록 픽셀이 많이 남음
             horizon_eroded = cv2.erode(thresh, horizon_kernel)
             vertical_eroded = cv2.erode(thresh, vertical_kernel)
             horizon_eroded2 = cv2.erode(thresh, horizon_kernel2)
             vertical_eroded2 = cv2.erode(thresh, vertical_kernel2)
             
+            #각 작업의 픽셀개수를 세어 점수 계산
             score = cv2.countNonZero(horizon_eroded) + cv2.countNonZero(vertical_eroded) + cv2.countNonZero(horizon_eroded2) + cv2.countNonZero(vertical_eroded2)
-            # # 임시 저장 
-            # if iter_save :
-            #     tmp=cv2.add(horizon_eroded,vertical_eroded)
-            #     tmp2=cv2.add(horizon_eroded2,vertical_eroded2)
-            #     tmp3=cv2.add(tmp,tmp2)
-            #     i+=1
-            #     file = type_convert_util.convert_type(tmp3,"np_bgr","file_path")
-            #     save(file,f"rotate11_{idx}_{angle}_{score}")
+            # 임시 저장 
+            if iter_save :
+                tmp=cv2.add(horizon_eroded,vertical_eroded)
+                tmp2=cv2.add(horizon_eroded2,vertical_eroded2)
+                tmp3=cv2.add(tmp,tmp2)
+                i+=1
+                file = type_convert_util.convert_type(tmp3,"np_bgr","file_path")
+                save(file,f"rotate22_{idx}_{angle}_{score}")
             
             return score
+        
         for angle in angles:
             score = long_kernal_score(target_img, angle)
             scores.append(score)
@@ -404,10 +453,10 @@ def calc_angle_set2(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
         # 4. 반복 처리를 위한 작업
         target_img = rotated
         idx+=1
-    work_in_progress_map[f"angle_{key}"] = total_angle
+    work_in_progress_map[f"angle_{angle_key}"] = total_angle
     return target_img 
 
-def calc_angle_set3(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
+def calc_angle_set3(img_np_bgr:np.ndarray,angle_key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
     """
     허프변환을 활용한 직선 인식 및 미세회전
     문서에 따른 수치 조정이 많이 필요함(미완)
@@ -488,10 +537,10 @@ def calc_angle_set3(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
         # 4. 반복 처리를 위한 작업
         target_img = rotated
         idx+=1
-    work_in_progress_map[f"angle_{key}"] = total_angle
+    work_in_progress_map[f"angle_{angle_key}"] = total_angle
     return target_img
 
-def calc_angle_set4(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
+def calc_angle_set4(img_np_bgr:np.ndarray,angle_key:str,iterations:int=3,iter_save:bool=False) -> np.ndarray:
     """
     각도별 수평/수직 픽셀들의 변화 활용해 미세회전
     문서 방향 조정을 위해 text_orientation_set과 함께 사용 추천
@@ -531,10 +580,10 @@ def calc_angle_set4(img_np_bgr:np.ndarray,key:str,iterations:int=3,iter_save:boo
         # 4. 반복 처리를 위한 작업
         target_img = rotated
         idx+=1
-    work_in_progress_map[f"angle_{key}"] = total_angle
+    work_in_progress_map[f"angle_{angle_key}"] = total_angle
     return target_img
 
-def text_orientation_set(img_np_bgr:np.ndarray,key:str,iterations:int=2,iter_save:bool=False) -> np.ndarray:
+def text_orientation_set(img_np_bgr:np.ndarray,angle_key:str,iterations:int=2,iter_save:bool=False) -> np.ndarray:
     """
     테서랙트의 텍스트 방향과 문자 종류 감지를 활용한 90도 단위 회전
     미세조정을 위해 calc_angle_set1,3,5 등과 함께 사용 추천
@@ -592,7 +641,7 @@ def text_orientation_set(img_np_bgr:np.ndarray,key:str,iterations:int=2,iter_sav
         # 4. 반복 처리를 위한 작업
         target_img = rotated
         idx+=1
-    work_in_progress_map[f"angle_{key}"] = total_angle
+    work_in_progress_map[f"angle_{angle_key}"] = total_angle
     return target_img
 
 def before_orientation(img_np_bgr: np.ndarray) -> np.ndarray:
@@ -602,7 +651,7 @@ def before_orientation(img_np_bgr: np.ndarray) -> np.ndarray:
     _, thresh = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     return thresh
 
-def calc_orientation(img_np_bgr: np.ndarray,key:str) -> np.ndarray:
+def calc_orientation(img_np_bgr: np.ndarray,angle_key:str) -> np.ndarray:
     """테서랙트 OSD를 이용한 방향 보정"""
     try:
         osd = pytesseract.image_to_osd(img_np_bgr)
@@ -614,13 +663,13 @@ def calc_orientation(img_np_bgr: np.ndarray,key:str) -> np.ndarray:
         print(f"Tesseract OSD Error: {e}")
         rotation = 0            
     print(f"가로선 보정 각도: {rotation:.2f}도")
-    work_in_progress_map[f"angle_{key}"] = rotation
+    work_in_progress_map[f"angle_{angle_key}"] = rotation
     return img_np_bgr
 
 
-def rotate(img_np_bgr: np.ndarray,key:str) -> np.ndarray:
+def rotate(img_np_bgr: np.ndarray,angle_key:str) -> np.ndarray:
     """이미지 회전 함수"""
-    angle = work_in_progress_map[f"angle_{key}"]
+    angle = work_in_progress_map[f"angle_{angle_key}"]
     if angle == 0:
         return img_np_bgr
     rotated = _rotate(img_np_bgr,angle)
@@ -673,17 +722,13 @@ def line_tracking(img_np_gray:np.ndarray, iter_save:bool=False) -> np.ndarray:
         save(file,f"detected_lines")
     return output
     
-    
-
 #내부 함수
-def _rotate(img_np_bgr: np.ndarray,angle:float) -> np.ndarray:
+def _rotate(img_np_bgr: np.ndarray, angle:float) -> np.ndarray:
     """이미지 회전 내부 함수"""
     h, w = img_np_bgr.shape[:2]
     center = (w//2, h//2)
     M = cv2.getRotationMatrix2D(center, angle, 1.0)
-    rotated = cv2.warpAffine(img_np_bgr, M, (w, h), flags=cv2.INTER_CUBIC, 
-                        borderMode=cv2.BORDER_REPLICATE)
-    
+
     # 회전 후 이미지 크기 계산
     cos = np.abs(M[0, 0])
     sin = np.abs(M[0, 1])
@@ -694,10 +739,22 @@ def _rotate(img_np_bgr: np.ndarray,angle:float) -> np.ndarray:
     M[0, 2] += (new_w - w) / 2
     M[1, 2] += (new_h - h) / 2
 
+    # 이미지 테두리에서 가장 많은 색(최빈값) 계산 (예: 흰색/검정)
+    def get_most_common_border_color(img):
+        top = img[0, :]
+        bottom = img[-1, :]
+        left = img[1:-1, 0]
+        right = img[1:-1, -1]
+        border = np.concatenate([top, bottom, left, right], axis=0)
+        colors, counts = np.unique(border, axis=0, return_counts=True)
+        return colors[counts.argmax()]
+    most_common = get_most_common_border_color(img_np_bgr)
+
     rotated = cv2.warpAffine(
         img_np_bgr, M, (new_w, new_h),
         flags=cv2.INTER_CUBIC,
-        borderMode=cv2.BORDER_REPLICATE
+        borderMode=cv2.BORDER_CONSTANT,
+        borderValue=tuple(most_common.tolist())
     )
     return rotated
 

@@ -6,15 +6,6 @@ from airflow.models import Variable
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 
-def _get_deep_info(data, *keys):
-    for key in keys:
-        if isinstance(data, dict) and key in data:
-            data = data[key]
-        else:
-            return None
-    return data
-
-
 def get_step_info_list(*keys):
     class_map = {
         "a_class":{
@@ -31,14 +22,19 @@ def get_step_info_list(*keys):
                     "name":"a_class classify img_preprc",
                     "type":"step_list",
                     "step_list":[
-                        {"name":"cache","param":{"key":"origin"}},
-                        {"name":"calc_angle_set2","param":{"key":"angle1","iterations":4,"iter_save":True}},
-                        {"name":"save","param":{"key":"ag1"}},
-                        {"name":"text_orientation_set","param":{"key":"angle2","iterations":4,"iter_save":True}},
-                        {"name":"save","param":{"key":"ag2"}},
-                        {"name":"load","param":{"key":"origin"}},
-                        {"name":"rotate","param":{"key":"angle1"}},
-                        {"name":"rotate","param":{"key":"angle2"}},
+                        {"name":"cache","param":{"cache_key":"origin"}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1.0,"limit":8,"iterations":2,"iter_save":False}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
+                        #{"name":"save","param":{"save_key":"ag1"}},
+                        {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":3,"iter_save":False}},
+                        #{"name":"save","param":{"save_key":"ag2"}},
+                        {"name":"load","param":{"cache_key":"origin"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_1"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_2"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_3"}},
+                        {"name":"rotate","param":{"angle_key":"orint"}},
+                        {"name":"del_blank_set1","param":{}},
                     ], 
                 }
             },
@@ -64,12 +60,16 @@ def get_step_info_list(*keys):
                     "name":"b_class classify img_preprc",
                     "type":"step_list",
                     "step_list":[
-                        {"name":"cache","param":{"key":"origin"}},
-                        {"name":"calc_angle_set2","param":{"key":"angle1","iterations":4,"iter_save":False}},
-                        {"name":"text_orientation_set","param":{"key":"angle2","iterations":4,"iter_save":False}},
-                        {"name":"load","param":{"key":"origin"}},
-                        {"name":"rotate","param":{"key":"angle1"}},
-                        {"name":"rotate","param":{"key":"angle2"}},
+                        {"name":"cache","param":{"cache_key":"origin"}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1,"limit":8,"iterations":2,"iter_save":False}},
+                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
+                        {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":2,"iter_save":False}},
+                        {"name":"load","param":{"cache_key":"origin"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_1"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_2"}},
+                        {"name":"rotate","param":{"angle_key":"angle2_3"}},
+                        {"name":"rotate","param":{"angle_key":"orint"}},
                     ], 
                 }
             },
@@ -83,7 +83,22 @@ def get_step_info_list(*keys):
         }
     }
     return _get_deep_info(class_map,*keys)
-    
+
+def get_image_paths(directory: str) -> list[str]:
+    """해당 폴더의 이미지 경로 리스트 반환"""
+    if not os.path.exists(directory):
+        return []
+    return [os.path.join(directory, f) for f in os.listdir(directory) 
+            if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+
+def get_image_paths_recursive(directory: str) -> list[str]:
+    """해당 폴더 하위까지 포함하여 이미지 경로 리스트 반환"""
+    image_paths = []
+    for root, dirs, files in os.walk(directory):
+        for f in files:
+            if f.lower().endswith(('.png', '.jpg', '.jpeg')):
+                image_paths.append(os.path.join(root, f))
+    return image_paths
 
 def file_copy(src_file: str, dest_file: str) -> str:
     """
@@ -114,3 +129,13 @@ def file_copy(src_file: str, dest_file: str) -> str:
     shutil.copy2(src, dest)
 
     return str(dest)
+
+#내부함수
+#dict 데이터 값 찾아가기
+def _get_deep_info(data, *keys):
+    for key in keys:
+        if isinstance(data, dict) and key in data:
+            data = data[key]
+        else:
+            return None
+    return data

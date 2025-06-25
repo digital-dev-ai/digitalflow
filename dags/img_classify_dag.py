@@ -35,29 +35,43 @@ with DAG(
     no_file_task = end_task("폴더 안에 파일이 존재하지 않습니다.")
     file_info_list_task = get_file_info_list_task(UPLOAD_FOLDER)
 
+    img_classify_init_task >> check_file_branch >> [no_file_task,file_info_list_task]
+
+    #나중에 클래스 목록 가져오는 함수로 변경
     class_keys = ["a_class"]
     class_name = "a_class"
+
     #A클래스 분류를 위한 전처리 스텝 목록
-    a_class_classify_preprocess_info = file_util.get_step_info_list(class_name,"classify","img_preprocess")
+    test=False
+    if test:
+        class_classify_preprocess_info = {
+                    "name":"a_class classify img_preprc",
+                    "type":"step_list",
+                    "step_list":[
+                        {"name":"cache","param":{"cache_key":"origin"}},
+                    ], 
+                }
+    else:
+        class_classify_preprocess_info = file_util.get_step_info_list(class_name,"classify","img_preprocess")
     
     #분류를 위한 각 클래스 전처리 작업
-    classify_preprocess_partial_task = img_preprocess_task.partial(step_info=a_class_classify_preprocess_info)
+    classify_preprocess_partial_task = img_preprocess_task.partial(step_info=class_classify_preprocess_info,result_key=f"{class_name}_preprc")
     classify_preprocess_task = classify_preprocess_partial_task.expand(file_info=file_info_list_task)
     
     #결과파일 확인용
     #classify_preprocess_result_task = copy_results_folder_task(classify_preprocess_task, dest_folder=RESULT_FOLDER, last_folder=class_name)
-    a_class_classify_ai_info = file_util.get_step_info_list(class_name,"classify","classify_ai")
-    image_classify_partial_task = img_classify_task.partial(ai_info=a_class_classify_ai_info,class_key=class_name)
+    class_classify_ai_info = file_util.get_step_info_list(class_name,"classify","classify_ai")
+    
+    image_classify_partial_task = img_classify_task.partial(ai_info=class_classify_ai_info,class_key=class_name,result_key=f"{class_name}_preprc")
     image_classify_task = image_classify_partial_task.expand(file_info=classify_preprocess_task)
+    
     
     classify_result_task = aggregate_classify_results_task(image_classify_task, class_keys=class_keys)
     all_clear_temp_folder_task = clear_temp_folder_task()
     
     #classify_preprocess_task >> classify_preprocess_result_task
     
-    img_classify_init_task >> check_file_branch
-    check_file_branch >> no_file_task
-    check_file_branch >> file_info_list_task >> classify_preprocess_task >> image_classify_task >> classify_result_task
+    file_info_list_task >> classify_preprocess_task >> image_classify_task >> classify_result_task
 
 # Airflow 2.x에서 Python 스크립트 직접 실행 시에는 DAG가 파싱만 됩니다.
 # 실제 테스트는 Airflow CLI를 통해 실행해야 합니다.

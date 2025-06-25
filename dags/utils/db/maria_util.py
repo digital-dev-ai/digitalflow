@@ -38,6 +38,6 @@ def execute(query, params=None, fetch=False):
 def insert_map(key, params=None, fetch=False):
     map = {
         "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id) VALUES (%s, %s)",
-        "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, JSON_ARRAY(%s))"
+        "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)"
     }
     execute(map[key], params=params, fetch=fetch)
