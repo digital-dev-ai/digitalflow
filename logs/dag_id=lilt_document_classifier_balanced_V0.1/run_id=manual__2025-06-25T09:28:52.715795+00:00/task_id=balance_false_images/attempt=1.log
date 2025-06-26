@@ -1,0 +1,116 @@
+[2025-06-25T18:31:46.450+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T18:31:46.467+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-25T09:28:52.715795+00:00 [queued]>
+[2025-06-25T18:31:46.475+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-25T09:28:52.715795+00:00 [queued]>
+[2025-06-25T18:31:46.476+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T18:31:46.488+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): balance_false_images> on 2025-06-25 09:28:52.715795+00:00
+[2025-06-25T18:31:46.500+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=842) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T18:31:46.501+0900] {standard_task_runner.py:72} INFO - Started process 858 to run task
+[2025-06-25T18:31:46.502+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'balance_false_images', 'manual__2025-06-25T09:28:52.715795+00:00', '--job-id', '5329', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp8fmxigab']
+[2025-06-25T18:31:46.507+0900] {standard_task_runner.py:105} INFO - Job 5329: Subtask balance_false_images
+[2025-06-25T18:31:46.546+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-25T09:28:52.715795+00:00 [running]> on host f6d4228a9eb8
+[2025-06-25T18:31:46.657+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='balance_false_images' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T09:28:52.715795+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T09:28:52.715795+00:00'
+[2025-06-25T18:31:46.659+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T18:31:46.773+0900] {logging_mixin.py:190} INFO - /opt/***/data/class/a_class/classify/ready TRUE 파일 개수: 93
+[2025-06-25T18:31:46.774+0900] {logging_mixin.py:190} INFO - /opt/***/data/class/a_class/classify/ready FALSE 파일 개수: 0
+[2025-06-25T18:31:46.774+0900] {logging_mixin.py:190} INFO - NONE_DOC_IMAGE_DIR 파일 개수: 39996
+[2025-06-25T18:31:46.899+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2028987355_2028987357.png -> /opt/***/data/class/a_class/classify/ready/false/copied_0_2028987355_2028987357.png
+[2025-06-25T18:31:46.902+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/memo/50343155-3155.png -> /opt/***/data/class/a_class/classify/ready/false/copied_1_50343155-3155.png
+[2025-06-25T18:31:46.907+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2057462555_2057462556.png -> /opt/***/data/class/a_class/classify/ready/false/copied_2_2057462555_2057462556.png
+[2025-06-25T18:31:46.909+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2060910760_0761.png -> /opt/***/data/class/a_class/classify/ready/false/copied_3_2060910760_0761.png
+[2025-06-25T18:31:46.913+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/letter/13267729.png -> /opt/***/data/class/a_class/classify/ready/false/copied_4_13267729.png
+[2025-06-25T18:31:46.915+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2069728236.png -> /opt/***/data/class/a_class/classify/ready/false/copied_5_2069728236.png
+[2025-06-25T18:31:46.917+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/2053453662.png -> /opt/***/data/class/a_class/classify/ready/false/copied_6_2053453662.png
+[2025-06-25T18:31:46.920+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/2040788046.png -> /opt/***/data/class/a_class/classify/ready/false/copied_7_2040788046.png
+[2025-06-25T18:31:46.923+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/2057044989_2057044995.png -> /opt/***/data/class/a_class/classify/ready/false/copied_8_2057044989_2057044995.png
+[2025-06-25T18:31:46.928+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/resume/50541797-1798.png -> /opt/***/data/class/a_class/classify/ready/false/copied_9_50541797-1798.png
+[2025-06-25T18:31:46.931+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2069716814.png -> /opt/***/data/class/a_class/classify/ready/false/copied_10_2069716814.png
+[2025-06-25T18:31:46.935+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/letter/504747130.png -> /opt/***/data/class/a_class/classify/ready/false/copied_11_504747130.png
+[2025-06-25T18:31:46.940+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/524115769+-5775.png -> /opt/***/data/class/a_class/classify/ready/false/copied_12_524115769+-5775.png
+[2025-06-25T18:31:46.944+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/509294910_509294912.png -> /opt/***/data/class/a_class/classify/ready/false/copied_13_509294910_509294912.png
+[2025-06-25T18:31:46.948+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/2071898355.png -> /opt/***/data/class/a_class/classify/ready/false/copied_14_2071898355.png
+[2025-06-25T18:31:46.951+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/2071327901.png -> /opt/***/data/class/a_class/classify/ready/false/copied_15_2071327901.png
+[2025-06-25T18:31:46.954+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/email/2505945827.png -> /opt/***/data/class/a_class/classify/ready/false/copied_16_2505945827.png
+[2025-06-25T18:31:46.959+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_publication/1005102302.png -> /opt/***/data/class/a_class/classify/ready/false/copied_17_1005102302.png
+[2025-06-25T18:31:46.964+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/2024884852.png -> /opt/***/data/class/a_class/classify/ready/false/copied_18_2024884852.png
+[2025-06-25T18:31:46.969+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_report/2075175828_5868.png -> /opt/***/data/class/a_class/classify/ready/false/copied_19_2075175828_5868.png
+[2025-06-25T18:31:46.974+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/ti10411269.png -> /opt/***/data/class/a_class/classify/ready/false/copied_20_ti10411269.png
+[2025-06-25T18:31:46.979+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/invoice/2041158598.png -> /opt/***/data/class/a_class/classify/ready/false/copied_21_2041158598.png
+[2025-06-25T18:31:46.984+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/0060118085.png -> /opt/***/data/class/a_class/classify/ready/false/copied_22_0060118085.png
+[2025-06-25T18:31:46.991+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_publication/2028714592.png -> /opt/***/data/class/a_class/classify/ready/false/copied_23_2028714592.png
+[2025-06-25T18:31:47.002+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/memo/1000291906-a.png -> /opt/***/data/class/a_class/classify/ready/false/copied_24_1000291906-a.png
+[2025-06-25T18:31:47.007+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/letter/508457595.png -> /opt/***/data/class/a_class/classify/ready/false/copied_25_508457595.png
+[2025-06-25T18:31:47.010+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/2063589720.png -> /opt/***/data/class/a_class/classify/ready/false/copied_26_2063589720.png
+[2025-06-25T18:31:47.017+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2070915853.png -> /opt/***/data/class/a_class/classify/ready/false/copied_27_2070915853.png
+[2025-06-25T18:31:47.022+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/advertisement/2061012494.png -> /opt/***/data/class/a_class/classify/ready/false/copied_28_2061012494.png
+[2025-06-25T18:31:47.027+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/0060033127.png -> /opt/***/data/class/a_class/classify/ready/false/copied_29_0060033127.png
+[2025-06-25T18:31:47.031+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/memo/88791685.png -> /opt/***/data/class/a_class/classify/ready/false/copied_30_88791685.png
+[2025-06-25T18:31:47.036+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/0060061393.png -> /opt/***/data/class/a_class/classify/ready/false/copied_31_0060061393.png
+[2025-06-25T18:31:47.044+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/0000176287.png -> /opt/***/data/class/a_class/classify/ready/false/copied_32_0000176287.png
+[2025-06-25T18:31:47.049+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2046518107_2046518108.png -> /opt/***/data/class/a_class/classify/ready/false/copied_33_2046518107_2046518108.png
+[2025-06-25T18:31:47.054+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/2083716738_6741.png -> /opt/***/data/class/a_class/classify/ready/false/copied_34_2083716738_6741.png
+[2025-06-25T18:31:47.059+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2031298398.png -> /opt/***/data/class/a_class/classify/ready/false/copied_35_2031298398.png
+[2025-06-25T18:31:47.064+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/memo/1000305027_1000305028.png -> /opt/***/data/class/a_class/classify/ready/false/copied_36_1000305027_1000305028.png
+[2025-06-25T18:31:47.069+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/2040098436_2040098445.png -> /opt/***/data/class/a_class/classify/ready/false/copied_37_2040098436_2040098445.png
+[2025-06-25T18:31:47.074+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/resume/50229982-9983.png -> /opt/***/data/class/a_class/classify/ready/false/copied_38_50229982-9983.png
+[2025-06-25T18:31:47.078+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/tob07117.40.png -> /opt/***/data/class/a_class/classify/ready/false/copied_39_tob07117.40.png
+[2025-06-25T18:31:47.086+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/2048270456_0459.png -> /opt/***/data/class/a_class/classify/ready/false/copied_40_2048270456_0459.png
+[2025-06-25T18:31:47.091+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/517687646+-7647.png -> /opt/***/data/class/a_class/classify/ready/false/copied_41_517687646+-7647.png
+[2025-06-25T18:31:47.097+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/82794207_4208.png -> /opt/***/data/class/a_class/classify/ready/false/copied_42_82794207_4208.png
+[2025-06-25T18:31:47.101+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2031313650.png -> /opt/***/data/class/a_class/classify/ready/false/copied_43_2031313650.png
+[2025-06-25T18:31:47.106+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/memo/2041724145.png -> /opt/***/data/class/a_class/classify/ready/false/copied_44_2041724145.png
+[2025-06-25T18:31:47.115+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/advertisement/502599490.png -> /opt/***/data/class/a_class/classify/ready/false/copied_45_502599490.png
+[2025-06-25T18:31:47.121+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/82253279_3281.png -> /opt/***/data/class/a_class/classify/ready/false/copied_46_82253279_3281.png
+[2025-06-25T18:31:47.129+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/letter/880746.png -> /opt/***/data/class/a_class/classify/ready/false/copied_47_880746.png
+[2025-06-25T18:31:47.136+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2057677834.png -> /opt/***/data/class/a_class/classify/ready/false/copied_48_2057677834.png
+[2025-06-25T18:31:47.142+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/501485607+-5608.png -> /opt/***/data/class/a_class/classify/ready/false/copied_49_501485607+-5608.png
+[2025-06-25T18:31:47.147+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/2030948502.png -> /opt/***/data/class/a_class/classify/ready/false/copied_50_2030948502.png
+[2025-06-25T18:31:47.153+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/2049255172.png -> /opt/***/data/class/a_class/classify/ready/false/copied_51_2049255172.png
+[2025-06-25T18:31:47.157+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/518642500.png -> /opt/***/data/class/a_class/classify/ready/false/copied_52_518642500.png
+[2025-06-25T18:31:47.162+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/2040794889_2040794898.png -> /opt/***/data/class/a_class/classify/ready/false/copied_53_2040794889_2040794898.png
+[2025-06-25T18:31:47.167+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2020132099_2020132100.png -> /opt/***/data/class/a_class/classify/ready/false/copied_54_2020132099_2020132100.png
+[2025-06-25T18:31:47.170+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2048357608_7659.png -> /opt/***/data/class/a_class/classify/ready/false/copied_55_2048357608_7659.png
+[2025-06-25T18:31:47.172+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/ton01920.33.png -> /opt/***/data/class/a_class/classify/ready/false/copied_56_ton01920.33.png
+[2025-06-25T18:31:47.176+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_publication/50504508-4515.png -> /opt/***/data/class/a_class/classify/ready/false/copied_57_50504508-4515.png
+[2025-06-25T18:31:47.180+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/506839819+-9823.png -> /opt/***/data/class/a_class/classify/ready/false/copied_58_506839819+-9823.png
+[2025-06-25T18:31:47.182+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/2041378445_2041378459.png -> /opt/***/data/class/a_class/classify/ready/false/copied_59_2041378445_2041378459.png
+[2025-06-25T18:31:47.185+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/tob11430.19.png -> /opt/***/data/class/a_class/classify/ready/false/copied_60_tob11430.19.png
+[2025-06-25T18:31:47.190+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/specification/2031304696.png -> /opt/***/data/class/a_class/classify/ready/false/copied_61_2031304696.png
+[2025-06-25T18:31:47.196+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/518294950+-4952.png -> /opt/***/data/class/a_class/classify/ready/false/copied_62_518294950+-4952.png
+[2025-06-25T18:31:47.199+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/517306384+-6386.png -> /opt/***/data/class/a_class/classify/ready/false/copied_63_517306384+-6386.png
+[2025-06-25T18:31:47.202+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/2046299139.png -> /opt/***/data/class/a_class/classify/ready/false/copied_64_2046299139.png
+[2025-06-25T18:31:47.207+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_publication/50332174-2181.png -> /opt/***/data/class/a_class/classify/ready/false/copied_65_50332174-2181.png
+[2025-06-25T18:31:47.210+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/93503332.png -> /opt/***/data/class/a_class/classify/ready/false/copied_66_93503332.png
+[2025-06-25T18:31:47.212+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/corti0010128.png -> /opt/***/data/class/a_class/classify/ready/false/copied_67_corti0010128.png
+[2025-06-25T18:31:47.215+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/522856657+-6658.png -> /opt/***/data/class/a_class/classify/ready/false/copied_68_522856657+-6658.png
+[2025-06-25T18:31:47.219+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/2064938051.png -> /opt/***/data/class/a_class/classify/ready/false/copied_69_2064938051.png
+[2025-06-25T18:31:47.221+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/2061668999.png -> /opt/***/data/class/a_class/classify/ready/false/copied_70_2061668999.png
+[2025-06-25T18:31:47.224+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_report/2028719214_2028719215.png -> /opt/***/data/class/a_class/classify/ready/false/copied_71_2028719214_2028719215.png
+[2025-06-25T18:31:47.228+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/2025029049-b.png -> /opt/***/data/class/a_class/classify/ready/false/copied_72_2025029049-b.png
+[2025-06-25T18:31:47.231+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/questionnaire/2060047275_2060047303.png -> /opt/***/data/class/a_class/classify/ready/false/copied_73_2060047275_2060047303.png
+[2025-06-25T18:31:47.236+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/resume/50493143-3144.png -> /opt/***/data/class/a_class/classify/ready/false/copied_74_50493143-3144.png
+[2025-06-25T18:31:47.239+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/1005133981_1005133982.png -> /opt/***/data/class/a_class/classify/ready/false/copied_75_1005133981_1005133982.png
+[2025-06-25T18:31:47.241+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/advertisement/2063737954.png -> /opt/***/data/class/a_class/classify/ready/false/copied_76_2063737954.png
+[2025-06-25T18:31:47.244+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/resume/50141975-1979.png -> /opt/***/data/class/a_class/classify/ready/false/copied_77_50141975-1979.png
+[2025-06-25T18:31:47.246+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/2080875909_5911.png -> /opt/***/data/class/a_class/classify/ready/false/copied_78_2080875909_5911.png
+[2025-06-25T18:31:47.249+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/99391077.png -> /opt/***/data/class/a_class/classify/ready/false/copied_79_99391077.png
+[2025-06-25T18:31:47.252+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_report/2076906081_6091.png -> /opt/***/data/class/a_class/classify/ready/false/copied_80_2076906081_6091.png
+[2025-06-25T18:31:47.253+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/presentation/99522018_2040.png -> /opt/***/data/class/a_class/classify/ready/false/copied_81_99522018_2040.png
+[2025-06-25T18:31:47.256+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/invoice/03725199.png -> /opt/***/data/class/a_class/classify/ready/false/copied_82_03725199.png
+[2025-06-25T18:31:47.260+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/scientific_publication/2505202176_2183.png -> /opt/***/data/class/a_class/classify/ready/false/copied_83_2505202176_2183.png
+[2025-06-25T18:31:47.262+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/2044901736.png -> /opt/***/data/class/a_class/classify/ready/false/copied_84_2044901736.png
+[2025-06-25T18:31:47.265+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/506902202_506902208.png -> /opt/***/data/class/a_class/classify/ready/false/copied_85_506902202_506902208.png
+[2025-06-25T18:31:47.270+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/news_article/0013165719.png -> /opt/***/data/class/a_class/classify/ready/false/copied_86_0013165719.png
+[2025-06-25T18:31:47.277+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/budget/09005479.png -> /opt/***/data/class/a_class/classify/ready/false/copied_87_09005479.png
+[2025-06-25T18:31:47.289+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/handwritten/522849165+-9165.png -> /opt/***/data/class/a_class/classify/ready/false/copied_88_522849165+-9165.png
+[2025-06-25T18:31:47.301+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/advertisement/71388597.png -> /opt/***/data/class/a_class/classify/ready/false/copied_89_71388597.png
+[2025-06-25T18:31:47.314+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/resume/11231478_11231481.png -> /opt/***/data/class/a_class/classify/ready/false/copied_90_11231478_11231481.png
+[2025-06-25T18:31:47.327+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/form/514242386+-2386.png -> /opt/***/data/class/a_class/classify/ready/false/copied_91_514242386+-2386.png
+[2025-06-25T18:31:47.339+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/none_class/file_folder/71189470.png -> /opt/***/data/class/a_class/classify/ready/false/copied_92_71189470.png
+[2025-06-25T18:31:47.344+0900] {python.py:240} INFO - Done. Returned value was: {'copied_count': 93, 'total_false_count': 93}
+[2025-06-25T18:31:47.428+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T18:31:47.430+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=balance_false_images, run_id=manual__2025-06-25T09:28:52.715795+00:00, execution_date=20250625T092852, start_date=20250625T093146, end_date=20250625T093147
+[2025-06-25T18:31:47.586+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T18:31:47.741+0900] {taskinstance.py:3901} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T18:31:47.747+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

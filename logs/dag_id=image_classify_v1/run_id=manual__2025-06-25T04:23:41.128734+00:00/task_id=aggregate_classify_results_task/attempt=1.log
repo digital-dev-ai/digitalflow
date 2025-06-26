@@ -1,0 +1,31 @@
+[2025-06-25T13:24:32.254+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T13:24:32.274+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.aggregate_classify_results_task manual__2025-06-25T04:23:41.128734+00:00 [queued]>
+[2025-06-25T13:24:32.283+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.aggregate_classify_results_task manual__2025-06-25T04:23:41.128734+00:00 [queued]>
+[2025-06-25T13:24:32.284+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T13:24:32.299+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): aggregate_classify_results_task> on 2025-06-25 04:23:41.128734+00:00
+[2025-06-25T13:24:32.310+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=85752) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T13:24:32.312+0900] {standard_task_runner.py:72} INFO - Started process 85768 to run task
+[2025-06-25T13:24:32.312+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'aggregate_classify_results_task', 'manual__2025-06-25T04:23:41.128734+00:00', '--job-id', '5253', '--raw', '--subdir', 'DAGS_FOLDER/img_classify_dag.py', '--cfg-path', '/tmp/tmp1ad3h2c4']
+[2025-06-25T13:24:32.315+0900] {standard_task_runner.py:105} INFO - Job 5253: Subtask aggregate_classify_results_task
+[2025-06-25T13:24:32.354+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.aggregate_classify_results_task manual__2025-06-25T04:23:41.128734+00:00 [running]> on host f6d4228a9eb8
+[2025-06-25T13:24:32.441+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='aggregate_classify_results_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T04:23:41.128734+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T04:23:41.128734+00:00'
+[2025-06-25T13:24:32.443+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T13:24:32.452+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/result/manual__2025-06-25T04:23:41.128734+00:00/남양주시 정덕빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png
+[2025-06-25T13:24:32.460+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-25T13:24:32.472+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/result/manual__2025-06-25T04:23:41.128734+00:00/거제동 고성빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png
+[2025-06-25T13:24:32.480+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-25T13:24:32.485+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/result/manual__2025-06-25T04:23:41.128734+00:00/Gas Engine 점검일지_ 2021년 2월.pdf-image-007.jpg
+[2025-06-25T13:24:32.493+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-25T13:24:32.498+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/result/manual__2025-06-25T04:23:41.128734+00:00/광장동 가람빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png
+[2025-06-25T13:24:32.506+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-25T13:24:32.510+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/result/manual__2025-06-25T04:23:41.128734+00:00/Gas Engine 점검일지_ 2021년 2월.pdf-image-013.jpg
+[2025-06-25T13:24:32.518+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-25T13:24:32.521+0900] {python.py:240} INFO - Done. Returned value was: LazySelectSequence([5 items])
+[2025-06-25T13:24:32.526+0900] {xcom.py:240} WARNING - Coercing mapped lazy proxy return value from task aggregate_classify_results_task (DAG image_classify_v1, run manual__2025-06-25T04:23:41.128734+00:00) to list, which may degrade performance. Review resource requirements for this operation, and call list() to suppress this message. See Dynamic Task Mapping documentation for more information about lazy proxy objects.
+[2025-06-25T13:24:32.829+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T13:24:32.830+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_classify_v1, task_id=aggregate_classify_results_task, run_id=manual__2025-06-25T04:23:41.128734+00:00, execution_date=20250625T042341, start_date=20250625T042432, end_date=20250625T042432
+[2025-06-25T13:24:32.905+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T13:24:32.921+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T13:24:32.925+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,20 @@
+[2025-06-24T14:43:20.487+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T14:43:20.571+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.get_file_info_list_task manual__2025-06-24T05:43:11.357386+00:00 [queued]>
+[2025-06-24T14:43:20.617+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.get_file_info_list_task manual__2025-06-24T05:43:11.357386+00:00 [queued]>
+[2025-06-24T14:43:20.619+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T14:43:20.676+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): get_file_info_list_task> on 2025-06-24 05:43:11.357386+00:00
+[2025-06-24T14:43:20.702+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=45771) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T14:43:20.708+0900] {standard_task_runner.py:72} INFO - Started process 45780 to run task
+[2025-06-24T14:43:20.711+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'get_file_info_list_task', 'manual__2025-06-24T05:43:11.357386+00:00', '--job-id', '4157', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpbbhve16r']
+[2025-06-24T14:43:20.722+0900] {standard_task_runner.py:105} INFO - Job 4157: Subtask get_file_info_list_task
+[2025-06-24T14:43:20.896+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.get_file_info_list_task manual__2025-06-24T05:43:11.357386+00:00 [running]> on host f6d4228a9eb8
+[2025-06-24T14:43:21.164+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='get_file_info_list_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T05:43:11.357386+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T05:43:11.357386+00:00'
+[2025-06-24T14:43:21.169+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T14:43:21.180+0900] {python.py:240} INFO - Done. Returned value was: [{'file_id': '01f94ecd-67a7-4730-a427-4ee042a47429', 'file_path': '/opt/***/data/upload/남양주시 정덕빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png'}, {'file_id': 'e8b4ea20-d61a-4132-94b5-d2456a3cb5f1', 'file_path': '/opt/***/data/upload/거제동 고성빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png'}, {'file_id': '65c5f9cd-788c-4f23-b88e-b4974946c77a', 'file_path': '/opt/***/data/upload/광장동 가람빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png'}, {'file_id': '27a7a3c6-42a8-40a1-b358-d4904c30a9c4', 'file_path': '/opt/***/data/upload/신월동 한솔빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png'}, {'file_id': 'b429070b-ae3b-41dd-86db-6e0b13271c9d', 'file_path': '/opt/***/data/upload/삼성동 초록빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png'}, {'file_id': 'b4c6878c-3d2e-4440-8b78-831034936444', 'file_path': '/opt/***/data/upload/우면동 고호빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png'}, {'file_id': 'f68e3698-105c-4f62-ae35-3398a23a7c09', 'file_path': '/opt/***/data/upload/동선동 나성빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png'}]
+[2025-06-24T14:43:21.274+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T14:43:21.276+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=get_file_info_list_task, run_id=manual__2025-06-24T05:43:11.357386+00:00, execution_date=20250624T054311, start_date=20250624T054320, end_date=20250624T054321
+[2025-06-24T14:43:21.394+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-24T14:43:21.840+0900] {taskinstance.py:3901} INFO - 7 downstream tasks scheduled from follow-on schedule check
+[2025-06-24T14:43:21.845+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

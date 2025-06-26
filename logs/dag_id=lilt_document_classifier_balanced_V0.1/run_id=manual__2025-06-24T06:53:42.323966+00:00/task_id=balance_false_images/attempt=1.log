@@ -1,0 +1,24 @@
+[2025-06-24T15:54:39.672+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T15:54:39.691+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-24T06:53:42.323966+00:00 [queued]>
+[2025-06-24T15:54:39.700+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-24T06:53:42.323966+00:00 [queued]>
+[2025-06-24T15:54:39.701+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T15:54:39.715+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): balance_false_images> on 2025-06-24 06:53:42.323966+00:00
+[2025-06-24T15:54:39.722+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=47479) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T15:54:39.723+0900] {standard_task_runner.py:72} INFO - Started process 47488 to run task
+[2025-06-24T15:54:39.724+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'balance_false_images', 'manual__2025-06-24T06:53:42.323966+00:00', '--job-id', '4217', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpw3xyn52e']
+[2025-06-24T15:54:39.726+0900] {standard_task_runner.py:105} INFO - Job 4217: Subtask balance_false_images
+[2025-06-24T15:54:39.764+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.balance_false_images manual__2025-06-24T06:53:42.323966+00:00 [running]> on host f6d4228a9eb8
+[2025-06-24T15:54:39.857+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='balance_false_images' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T06:53:42.323966+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T06:53:42.323966+00:00'
+[2025-06-24T15:54:39.858+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T15:54:39.959+0900] {logging_mixin.py:190} INFO - /opt/***/data/class/a_class/classify/ready TRUE 파일 개수: 93
+[2025-06-24T15:54:39.960+0900] {logging_mixin.py:190} INFO - /opt/***/data/class/a_class/classify/ready FALSE 파일 개수: 93
+[2025-06-24T15:54:39.960+0900] {logging_mixin.py:190} INFO - NONE_DOC_IMAGE_DIR 파일 개수: 39996
+[2025-06-24T15:54:39.961+0900] {logging_mixin.py:190} INFO - FALSE_IMAGE_DIR에 충분한 파일이 있습니다. (필요: 0)
+[2025-06-24T15:54:39.961+0900] {python.py:240} INFO - Done. Returned value was: {'copied_count': 0, 'total_false_count': 93}
+[2025-06-24T15:54:39.980+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T15:54:39.981+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=balance_false_images, run_id=manual__2025-06-24T06:53:42.323966+00:00, execution_date=20250624T065342, start_date=20250624T065439, end_date=20250624T065439
+[2025-06-24T15:54:40.028+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-24T15:54:40.065+0900] {taskinstance.py:3901} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-06-24T15:54:40.073+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

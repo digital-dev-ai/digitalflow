@@ -1,0 +1,1291 @@
+[2025-06-26T09:00:16.114+0900] {processor.py:186} INFO - Started process (PID=92034) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:16.117+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:00:16.123+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:16.121+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:20.128+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:20.146+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:20.146+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:00:20.158+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:20.158+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:00:20.178+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.090 seconds
+[2025-06-26T09:00:50.777+0900] {processor.py:186} INFO - Started process (PID=92090) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:50.779+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:00:50.785+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:50.784+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:54.973+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:00:54.991+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:54.990+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:00:55.003+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:00:55.003+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:00:55.020+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.269 seconds
+[2025-06-26T09:01:25.487+0900] {processor.py:186} INFO - Started process (PID=92146) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:01:25.489+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:01:25.496+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:01:25.494+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:01:29.588+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:01:29.606+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:01:29.605+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:01:29.618+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:01:29.618+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:01:29.633+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.173 seconds
+[2025-06-26T09:01:59.922+0900] {processor.py:186} INFO - Started process (PID=92202) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:01:59.924+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:01:59.930+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:01:59.929+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:02:04.086+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:02:04.103+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:02:04.103+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:02:04.114+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:02:04.114+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:02:04.128+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.232 seconds
+[2025-06-26T09:02:35.172+0900] {processor.py:186} INFO - Started process (PID=92258) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:02:35.175+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:02:35.180+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:02:35.179+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:02:39.250+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:02:39.265+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:02:39.265+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:02:39.280+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:02:39.280+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:02:39.296+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.149 seconds
+[2025-06-26T09:03:09.825+0900] {processor.py:186} INFO - Started process (PID=92314) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:09.828+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:03:09.833+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:09.832+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:13.974+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:13.992+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:13.992+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:03:14.003+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:14.003+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:03:14.017+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.218 seconds
+[2025-06-26T09:03:44.327+0900] {processor.py:186} INFO - Started process (PID=92376) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:44.330+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:03:44.338+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:44.337+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:48.420+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:03:48.437+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:48.436+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:03:48.448+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:03:48.447+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:03:48.463+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.162 seconds
+[2025-06-26T09:04:19.028+0900] {processor.py:186} INFO - Started process (PID=92432) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:19.030+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:04:19.036+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:19.035+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:23.446+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:23.463+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:23.463+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:04:23.475+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:23.475+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:04:23.493+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.490 seconds
+[2025-06-26T09:04:54.175+0900] {processor.py:186} INFO - Started process (PID=92488) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:54.175+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:04:54.177+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:54.176+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:58.182+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:04:58.198+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:58.198+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:04:58.212+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:04:58.212+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:04:58.231+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.061 seconds
+[2025-06-26T09:05:29.243+0900] {processor.py:186} INFO - Started process (PID=92544) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:05:29.245+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:05:29.251+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:05:29.250+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:05:33.631+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:05:33.652+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:05:33.651+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:05:33.667+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:05:33.666+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:05:33.686+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.467 seconds
+[2025-06-26T09:06:03.965+0900] {processor.py:186} INFO - Started process (PID=92600) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:03.967+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:06:03.969+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:03.969+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:08.184+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:08.203+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:08.202+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:06:08.222+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:08.222+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:06:08.243+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.293 seconds
+[2025-06-26T09:06:38.422+0900] {processor.py:186} INFO - Started process (PID=92656) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:38.424+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:06:38.431+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:38.429+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:43.058+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:06:43.079+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:43.078+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:06:43.102+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:06:43.102+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:06:43.155+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.760 seconds
+[2025-06-26T09:07:14.105+0900] {processor.py:186} INFO - Started process (PID=92719) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:14.106+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:07:14.108+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:14.108+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:18.229+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:18.245+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:18.245+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:07:18.257+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:18.257+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:07:18.275+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.175 seconds
+[2025-06-26T09:07:48.826+0900] {processor.py:186} INFO - Started process (PID=92776) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:48.827+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:07:48.829+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:48.829+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:53.033+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:07:53.051+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:53.050+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:07:53.062+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:07:53.062+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:07:53.076+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.260 seconds
+[2025-06-26T09:08:23.714+0900] {processor.py:186} INFO - Started process (PID=92841) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:08:23.715+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:08:23.716+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:08:23.716+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:08:27.742+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:08:27.759+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:08:27.758+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:08:27.770+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:08:27.770+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:08:27.789+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.080 seconds
+[2025-06-26T09:08:57.924+0900] {processor.py:186} INFO - Started process (PID=92898) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:08:57.925+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:08:57.927+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:08:57.926+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:09:01.995+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:09:02.011+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:09:02.010+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:09:02.022+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:09:02.022+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:09:02.038+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.119 seconds
+[2025-06-26T09:09:32.315+0900] {processor.py:186} INFO - Started process (PID=92953) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:09:32.317+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:09:32.324+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:09:32.322+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:09:36.600+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:09:36.619+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:09:36.619+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:09:36.634+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:09:36.634+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:09:36.659+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.370 seconds
+[2025-06-26T09:10:06.946+0900] {processor.py:186} INFO - Started process (PID=93009) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:06.948+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:10:06.956+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:06.952+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:11.506+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:11.523+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:11.523+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:10:11.538+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:11.538+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:10:11.559+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.639 seconds
+[2025-06-26T09:10:42.263+0900] {processor.py:186} INFO - Started process (PID=93065) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:42.266+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:10:42.273+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:42.271+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:46.641+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:10:46.660+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:46.659+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:10:46.675+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:10:46.675+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:10:46.699+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.461 seconds
+[2025-06-26T09:11:17.026+0900] {processor.py:186} INFO - Started process (PID=93127) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:17.029+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:11:17.035+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:17.033+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:21.353+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:21.371+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:21.370+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:11:21.386+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:21.385+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:11:21.409+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.410 seconds
+[2025-06-26T09:11:51.988+0900] {processor.py:186} INFO - Started process (PID=93184) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:51.989+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:11:51.990+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:51.990+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:56.031+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:11:56.052+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:56.051+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:11:56.065+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:11:56.064+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:11:56.088+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.106 seconds
+[2025-06-26T09:12:26.932+0900] {processor.py:186} INFO - Started process (PID=93240) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:12:26.935+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:12:26.941+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:12:26.939+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:12:31.231+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:12:31.248+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:12:31.247+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:12:31.260+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:12:31.260+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:12:31.281+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.377 seconds
+[2025-06-26T09:13:01.566+0900] {processor.py:186} INFO - Started process (PID=93296) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:01.569+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:13:01.575+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:01.573+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:06.102+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:06.120+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:06.120+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:13:06.132+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:06.132+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:13:06.154+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.618 seconds
+[2025-06-26T09:13:36.939+0900] {processor.py:186} INFO - Started process (PID=93352) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:36.940+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:13:36.941+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:36.941+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:40.958+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:13:40.974+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:40.973+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:13:40.985+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:13:40.985+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:13:41.001+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.070 seconds
+[2025-06-26T09:14:11.722+0900] {processor.py:186} INFO - Started process (PID=93408) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:11.724+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:14:11.730+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:11.728+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:16.065+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:16.082+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:16.081+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:14:16.096+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:16.095+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:14:16.111+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.414 seconds
+[2025-06-26T09:14:46.828+0900] {processor.py:186} INFO - Started process (PID=93469) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:46.831+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:14:46.839+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:46.837+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:51.291+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:14:51.314+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:51.314+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:14:51.328+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:14:51.327+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:14:51.348+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.548 seconds
+[2025-06-26T09:15:22.179+0900] {processor.py:186} INFO - Started process (PID=93525) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:15:22.181+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:15:22.185+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:15:22.185+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:15:26.410+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:15:26.426+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:15:26.426+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:15:26.441+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:15:26.440+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:15:26.458+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.313 seconds
+[2025-06-26T09:15:57.058+0900] {processor.py:186} INFO - Started process (PID=93581) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:15:57.061+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:15:57.067+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:15:57.066+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:16:01.650+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:16:01.668+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:16:01.668+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:16:01.680+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:16:01.679+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:16:01.696+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.670 seconds
+[2025-06-26T09:16:31.862+0900] {processor.py:186} INFO - Started process (PID=93637) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:16:31.865+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:16:31.872+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:16:31.870+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:16:36.054+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:16:36.070+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:16:36.070+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:16:36.084+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:16:36.083+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:16:36.099+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.263 seconds
+[2025-06-26T09:17:06.848+0900] {processor.py:186} INFO - Started process (PID=93693) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:06.848+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:17:06.850+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:06.849+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:10.841+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:10.858+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:10.857+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:17:10.869+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:10.868+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:17:10.885+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.043 seconds
+[2025-06-26T09:17:41.423+0900] {processor.py:186} INFO - Started process (PID=93749) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:41.425+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:17:41.432+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:41.430+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:45.781+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:17:45.796+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:45.796+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:17:45.808+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:17:45.808+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:17:45.827+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.434 seconds
+[2025-06-26T09:18:16.523+0900] {processor.py:186} INFO - Started process (PID=93811) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:16.526+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:18:16.532+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:16.530+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:20.894+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:20.910+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:20.909+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:18:20.922+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:20.922+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:18:20.938+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.445 seconds
+[2025-06-26T09:18:51.280+0900] {processor.py:186} INFO - Started process (PID=93867) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:51.282+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:18:51.290+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:51.289+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:55.694+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:18:55.713+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:55.712+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:18:55.725+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:18:55.725+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:18:55.740+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.487 seconds
+[2025-06-26T09:19:26.718+0900] {processor.py:186} INFO - Started process (PID=93923) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:19:26.720+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:19:26.728+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:19:26.726+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:19:31.039+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:19:31.055+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:19:31.054+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:19:31.067+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:19:31.067+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:19:31.086+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.393 seconds
+[2025-06-26T09:20:01.709+0900] {processor.py:186} INFO - Started process (PID=93979) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:01.712+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:20:01.721+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:01.720+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:05.965+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:05.982+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:05.982+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:20:05.997+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:05.997+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:20:06.017+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.334 seconds
+[2025-06-26T09:20:36.763+0900] {processor.py:186} INFO - Started process (PID=94034) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:36.766+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:20:36.773+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:36.771+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:41.312+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:20:41.331+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:41.330+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:20:41.343+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:20:41.343+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:20:41.360+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.626 seconds
+[2025-06-26T09:21:11.610+0900] {processor.py:186} INFO - Started process (PID=94089) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:11.613+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:21:11.619+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:11.617+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:16.089+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:16.107+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:16.106+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:21:16.118+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:16.118+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:21:16.137+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.551 seconds
+[2025-06-26T09:21:46.380+0900] {processor.py:186} INFO - Started process (PID=94153) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:46.381+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:21:46.383+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:46.382+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:50.267+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:21:50.282+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:50.282+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:21:50.294+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:21:50.294+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:21:50.311+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.937 seconds
+[2025-06-26T09:22:20.726+0900] {processor.py:186} INFO - Started process (PID=94210) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:20.727+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:22:20.730+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:20.729+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:24.591+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:24.606+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:24.606+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:22:24.618+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:24.618+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:22:24.632+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.915 seconds
+[2025-06-26T09:22:55.345+0900] {processor.py:186} INFO - Started process (PID=94266) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:55.347+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:22:55.354+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:55.352+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:59.456+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:22:59.471+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:59.471+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:22:59.484+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:22:59.484+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:22:59.501+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.184 seconds
+[2025-06-26T09:23:29.707+0900] {processor.py:186} INFO - Started process (PID=94322) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:23:29.710+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:23:29.715+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:23:29.714+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:23:34.084+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:23:34.100+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:23:34.099+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:23:34.113+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:23:34.113+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:23:34.130+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.450 seconds
+[2025-06-26T09:24:04.401+0900] {processor.py:186} INFO - Started process (PID=94378) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:04.403+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:24:04.410+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:04.408+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:08.459+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:08.476+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:08.475+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:24:08.487+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:08.487+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:24:08.504+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.127 seconds
+[2025-06-26T09:24:38.829+0900] {processor.py:186} INFO - Started process (PID=94434) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:38.831+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:24:38.837+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:38.836+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:42.930+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:24:42.947+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:42.946+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:24:42.958+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:24:42.958+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:24:42.975+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.173 seconds
+[2025-06-26T09:25:13.302+0900] {processor.py:186} INFO - Started process (PID=94490) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:13.304+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:25:13.310+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:13.309+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:17.417+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:17.433+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:17.432+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:25:17.444+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:17.444+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:25:17.460+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.184 seconds
+[2025-06-26T09:25:48.038+0900] {processor.py:186} INFO - Started process (PID=94552) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:48.040+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:25:48.047+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:48.045+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:52.284+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:25:52.304+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:52.304+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:25:52.318+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:25:52.317+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:25:52.372+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.361 seconds
+[2025-06-26T09:26:22.690+0900] {processor.py:186} INFO - Started process (PID=94608) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:26:22.693+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:26:22.699+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:26:22.697+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:26:26.942+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:26:26.961+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:26:26.961+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:26:26.976+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:26:26.975+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:26:26.997+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.333 seconds
+[2025-06-26T09:26:57.785+0900] {processor.py:186} INFO - Started process (PID=94664) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:26:57.786+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:26:57.787+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:26:57.787+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:27:01.634+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:27:01.651+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:27:01.650+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:27:01.663+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:27:01.663+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:27:01.682+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.902 seconds
+[2025-06-26T09:27:32.344+0900] {processor.py:186} INFO - Started process (PID=94721) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:27:32.347+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:27:32.353+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:27:32.351+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:27:36.422+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:27:36.439+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:27:36.439+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:27:36.451+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:27:36.451+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:27:36.469+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.152 seconds
+[2025-06-26T09:28:06.556+0900] {processor.py:186} INFO - Started process (PID=94777) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:06.558+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:28:06.560+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:06.560+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:10.717+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:10.734+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:10.733+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:28:10.747+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:10.746+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:28:10.768+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.225 seconds
+[2025-06-26T09:28:40.958+0900] {processor.py:186} INFO - Started process (PID=94832) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:40.961+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:28:40.967+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:40.965+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:45.198+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:28:45.230+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:45.230+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:28:45.242+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:28:45.242+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:28:45.257+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.325 seconds
+[2025-06-26T09:29:15.400+0900] {processor.py:186} INFO - Started process (PID=94888) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:15.401+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:29:15.404+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:15.403+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:19.374+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:19.391+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:19.391+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:29:19.403+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:19.403+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:29:19.420+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.042 seconds
+[2025-06-26T09:29:49.850+0900] {processor.py:186} INFO - Started process (PID=94950) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:49.853+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:29:49.859+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:49.857+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:54.118+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:29:54.137+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:54.137+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:29:54.155+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:29:54.155+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:29:54.169+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.346 seconds
+[2025-06-26T09:30:24.773+0900] {processor.py:186} INFO - Started process (PID=95006) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:30:24.775+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:30:24.781+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:30:24.780+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:30:29.042+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:30:29.062+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:30:29.062+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:30:29.077+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:30:29.077+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:30:29.099+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.353 seconds
+[2025-06-26T09:30:59.564+0900] {processor.py:186} INFO - Started process (PID=95062) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:30:59.565+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:30:59.566+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:30:59.566+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:31:03.353+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:31:03.370+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:31:03.369+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:31:03.382+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:31:03.382+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:31:03.396+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.838 seconds
+[2025-06-26T09:31:33.611+0900] {processor.py:186} INFO - Started process (PID=95118) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:31:33.614+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:31:33.620+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:31:33.618+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:31:37.670+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:31:37.688+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:31:37.688+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:31:37.700+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:31:37.700+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:31:37.714+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.130 seconds
+[2025-06-26T09:32:08.084+0900] {processor.py:186} INFO - Started process (PID=95174) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:08.087+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:32:08.094+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:08.092+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:12.218+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:12.238+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:12.238+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:32:12.252+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:12.251+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:32:12.270+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.212 seconds
+[2025-06-26T09:32:43.014+0900] {processor.py:186} INFO - Started process (PID=95231) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:43.017+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:32:43.022+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:43.021+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:47.024+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:32:47.039+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:47.038+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:32:47.051+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:32:47.051+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:32:47.070+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.082 seconds
+[2025-06-26T09:33:17.353+0900] {processor.py:186} INFO - Started process (PID=95292) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:17.355+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:33:17.362+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:17.360+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:21.377+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:21.394+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:21.393+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:33:21.405+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:21.405+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:33:21.424+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.098 seconds
+[2025-06-26T09:33:51.753+0900] {processor.py:186} INFO - Started process (PID=95348) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:51.755+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:33:51.763+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:51.762+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:55.922+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:33:55.938+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:55.938+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:33:55.949+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:33:55.949+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:33:55.967+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.242 seconds
+[2025-06-26T09:34:26.446+0900] {processor.py:186} INFO - Started process (PID=95404) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:34:26.448+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:34:26.454+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:34:26.452+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:34:30.575+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:34:30.591+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:34:30.591+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:34:30.602+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:34:30.602+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:34:30.616+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.195 seconds
+[2025-06-26T09:35:01.139+0900] {processor.py:186} INFO - Started process (PID=95460) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:01.141+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:35:01.148+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:01.146+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:05.155+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:05.172+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:05.172+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:35:05.183+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:05.183+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:35:05.197+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.085 seconds
+[2025-06-26T09:35:35.897+0900] {processor.py:186} INFO - Started process (PID=95516) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:35.900+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:35:35.906+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:35.904+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:39.960+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:35:39.975+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:39.974+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:35:39.989+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:35:39.989+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:35:40.003+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.134 seconds
+[2025-06-26T09:36:10.707+0900] {processor.py:186} INFO - Started process (PID=95572) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:10.710+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:36:10.716+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:10.714+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:14.849+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:14.866+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:14.866+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:36:14.878+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:14.878+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:36:14.900+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.223 seconds
+[2025-06-26T09:36:45.276+0900] {processor.py:186} INFO - Started process (PID=95628) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:45.280+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:36:45.286+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:45.285+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:49.561+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:36:49.578+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:49.577+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:36:49.589+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:36:49.589+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:36:49.605+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.356 seconds
+[2025-06-26T09:37:20.075+0900] {processor.py:186} INFO - Started process (PID=95690) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:20.075+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:37:20.077+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:20.077+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:23.996+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:24.015+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:24.014+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:37:24.026+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:24.025+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:37:24.040+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.972 seconds
+[2025-06-26T09:37:54.887+0900] {processor.py:186} INFO - Started process (PID=95747) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:54.890+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:37:54.897+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:54.895+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:58.905+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:37:58.922+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:58.921+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:37:58.933+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:37:58.933+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:37:58.948+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.086 seconds
+[2025-06-26T09:38:29.081+0900] {processor.py:186} INFO - Started process (PID=95803) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:38:29.084+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:38:29.090+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:38:29.089+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:38:33.285+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:38:33.304+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:38:33.303+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:38:33.318+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:38:33.317+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:38:33.334+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.279 seconds
+[2025-06-26T09:39:04.026+0900] {processor.py:186} INFO - Started process (PID=95859) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:04.028+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:39:04.034+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:04.033+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:08.272+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:08.289+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:08.289+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:39:08.301+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:08.301+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:39:08.318+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.318 seconds
+[2025-06-26T09:39:38.655+0900] {processor.py:186} INFO - Started process (PID=95915) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:38.657+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:39:38.664+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:38.663+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:42.708+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:39:42.724+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:42.724+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:39:42.736+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:39:42.735+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:39:42.750+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.121 seconds
+[2025-06-26T09:40:13.299+0900] {processor.py:186} INFO - Started process (PID=95971) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:13.300+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:40:13.305+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:13.304+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:17.197+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:17.218+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:17.217+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:40:17.231+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:17.231+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:40:17.250+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.957 seconds
+[2025-06-26T09:40:47.814+0900] {processor.py:186} INFO - Started process (PID=96033) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:47.817+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:40:47.823+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:47.821+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:52.116+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:40:52.140+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:52.140+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:40:52.160+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:40:52.160+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:40:52.211+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.424 seconds
+[2025-06-26T09:41:23.152+0900] {processor.py:186} INFO - Started process (PID=96089) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:41:23.154+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:41:23.160+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:41:23.158+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:41:27.499+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:41:27.517+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:41:27.517+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:41:27.532+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:41:27.531+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:41:27.558+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.432 seconds
+[2025-06-26T09:41:57.627+0900] {processor.py:186} INFO - Started process (PID=96144) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:41:57.627+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:41:57.629+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:41:57.628+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:42:01.951+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:42:01.974+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:42:01.974+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:42:01.986+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:42:01.986+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:42:02.004+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.384 seconds
+[2025-06-26T09:42:32.938+0900] {processor.py:186} INFO - Started process (PID=96200) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:42:32.942+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:42:32.949+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:42:32.947+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:42:37.352+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:42:37.368+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:42:37.368+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:42:37.380+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:42:37.379+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:42:37.398+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.486 seconds
+[2025-06-26T09:43:07.641+0900] {processor.py:186} INFO - Started process (PID=96267) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:07.643+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:43:07.649+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:07.648+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:11.839+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:11.855+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:11.855+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:43:11.866+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:11.866+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:43:11.883+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.268 seconds
+[2025-06-26T09:43:42.381+0900] {processor.py:186} INFO - Started process (PID=96332) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:42.384+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:43:42.390+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:42.389+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:46.657+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:43:46.673+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:46.672+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:43:46.685+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:43:46.684+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:43:46.700+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.346 seconds
+[2025-06-26T09:44:17.407+0900] {processor.py:186} INFO - Started process (PID=96388) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:17.409+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:44:17.415+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:17.414+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:21.742+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:21.759+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:21.758+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:44:21.770+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:21.770+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:44:21.788+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.409 seconds
+[2025-06-26T09:44:52.299+0900] {processor.py:186} INFO - Started process (PID=96451) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:52.302+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:44:52.308+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:52.307+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:56.558+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:44:56.575+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:56.574+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:44:56.589+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:44:56.589+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:44:56.612+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.342 seconds
+[2025-06-26T09:45:27.264+0900] {processor.py:186} INFO - Started process (PID=96506) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:45:27.267+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:45:27.276+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:45:27.274+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:45:31.654+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:45:31.671+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:45:31.671+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:45:31.684+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:45:31.684+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:45:31.703+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.465 seconds
+[2025-06-26T09:46:02.061+0900] {processor.py:186} INFO - Started process (PID=96563) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:02.064+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:46:02.070+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:02.068+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:06.369+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:06.462+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:06.462+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:46:06.473+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:06.473+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:46:06.491+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.458 seconds
+[2025-06-26T09:46:37.090+0900] {processor.py:186} INFO - Started process (PID=96619) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:37.091+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:46:37.092+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:37.092+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:41.088+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:46:41.104+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:41.104+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:46:41.118+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:46:41.118+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:46:41.137+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.053 seconds
+[2025-06-26T09:47:11.717+0900] {processor.py:186} INFO - Started process (PID=96681) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:11.718+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:47:11.725+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:11.725+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:16.668+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:16.687+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:16.686+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:47:16.706+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:16.706+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:47:16.738+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 5.031 seconds
+[2025-06-26T09:47:46.924+0900] {processor.py:186} INFO - Started process (PID=96736) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:46.926+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:47:46.932+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:46.931+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:51.933+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:47:51.957+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:51.956+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:47:51.969+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:47:51.969+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:47:51.994+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 5.099 seconds
+[2025-06-26T09:48:22.582+0900] {processor.py:186} INFO - Started process (PID=96798) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:48:22.586+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:48:22.593+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:48:22.591+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:48:26.571+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:48:26.590+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:48:26.589+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:48:26.605+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:48:26.605+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:48:26.630+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.074 seconds
+[2025-06-26T09:48:57.265+0900] {processor.py:186} INFO - Started process (PID=96855) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:48:57.266+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:48:57.267+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:48:57.267+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:49:01.296+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:49:01.321+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:49:01.321+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:49:01.339+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:49:01.338+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:49:01.361+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.102 seconds
+[2025-06-26T09:49:31.594+0900] {processor.py:186} INFO - Started process (PID=96910) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:49:31.597+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:49:31.603+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:49:31.601+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:49:35.892+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:49:35.907+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:49:35.906+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:49:35.919+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:49:35.918+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:49:35.939+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.371 seconds
+[2025-06-26T09:50:06.957+0900] {processor.py:186} INFO - Started process (PID=96966) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:06.959+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:50:06.966+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:06.964+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:11.227+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:11.246+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:11.246+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:50:11.260+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:11.260+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:50:11.302+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.370 seconds
+[2025-06-26T09:50:41.623+0900] {processor.py:186} INFO - Started process (PID=97022) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:41.624+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:50:41.626+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:41.626+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:45.621+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:50:45.718+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:45.717+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:50:45.731+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:50:45.731+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:50:45.757+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.140 seconds
+[2025-06-26T09:51:16.134+0900] {processor.py:186} INFO - Started process (PID=97078) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:16.136+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:51:16.143+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:16.142+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:20.417+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:20.434+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:20.433+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:51:20.446+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:20.446+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:51:20.463+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.355 seconds
+[2025-06-26T09:51:51.427+0900] {processor.py:186} INFO - Started process (PID=97140) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:51.430+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:51:51.435+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:51.434+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:55.691+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:51:55.709+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:55.709+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:51:55.725+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:51:55.724+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:51:55.747+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.351 seconds
+[2025-06-26T09:52:26.555+0900] {processor.py:186} INFO - Started process (PID=97196) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:52:26.558+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:52:26.564+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:52:26.562+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:52:30.786+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:52:30.803+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:52:30.802+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:52:30.814+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:52:30.814+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:52:30.830+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.302 seconds
+[2025-06-26T09:53:02.020+0900] {processor.py:186} INFO - Started process (PID=97253) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:02.023+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:53:02.030+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:02.028+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:06.146+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:06.162+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:06.161+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:53:06.411+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:06.411+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:53:06.443+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.449 seconds
+[2025-06-26T09:53:37.243+0900] {processor.py:186} INFO - Started process (PID=97309) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:37.245+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:53:37.252+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:37.250+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:41.608+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:53:41.624+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:41.624+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:53:41.636+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:53:41.635+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:53:41.652+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.435 seconds
+[2025-06-26T09:54:12.551+0900] {processor.py:186} INFO - Started process (PID=97366) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:12.552+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:54:12.553+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:12.553+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:16.546+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:16.562+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:16.562+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:54:16.575+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:16.575+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:54:16.592+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.046 seconds
+[2025-06-26T09:54:47.418+0900] {processor.py:186} INFO - Started process (PID=97422) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:47.418+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:54:47.420+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:47.420+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:51.518+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:54:51.536+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:51.536+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:54:51.548+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:54:51.548+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:54:51.566+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.154 seconds
+[2025-06-26T09:55:21.666+0900] {processor.py:186} INFO - Started process (PID=97484) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:55:21.667+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:55:21.668+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:55:21.668+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:55:25.719+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:55:25.736+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:55:25.736+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:55:25.750+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:55:25.750+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:55:25.769+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.109 seconds
+[2025-06-26T09:55:55.989+0900] {processor.py:186} INFO - Started process (PID=97539) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:55:55.992+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:55:55.998+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:55:55.997+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:56:00.345+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:56:00.367+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:56:00.367+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:56:00.379+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:56:00.379+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:56:00.396+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.432 seconds
+[2025-06-26T09:56:30.698+0900] {processor.py:186} INFO - Started process (PID=97595) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:56:30.699+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:56:30.701+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:56:30.701+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:56:34.671+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:56:34.687+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:56:34.686+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:56:34.699+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:56:34.699+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:56:34.723+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.033 seconds
+[2025-06-26T09:57:05.425+0900] {processor.py:186} INFO - Started process (PID=97652) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:05.426+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:57:05.428+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:05.427+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:09.242+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:09.258+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:09.258+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:57:09.440+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:09.440+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:57:09.462+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.042 seconds
+[2025-06-26T09:57:39.974+0900] {processor.py:186} INFO - Started process (PID=97708) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:39.976+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:57:39.986+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:39.981+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:44.198+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:57:44.216+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:44.215+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:57:44.227+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:57:44.226+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:57:44.241+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.293 seconds
+[2025-06-26T09:58:14.587+0900] {processor.py:186} INFO - Started process (PID=97764) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:14.590+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:58:14.596+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:14.594+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:18.853+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:18.870+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:18.870+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:58:18.882+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:18.881+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:58:18.903+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.343 seconds
+[2025-06-26T09:58:49.592+0900] {processor.py:186} INFO - Started process (PID=97820) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:49.595+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:58:49.602+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:49.600+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:53.678+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:58:53.698+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:53.697+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:58:53.872+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:58:53.872+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:58:53.890+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.323 seconds
+[2025-06-26T09:59:24.836+0900] {processor.py:186} INFO - Started process (PID=97882) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:59:24.839+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:59:24.845+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:59:24.843+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:59:29.079+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:59:29.095+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:59:29.095+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T09:59:29.107+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:59:29.107+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T09:59:29.124+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.312 seconds
+[2025-06-26T09:59:59.807+0900] {processor.py:186} INFO - Started process (PID=97938) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T09:59:59.810+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T09:59:59.816+0900] {logging_mixin.py:190} INFO - [2025-06-26T09:59:59.814+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:00:04.076+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:00:04.092+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:00:04.092+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:00:04.105+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:00:04.105+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:00:04.123+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.342 seconds
+[2025-06-26T10:00:34.452+0900] {processor.py:186} INFO - Started process (PID=97994) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:00:34.455+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:00:34.461+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:00:34.459+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:00:38.716+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:00:38.733+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:00:38.733+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:00:38.747+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:00:38.747+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:00:38.786+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.361 seconds
+[2025-06-26T10:01:09.107+0900] {processor.py:186} INFO - Started process (PID=98050) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:09.110+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:01:09.118+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:09.117+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:13.359+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:13.375+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:13.374+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:01:13.386+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:13.386+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:01:13.403+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.325 seconds
+[2025-06-26T10:01:44.176+0900] {processor.py:186} INFO - Started process (PID=98107) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:44.179+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:01:44.185+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:44.183+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:48.174+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:01:48.192+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:48.191+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:01:48.372+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:01:48.371+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:01:48.389+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.238 seconds
+[2025-06-26T10:02:19.197+0900] {processor.py:186} INFO - Started process (PID=98163) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:19.199+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:02:19.206+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:19.204+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:23.468+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:23.484+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:23.484+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:02:23.495+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:23.495+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:02:23.510+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.340 seconds
+[2025-06-26T10:02:54.045+0900] {processor.py:186} INFO - Started process (PID=98225) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:54.047+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:02:54.053+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:54.052+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:58.308+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:02:58.324+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:58.323+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:02:58.336+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:02:58.336+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:02:58.352+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.335 seconds
+[2025-06-26T10:03:28.756+0900] {processor.py:186} INFO - Started process (PID=98281) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:03:28.759+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:03:28.766+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:03:28.764+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:03:33.020+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:03:33.036+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:03:33.035+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:03:33.048+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:03:33.048+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:03:33.065+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.336 seconds
+[2025-06-26T10:04:03.945+0900] {processor.py:186} INFO - Started process (PID=98337) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:03.947+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:04:03.953+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:03.952+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:08.401+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:08.419+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:08.418+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:04:08.431+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:08.431+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:04:08.454+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.535 seconds
+[2025-06-26T10:04:38.759+0900] {processor.py:186} INFO - Started process (PID=98393) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:38.761+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:04:38.764+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:38.763+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:42.899+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:04:42.916+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:42.915+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:04:42.932+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:04:42.932+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:04:42.954+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.216 seconds
+[2025-06-26T10:05:13.494+0900] {processor.py:186} INFO - Started process (PID=98448) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:13.494+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:05:13.496+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:13.495+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:17.493+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:17.509+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:17.509+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:05:17.520+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:17.520+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:05:17.534+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.046 seconds
+[2025-06-26T10:05:47.902+0900] {processor.py:186} INFO - Started process (PID=98504) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:47.904+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:05:47.910+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:47.909+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:52.208+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:05:52.225+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:52.225+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:05:52.236+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:05:52.236+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:05:52.269+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.392 seconds
+[2025-06-26T10:06:22.962+0900] {processor.py:186} INFO - Started process (PID=98567) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:06:22.965+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:06:22.971+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:06:22.969+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:06:27.237+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:06:27.255+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:06:27.254+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:06:27.270+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:06:27.270+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:06:27.293+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.358 seconds
+[2025-06-26T10:06:58.265+0900] {processor.py:186} INFO - Started process (PID=98624) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:06:58.266+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:06:58.268+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:06:58.267+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:07:02.121+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:07:02.136+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:07:02.135+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:07:02.149+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:07:02.148+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:07:02.164+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.904 seconds
+[2025-06-26T10:07:32.880+0900] {processor.py:186} INFO - Started process (PID=98681) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:07:32.880+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:07:32.882+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:07:32.882+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:07:36.762+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:07:36.778+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:07:36.778+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:07:36.790+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:07:36.790+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:07:36.806+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.932 seconds
+[2025-06-26T10:08:07.670+0900] {processor.py:186} INFO - Started process (PID=98746) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:07.670+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:08:07.672+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:07.672+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:11.555+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:11.570+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:11.570+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:08:11.581+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:11.581+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:08:11.603+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.938 seconds
+[2025-06-26T10:08:41.716+0900] {processor.py:186} INFO - Started process (PID=98801) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:41.719+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:08:41.726+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:41.724+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:45.906+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:08:45.925+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:45.924+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:08:45.936+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:08:45.935+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:08:45.954+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.265 seconds
+[2025-06-26T10:09:16.067+0900] {processor.py:186} INFO - Started process (PID=98855) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:16.070+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:09:16.082+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:16.078+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:20.341+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:20.356+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:20.356+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:09:20.370+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:20.370+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:09:20.386+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.346 seconds
+[2025-06-26T10:09:50.528+0900] {processor.py:186} INFO - Started process (PID=98911) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:50.531+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:09:50.537+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:50.536+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:54.890+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:09:54.904+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:54.904+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:09:54.916+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:09:54.916+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:09:54.933+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.432 seconds
+[2025-06-26T10:10:25.223+0900] {processor.py:186} INFO - Started process (PID=98972) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:10:25.226+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:10:25.233+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:10:25.231+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:10:29.547+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:10:29.562+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:10:29.561+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:10:29.573+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:10:29.573+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:10:29.588+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.391 seconds
+[2025-06-26T10:11:00.182+0900] {processor.py:186} INFO - Started process (PID=99029) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:00.185+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:11:00.191+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:00.189+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:04.489+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:04.505+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:04.504+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:11:04.515+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:04.515+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:11:04.611+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.455 seconds
+[2025-06-26T10:11:35.023+0900] {processor.py:186} INFO - Started process (PID=99085) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:35.026+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:11:35.031+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:35.030+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:39.282+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:11:39.297+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:39.296+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:11:39.307+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:11:39.307+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:11:39.323+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.323 seconds
+[2025-06-26T10:12:09.418+0900] {processor.py:186} INFO - Started process (PID=99141) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:09.421+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:12:09.427+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:09.425+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:13.652+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:13.667+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:13.667+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:12:13.679+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:13.678+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:12:13.695+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.302 seconds
+[2025-06-26T10:12:43.875+0900] {processor.py:186} INFO - Started process (PID=99197) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:43.878+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:12:43.883+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:43.882+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:48.154+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:12:48.169+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:48.168+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:12:48.181+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:12:48.181+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:12:48.196+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.347 seconds
+[2025-06-26T10:13:19.292+0900] {processor.py:186} INFO - Started process (PID=99254) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:19.295+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:13:19.302+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:19.299+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:23.507+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:23.534+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:23.534+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:13:23.549+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:23.549+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:13:23.570+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.304 seconds
+[2025-06-26T10:13:54.329+0900] {processor.py:186} INFO - Started process (PID=99315) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:54.330+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:13:54.331+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:54.331+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:58.331+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:13:58.348+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:58.348+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:13:58.360+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:13:58.360+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:13:58.374+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.051 seconds
+[2025-06-26T10:14:28.850+0900] {processor.py:186} INFO - Started process (PID=99371) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:14:28.851+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:14:28.853+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:14:28.853+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:14:32.726+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:14:32.744+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:14:32.743+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:14:32.755+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:14:32.755+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:14:32.772+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.927 seconds
+[2025-06-26T10:15:03.595+0900] {processor.py:186} INFO - Started process (PID=99427) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:03.597+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:15:03.603+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:03.601+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:07.781+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:07.799+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:07.799+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:15:07.810+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:07.810+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:15:07.826+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.257 seconds
+[2025-06-26T10:15:38.502+0900] {processor.py:186} INFO - Started process (PID=99483) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:38.504+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:15:38.511+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:38.509+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:42.745+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:15:42.766+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:42.765+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:15:42.787+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:15:42.786+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:15:42.818+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.343 seconds
+[2025-06-26T10:16:13.130+0900] {processor.py:186} INFO - Started process (PID=99539) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:13.132+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:16:13.138+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:13.137+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:17.336+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:17.354+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:17.353+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:16:17.371+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:17.371+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:16:17.394+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.291 seconds
+[2025-06-26T10:16:47.892+0900] {processor.py:186} INFO - Started process (PID=99596) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:47.894+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:16:47.898+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:47.897+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:51.977+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:16:51.992+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:51.992+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:16:52.007+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:16:52.007+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:16:52.025+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.158 seconds
+[2025-06-26T10:17:22.630+0900] {processor.py:186} INFO - Started process (PID=99653) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:17:22.631+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:17:22.632+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:17:22.632+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:17:26.682+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:17:26.699+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:17:26.699+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:17:26.713+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:17:26.713+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:17:26.730+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.106 seconds
+[2025-06-26T10:17:57.157+0900] {processor.py:186} INFO - Started process (PID=99714) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:17:57.159+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:17:57.167+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:17:57.165+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:18:01.355+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:18:01.372+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:18:01.371+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:18:01.383+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:18:01.383+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:18:01.397+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.268 seconds
+[2025-06-26T10:18:31.864+0900] {processor.py:186} INFO - Started process (PID=99770) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:18:31.866+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:18:31.872+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:18:31.871+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:18:36.110+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:18:36.125+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:18:36.125+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:18:36.138+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:18:36.138+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:18:36.152+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.316 seconds
+[2025-06-26T10:19:06.755+0900] {processor.py:186} INFO - Started process (PID=99826) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:06.758+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:19:06.763+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:06.762+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:10.898+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:10.917+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:10.916+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:19:10.929+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:10.929+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:19:10.946+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.220 seconds
+[2025-06-26T10:19:41.392+0900] {processor.py:186} INFO - Started process (PID=99882) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:41.395+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:19:41.401+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:41.399+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:45.596+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:19:45.612+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:45.612+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:19:45.624+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:19:45.624+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:19:45.641+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.276 seconds
+[2025-06-26T10:20:16.622+0900] {processor.py:186} INFO - Started process (PID=99938) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:16.624+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:20:16.630+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:16.629+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:20.839+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:20.856+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:20.855+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:20:20.867+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:20.867+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:20:20.882+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.285 seconds
+[2025-06-26T10:20:51.774+0900] {processor.py:186} INFO - Started process (PID=99994) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:51.776+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:20:51.783+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:51.782+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:56.041+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:20:56.060+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:56.059+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:20:56.072+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:20:56.072+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:20:56.091+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.342 seconds
+[2025-06-26T10:21:26.280+0900] {processor.py:186} INFO - Started process (PID=357) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:21:26.283+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:21:26.289+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:21:26.288+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:21:30.516+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:21:30.534+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:21:30.533+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:21:30.545+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:21:30.545+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:21:30.560+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.307 seconds
+[2025-06-26T10:22:00.689+0900] {processor.py:186} INFO - Started process (PID=413) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:00.692+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:22:00.699+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:00.697+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:05.186+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:05.202+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:05.202+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:22:05.215+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:05.215+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:22:05.232+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.570 seconds
+[2025-06-26T10:22:35.567+0900] {processor.py:186} INFO - Started process (PID=470) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:35.567+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:22:35.569+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:35.569+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:39.660+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:22:39.677+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:39.676+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:22:39.690+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:22:39.690+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:22:39.706+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.145 seconds
+[2025-06-26T10:23:10.475+0900] {processor.py:186} INFO - Started process (PID=526) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:10.476+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:23:10.478+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:10.477+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:14.606+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:14.623+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:14.623+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:23:14.634+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:14.634+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:23:14.652+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.186 seconds
+[2025-06-26T10:23:45.505+0900] {processor.py:186} INFO - Started process (PID=582) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:45.508+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:23:45.514+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:45.513+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:49.679+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:23:49.694+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:49.694+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:23:49.705+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:23:49.705+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:23:49.719+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.241 seconds
+[2025-06-26T10:24:19.861+0900] {processor.py:186} INFO - Started process (PID=638) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:19.863+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:24:19.869+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:19.868+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:24.134+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:24.152+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:24.152+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:24:24.163+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:24.163+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:24:24.183+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.349 seconds
+[2025-06-26T10:24:54.356+0900] {processor.py:186} INFO - Started process (PID=694) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:54.358+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:24:54.364+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:54.362+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:58.602+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:24:58.620+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:58.620+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:24:58.632+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:24:58.631+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:24:58.651+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.322 seconds
+[2025-06-26T10:25:29.318+0900] {processor.py:186} INFO - Started process (PID=756) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:25:29.321+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:25:29.327+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:25:29.325+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:25:33.542+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:25:33.558+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:25:33.557+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:25:33.570+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:25:33.570+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:25:33.586+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.295 seconds
+[2025-06-26T10:26:03.908+0900] {processor.py:186} INFO - Started process (PID=812) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:03.910+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:26:03.916+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:03.914+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:08.095+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:08.113+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:08.112+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:26:08.124+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:08.124+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:26:08.141+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.259 seconds
+[2025-06-26T10:26:38.823+0900] {processor.py:186} INFO - Started process (PID=868) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:38.825+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:26:38.832+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:38.830+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:43.033+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:26:43.053+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:43.053+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:26:43.065+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:26:43.064+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:26:43.079+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.281 seconds
+[2025-06-26T10:27:13.827+0900] {processor.py:186} INFO - Started process (PID=924) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:13.829+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:27:13.836+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:13.833+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:18.000+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:18.020+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:18.020+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:27:18.031+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:18.031+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:27:18.049+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.247 seconds
+[2025-06-26T10:27:48.810+0900] {processor.py:186} INFO - Started process (PID=981) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:48.813+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:27:48.819+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:48.817+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:53.034+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:27:53.050+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:53.049+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:27:53.061+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:27:53.061+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:27:53.077+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.293 seconds
+[2025-06-26T10:28:23.934+0900] {processor.py:186} INFO - Started process (PID=1037) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:28:23.937+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:28:23.942+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:28:23.941+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:28:28.124+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:28:28.145+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:28:28.144+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:28:28.165+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:28:28.165+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:28:28.207+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.300 seconds
+[2025-06-26T10:28:59.213+0900] {processor.py:186} INFO - Started process (PID=1100) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:28:59.213+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:28:59.215+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:28:59.215+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:29:03.143+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:29:03.159+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:29:03.159+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:29:03.170+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:29:03.170+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:29:03.185+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.978 seconds
+[2025-06-26T10:29:33.698+0900] {processor.py:186} INFO - Started process (PID=1155) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:29:33.700+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:29:33.707+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:29:33.706+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:29:37.980+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:29:37.997+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:29:37.997+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:29:38.011+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:29:38.010+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:29:38.028+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.356 seconds
+[2025-06-26T10:30:08.896+0900] {processor.py:186} INFO - Started process (PID=1211) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:08.899+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:30:08.905+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:08.903+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:13.157+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:13.175+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:13.174+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:30:13.186+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:13.186+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:30:13.200+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.331 seconds
+[2025-06-26T10:30:43.337+0900] {processor.py:186} INFO - Started process (PID=1267) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:43.339+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:30:43.340+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:43.340+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:47.532+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:30:47.550+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:47.550+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:30:47.561+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:30:47.561+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:30:47.584+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.252 seconds
+[2025-06-26T10:31:18.207+0900] {processor.py:186} INFO - Started process (PID=1323) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:18.209+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:31:18.215+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:18.213+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:22.499+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:22.521+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:22.521+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:31:22.534+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:22.534+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:31:22.553+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.371 seconds
+[2025-06-26T10:31:52.764+0900] {processor.py:186} INFO - Started process (PID=1379) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:52.767+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:31:52.773+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:52.772+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:57.095+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:31:57.112+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:57.111+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:31:57.125+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:31:57.125+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:31:57.142+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.405 seconds
+[2025-06-26T10:32:27.639+0900] {processor.py:186} INFO - Started process (PID=1441) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:32:27.641+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:32:27.644+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:32:27.643+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:32:31.647+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:32:31.667+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:32:31.666+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:32:31.683+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:32:31.682+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:32:31.709+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.087 seconds
+[2025-06-26T10:33:01.959+0900] {processor.py:186} INFO - Started process (PID=1497) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:01.960+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:33:01.962+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:01.961+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:05.926+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:05.942+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:05.942+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:33:05.953+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:05.953+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:33:05.967+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.014 seconds
+[2025-06-26T10:33:36.365+0900] {processor.py:186} INFO - Started process (PID=1554) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:36.366+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:33:36.367+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:36.367+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:40.504+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:33:40.523+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:40.522+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:33:40.538+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:33:40.538+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:33:40.560+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.202 seconds
+[2025-06-26T10:34:11.263+0900] {processor.py:186} INFO - Started process (PID=1610) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:11.265+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:34:11.271+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:11.269+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:15.449+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:15.470+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:15.470+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:34:15.491+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:15.491+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:34:15.535+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.297 seconds
+[2025-06-26T10:34:46.473+0900] {processor.py:186} INFO - Started process (PID=1667) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:46.474+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:34:46.476+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:46.476+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:50.499+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:34:50.515+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:50.515+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:34:50.526+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:34:50.526+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:34:50.549+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.081 seconds
+[2025-06-26T10:35:20.860+0900] {processor.py:186} INFO - Started process (PID=1722) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:20.863+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:35:20.869+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:20.867+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:25.178+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:25.200+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:25.200+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:35:25.216+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:25.216+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:35:25.244+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.414 seconds
+[2025-06-26T10:35:55.468+0900] {processor.py:186} INFO - Started process (PID=1778) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:55.470+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:35:55.475+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:55.474+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:59.653+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:35:59.669+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:59.668+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:35:59.681+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:35:59.680+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:35:59.699+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.256 seconds
+[2025-06-26T10:36:29.876+0900] {processor.py:186} INFO - Started process (PID=1840) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:36:29.878+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:36:29.884+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:36:29.883+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:36:34.090+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:36:34.107+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:36:34.106+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:36:34.118+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:36:34.118+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:36:34.194+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.345 seconds
+[2025-06-26T10:37:04.867+0900] {processor.py:186} INFO - Started process (PID=1896) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:04.868+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:37:04.870+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:04.869+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:08.680+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:08.701+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:08.700+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:37:08.718+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:08.718+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:37:08.749+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.887 seconds
+[2025-06-26T10:37:39.633+0900] {processor.py:186} INFO - Started process (PID=1952) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:39.635+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:37:39.641+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:39.639+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:43.781+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:37:43.799+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:43.798+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:37:43.810+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:37:43.810+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:37:43.826+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.218 seconds
+[2025-06-26T10:38:14.701+0900] {processor.py:186} INFO - Started process (PID=2008) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:14.704+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:38:14.713+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:14.711+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:18.925+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:18.943+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:18.943+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:38:18.956+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:18.955+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:38:18.976+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.301 seconds
+[2025-06-26T10:38:49.182+0900] {processor.py:186} INFO - Started process (PID=2064) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:49.184+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:38:49.190+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:49.189+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:53.549+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:38:53.566+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:53.566+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:38:53.578+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:38:53.577+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:38:53.593+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.436 seconds
+[2025-06-26T10:39:24.465+0900] {processor.py:186} INFO - Started process (PID=2119) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:39:24.465+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:39:24.467+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:39:24.467+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:39:28.395+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:39:28.410+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:39:28.409+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:39:28.423+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:39:28.422+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:39:28.437+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.978 seconds
+[2025-06-26T10:39:58.812+0900] {processor.py:186} INFO - Started process (PID=2180) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:39:58.813+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:39:58.814+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:39:58.814+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:40:02.654+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:40:02.672+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:40:02.672+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:40:02.687+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:40:02.687+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:40:02.704+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 3.898 seconds
+[2025-06-26T10:40:33.405+0900] {processor.py:186} INFO - Started process (PID=2236) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:40:33.408+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:40:33.414+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:40:33.412+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:40:37.613+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:40:37.629+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:40:37.628+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:40:37.640+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:40:37.640+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:40:37.657+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.278 seconds
+[2025-06-26T10:41:08.168+0900] {processor.py:186} INFO - Started process (PID=2292) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:08.171+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:41:08.177+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:08.175+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:12.342+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:12.359+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:12.359+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:41:12.372+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:12.372+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:41:12.386+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.245 seconds
+[2025-06-26T10:41:43.423+0900] {processor.py:186} INFO - Started process (PID=2349) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:43.424+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:41:43.425+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:43.425+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:47.501+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:41:47.517+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:47.516+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:41:47.529+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:41:47.529+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:41:47.546+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.128 seconds
+[2025-06-26T10:42:17.753+0900] {processor.py:186} INFO - Started process (PID=2415) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:17.755+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:42:17.762+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:17.760+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:21.859+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:22.170+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:22.168+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:42:22.217+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:22.216+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:42:22.287+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.562 seconds
+[2025-06-26T10:42:52.465+0900] {processor.py:186} INFO - Started process (PID=2471) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:52.466+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:42:52.467+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:52.467+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:56.559+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:42:56.574+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:56.574+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:42:56.587+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:42:56.586+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:42:56.603+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.144 seconds
+[2025-06-26T10:43:27.472+0900] {processor.py:186} INFO - Started process (PID=2528) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:43:27.474+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:43:27.481+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:43:27.479+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:43:31.763+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:43:31.780+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:43:31.780+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:43:31.793+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:43:31.792+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:43:31.809+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.364 seconds
+[2025-06-26T10:44:02.197+0900] {processor.py:186} INFO - Started process (PID=2590) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:02.199+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:44:02.207+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:02.205+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:06.371+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:06.390+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:06.390+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:44:06.404+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:06.404+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:44:06.424+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.255 seconds
+[2025-06-26T10:44:37.435+0900] {processor.py:186} INFO - Started process (PID=2646) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:37.437+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:44:37.443+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:37.442+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:41.629+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:44:41.645+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:41.644+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:44:41.656+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:44:41.655+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:44:41.673+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.264 seconds
+[2025-06-26T10:45:11.811+0900] {processor.py:186} INFO - Started process (PID=2701) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:11.813+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:45:11.819+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:11.818+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:16.088+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:16.103+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:16.102+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:45:16.114+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:16.114+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:45:16.129+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.344 seconds
+[2025-06-26T10:45:46.912+0900] {processor.py:186} INFO - Started process (PID=2758) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:46.915+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:45:46.922+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:46.920+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:51.156+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:45:51.171+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:51.171+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:45:51.183+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:45:51.183+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:45:51.199+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.313 seconds
+[2025-06-26T10:46:21.553+0900] {processor.py:186} INFO - Started process (PID=2814) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:46:21.555+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:46:21.561+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:46:21.560+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:46:25.781+0900] {processor.py:925} INFO - DAG(s) 'lilt_document_classifier_balanced_V0.1' retrieved from /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:46:25.796+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:46:25.796+0900] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-06-26T10:46:25.808+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:46:25.807+0900] {dag.py:4180} INFO - Setting next_dagrun for lilt_document_classifier_balanced_V0.1 to None, run_after=None
+[2025-06-26T10:46:25.823+0900] {processor.py:208} INFO - Processing /opt/airflow/dags/class_create_dag.py took 4.295 seconds
+[2025-06-26T10:46:56.220+0900] {processor.py:186} INFO - Started process (PID=2870) to work on /opt/airflow/dags/class_create_dag.py
+[2025-06-26T10:46:56.223+0900] {processor.py:914} INFO - Processing file /opt/airflow/dags/class_create_dag.py for tasks to queue
+[2025-06-26T10:46:56.230+0900] {logging_mixin.py:190} INFO - [2025-06-26T10:46:56.228+0900] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/class_create_dag.py

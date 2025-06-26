@@ -1,0 +1,207 @@
+[2025-06-24T16:55:01.249+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T16:55:01.380+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.copy_results_folder_task manual__2025-06-24T07:39:02.784990+00:00 [queued]>
+[2025-06-24T16:55:01.463+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.copy_results_folder_task manual__2025-06-24T07:39:02.784990+00:00 [queued]>
+[2025-06-24T16:55:01.465+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T16:55:01.514+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): copy_results_folder_task> on 2025-06-24 07:39:02.784990+00:00
+[2025-06-24T16:55:01.539+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=57416) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T16:55:01.546+0900] {standard_task_runner.py:72} INFO - Started process 57425 to run task
+[2025-06-24T16:55:01.549+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'copy_results_folder_task', 'manual__2025-06-24T07:39:02.784990+00:00', '--job-id', '4602', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpr3omckld']
+[2025-06-24T16:55:01.559+0900] {standard_task_runner.py:105} INFO - Job 4602: Subtask copy_results_folder_task
+[2025-06-24T16:55:01.728+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.copy_results_folder_task manual__2025-06-24T07:39:02.784990+00:00 [running]> on host f6d4228a9eb8
+[2025-06-24T16:55:02.113+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='copy_results_folder_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T07:39:02.784990+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T07:39:02.784990+00:00'
+[2025-06-24T16:55:02.118+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T16:55:02.131+0900] {logging_mixin.py:190} INFO - 93
+[2025-06-24T16:55:02.164+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.202+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/67c45dd0-a1fc-4e0c-9d67-817caf4bf531/8f1d55f9-c527-4b87-addb-ee7fda4734f3/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_8f1d55f9-c527-4b87-addb-ee7fda4734f3_pre__result.png
+[2025-06-24T16:55:02.205+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.240+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/55d8f82c-58c3-4435-95a0-b69ffcd3eb5f/15803d45-4ba2-4ab4-af1e-60cd96166286/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_15803d45-4ba2-4ab4-af1e-60cd96166286_pre__result.png
+[2025-06-24T16:55:02.244+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.292+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/7839566d-c00f-4b89-9953-84e5d9fdae75/212cf615-7fea-422a-b1ff-9d586b8b50f6/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_212cf615-7fea-422a-b1ff-9d586b8b50f6_pre__result.png
+[2025-06-24T16:55:02.295+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.330+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/cc190c73-3889-4415-bd03-7768891a16e1/8d83af6f-aad0-4d72-93a7-94d531f3f934/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_8d83af6f-aad0-4d72-93a7-94d531f3f934_pre__result.png
+[2025-06-24T16:55:02.333+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.366+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/0538fe1b-a25d-4467-b959-2350534439d2/4cfdbdb7-6caf-4165-baa0-e32564c135ee/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_4cfdbdb7-6caf-4165-baa0-e32564c135ee_pre__result.png
+[2025-06-24T16:55:02.369+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.405+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/fea2ceff-e6b2-4b12-a40c-4a58bce8c479/e159d352-d926-4c0f-ac23-8883155eee84/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_e159d352-d926-4c0f-ac23-8883155eee84_pre__result.png
+[2025-06-24T16:55:02.408+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.450+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/fd01658a-e5db-4fc4-b56f-56422d1f2b01/3e8c9ade-8cc9-4c5d-826a-95a2bc0e2a93/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_3e8c9ade-8cc9-4c5d-826a-95a2bc0e2a93_pre__result.png
+[2025-06-24T16:55:02.453+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.486+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/805db953-4535-480a-980a-a96f5b24d005/f047108d-930a-44ec-b358-45e4ef68d5fd/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f047108d-930a-44ec-b358-45e4ef68d5fd_pre__result.png
+[2025-06-24T16:55:02.489+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.522+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e33c70bf-3515-4f73-8efe-479467266b55/9e731ee6-a2f7-4afc-b2f8-0e802a6fa314/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_9e731ee6-a2f7-4afc-b2f8-0e802a6fa314_pre__result.png
+[2025-06-24T16:55:02.525+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.565+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/52c9ddef-658c-4317-8af1-f2d735ae5e59/26ec27b8-847e-46a9-84d2-ccbc925900be/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_26ec27b8-847e-46a9-84d2-ccbc925900be_pre__result.png
+[2025-06-24T16:55:02.568+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.604+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/30ce8387-6d77-45ba-90a8-86dc8e3a91b9/74d08a13-ca3a-4b82-aee1-0e482bf5144e/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_74d08a13-ca3a-4b82-aee1-0e482bf5144e_pre__result.png
+[2025-06-24T16:55:02.607+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.642+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/55c070fc-4f6e-4ee6-9b81-fa50270c7eb6/df3d138f-067a-4419-9177-f8680f26d459/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_df3d138f-067a-4419-9177-f8680f26d459_pre__result.png
+[2025-06-24T16:55:02.645+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.680+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/476fdd13-bb88-4d97-a2d3-32cab9f674e2/d936026a-0ba0-4dca-b82c-06240f4e4886/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_d936026a-0ba0-4dca-b82c-06240f4e4886_pre__result.png
+[2025-06-24T16:55:02.683+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.718+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/0fea8713-c818-44db-aa2e-0b7c2e7d0609/9c16946e-8377-41a2-86fa-46778921ac3e/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_9c16946e-8377-41a2-86fa-46778921ac3e_pre__result.png
+[2025-06-24T16:55:02.721+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.756+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/2668f4db-47c5-423a-94b9-833a4962b986/e807bbfd-eb8d-411c-94e2-b516e16a22c2/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_e807bbfd-eb8d-411c-94e2-b516e16a22c2_pre__result.png
+[2025-06-24T16:55:02.759+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.798+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/940069df-c991-491a-9c69-9877c858feb0/55ece89b-6417-4275-9455-df1c74b2e1d6/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_55ece89b-6417-4275-9455-df1c74b2e1d6_pre__result.png
+[2025-06-24T16:55:02.802+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.841+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/d57d4b63-e9d4-4b16-a81e-bc48c34b6452/ccc65e55-3850-44d6-b34c-b7ffaeb62b5b/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_ccc65e55-3850-44d6-b34c-b7ffaeb62b5b_pre__result.png
+[2025-06-24T16:55:02.844+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.873+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/09c7855d-127c-487a-abe2-a9bf52d474be/2f0cd3f1-a068-4fc9-b688-fcc900bd6b6f/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_2f0cd3f1-a068-4fc9-b688-fcc900bd6b6f_pre__result.png
+[2025-06-24T16:55:02.877+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.909+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/7cbd9b79-db07-46c2-900f-71a1ae587739/7ea5e738-074d-40f3-abc9-b376c17a35b4/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_7ea5e738-074d-40f3-abc9-b376c17a35b4_pre__result.png
+[2025-06-24T16:55:02.912+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.945+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/7278f92d-37d7-4089-82b1-0231f3f2e2a9/4ce3c026-c0f5-441e-aa84-4515245c07f3/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_4ce3c026-c0f5-441e-aa84-4515245c07f3_pre__result.png
+[2025-06-24T16:55:02.948+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:02.983+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/0b85e36b-a70c-420c-8f10-b04d314ffde5/db86d3e7-529a-44fc-adb4-269f35d835a5/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_db86d3e7-529a-44fc-adb4-269f35d835a5_pre__result.png
+[2025-06-24T16:55:02.986+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.012+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/9d84645c-9782-4b9b-b39f-36481b266313/63c285ef-acf9-445c-a2b6-8bb427e15d98/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_63c285ef-acf9-445c-a2b6-8bb427e15d98_pre__result.png
+[2025-06-24T16:55:03.014+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.025+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/efb9e545-0c1b-4a33-91b3-9d86199b0369/c5ecc909-0d01-4ee6-9fca-a7cec3a99749/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c5ecc909-0d01-4ee6-9fca-a7cec3a99749_pre__result.png
+[2025-06-24T16:55:03.026+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.039+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/06e1ef19-fc6d-4411-be03-e33c50fb46ec/f335f3b9-c8ea-4df0-98b1-19aa59df4cd4/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f335f3b9-c8ea-4df0-98b1-19aa59df4cd4_pre__result.png
+[2025-06-24T16:55:03.040+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.051+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/385cea30-fe3e-4405-946f-3d2a419053e2/e084594e-fde1-4794-8c64-9f08459e13ac/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_e084594e-fde1-4794-8c64-9f08459e13ac_pre__result.png
+[2025-06-24T16:55:03.052+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.062+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/1d515304-f864-4c89-91b0-69610582bce5/ef8001a4-06b3-475c-b03a-e062c50ebad7/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_ef8001a4-06b3-475c-b03a-e062c50ebad7_pre__result.png
+[2025-06-24T16:55:03.064+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.075+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/d23b91f4-2d81-4c0f-87ce-d63b9e922312/5d83f58c-ee00-4855-be1f-e0880386af18/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_5d83f58c-ee00-4855-be1f-e0880386af18_pre__result.png
+[2025-06-24T16:55:03.076+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.088+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c405050a-817e-4940-be70-9b6a8c1be5f8/461b8a0f-95f1-4829-81cb-ec0e5fe332d2/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_461b8a0f-95f1-4829-81cb-ec0e5fe332d2_pre__result.png
+[2025-06-24T16:55:03.089+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.100+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e0bb1b14-3817-41c8-9e22-5ab21b709168/73da5978-f56b-42c6-9b6a-33f3b17e0c4c/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_73da5978-f56b-42c6-9b6a-33f3b17e0c4c_pre__result.png
+[2025-06-24T16:55:03.101+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.113+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/4d177b05-de7c-4233-b057-c0a20b1e04f0/c3adc345-ac2a-4bf9-9d17-0b35c93072ec/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c3adc345-ac2a-4bf9-9d17-0b35c93072ec_pre__result.png
+[2025-06-24T16:55:03.114+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.126+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/ee6d3c58-a0f2-4b2a-b456-7f87f4fc99ec/0944537a-6654-4753-8af2-318b3e9d89b8/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_0944537a-6654-4753-8af2-318b3e9d89b8_pre__result.png
+[2025-06-24T16:55:03.127+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.139+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/629a0abe-f5e8-4292-8a68-e2bae668dc88/fb8f97ec-23f7-4ebf-8eb1-71b2bf218e72/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_fb8f97ec-23f7-4ebf-8eb1-71b2bf218e72_pre__result.png
+[2025-06-24T16:55:03.141+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.151+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/0625eaf1-4ffd-439c-9d09-15f79b8a7768/9ed81504-a3a8-4b40-82a7-36c2b18fb252/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_9ed81504-a3a8-4b40-82a7-36c2b18fb252_pre__result.png
+[2025-06-24T16:55:03.153+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.164+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/01692583-c999-46b3-aff0-e1caad30eab7/9a04578a-5574-4a85-83d8-c4ecd7057529/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_9a04578a-5574-4a85-83d8-c4ecd7057529_pre__result.png
+[2025-06-24T16:55:03.165+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.176+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/489c754d-b823-4c3d-b8bb-37cba6c2914d/e4eac6dd-0574-4cfe-80e2-8cd24bd3a905/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_e4eac6dd-0574-4cfe-80e2-8cd24bd3a905_pre__result.png
+[2025-06-24T16:55:03.177+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.189+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/3e2f885c-b5b4-4fe6-98ca-67b7307b17ba/3793da44-12a3-4db9-8878-409ed2d4d36b/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_3793da44-12a3-4db9-8878-409ed2d4d36b_pre__result.png
+[2025-06-24T16:55:03.190+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.206+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8284ba0a-ad71-4c14-802a-d910b89ab550/85641b04-3acd-4658-a56e-8aa2fe3c6aa8/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_85641b04-3acd-4658-a56e-8aa2fe3c6aa8_pre__result.png
+[2025-06-24T16:55:03.208+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.220+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/40cd8506-9fdd-4768-8de1-028f27a5c5ee/bcca2e6b-ce0f-401f-aea1-d0e866b09605/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_bcca2e6b-ce0f-401f-aea1-d0e866b09605_pre__result.png
+[2025-06-24T16:55:03.221+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.239+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e4889c50-3976-4d4b-8e21-e6f0165f270d/4eed52a1-0285-4b89-a96a-8ec0c9a774e2/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_4eed52a1-0285-4b89-a96a-8ec0c9a774e2_pre__result.png
+[2025-06-24T16:55:03.241+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.258+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/ff892ffa-5f52-4d1c-bb10-a7b583d114ff/914f49ef-c844-44a9-b32e-01e8ef2686da/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_914f49ef-c844-44a9-b32e-01e8ef2686da_pre__result.png
+[2025-06-24T16:55:03.260+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.277+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/9f73a47a-02d3-4f00-b0bf-19dfb51d5551/f64cac17-8aec-4bc6-a4a4-67c973c6b18e/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f64cac17-8aec-4bc6-a4a4-67c973c6b18e_pre__result.png
+[2025-06-24T16:55:03.279+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.297+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/492369cf-7b0e-490b-af9b-30f6be6aa54c/6ebb758f-428d-49ca-a18e-624d50f3e043/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_6ebb758f-428d-49ca-a18e-624d50f3e043_pre__result.png
+[2025-06-24T16:55:03.298+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.311+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/38e64f08-3d13-4435-b52f-8f49bd2dc04b/83eedadf-62e2-47b2-a1ca-d37245bd55b7/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_83eedadf-62e2-47b2-a1ca-d37245bd55b7_pre__result.png
+[2025-06-24T16:55:03.313+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.329+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/bd8b6a5c-bf42-4317-a254-ae717ee3b6aa/97886a5f-d035-47ee-b908-95974b7ef17f/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_97886a5f-d035-47ee-b908-95974b7ef17f_pre__result.png
+[2025-06-24T16:55:03.331+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.344+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/fd0142e1-0678-4b3c-bdcd-6c3fb36f6f2f/7930d73a-456d-4297-be88-af1f4aba405c/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_7930d73a-456d-4297-be88-af1f4aba405c_pre__result.png
+[2025-06-24T16:55:03.346+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.356+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/412fd151-39fa-40ea-b0b2-9d7ac05385bb/f5ff8156-9b80-4568-9db5-4d1ef5cb6a03/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f5ff8156-9b80-4568-9db5-4d1ef5cb6a03_pre__result.png
+[2025-06-24T16:55:03.358+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.370+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c37fb7a0-0d9c-4b64-8f91-7730d88cd07e/b9686f00-6ac7-49c1-963a-7e8a644ed221/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_b9686f00-6ac7-49c1-963a-7e8a644ed221_pre__result.png
+[2025-06-24T16:55:03.372+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.383+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/b37fe63d-bbc5-4318-a0c5-64c88402890f/1156eb4d-7f53-42ae-a93b-f643dacc72ba/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_1156eb4d-7f53-42ae-a93b-f643dacc72ba_pre__result.png
+[2025-06-24T16:55:03.384+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.395+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/ac878fe5-4047-4d81-b0ce-242409a37479/15f9c93b-c473-4ea3-8e86-ffa691e13874/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_15f9c93b-c473-4ea3-8e86-ffa691e13874_pre__result.png
+[2025-06-24T16:55:03.397+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.407+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/db2d014b-f657-4e33-ae43-f38f113b56b7/edd67ed6-f7e5-4c67-a09a-84459603e0b3/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_edd67ed6-f7e5-4c67-a09a-84459603e0b3_pre__result.png
+[2025-06-24T16:55:03.408+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.420+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/bf910f29-1596-45bb-923e-1b17e4d68346/f8787dcf-0f14-4e79-9c4a-591a73c7ace0/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f8787dcf-0f14-4e79-9c4a-591a73c7ace0_pre__result.png
+[2025-06-24T16:55:03.421+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.432+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e5c65618-d5b9-4721-82e1-d4697d958684/c5c86e28-67a1-4836-8464-4c664dfce1c2/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c5c86e28-67a1-4836-8464-4c664dfce1c2_pre__result.png
+[2025-06-24T16:55:03.433+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.444+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/888a512d-8e11-4c1d-af3a-e470b0416c17/d823a1f4-b3b9-4342-b8e1-b8a8d6004cd6/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_d823a1f4-b3b9-4342-b8e1-b8a8d6004cd6_pre__result.png
+[2025-06-24T16:55:03.445+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.458+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/60069df3-7262-4d09-aa90-9bdd6841c612/aa51c0c6-a9a3-4f83-a9f2-b533c39549f0/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_aa51c0c6-a9a3-4f83-a9f2-b533c39549f0_pre__result.png
+[2025-06-24T16:55:03.459+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.471+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/be3f4f8a-79a4-440f-aca0-a83ba8677efe/c3c840f9-0599-4a6a-85b8-2977e6d2b66a/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c3c840f9-0599-4a6a-85b8-2977e6d2b66a_pre__result.png
+[2025-06-24T16:55:03.473+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.483+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/2e6f87d7-0cbf-450f-abf6-13ad7767bd58/74587f7e-db60-4051-b481-a83620f25606/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_74587f7e-db60-4051-b481-a83620f25606_pre__result.png
+[2025-06-24T16:55:03.485+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.495+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8250097f-7567-497a-be05-4e2a8ab767e0/7496f948-25bd-4eef-bc31-05229ffd3c94/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_7496f948-25bd-4eef-bc31-05229ffd3c94_pre__result.png
+[2025-06-24T16:55:03.497+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.509+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/99e2990f-1c7d-4e98-ad86-0c8c2d6b8ae0/944c13fe-6cdd-4f0c-af4f-a4c8125e18fc/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_944c13fe-6cdd-4f0c-af4f-a4c8125e18fc_pre__result.png
+[2025-06-24T16:55:03.510+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.521+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/97725764-ca50-4dda-a136-de3b1ac05a5c/9c2380a8-96d7-47f8-9671-1526e0eee794/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_9c2380a8-96d7-47f8-9671-1526e0eee794_pre__result.png
+[2025-06-24T16:55:03.523+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.534+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/850374ad-3146-4f5a-a069-d8280f4a7e09/f48737f8-7a5a-4fae-97d0-b7929486c213/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f48737f8-7a5a-4fae-97d0-b7929486c213_pre__result.png
+[2025-06-24T16:55:03.535+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.545+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/59af0f79-eaf0-4e0a-9219-6753e11d9a69/0aafa860-318a-4e49-967d-a76c5ae09fca/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_0aafa860-318a-4e49-967d-a76c5ae09fca_pre__result.png
+[2025-06-24T16:55:03.547+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.561+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/62622a49-eca8-43ff-957d-97e225c980fe/419b58c5-0f31-45e4-8f9d-ebe9e61b4247/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_419b58c5-0f31-45e4-8f9d-ebe9e61b4247_pre__result.png
+[2025-06-24T16:55:03.562+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.578+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/214d4753-b1ee-4cc5-94db-de9c308bd207/e3ffa18c-1e35-4c25-a126-28a30cb9f64b/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_e3ffa18c-1e35-4c25-a126-28a30cb9f64b_pre__result.png
+[2025-06-24T16:55:03.580+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.593+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/cbe3d652-b09a-4d09-b112-a109f12e802d/aadf53bb-b726-46b8-a135-8c1692cdfb3b/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_aadf53bb-b726-46b8-a135-8c1692cdfb3b_pre__result.png
+[2025-06-24T16:55:03.594+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.613+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5a0ae06f-afd9-4399-86b6-6e86d864bbb9/400585b8-56dc-4909-93d6-6115913658a1/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_400585b8-56dc-4909-93d6-6115913658a1_pre__result.png
+[2025-06-24T16:55:03.615+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.632+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/94e73a5c-57f8-4491-85b5-4daf6ed052fd/5ea1b9eb-c031-4084-ab67-b5881057e63c/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_5ea1b9eb-c031-4084-ab67-b5881057e63c_pre__result.png
+[2025-06-24T16:55:03.633+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.647+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/351f29d1-9a50-404c-b515-e8df979cce06/a4b043f3-3200-4424-abc2-aa4bab965fd3/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_a4b043f3-3200-4424-abc2-aa4bab965fd3_pre__result.png
+[2025-06-24T16:55:03.649+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.659+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/5d8bbb0a-cc7f-4702-8aff-a46061980d2c/341bdaf5-9c06-4ddb-9952-fa3e4c31cb9c/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_341bdaf5-9c06-4ddb-9952-fa3e4c31cb9c_pre__result.png
+[2025-06-24T16:55:03.661+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.683+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/1cba8044-707c-42f6-bb30-64563b3d8b4e/c72fce34-705f-40c8-9fad-908e7032cf33/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c72fce34-705f-40c8-9fad-908e7032cf33_pre__result.png
+[2025-06-24T16:55:03.687+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.699+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8a0642cf-6176-4f65-902f-eaa2f4a16dd9/6a380045-e9f3-4431-a42e-1830e63bea2c/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_6a380045-e9f3-4431-a42e-1830e63bea2c_pre__result.png
+[2025-06-24T16:55:03.701+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.711+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/7a1f9f22-e106-4ca2-a2e4-04ad3a944795/86003c92-2583-40ab-ba8e-09444d6de017/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_86003c92-2583-40ab-ba8e-09444d6de017_pre__result.png
+[2025-06-24T16:55:03.713+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.722+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/eaf50864-30dc-4461-89a7-6a521fa94409/c2dfa09b-7682-469a-965a-099dc13780d3/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c2dfa09b-7682-469a-965a-099dc13780d3_pre__result.png
+[2025-06-24T16:55:03.723+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.733+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8259acb3-2ba1-49a7-a96a-4569409d9d16/636a8c87-42ae-49c7-b685-e73876ded508/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_636a8c87-42ae-49c7-b685-e73876ded508_pre__result.png
+[2025-06-24T16:55:03.735+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.746+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/49935927-5d01-44a2-bdd3-d48cc9c47372/15a58665-9e26-4b9f-943e-b2a5081bf402/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_15a58665-9e26-4b9f-943e-b2a5081bf402_pre__result.png
+[2025-06-24T16:55:03.747+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.759+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e190e612-5bc9-4667-8aa0-95d6d23d62cb/89360ac4-f12b-43b9-a9be-982155997dbb/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_89360ac4-f12b-43b9-a9be-982155997dbb_pre__result.png
+[2025-06-24T16:55:03.761+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.771+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/29d1e58b-206f-4122-91d0-5a1b147c436a/8943b9f3-06d5-4821-b699-e63ea2d2678e/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_8943b9f3-06d5-4821-b699-e63ea2d2678e_pre__result.png
+[2025-06-24T16:55:03.772+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.782+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/c8498dcf-cdca-435c-8713-14379f4dbf7c/7a4861d3-2798-4d26-836b-916e52f69297/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_7a4861d3-2798-4d26-836b-916e52f69297_pre__result.png
+[2025-06-24T16:55:03.783+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.793+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/505a23f2-b4d4-4cb9-941c-055ebdaa35b3/c18de6c1-f985-43a2-a657-7402e4f0995d/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c18de6c1-f985-43a2-a657-7402e4f0995d_pre__result.png
+[2025-06-24T16:55:03.794+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.812+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/9f932437-b91c-4876-9794-446a2f898878/0ec2d370-44c0-4828-850d-85791787f897/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_0ec2d370-44c0-4828-850d-85791787f897_pre__result.png
+[2025-06-24T16:55:03.814+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.825+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/36b70369-f986-4de1-a245-2639ce3c22fb/5892e821-c0b0-4a16-8eec-528a83f985bb/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_5892e821-c0b0-4a16-8eec-528a83f985bb_pre__result.png
+[2025-06-24T16:55:03.827+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.837+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/6cbf34f3-3410-47f4-a31e-db82818fe668/1f521c3e-43d5-4563-b118-7e67b42024cf/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_1f521c3e-43d5-4563-b118-7e67b42024cf_pre__result.png
+[2025-06-24T16:55:03.839+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.848+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/4a010b28-d0ff-4c56-b8e2-5c632b1d457e/341eb181-7566-4daf-a7c3-294f4ebe552d/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_341eb181-7566-4daf-a7c3-294f4ebe552d_pre__result.png
+[2025-06-24T16:55:03.849+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.859+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/ac26ab57-c7c7-4217-84f7-590742ebbf7b/c201e7f6-398e-451f-9589-9dce8e58fb95/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c201e7f6-398e-451f-9589-9dce8e58fb95_pre__result.png
+[2025-06-24T16:55:03.861+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.871+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/2d26ad64-16b0-4d3f-b537-35409f6f59a5/bfe33bcd-1cd8-49c0-a485-564278f1cd49/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_bfe33bcd-1cd8-49c0-a485-564278f1cd49_pre__result.png
+[2025-06-24T16:55:03.872+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.882+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/2e384ef7-32ed-4f67-ae64-959e294938c4/8e77fc5d-43f3-41ab-b6b4-34e218ee2189/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_8e77fc5d-43f3-41ab-b6b4-34e218ee2189_pre__result.png
+[2025-06-24T16:55:03.884+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.895+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/8327b9f7-17d7-43be-9d93-7ccb2126f6aa/1e9503a7-2094-4dff-8832-626db1c18f9f/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_1e9503a7-2094-4dff-8832-626db1c18f9f_pre__result.png
+[2025-06-24T16:55:03.897+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.907+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/75dc5730-bf6a-47ce-bf34-a4bee318d7d3/eec5112a-3f8f-42e5-9d7b-4c070f4518cf/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_eec5112a-3f8f-42e5-9d7b-4c070f4518cf_pre__result.png
+[2025-06-24T16:55:03.909+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.921+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/16020e82-e34f-42d7-bf3f-bab03b65a718/171b993d-1c48-4b9d-959e-e9c69cd5030b/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_171b993d-1c48-4b9d-959e-e9c69cd5030b_pre__result.png
+[2025-06-24T16:55:03.922+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.931+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/94a06131-62fd-44b5-9f8a-9cde273c0002/f8bf8989-1027-48ae-9e56-350f87bbedad/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_f8bf8989-1027-48ae-9e56-350f87bbedad_pre__result.png
+[2025-06-24T16:55:03.933+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.946+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/d5d5d9a3-6e2b-4921-9b80-6d79397d0970/92df48be-e02e-45f3-aa76-1295e1d383b1/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_92df48be-e02e-45f3-aa76-1295e1d383b1_pre__result.png
+[2025-06-24T16:55:03.948+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.967+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/b57f28a5-d2eb-4de0-9d50-204bbdf9b576/c342e498-777c-43ad-9321-0dbff9a9803f/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_c342e498-777c-43ad-9321-0dbff9a9803f_pre__result.png
+[2025-06-24T16:55:03.969+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:03.986+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/e545a92f-fd0b-4e18-a3b4-f66a2b63babb/a1c582be-f602-4419-ab78-c6cdab26122a/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_a1c582be-f602-4419-ab78-c6cdab26122a_pre__result.png
+[2025-06-24T16:55:03.987+0900] {logging_mixin.py:190} INFO - 1
+[2025-06-24T16:55:04.003+0900] {logging_mixin.py:190} INFO - 복사 완료: /opt/***/data/temp/f30900ef-f609-43c2-b174-054562de264b/a7e71b01-4f40-4187-a6e1-79faabc83ff6/_result.png → /opt/***/data/class/a_class/classify/preprc/true/_a7e71b01-4f40-4187-a6e1-79faabc83ff6_pre__result.png
+[2025-06-24T16:55:04.004+0900] {python.py:240} INFO - Done. Returned value was: /opt/***/data/class/a_class/classify/preprc/true
+[2025-06-24T16:55:04.039+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T16:55:04.040+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=copy_results_folder_task, run_id=manual__2025-06-24T07:39:02.784990+00:00, execution_date=20250624T073902, start_date=20250624T075501, end_date=20250624T075504
+[2025-06-24T16:55:04.110+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-24T16:55:04.161+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-24T16:55:04.166+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

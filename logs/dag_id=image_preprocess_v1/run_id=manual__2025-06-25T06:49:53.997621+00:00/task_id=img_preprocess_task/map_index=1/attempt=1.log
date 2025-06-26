@@ -1,0 +1,36 @@
+[2025-06-25T15:50:05.279+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T15:50:05.307+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-25T06:49:53.997621+00:00 map_index=1 [queued]>
+[2025-06-25T15:50:05.323+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-25T06:49:53.997621+00:00 map_index=1 [queued]>
+[2025-06-25T15:50:05.325+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T15:50:05.339+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-25 06:49:53.997621+00:00
+[2025-06-25T15:50:05.350+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=88596) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T15:50:05.354+0900] {standard_task_runner.py:72} INFO - Started process 88646 to run task
+[2025-06-25T15:50:05.352+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'img_preprocess_task', 'manual__2025-06-25T06:49:53.997621+00:00', '--job-id', '5318', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmp6v7omtt2', '--map-index', '1']
+[2025-06-25T15:50:05.355+0900] {standard_task_runner.py:105} INFO - Job 5318: Subtask img_preprocess_task
+[2025-06-25T15:50:05.402+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-25T06:49:53.997621+00:00 map_index=1 [running]> on host f6d4228a9eb8
+[2025-06-25T15:50:05.502+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T06:49:53.997621+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T06:49:53.997621+00:00'
+[2025-06-25T15:50:05.504+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T15:50:05.507+0900] {logging_mixin.py:190} INFO - empty map check {} {}
+[2025-06-25T15:50:05.507+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-25T15:50:05.508+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T15:50:08.042+0900] {logging_mixin.py:190} INFO - osd 1 0.0 0.0 5 12352 [0, 0, 0, 0, 0, 12352, 0, 0, 0, 0, 0]
+[2025-06-25T15:50:10.644+0900] {logging_mixin.py:190} INFO - osd 2 0.0 0.0 5 12352 [0, 0, 0, 0, 0, 12352, 0, 0, 0, 0, 0]
+[2025-06-25T15:50:10.673+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T15:50:13.609+0900] {logging_mixin.py:190} INFO - osd 1 -1.0 -1.0 7 103116 [0, 0, 0, 0, 0, 0, 19156, 103116, 12352, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-25T15:50:17.177+0900] {logging_mixin.py:190} INFO - osd 2 -1.0 0.0 8 111334 [0, 0, 0, 0, 0, 0, 0, 23897, 111334, 18729, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-25T15:50:17.241+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T15:50:19.859+0900] {logging_mixin.py:190} INFO - osd 1 -0.125 -0.125 7 151006 [23897, 34744, 45688, 55719, 66362, 81506, 118986, 151006, 111334, 78708, 67651, 57843, 47922, 40771, 31073, 22289, 18729]
+[2025-06-25T15:50:23.089+0900] {logging_mixin.py:190} INFO - osd 2 -0.125 0.0 8 162671 [18357, 29992, 40705, 51641, 62416, 72692, 91047, 130436, 162671, 119127, 88747, 74161, 64176, 55807, 45917, 36649, 28041]
+[2025-06-25T15:50:23.159+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-25T15:50:32.646+0900] {logging_mixin.py:190} INFO - osd 1 break  0 0 11.64 Korean 0.93
+[2025-06-25T15:50:32.653+0900] {logging_mixin.py:190} INFO - step : del_blank_set1
+[2025-06-25T15:50:32.762+0900] {logging_mixin.py:190} INFO - 공백 제거 완료
+[2025-06-25T15:50:33.123+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/6486faca-efab-4835-a246-ee810826f847/59775fa7-b300-4659-b505-e4f4b0949b23/_result.png
+[2025-06-25T15:50:33.143+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '6486faca-efab-4835-a246-ee810826f847', 'file_path': '/opt/***/data/upload/거제동 고성빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png', 'result': {'process_id': '_59775fa7-b300-4659-b505-e4f4b0949b23_pre', 'folder_path': '6486faca-efab-4835-a246-ee810826f847/59775fa7-b300-4659-b505-e4f4b0949b23', 'step_list': [{'name': 'cache', 'param': {'cache_key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_1', 'delta': 8.0, 'limit': 40, 'iterations': 2, 'iter_save': False}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_2', 'delta': 1.0, 'limit': 8, 'iterations': 2, 'iter_save': False}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_3', 'delta': 0.125, 'limit': 1, 'iterations': 2, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'angle_key': 'orint', 'iterations': 3, 'iter_save': False}}, {'name': 'del_blank_set1', 'param': {}}], 'result_file_map': {'_result': '/opt/***/data/temp/6486faca-efab-4835-a246-ee810826f847/59775fa7-b300-4659-b505-e4f4b0949b23/_result.png'}}}
+[2025-06-25T15:50:33.224+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T15:50:33.227+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=img_preprocess_task, run_id=manual__2025-06-25T06:49:53.997621+00:00, map_index=1, execution_date=20250625T064953, start_date=20250625T065005, end_date=20250625T065033
+[2025-06-25T15:50:33.339+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T15:50:33.420+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T15:50:33.427+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

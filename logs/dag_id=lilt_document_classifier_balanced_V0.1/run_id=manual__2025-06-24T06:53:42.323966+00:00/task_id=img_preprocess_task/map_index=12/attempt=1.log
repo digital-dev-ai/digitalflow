@@ -1,0 +1,33 @@
+[2025-06-24T15:56:09.937+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T15:56:09.973+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-24T06:53:42.323966+00:00 map_index=12 [queued]>
+[2025-06-24T15:56:10.046+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-24T06:53:42.323966+00:00 map_index=12 [queued]>
+[2025-06-24T15:56:10.053+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T15:56:10.167+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-24 06:53:42.323966+00:00
+[2025-06-24T15:56:10.225+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'img_preprocess_task', 'manual__2025-06-24T06:53:42.323966+00:00', '--job-id', '4245', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmpp_pm2q6g', '--map-index', '12']
+[2025-06-24T15:56:10.276+0900] {standard_task_runner.py:105} INFO - Job 4245: Subtask img_preprocess_task
+[2025-06-24T15:56:10.214+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=48000) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T15:56:10.289+0900] {standard_task_runner.py:72} INFO - Started process 48009 to run task
+[2025-06-24T15:56:10.612+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-24T06:53:42.323966+00:00 map_index=12 [running]> on host f6d4228a9eb8
+[2025-06-24T15:56:11.072+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T06:53:42.323966+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T06:53:42.323966+00:00'
+[2025-06-24T15:56:11.094+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T15:56:11.101+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_550b97fb-47f9-4dc6-bde0-a42985205779_pre', 'folder_path': '82aa70ce-f9e9-4656-ab4f-9e22b476b959/550b97fb-47f9-4dc6-bde0-a42985205779', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-24T15:56:11.122+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-24T15:56:11.125+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-24T15:56:45.699+0900] {logging_mixin.py:190} INFO - osd 1 -2.0 -2.0 12 120799 [0, 0, 0, 0, 0, 0, 0, 0, 4382, 20274, 41914, 62709, 120799, 97226, 57042, 37370, 18227, 5280, 421, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T15:57:22.297+0900] {logging_mixin.py:190} INFO - osd 2 -2.0 0.0 20 129840 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 6362, 25120, 47473, 69828, 129840, 107684, 63942, 42479, 22948, 6024, 764, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T15:57:56.902+0900] {logging_mixin.py:190} INFO - osd 3 -2.0 0.0 20 129840 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 6362, 25120, 47473, 69828, 129840, 107684, 63942, 42479, 22948, 6024, 764, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T15:58:33.351+0900] {logging_mixin.py:190} INFO - osd 4 -2.0 0.0 20 129840 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 6362, 25120, 47473, 69828, 129840, 107684, 63942, 42479, 22948, 6024, 764, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T15:58:33.605+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-24T15:58:52.674+0900] {logging_mixin.py:190} INFO - osd 1 break  0 0 6.98 Korean 0.88
+[2025-06-24T15:58:52.676+0900] {logging_mixin.py:190} INFO - step : load
+[2025-06-24T15:58:52.679+0900] {logging_mixin.py:190} INFO - step : rotate
+[2025-06-24T15:58:53.525+0900] {logging_mixin.py:190} INFO - step : rotate
+[2025-06-24T15:58:54.787+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/82aa70ce-f9e9-4656-ab4f-9e22b476b959/550b97fb-47f9-4dc6-bde0-a42985205779/_result.png
+[2025-06-24T15:58:54.815+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '82aa70ce-f9e9-4656-ab4f-9e22b476b959', 'file_path': '/opt/***/data/class/a_class/classify/ready/true/상계동 정진빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png', 'true': {'process_id': '_550b97fb-47f9-4dc6-bde0-a42985205779_pre', 'folder_path': '82aa70ce-f9e9-4656-ab4f-9e22b476b959/550b97fb-47f9-4dc6-bde0-a42985205779', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': False}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {'_result': '/opt/***/data/temp/82aa70ce-f9e9-4656-ab4f-9e22b476b959/550b97fb-47f9-4dc6-bde0-a42985205779/_result.png'}}}
+[2025-06-24T15:58:54.868+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T15:58:54.872+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=img_preprocess_task, run_id=manual__2025-06-24T06:53:42.323966+00:00, map_index=12, execution_date=20250624T065342, start_date=20250624T065609, end_date=20250624T065854
+[2025-06-24T15:58:54.976+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-24T15:58:55.036+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-24T15:58:55.050+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

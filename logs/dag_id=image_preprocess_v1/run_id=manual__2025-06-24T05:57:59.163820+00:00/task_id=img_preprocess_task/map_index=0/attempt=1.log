@@ -1,0 +1,719 @@
+[2025-06-24T14:58:05.432+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T14:58:05.458+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=0 [queued]>
+[2025-06-24T14:58:05.469+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=0 [queued]>
+[2025-06-24T14:58:05.471+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T14:58:05.487+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-24 05:57:59.163820+00:00
+[2025-06-24T14:58:05.495+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=46269) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T14:58:05.498+0900] {standard_task_runner.py:72} INFO - Started process 46332 to run task
+[2025-06-24T14:58:05.497+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'img_preprocess_task', 'manual__2025-06-24T05:57:59.163820+00:00', '--job-id', '4185', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmplt8x_w_s', '--map-index', '0']
+[2025-06-24T14:58:05.500+0900] {standard_task_runner.py:105} INFO - Job 4185: Subtask img_preprocess_task
+[2025-06-24T14:58:05.556+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=0 [running]> on host f6d4228a9eb8
+[2025-06-24T14:58:05.656+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T05:57:59.163820+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T05:57:59.163820+00:00'
+[2025-06-24T14:58:05.658+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T14:58:05.662+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_063f0ae4-14ae-44e3-be1f-83cef8de9198_pre', 'folder_path': '45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag1'}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag2'}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-24T14:58:05.662+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-24T14:58:05.663+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-24T14:58:05.866+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:06.278+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:06.338+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-5.0.png
+[2025-06-24T14:58:06.500+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-5.0_21460.png
+[2025-06-24T14:58:06.621+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:07.095+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:07.152+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-4.75.png
+[2025-06-24T14:58:07.315+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-4.75_43710.png
+[2025-06-24T14:58:07.484+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:07.943+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:08.005+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-4.5.png
+[2025-06-24T14:58:08.134+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-4.5_65882.png
+[2025-06-24T14:58:08.409+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:08.767+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:08.862+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-4.25.png
+[2025-06-24T14:58:08.970+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-4.25_134304.png
+[2025-06-24T14:58:09.314+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:09.683+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:09.749+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-4.0.png
+[2025-06-24T14:58:09.927+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-4.0_85385.png
+[2025-06-24T14:58:10.166+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:10.662+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:10.741+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-3.75.png
+[2025-06-24T14:58:10.922+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-3.75_52241.png
+[2025-06-24T14:58:11.076+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:11.834+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:11.930+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-3.5.png
+[2025-06-24T14:58:12.077+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-3.5_30359.png
+[2025-06-24T14:58:12.351+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:12.931+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:13.057+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-3.25.png
+[2025-06-24T14:58:13.241+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-3.25_10184.png
+[2025-06-24T14:58:13.416+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:13.985+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:14.073+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-3.0.png
+[2025-06-24T14:58:14.211+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-3.0_870.png
+[2025-06-24T14:58:14.411+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:14.954+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:15.019+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-2.75.png
+[2025-06-24T14:58:15.127+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-2.75_47.png
+[2025-06-24T14:58:15.362+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:15.812+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:15.864+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-2.5.png
+[2025-06-24T14:58:15.972+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-2.5_16.png
+[2025-06-24T14:58:16.206+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:16.653+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:16.720+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-2.25.png
+[2025-06-24T14:58:16.897+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-2.25_11.png
+[2025-06-24T14:58:17.243+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:17.651+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:17.703+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-2.0.png
+[2025-06-24T14:58:17.816+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-2.0_5.png
+[2025-06-24T14:58:18.092+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:18.447+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:18.499+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-1.75.png
+[2025-06-24T14:58:18.615+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-1.75_4.png
+[2025-06-24T14:58:18.912+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:19.190+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:19.242+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-1.5.png
+[2025-06-24T14:58:19.350+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-1.5_6.png
+[2025-06-24T14:58:19.622+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:19.988+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:20.051+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-1.25.png
+[2025-06-24T14:58:20.252+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-1.25_11.png
+[2025-06-24T14:58:20.441+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:20.805+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:20.879+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-1.0.png
+[2025-06-24T14:58:21.086+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-1.0_4.png
+[2025-06-24T14:58:21.194+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:21.631+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:21.780+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-0.75.png
+[2025-06-24T14:58:21.878+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-0.75_3.png
+[2025-06-24T14:58:22.020+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:22.384+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:22.468+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-0.5.png
+[2025-06-24T14:58:22.580+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-0.5_5.png
+[2025-06-24T14:58:22.763+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:23.176+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:23.233+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_-0.25.png
+[2025-06-24T14:58:23.344+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_-0.25_5.png
+[2025-06-24T14:58:23.629+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:23.832+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:23.874+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_0.0.png
+[2025-06-24T14:58:23.981+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_0.0_3.png
+[2025-06-24T14:58:24.116+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:24.505+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:24.548+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_0.25.png
+[2025-06-24T14:58:24.653+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_0.25_4.png
+[2025-06-24T14:58:24.813+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:25.210+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:25.249+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_0.5.png
+[2025-06-24T14:58:25.360+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_0.5_3.png
+[2025-06-24T14:58:25.502+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:25.923+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:26.004+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_0.75.png
+[2025-06-24T14:58:26.106+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_0.75_1.png
+[2025-06-24T14:58:26.274+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:26.643+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:26.732+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_1.0.png
+[2025-06-24T14:58:26.844+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_1.0_1.png
+[2025-06-24T14:58:27.039+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:27.552+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:27.645+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_1.25.png
+[2025-06-24T14:58:27.770+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_1.25_0.png
+[2025-06-24T14:58:28.041+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:28.415+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:28.482+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_1.5.png
+[2025-06-24T14:58:28.586+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_1.5_0.png
+[2025-06-24T14:58:28.819+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:29.267+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:29.326+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_1.75.png
+[2025-06-24T14:58:29.455+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_1.75_0.png
+[2025-06-24T14:58:29.736+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:30.308+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:30.401+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_2.0.png
+[2025-06-24T14:58:30.541+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_2.0_0.png
+[2025-06-24T14:58:30.839+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:31.462+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:31.585+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_2.25.png
+[2025-06-24T14:58:31.766+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_2.25_0.png
+[2025-06-24T14:58:32.113+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:32.707+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:32.822+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_2.5.png
+[2025-06-24T14:58:33.006+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_2.5_0.png
+[2025-06-24T14:58:33.289+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:33.832+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:33.914+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_2.75.png
+[2025-06-24T14:58:34.174+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_2.75_0.png
+[2025-06-24T14:58:34.298+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:34.964+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:35.032+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_3.0.png
+[2025-06-24T14:58:35.300+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_3.0_0.png
+[2025-06-24T14:58:35.626+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:36.209+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:36.295+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_3.25.png
+[2025-06-24T14:58:36.419+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_3.25_0.png
+[2025-06-24T14:58:36.665+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:37.143+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:37.205+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_3.5.png
+[2025-06-24T14:58:37.359+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_3.5_0.png
+[2025-06-24T14:58:37.503+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:38.168+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:38.233+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_3.75.png
+[2025-06-24T14:58:38.374+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_3.75_0.png
+[2025-06-24T14:58:38.544+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:39.193+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:39.288+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_4.0.png
+[2025-06-24T14:58:39.451+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_4.0_0.png
+[2025-06-24T14:58:39.735+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:40.197+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:40.290+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_4.25.png
+[2025-06-24T14:58:40.445+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_4.25_0.png
+[2025-06-24T14:58:40.622+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:41.116+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:41.185+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_4.5.png
+[2025-06-24T14:58:41.406+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_4.5_0.png
+[2025-06-24T14:58:41.616+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:42.007+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:42.088+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_4.75.png
+[2025-06-24T14:58:42.275+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_4.75_0.png
+[2025-06-24T14:58:42.556+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:43.030+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1.png
+[2025-06-24T14:58:43.114+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_1_5.0.png
+[2025-06-24T14:58:43.284+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_1_5.0_0.png
+[2025-06-24T14:58:43.295+0900] {logging_mixin.py:190} INFO - osd 1 -4.25 -4.25 3 134304 [21460, 43710, 65882, 134304, 85385, 52241, 30359, 10184, 870, 47, 16, 11, 5, 4, 6, 11, 4, 3, 5, 5, 3, 4, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T14:58:43.825+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:44.440+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:44.553+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-5.0.png
+[2025-06-24T14:58:44.786+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-5.0_0.png
+[2025-06-24T14:58:45.239+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:45.943+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:46.198+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-4.75.png
+[2025-06-24T14:58:46.412+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-4.75_0.png
+[2025-06-24T14:58:46.995+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:47.791+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:47.973+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-4.5.png
+[2025-06-24T14:58:48.210+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-4.5_0.png
+[2025-06-24T14:58:48.771+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:49.631+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:49.735+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-4.25.png
+[2025-06-24T14:58:49.971+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-4.25_0.png
+[2025-06-24T14:58:50.424+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:50.985+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:51.080+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-4.0.png
+[2025-06-24T14:58:51.236+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-4.0_0.png
+[2025-06-24T14:58:51.662+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:52.062+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:52.125+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-3.75.png
+[2025-06-24T14:58:52.292+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-3.75_0.png
+[2025-06-24T14:58:52.669+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:53.036+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:53.100+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-3.5.png
+[2025-06-24T14:58:53.277+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-3.5_0.png
+[2025-06-24T14:58:53.550+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:54.074+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:54.138+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-3.25.png
+[2025-06-24T14:58:54.277+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-3.25_0.png
+[2025-06-24T14:58:54.610+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:55.096+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:55.168+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-3.0.png
+[2025-06-24T14:58:55.344+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-3.0_0.png
+[2025-06-24T14:58:55.706+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:56.138+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:56.222+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-2.75.png
+[2025-06-24T14:58:56.359+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-2.75_0.png
+[2025-06-24T14:58:56.753+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:57.188+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:57.250+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-2.5.png
+[2025-06-24T14:58:57.411+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-2.5_0.png
+[2025-06-24T14:58:57.758+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:58.302+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:58.370+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-2.25.png
+[2025-06-24T14:58:58.509+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-2.25_0.png
+[2025-06-24T14:58:58.895+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:59.493+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:58:59.578+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-2.0.png
+[2025-06-24T14:58:59.765+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-2.0_0.png
+[2025-06-24T14:59:00.010+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:00.443+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:00.514+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-1.75.png
+[2025-06-24T14:59:00.652+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-1.75_0.png
+[2025-06-24T14:59:00.963+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:01.396+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:01.473+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-1.5.png
+[2025-06-24T14:59:01.686+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-1.5_0.png
+[2025-06-24T14:59:01.974+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:02.382+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:02.438+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-1.25.png
+[2025-06-24T14:59:02.638+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-1.25_27.png
+[2025-06-24T14:59:02.912+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:03.255+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:03.318+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-1.0.png
+[2025-06-24T14:59:03.482+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-1.0_5016.png
+[2025-06-24T14:59:03.801+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:04.153+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:04.208+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-0.75.png
+[2025-06-24T14:59:04.352+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-0.75_24882.png
+[2025-06-24T14:59:04.673+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:05.064+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:05.155+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-0.5.png
+[2025-06-24T14:59:05.308+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-0.5_49068.png
+[2025-06-24T14:59:05.604+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:06.070+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:06.139+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_-0.25.png
+[2025-06-24T14:59:06.331+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_-0.25_73402.png
+[2025-06-24T14:59:06.583+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:06.981+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:07.027+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_0.0.png
+[2025-06-24T14:59:07.158+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_0.0_145481.png
+[2025-06-24T14:59:07.409+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:07.923+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:07.992+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_0.25.png
+[2025-06-24T14:59:08.179+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_0.25_94098.png
+[2025-06-24T14:59:08.507+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:09.026+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:09.123+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_0.5.png
+[2025-06-24T14:59:09.364+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_0.5_58232.png
+[2025-06-24T14:59:09.759+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:10.335+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:10.415+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_0.75.png
+[2025-06-24T14:59:10.576+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_0.75_34400.png
+[2025-06-24T14:59:10.948+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:11.633+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:11.718+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_1.0.png
+[2025-06-24T14:59:11.862+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_1.0_11006.png
+[2025-06-24T14:59:12.306+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:12.783+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:12.866+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_1.25.png
+[2025-06-24T14:59:13.039+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_1.25_560.png
+[2025-06-24T14:59:13.433+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:13.931+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:13.984+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_1.5.png
+[2025-06-24T14:59:14.250+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_1.5_0.png
+[2025-06-24T14:59:14.543+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:15.046+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:15.132+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_1.75.png
+[2025-06-24T14:59:15.339+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_1.75_0.png
+[2025-06-24T14:59:15.672+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:16.202+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:16.332+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_2.0.png
+[2025-06-24T14:59:16.486+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_2.0_0.png
+[2025-06-24T14:59:16.754+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:17.267+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:17.383+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_2.25.png
+[2025-06-24T14:59:17.566+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_2.25_0.png
+[2025-06-24T14:59:17.964+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:18.553+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:18.687+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_2.5.png
+[2025-06-24T14:59:18.846+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_2.5_0.png
+[2025-06-24T14:59:19.320+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:19.995+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:20.055+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_2.75.png
+[2025-06-24T14:59:20.189+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_2.75_0.png
+[2025-06-24T14:59:20.555+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:21.030+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:21.126+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_3.0.png
+[2025-06-24T14:59:21.282+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_3.0_0.png
+[2025-06-24T14:59:21.623+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:22.148+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:22.204+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_3.25.png
+[2025-06-24T14:59:22.388+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_3.25_0.png
+[2025-06-24T14:59:22.626+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:23.173+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:23.261+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_3.5.png
+[2025-06-24T14:59:23.476+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_3.5_0.png
+[2025-06-24T14:59:23.713+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:24.173+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:24.233+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_3.75.png
+[2025-06-24T14:59:24.374+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_3.75_0.png
+[2025-06-24T14:59:24.635+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:25.088+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:25.173+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_4.0.png
+[2025-06-24T14:59:25.335+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_4.0_0.png
+[2025-06-24T14:59:25.625+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:26.009+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:26.071+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_4.25.png
+[2025-06-24T14:59:26.212+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_4.25_0.png
+[2025-06-24T14:59:26.576+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:27.069+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:27.142+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_4.5.png
+[2025-06-24T14:59:27.316+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_4.5_0.png
+[2025-06-24T14:59:27.613+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:28.087+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:28.164+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_4.75.png
+[2025-06-24T14:59:28.387+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_4.75_0.png
+[2025-06-24T14:59:28.685+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:29.200+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2.png
+[2025-06-24T14:59:29.270+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_2_5.0.png
+[2025-06-24T14:59:29.485+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_2_5.0_0.png
+[2025-06-24T14:59:29.490+0900] {logging_mixin.py:190} INFO - osd 2 -4.25 0.0 20 145481 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 5016, 24882, 49068, 73402, 145481, 94098, 58232, 34400, 11006, 560, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T14:59:29.825+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:30.513+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:30.585+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-5.0.png
+[2025-06-24T14:59:30.967+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-5.0_0.png
+[2025-06-24T14:59:31.223+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:31.742+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:31.825+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-4.75.png
+[2025-06-24T14:59:32.071+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-4.75_0.png
+[2025-06-24T14:59:32.362+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:32.772+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:32.862+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-4.5.png
+[2025-06-24T14:59:33.020+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-4.5_0.png
+[2025-06-24T14:59:33.327+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:33.796+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:33.860+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-4.25.png
+[2025-06-24T14:59:34.079+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-4.25_0.png
+[2025-06-24T14:59:34.341+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:34.690+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:34.747+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-4.0.png
+[2025-06-24T14:59:34.939+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-4.0_0.png
+[2025-06-24T14:59:35.217+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:35.598+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:35.653+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-3.75.png
+[2025-06-24T14:59:35.783+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-3.75_0.png
+[2025-06-24T14:59:36.114+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:36.521+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:36.586+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-3.5.png
+[2025-06-24T14:59:36.752+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-3.5_0.png
+[2025-06-24T14:59:37.044+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:37.517+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:37.595+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-3.25.png
+[2025-06-24T14:59:37.759+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-3.25_0.png
+[2025-06-24T14:59:38.077+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:38.509+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:38.586+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-3.0.png
+[2025-06-24T14:59:38.745+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-3.0_0.png
+[2025-06-24T14:59:39.059+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:39.422+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:39.518+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-2.75.png
+[2025-06-24T14:59:39.650+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-2.75_0.png
+[2025-06-24T14:59:39.894+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:40.326+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:40.377+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-2.5.png
+[2025-06-24T14:59:40.521+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-2.5_0.png
+[2025-06-24T14:59:40.754+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:41.265+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:41.343+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-2.25.png
+[2025-06-24T14:59:41.504+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-2.25_0.png
+[2025-06-24T14:59:41.890+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:42.356+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:42.427+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-2.0.png
+[2025-06-24T14:59:42.625+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-2.0_0.png
+[2025-06-24T14:59:42.863+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:43.400+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:43.461+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-1.75.png
+[2025-06-24T14:59:43.642+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-1.75_0.png
+[2025-06-24T14:59:44.106+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:44.614+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:44.723+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-1.5.png
+[2025-06-24T14:59:44.864+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-1.5_0.png
+[2025-06-24T14:59:45.250+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:45.733+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:45.809+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-1.25.png
+[2025-06-24T14:59:45.962+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-1.25_27.png
+[2025-06-24T14:59:46.172+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:46.672+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:46.773+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-1.0.png
+[2025-06-24T14:59:47.002+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-1.0_5016.png
+[2025-06-24T14:59:47.406+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:47.946+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:48.026+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-0.75.png
+[2025-06-24T14:59:48.271+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-0.75_24882.png
+[2025-06-24T14:59:48.623+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:49.253+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:49.338+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-0.5.png
+[2025-06-24T14:59:49.488+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-0.5_49068.png
+[2025-06-24T14:59:49.834+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:50.613+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:50.748+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_-0.25.png
+[2025-06-24T14:59:50.915+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_-0.25_73402.png
+[2025-06-24T14:59:51.308+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:52.083+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:52.232+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_0.0.png
+[2025-06-24T14:59:52.384+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_0.0_145481.png
+[2025-06-24T14:59:52.886+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:53.434+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:53.543+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_0.25.png
+[2025-06-24T14:59:53.756+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_0.25_94098.png
+[2025-06-24T14:59:54.142+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:54.643+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:54.741+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_0.5.png
+[2025-06-24T14:59:54.954+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_0.5_58232.png
+[2025-06-24T14:59:55.245+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:55.742+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:55.832+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_0.75.png
+[2025-06-24T14:59:55.960+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_0.75_34400.png
+[2025-06-24T14:59:56.298+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:56.773+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:56.885+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_1.0.png
+[2025-06-24T14:59:57.061+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_1.0_11006.png
+[2025-06-24T14:59:57.376+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:57.968+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:58.082+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_1.25.png
+[2025-06-24T14:59:58.383+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_1.25_560.png
+[2025-06-24T14:59:58.890+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:59.464+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T14:59:59.541+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_1.5.png
+[2025-06-24T14:59:59.816+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_1.5_0.png
+[2025-06-24T15:00:00.189+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:00.606+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:00.726+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_1.75.png
+[2025-06-24T15:00:00.923+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_1.75_0.png
+[2025-06-24T15:00:01.392+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:01.926+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:02.021+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_2.0.png
+[2025-06-24T15:00:02.212+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_2.0_0.png
+[2025-06-24T15:00:02.458+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:02.881+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:02.986+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_2.25.png
+[2025-06-24T15:00:03.128+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_2.25_0.png
+[2025-06-24T15:00:03.406+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:03.772+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:03.873+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_2.5.png
+[2025-06-24T15:00:04.032+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_2.5_0.png
+[2025-06-24T15:00:04.303+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:04.653+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:04.716+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_2.75.png
+[2025-06-24T15:00:04.886+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_2.75_0.png
+[2025-06-24T15:00:05.145+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:05.557+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:05.616+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_3.0.png
+[2025-06-24T15:00:05.755+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_3.0_0.png
+[2025-06-24T15:00:06.085+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:06.482+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:06.539+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_3.25.png
+[2025-06-24T15:00:06.693+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_3.25_0.png
+[2025-06-24T15:00:07.053+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:07.492+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:07.568+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_3.5.png
+[2025-06-24T15:00:07.716+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_3.5_0.png
+[2025-06-24T15:00:08.035+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:08.457+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:08.515+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_3.75.png
+[2025-06-24T15:00:08.639+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_3.75_0.png
+[2025-06-24T15:00:09.074+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:09.548+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:09.610+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_4.0.png
+[2025-06-24T15:00:09.787+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_4.0_0.png
+[2025-06-24T15:00:10.124+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:10.568+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:10.637+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_4.25.png
+[2025-06-24T15:00:10.788+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_4.25_0.png
+[2025-06-24T15:00:11.054+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:11.451+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:11.540+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_4.5.png
+[2025-06-24T15:00:11.787+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_4.5_0.png
+[2025-06-24T15:00:12.126+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:12.583+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:12.664+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_4.75.png
+[2025-06-24T15:00:12.865+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_4.75_0.png
+[2025-06-24T15:00:13.081+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:13.534+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3.png
+[2025-06-24T15:00:13.628+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_3_5.0.png
+[2025-06-24T15:00:13.845+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_3_5.0_0.png
+[2025-06-24T15:00:13.849+0900] {logging_mixin.py:190} INFO - osd 3 -4.25 0.0 20 145481 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 5016, 24882, 49068, 73402, 145481, 94098, 58232, 34400, 11006, 560, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-24T15:00:14.145+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:14.589+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:14.646+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-5.0.png
+[2025-06-24T15:00:14.828+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-5.0_0.png
+[2025-06-24T15:00:15.089+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:15.617+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:15.666+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-4.75.png
+[2025-06-24T15:00:15.872+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-4.75_0.png
+[2025-06-24T15:00:16.132+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:16.741+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:16.852+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-4.5.png
+[2025-06-24T15:00:17.045+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-4.5_0.png
+[2025-06-24T15:00:17.350+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:17.961+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:18.042+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-4.25.png
+[2025-06-24T15:00:18.227+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-4.25_0.png
+[2025-06-24T15:00:18.534+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:19.156+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:19.251+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-4.0.png
+[2025-06-24T15:00:19.427+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-4.0_0.png
+[2025-06-24T15:00:19.813+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:20.417+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:20.525+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-3.75.png
+[2025-06-24T15:00:20.693+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-3.75_0.png
+[2025-06-24T15:00:21.227+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:22.065+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:22.162+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-3.5.png
+[2025-06-24T15:00:22.375+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-3.5_0.png
+[2025-06-24T15:00:22.716+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:23.523+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:23.621+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-3.25.png
+[2025-06-24T15:00:23.800+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-3.25_0.png
+[2025-06-24T15:00:24.218+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:25.127+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:25.294+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-3.0.png
+[2025-06-24T15:00:25.471+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-3.0_0.png
+[2025-06-24T15:00:26.050+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:26.805+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4.png
+[2025-06-24T15:00:26.963+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate21_4_-2.75.png
+[2025-06-24T15:00:27.123+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/45f76012-566f-4d49-9f24-3d70546abd70/063f0ae4-14ae-44e3-be1f-83cef8de9198/rotate22_4_-2.75_0.png
+[2025-06-24T15:00:27.175+0900] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-06-24T15:00:27.180+0900] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-06-24T15:00:27.186+0900] {process_utils.py:132} INFO - Sending 15 to group 46332. PIDs of all processes in the group: [46332]
+[2025-06-24T15:00:27.189+0900] {process_utils.py:87} INFO - Sending the signal 15 to group 46332
+[2025-06-24T15:00:27.482+0900] {taskinstance.py:3094} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-06-24T15:00:27.489+0900] {taskinstance.py:3095} ERROR - Stacktrace: 
+  File "/home/***/.local/bin/***", line 8, in <module>
+    sys.exit(main())
+  File "/home/***/.local/lib/python3.12/site-packages/***/__main__.py", line 62, in main
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 64, in wrapper
+    providers_configuration_loaded(func)(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/providers_configuration_loader.py", line 55, in wrapped_function
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 237, in worker
+    _run_command_with_daemon_option(
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 50, in _run_command_with_daemon_option
+    run_command_with_daemon_option(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/daemon_utils.py", line 86, in run_command_with_daemon_option
+    callback()
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 230, in run_celery_worker
+    celery_app.worker_main(options)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 391, in worker_main
+    self.start(argv=argv)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 371, in start
+    celery.main(args=argv, standalone_mode=False)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/base.py", line 135, in caller
+    return f(ctx, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/worker.py", line 356, in worker
+    worker.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/worker/worker.py", line 202, in start
+    self.blueprint.start(self)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 365, in start
+    return self.obj.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/base.py", line 130, in start
+    self.on_start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/prefork.py", line 109, in on_start
+    P = self._pool = Pool(processes=self.limit,
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 464, in __init__
+    super().__init__(processes, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1046, in __init__
+    self._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 482, in _create_worker_process
+    return super()._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1158, in _create_worker_process
+    w.start()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 120, in start
+    self._popen = self._Popen(self)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/context.py", line 331, in _Popen
+    return Popen(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 22, in __init__
+    self._launch(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 77, in _launch
+    code = process_obj._bootstrap()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 323, in _bootstrap
+    self.run()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 651, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 139, in execute_command
+    _execute_in_fork(command_to_exec, celery_task_id)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 171, in _execute_in_fork
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 254, in _run_task_by_selected_method
+    return _run_task_by_local_task_job(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 322, in _run_task_by_local_task_job
+    ret = run_job(job=job_runner.job, execute_callable=job_runner._execute)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 421, in run_job
+    return execute_job(job, execute_callable=execute_callable)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 450, in execute_job
+    ret = execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/local_task_job_runner.py", line 171, in _execute
+    self.task_runner.start()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 55, in start
+    self.process = self._start_by_fork()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 64, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 407, in calc_angle_set2
+    print(f"osd {idx}",total_angle,best_angle,scores.index(max(scores)), max(scores), scores)
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 368, in long_kernal_score
+    # data = inter.rotate(arr, angle, reshape=False, order=0)
+  File "/opt/***/dags/utils/type_convert_util.py", line 24, in convert_type
+    return _call_with_compatible_args(func_info, data, params)
+  File "/opt/***/dags/utils/type_convert_util.py", line 193, in _call_with_compatible_args
+    return f(data, **call_args)
+  File "/opt/***/dags/utils/type_convert_util.py", line 70, in np_bgr_to_file
+    return _np_to_file(_img,file_path)
+  File "/opt/***/dags/utils/type_convert_util.py", line 154, in _np_to_file
+    status = cv2.imwrite(file_path, _img)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3095, in signal_handler
+    self.log.error("Stacktrace: \n%s", "".join(traceback.format_stack()))
+
+[2025-06-24T15:00:27.542+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T15:00:27.580+0900] {process_utils.py:80} INFO - Process psutil.Process(pid=46332, status='terminated', exitcode=0, started='14:58:04') (46332) terminated with exit code 0

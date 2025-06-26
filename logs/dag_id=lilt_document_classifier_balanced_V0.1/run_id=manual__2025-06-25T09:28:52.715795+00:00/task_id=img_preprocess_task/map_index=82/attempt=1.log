@@ -1,0 +1,34 @@
+[2025-06-25T18:42:40.501+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T18:42:40.540+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-25T09:28:52.715795+00:00 map_index=82 [queued]>
+[2025-06-25T18:42:40.945+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-25T09:28:52.715795+00:00 map_index=82 [queued]>
+[2025-06-25T18:42:40.956+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T18:42:41.028+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-25 09:28:52.715795+00:00
+[2025-06-25T18:42:41.244+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'lilt_document_classifier_balanced_V0.1', 'img_preprocess_task', 'manual__2025-06-25T09:28:52.715795+00:00', '--job-id', '5496', '--raw', '--subdir', 'DAGS_FOLDER/class_create_dag.py', '--cfg-path', '/tmp/tmp8uqmof8o', '--map-index', '82']
+[2025-06-25T18:42:41.248+0900] {standard_task_runner.py:105} INFO - Job 5496: Subtask img_preprocess_task
+[2025-06-25T18:42:41.289+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=4063) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T18:42:41.298+0900] {standard_task_runner.py:72} INFO - Started process 4147 to run task
+[2025-06-25T18:42:41.473+0900] {task_command.py:467} INFO - Running <TaskInstance: lilt_document_classifier_balanced_V0.1.img_preprocess_task manual__2025-06-25T09:28:52.715795+00:00 map_index=82 [running]> on host f6d4228a9eb8
+[2025-06-25T18:42:41.690+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lilt_document_classifier_balanced_V0.1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T09:28:52.715795+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T09:28:52.715795+00:00'
+[2025-06-25T18:42:41.696+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T18:42:41.700+0900] {logging_mixin.py:190} INFO - empty map check {} {}
+[2025-06-25T18:42:41.708+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-25T18:42:41.709+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T18:42:52.140+0900] {logging_mixin.py:190} INFO - osd 1 0 0 0 0 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-25T18:43:01.963+0900] {logging_mixin.py:190} INFO - osd 2 0 0 0 0 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-25T18:43:02.037+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T18:43:10.373+0900] {logging_mixin.py:190} INFO - osd 1 5.0 5.0 13 116562 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 63191, 116562, 10802, 1, 0]
+[2025-06-25T18:43:22.276+0900] {logging_mixin.py:190} INFO - osd 2 5.0 0.0 8 102214 [0, 0, 0, 0, 0, 0, 0, 54795, 102214, 3138, 0, 0, 0, 0, 0, 0, 0]
+[2025-06-25T18:43:22.422+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-25T18:43:36.126+0900] {logging_mixin.py:190} INFO - osd 1 -0.25 -0.25 6 189880 [54795, 67667, 80356, 92886, 129382, 174321, 189880, 149378, 102214, 86117, 73231, 60418, 47426, 34800, 21798, 10636, 3138]
+[2025-06-25T18:43:44.676+0900] {logging_mixin.py:190} INFO - osd 2 -0.25 0.0 8 191653 [30939, 43901, 56645, 69559, 82497, 95737, 133275, 178478, 191653, 154178, 107386, 88140, 75053, 62454, 49546, 36543, 23778]
+[2025-06-25T18:43:44.784+0900] {logging_mixin.py:190} INFO - step : text_orientation_set
+[2025-06-25T18:43:55.885+0900] {logging_mixin.py:190} INFO - osd 1 break  0 0 9.25 Korean 1.17
+[2025-06-25T18:43:56.331+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/e4dc2120-b8c4-42c4-80a3-e1bc9dda3a67/82770043-1f0b-4099-ad7e-bbf71799866b/_result.png
+[2025-06-25T18:43:56.345+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': 'e4dc2120-b8c4-42c4-80a3-e1bc9dda3a67', 'file_path': '/opt/***/data/class/a_class/classify/ready/true/우면동 고호빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug0.png', 'true': {'process_id': '_82770043-1f0b-4099-ad7e-bbf71799866b_pre', 'folder_path': 'e4dc2120-b8c4-42c4-80a3-e1bc9dda3a67/82770043-1f0b-4099-ad7e-bbf71799866b', 'step_list': [{'name': 'cache', 'param': {'cache_key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_1', 'delta': 8.0, 'limit': 40, 'iterations': 2, 'iter_save': False}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_2', 'delta': 1.0, 'limit': 8, 'iterations': 2, 'iter_save': False}}, {'name': 'calc_angle_set2', 'param': {'angle_key': 'angle2_3', 'delta': 0.125, 'limit': 1, 'iterations': 2, 'iter_save': False}}, {'name': 'text_orientation_set', 'param': {'angle_key': 'orint', 'iterations': 3, 'iter_save': False}}], 'result_file_map': {'_result': '/opt/***/data/temp/e4dc2120-b8c4-42c4-80a3-e1bc9dda3a67/82770043-1f0b-4099-ad7e-bbf71799866b/_result.png'}}}
+[2025-06-25T18:43:56.434+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T18:43:56.440+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=lilt_document_classifier_balanced_V0.1, task_id=img_preprocess_task, run_id=manual__2025-06-25T09:28:52.715795+00:00, map_index=82, execution_date=20250625T092852, start_date=20250625T094240, end_date=20250625T094356
+[2025-06-25T18:43:56.692+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T18:43:56.848+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T18:43:56.866+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

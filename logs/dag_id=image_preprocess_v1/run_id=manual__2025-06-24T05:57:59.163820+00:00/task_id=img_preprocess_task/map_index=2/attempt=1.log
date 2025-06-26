@@ -1,0 +1,713 @@
+[2025-06-24T14:58:05.432+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-24T14:58:05.458+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=2 [queued]>
+[2025-06-24T14:58:05.469+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=2 [queued]>
+[2025-06-24T14:58:05.469+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-24T14:58:05.503+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_preprocess_task> on 2025-06-24 05:57:59.163820+00:00
+[2025-06-24T14:58:05.516+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=46268) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-24T14:58:05.517+0900] {standard_task_runner.py:72} INFO - Started process 46341 to run task
+[2025-06-24T14:58:05.517+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'img_preprocess_task', 'manual__2025-06-24T05:57:59.163820+00:00', '--job-id', '4182', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpzl91ise7', '--map-index', '2']
+[2025-06-24T14:58:05.520+0900] {standard_task_runner.py:105} INFO - Job 4182: Subtask img_preprocess_task
+[2025-06-24T14:58:05.574+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.img_preprocess_task manual__2025-06-24T05:57:59.163820+00:00 map_index=2 [running]> on host f6d4228a9eb8
+[2025-06-24T14:58:05.672+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='img_preprocess_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-24T05:57:59.163820+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-24T05:57:59.163820+00:00'
+[2025-06-24T14:58:05.675+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-24T14:58:05.678+0900] {logging_mixin.py:190} INFO - empty map check {} {'process_id': '_8e4a357b-9642-44db-b52e-cbf2ba76b449_pre', 'folder_path': 'd2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449', 'step_list': [{'name': 'cache', 'param': {'key': 'origin'}}, {'name': 'calc_angle_set2', 'param': {'key': 'angle1', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag1'}}, {'name': 'text_orientation_set', 'param': {'key': 'angle2', 'iterations': 4, 'iter_save': True}}, {'name': 'save', 'param': {'key': 'ag2'}}, {'name': 'load', 'param': {'key': 'origin'}}, {'name': 'rotate', 'param': {'key': 'angle1'}}, {'name': 'rotate', 'param': {'key': 'angle2'}}], 'result_file_map': {}}
+[2025-06-24T14:58:05.681+0900] {logging_mixin.py:190} INFO - step : cache
+[2025-06-24T14:58:05.683+0900] {logging_mixin.py:190} INFO - step : calc_angle_set2
+[2025-06-24T14:58:05.861+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:06.280+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:06.339+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-5.0.png
+[2025-06-24T14:58:06.474+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-5.0_0.png
+[2025-06-24T14:58:06.703+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:07.086+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:07.144+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-4.75.png
+[2025-06-24T14:58:07.295+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-4.75_0.png
+[2025-06-24T14:58:07.462+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:07.855+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:07.905+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-4.5.png
+[2025-06-24T14:58:08.036+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-4.5_0.png
+[2025-06-24T14:58:08.184+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:08.628+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:08.685+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-4.25.png
+[2025-06-24T14:58:08.821+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-4.25_3.png
+[2025-06-24T14:58:09.036+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:09.478+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:09.520+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-4.0.png
+[2025-06-24T14:58:09.636+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-4.0_6.png
+[2025-06-24T14:58:09.843+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:10.396+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:10.466+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-3.75.png
+[2025-06-24T14:58:10.623+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-3.75_12.png
+[2025-06-24T14:58:10.796+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:11.462+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:11.612+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-3.5.png
+[2025-06-24T14:58:11.733+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-3.5_17.png
+[2025-06-24T14:58:11.975+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:12.521+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:12.629+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-3.25.png
+[2025-06-24T14:58:12.817+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-3.25_25.png
+[2025-06-24T14:58:13.019+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:13.430+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:13.545+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-3.0.png
+[2025-06-24T14:58:13.689+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-3.0_25.png
+[2025-06-24T14:58:13.885+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:14.385+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:14.459+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-2.75.png
+[2025-06-24T14:58:14.583+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-2.75_29.png
+[2025-06-24T14:58:14.762+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:15.145+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:15.209+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-2.5.png
+[2025-06-24T14:58:15.343+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-2.5_36.png
+[2025-06-24T14:58:15.520+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:15.849+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:15.895+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-2.25.png
+[2025-06-24T14:58:16.016+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-2.25_41.png
+[2025-06-24T14:58:16.186+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:16.571+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:16.614+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-2.0.png
+[2025-06-24T14:58:16.741+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-2.0_46.png
+[2025-06-24T14:58:17.005+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:17.543+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:17.600+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-1.75.png
+[2025-06-24T14:58:17.728+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-1.75_48.png
+[2025-06-24T14:58:17.906+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:18.300+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:18.359+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-1.5.png
+[2025-06-24T14:58:18.473+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-1.5_52.png
+[2025-06-24T14:58:18.676+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:19.086+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:19.134+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-1.25.png
+[2025-06-24T14:58:19.253+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-1.25_54.png
+[2025-06-24T14:58:19.401+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:19.844+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:19.895+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-1.0.png
+[2025-06-24T14:58:20.020+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-1.0_59.png
+[2025-06-24T14:58:20.133+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:20.561+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:20.626+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-0.75.png
+[2025-06-24T14:58:20.754+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-0.75_59.png
+[2025-06-24T14:58:20.934+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:21.263+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:21.317+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-0.5.png
+[2025-06-24T14:58:21.427+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-0.5_62.png
+[2025-06-24T14:58:21.617+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:21.944+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:22.020+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_-0.25.png
+[2025-06-24T14:58:22.145+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_-0.25_65.png
+[2025-06-24T14:58:22.302+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:22.532+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:22.579+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_0.0.png
+[2025-06-24T14:58:22.690+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_0.0_78.png
+[2025-06-24T14:58:22.942+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:23.328+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:23.386+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_0.25.png
+[2025-06-24T14:58:23.512+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_0.25_77.png
+[2025-06-24T14:58:23.733+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:24.081+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:24.128+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_0.5.png
+[2025-06-24T14:58:24.297+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_0.5_71.png
+[2025-06-24T14:58:24.428+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:24.767+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:24.865+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_0.75.png
+[2025-06-24T14:58:25.016+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_0.75_73.png
+[2025-06-24T14:58:25.140+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:25.533+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:25.633+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_1.0.png
+[2025-06-24T14:58:25.761+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_1.0_71.png
+[2025-06-24T14:58:25.911+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:26.247+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:26.351+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_1.25.png
+[2025-06-24T14:58:26.484+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_1.25_83.png
+[2025-06-24T14:58:26.661+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:27.084+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:27.245+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_1.5.png
+[2025-06-24T14:58:27.375+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_1.5_85.png
+[2025-06-24T14:58:27.521+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:27.989+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:28.108+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_1.75.png
+[2025-06-24T14:58:28.227+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_1.75_90.png
+[2025-06-24T14:58:28.352+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:28.761+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:28.886+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_2.0.png
+[2025-06-24T14:58:29.008+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_2.0_188.png
+[2025-06-24T14:58:29.180+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:29.710+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:29.916+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_2.25.png
+[2025-06-24T14:58:30.100+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_2.25_550.png
+[2025-06-24T14:58:30.277+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:30.944+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:31.026+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_2.5.png
+[2025-06-24T14:58:31.198+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_2.5_1088.png
+[2025-06-24T14:58:31.439+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:32.317+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:32.425+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_2.75.png
+[2025-06-24T14:58:32.562+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_2.75_1650.png
+[2025-06-24T14:58:32.800+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:33.335+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:33.442+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_3.0.png
+[2025-06-24T14:58:33.718+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_3.0_7677.png
+[2025-06-24T14:58:33.912+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:34.651+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:34.754+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_3.25.png
+[2025-06-24T14:58:34.884+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_3.25_25874.png
+[2025-06-24T14:58:35.096+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:35.813+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:35.935+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_3.5.png
+[2025-06-24T14:58:36.089+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_3.5_48218.png
+[2025-06-24T14:58:36.342+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:37.054+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:37.142+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_3.75.png
+[2025-06-24T14:58:37.277+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_3.75_70487.png
+[2025-06-24T14:58:37.463+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:38.136+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:38.215+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_4.0.png
+[2025-06-24T14:58:38.353+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_4.0_142015.png
+[2025-06-24T14:58:38.531+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:39.034+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:39.081+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_4.25.png
+[2025-06-24T14:58:39.215+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_4.25_87471.png
+[2025-06-24T14:58:39.325+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:39.851+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:39.945+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_4.5.png
+[2025-06-24T14:58:40.117+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_4.5_55375.png
+[2025-06-24T14:58:40.312+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:40.945+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:41.021+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_4.75.png
+[2025-06-24T14:58:41.143+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_4.75_32788.png
+[2025-06-24T14:58:41.311+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:41.745+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1.png
+[2025-06-24T14:58:41.825+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_1_5.0.png
+[2025-06-24T14:58:41.943+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_1_5.0_12193.png
+[2025-06-24T14:58:41.950+0900] {logging_mixin.py:190} INFO - osd 1 4.0 4.0 36 142015 [0, 0, 0, 3, 6, 12, 17, 25, 25, 29, 36, 41, 46, 48, 52, 54, 59, 59, 62, 65, 78, 77, 71, 73, 71, 83, 85, 90, 188, 550, 1088, 1650, 7677, 25874, 48218, 70487, 142015, 87471, 55375, 32788, 12193]
+[2025-06-24T14:58:42.323+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:42.971+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:43.036+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-5.0.png
+[2025-06-24T14:58:43.256+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-5.0_3076.png
+[2025-06-24T14:58:43.771+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:44.456+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:44.535+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-4.75.png
+[2025-06-24T14:58:44.717+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-4.75_3596.png
+[2025-06-24T14:58:45.140+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:46.131+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:46.340+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-4.5.png
+[2025-06-24T14:58:46.587+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-4.5_4162.png
+[2025-06-24T14:58:47.141+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:47.953+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:48.120+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-4.25.png
+[2025-06-24T14:58:48.387+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-4.25_4744.png
+[2025-06-24T14:58:48.915+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:49.659+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:49.735+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-4.0.png
+[2025-06-24T14:58:50.031+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-4.0_5267.png
+[2025-06-24T14:58:50.627+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:51.017+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:51.130+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-3.75.png
+[2025-06-24T14:58:51.299+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-3.75_5617.png
+[2025-06-24T14:58:51.806+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:52.274+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:52.341+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-3.5.png
+[2025-06-24T14:58:52.493+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-3.5_5229.png
+[2025-06-24T14:58:52.831+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:53.396+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:53.469+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-3.25.png
+[2025-06-24T14:58:53.766+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-3.25_5157.png
+[2025-06-24T14:58:53.991+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:54.456+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:54.536+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-3.0.png
+[2025-06-24T14:58:54.686+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-3.0_4581.png
+[2025-06-24T14:58:54.936+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:55.340+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:55.393+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-2.75.png
+[2025-06-24T14:58:55.618+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-2.75_4129.png
+[2025-06-24T14:58:55.887+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:56.348+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:56.402+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-2.5.png
+[2025-06-24T14:58:56.582+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-2.5_3366.png
+[2025-06-24T14:58:56.926+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:57.289+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:57.349+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-2.25.png
+[2025-06-24T14:58:57.543+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-2.25_2831.png
+[2025-06-24T14:58:57.791+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:58.284+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:58.350+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-2.0.png
+[2025-06-24T14:58:58.490+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-2.0_2331.png
+[2025-06-24T14:58:58.863+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:59.484+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:58:59.570+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-1.75.png
+[2025-06-24T14:58:59.829+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-1.75_2057.png
+[2025-06-24T14:59:00.115+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:00.501+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:00.562+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-1.5.png
+[2025-06-24T14:59:00.711+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-1.5_1782.png
+[2025-06-24T14:59:00.969+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:01.433+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:01.547+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-1.25.png
+[2025-06-24T14:59:01.759+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-1.25_1719.png
+[2025-06-24T14:59:02.025+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:02.419+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:02.477+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-1.0.png
+[2025-06-24T14:59:02.660+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-1.0_8784.png
+[2025-06-24T14:59:02.955+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:03.261+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:03.317+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-0.75.png
+[2025-06-24T14:59:03.458+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-0.75_30302.png
+[2025-06-24T14:59:03.736+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:04.153+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:04.210+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-0.5.png
+[2025-06-24T14:59:04.339+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-0.5_53871.png
+[2025-06-24T14:59:04.674+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:05.073+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:05.154+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_-0.25.png
+[2025-06-24T14:59:05.281+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_-0.25_77753.png
+[2025-06-24T14:59:05.492+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:05.914+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:06.010+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_0.0.png
+[2025-06-24T14:59:06.156+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_0.0_152433.png
+[2025-06-24T14:59:06.525+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:07.044+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:07.087+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_0.25.png
+[2025-06-24T14:59:07.214+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_0.25_96693.png
+[2025-06-24T14:59:07.596+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:08.079+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:08.184+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_0.5.png
+[2025-06-24T14:59:08.523+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_0.5_60702.png
+[2025-06-24T14:59:08.904+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:09.523+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:09.599+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_0.75.png
+[2025-06-24T14:59:09.757+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_0.75_36894.png
+[2025-06-24T14:59:10.094+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:10.613+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:10.718+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_1.0.png
+[2025-06-24T14:59:10.877+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_1.0_13154.png
+[2025-06-24T14:59:11.304+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:11.929+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:11.986+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_1.25.png
+[2025-06-24T14:59:12.233+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_1.25_1772.png
+[2025-06-24T14:59:12.651+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:13.170+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:13.253+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_1.5.png
+[2025-06-24T14:59:13.390+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_1.5_1267.png
+[2025-06-24T14:59:13.847+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:14.342+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:14.399+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_1.75.png
+[2025-06-24T14:59:14.590+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_1.75_1340.png
+[2025-06-24T14:59:14.950+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:15.467+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:15.541+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_2.0.png
+[2025-06-24T14:59:15.839+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_2.0_1363.png
+[2025-06-24T14:59:16.128+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:16.770+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:16.908+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_2.25.png
+[2025-06-24T14:59:17.091+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_2.25_1341.png
+[2025-06-24T14:59:17.477+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:17.994+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:18.123+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_2.5.png
+[2025-06-24T14:59:18.288+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_2.5_1311.png
+[2025-06-24T14:59:18.852+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:19.501+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:19.587+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_2.75.png
+[2025-06-24T14:59:19.754+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_2.75_1390.png
+[2025-06-24T14:59:20.167+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:20.695+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:20.782+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_3.0.png
+[2025-06-24T14:59:20.913+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_3.0_1410.png
+[2025-06-24T14:59:21.222+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:21.721+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:21.792+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_3.25.png
+[2025-06-24T14:59:21.993+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_3.25_1256.png
+[2025-06-24T14:59:22.246+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:22.692+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:22.777+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_3.5.png
+[2025-06-24T14:59:22.946+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_3.5_1269.png
+[2025-06-24T14:59:23.203+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:23.665+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:23.729+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_3.75.png
+[2025-06-24T14:59:23.979+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_3.75_1154.png
+[2025-06-24T14:59:24.230+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:24.667+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:24.740+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_4.0.png
+[2025-06-24T14:59:24.958+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_4.0_1087.png
+[2025-06-24T14:59:25.229+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:25.789+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:25.877+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_4.25.png
+[2025-06-24T14:59:26.019+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_4.25_930.png
+[2025-06-24T14:59:26.361+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:26.889+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:26.994+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_4.5.png
+[2025-06-24T14:59:27.177+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_4.5_869.png
+[2025-06-24T14:59:27.449+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:27.921+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:28.005+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_4.75.png
+[2025-06-24T14:59:28.195+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_4.75_719.png
+[2025-06-24T14:59:28.433+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:28.919+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2.png
+[2025-06-24T14:59:29.005+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_2_5.0.png
+[2025-06-24T14:59:29.172+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_2_5.0_591.png
+[2025-06-24T14:59:29.181+0900] {logging_mixin.py:190} INFO - osd 2 4.0 0.0 20 152433 [3076, 3596, 4162, 4744, 5267, 5617, 5229, 5157, 4581, 4129, 3366, 2831, 2331, 2057, 1782, 1719, 8784, 30302, 53871, 77753, 152433, 96693, 60702, 36894, 13154, 1772, 1267, 1340, 1363, 1341, 1311, 1390, 1410, 1256, 1269, 1154, 1087, 930, 869, 719, 591]
+[2025-06-24T14:59:29.558+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:30.072+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:30.131+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-5.0.png
+[2025-06-24T14:59:30.312+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-5.0_3076.png
+[2025-06-24T14:59:30.703+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:31.350+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:31.411+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-4.75.png
+[2025-06-24T14:59:31.580+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-4.75_3596.png
+[2025-06-24T14:59:31.907+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:32.347+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:32.449+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-4.5.png
+[2025-06-24T14:59:32.628+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-4.5_4162.png
+[2025-06-24T14:59:32.920+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:33.397+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:33.470+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-4.25.png
+[2025-06-24T14:59:33.619+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-4.25_4744.png
+[2025-06-24T14:59:33.877+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:34.358+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:34.429+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-4.0.png
+[2025-06-24T14:59:34.559+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-4.0_5267.png
+[2025-06-24T14:59:34.837+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:35.298+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:35.386+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-3.75.png
+[2025-06-24T14:59:35.565+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-3.75_5617.png
+[2025-06-24T14:59:35.799+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:36.291+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:36.381+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-3.5.png
+[2025-06-24T14:59:36.520+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-3.5_5229.png
+[2025-06-24T14:59:36.779+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:37.183+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:37.249+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-3.25.png
+[2025-06-24T14:59:37.415+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-3.25_5157.png
+[2025-06-24T14:59:37.667+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:38.080+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:38.165+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-3.0.png
+[2025-06-24T14:59:38.307+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-3.0_4581.png
+[2025-06-24T14:59:38.537+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:38.956+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:39.028+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-2.75.png
+[2025-06-24T14:59:39.227+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-2.75_4129.png
+[2025-06-24T14:59:39.417+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:39.851+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:39.911+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-2.5.png
+[2025-06-24T14:59:40.168+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-2.5_3366.png
+[2025-06-24T14:59:40.406+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:40.854+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:41.016+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-2.25.png
+[2025-06-24T14:59:41.312+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-2.25_2831.png
+[2025-06-24T14:59:41.728+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:42.276+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:42.346+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-2.0.png
+[2025-06-24T14:59:42.496+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-2.0_2331.png
+[2025-06-24T14:59:42.871+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:43.439+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:43.505+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-1.75.png
+[2025-06-24T14:59:43.706+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-1.75_2057.png
+[2025-06-24T14:59:43.977+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:44.541+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:44.639+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-1.5.png
+[2025-06-24T14:59:44.777+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-1.5_1782.png
+[2025-06-24T14:59:45.186+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:45.821+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:45.905+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-1.25.png
+[2025-06-24T14:59:46.087+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-1.25_1719.png
+[2025-06-24T14:59:46.403+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:46.852+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:46.963+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-1.0.png
+[2025-06-24T14:59:47.108+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-1.0_8784.png
+[2025-06-24T14:59:47.518+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:48.166+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:48.280+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-0.75.png
+[2025-06-24T14:59:48.428+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-0.75_30302.png
+[2025-06-24T14:59:48.923+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:49.581+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:49.642+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-0.5.png
+[2025-06-24T14:59:49.779+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-0.5_53871.png
+[2025-06-24T14:59:50.319+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:51.040+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:51.159+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_-0.25.png
+[2025-06-24T14:59:51.327+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_-0.25_77753.png
+[2025-06-24T14:59:51.882+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:52.558+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:52.640+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_0.0.png
+[2025-06-24T14:59:52.821+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_0.0_152433.png
+[2025-06-24T14:59:53.379+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:54.228+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:54.317+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_0.25.png
+[2025-06-24T14:59:54.455+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_0.25_96693.png
+[2025-06-24T14:59:54.794+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:55.342+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:55.412+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_0.5.png
+[2025-06-24T14:59:55.549+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_0.5_60702.png
+[2025-06-24T14:59:55.944+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:56.413+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:56.471+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_0.75.png
+[2025-06-24T14:59:56.622+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_0.75_36894.png
+[2025-06-24T14:59:57.052+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:57.473+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:57.578+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_1.0.png
+[2025-06-24T14:59:57.721+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_1.0_13154.png
+[2025-06-24T14:59:58.135+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:58.828+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T14:59:58.953+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_1.25.png
+[2025-06-24T14:59:59.200+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_1.25_1772.png
+[2025-06-24T14:59:59.633+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:00.161+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:00.242+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_1.5.png
+[2025-06-24T15:00:00.408+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_1.5_1267.png
+[2025-06-24T15:00:00.766+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:01.377+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:01.522+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_1.75.png
+[2025-06-24T15:00:01.679+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_1.75_1340.png
+[2025-06-24T15:00:02.023+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:02.497+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:02.594+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_2.0.png
+[2025-06-24T15:00:02.727+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_2.0_1363.png
+[2025-06-24T15:00:03.036+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:03.366+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:03.426+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_2.25.png
+[2025-06-24T15:00:03.600+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_2.25_1341.png
+[2025-06-24T15:00:03.846+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:04.296+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:04.378+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_2.5.png
+[2025-06-24T15:00:04.506+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_2.5_1311.png
+[2025-06-24T15:00:04.767+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:05.247+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:05.344+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_2.75.png
+[2025-06-24T15:00:05.483+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_2.75_1390.png
+[2025-06-24T15:00:05.747+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:06.331+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:06.378+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_3.0.png
+[2025-06-24T15:00:06.550+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_3.0_1410.png
+[2025-06-24T15:00:06.853+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:07.353+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:07.412+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_3.25.png
+[2025-06-24T15:00:07.563+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_3.25_1256.png
+[2025-06-24T15:00:07.881+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:08.283+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:08.350+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_3.5.png
+[2025-06-24T15:00:08.507+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_3.5_1269.png
+[2025-06-24T15:00:08.735+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:09.254+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:09.320+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_3.75.png
+[2025-06-24T15:00:09.549+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_3.75_1154.png
+[2025-06-24T15:00:09.893+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:10.326+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:10.380+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_4.0.png
+[2025-06-24T15:00:10.546+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_4.0_1087.png
+[2025-06-24T15:00:10.789+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:11.256+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:11.318+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_4.25.png
+[2025-06-24T15:00:11.485+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_4.25_930.png
+[2025-06-24T15:00:11.901+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:12.422+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:12.512+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_4.5.png
+[2025-06-24T15:00:12.752+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_4.5_869.png
+[2025-06-24T15:00:12.989+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:13.477+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:13.534+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_4.75.png
+[2025-06-24T15:00:13.757+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_4.75_719.png
+[2025-06-24T15:00:14.044+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:14.564+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3.png
+[2025-06-24T15:00:14.623+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_3_5.0.png
+[2025-06-24T15:00:14.807+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_3_5.0_591.png
+[2025-06-24T15:00:14.830+0900] {logging_mixin.py:190} INFO - osd 3 4.0 0.0 20 152433 [3076, 3596, 4162, 4744, 5267, 5617, 5229, 5157, 4581, 4129, 3366, 2831, 2331, 2057, 1782, 1719, 8784, 30302, 53871, 77753, 152433, 96693, 60702, 36894, 13154, 1772, 1267, 1340, 1363, 1341, 1311, 1390, 1410, 1256, 1269, 1154, 1087, 930, 869, 719, 591]
+[2025-06-24T15:00:15.213+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:15.654+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:15.740+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-5.0.png
+[2025-06-24T15:00:15.964+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-5.0_3076.png
+[2025-06-24T15:00:16.198+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:16.702+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:16.805+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-4.75.png
+[2025-06-24T15:00:17.030+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-4.75_3596.png
+[2025-06-24T15:00:17.379+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:17.936+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:18.014+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-4.5.png
+[2025-06-24T15:00:18.208+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-4.5_4162.png
+[2025-06-24T15:00:18.567+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:19.154+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:19.247+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-4.25.png
+[2025-06-24T15:00:19.453+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-4.25_4744.png
+[2025-06-24T15:00:19.942+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:20.588+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:20.675+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-4.0.png
+[2025-06-24T15:00:20.874+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-4.0_5267.png
+[2025-06-24T15:00:21.242+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:21.896+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:21.957+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-3.75.png
+[2025-06-24T15:00:22.179+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-3.75_5617.png
+[2025-06-24T15:00:22.627+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:23.556+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:23.666+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-3.5.png
+[2025-06-24T15:00:23.844+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-3.5_5229.png
+[2025-06-24T15:00:24.469+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:25.459+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:25.571+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4_-3.25.png
+[2025-06-24T15:00:25.826+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate22_4_-3.25_5157.png
+[2025-06-24T15:00:26.291+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:27.071+0900] {logging_mixin.py:190} INFO - file_copy: /opt/***/data/temp/d2d4c79b-dd64-4a7b-bf44-328a72c54aba/8e4a357b-9642-44db-b52e-cbf2ba76b449/rotate21_4.png
+[2025-06-24T15:00:27.142+0900] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2025-06-24T15:00:27.146+0900] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-06-24T15:00:27.154+0900] {process_utils.py:132} INFO - Sending 15 to group 46341. PIDs of all processes in the group: [46341]
+[2025-06-24T15:00:27.154+0900] {process_utils.py:87} INFO - Sending the signal 15 to group 46341
+[2025-06-24T15:00:27.183+0900] {taskinstance.py:3094} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-06-24T15:00:27.201+0900] {taskinstance.py:3095} ERROR - Stacktrace: 
+  File "/home/***/.local/bin/***", line 8, in <module>
+    sys.exit(main())
+  File "/home/***/.local/lib/python3.12/site-packages/***/__main__.py", line 62, in main
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 64, in wrapper
+    providers_configuration_loaded(func)(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/providers_configuration_loader.py", line 55, in wrapped_function
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 237, in worker
+    _run_command_with_daemon_option(
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 50, in _run_command_with_daemon_option
+    run_command_with_daemon_option(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/daemon_utils.py", line 86, in run_command_with_daemon_option
+    callback()
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/cli/celery_command.py", line 230, in run_celery_worker
+    celery_app.worker_main(options)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 391, in worker_main
+    self.start(argv=argv)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/base.py", line 371, in start
+    celery.main(args=argv, standalone_mode=False)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/***/.local/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/base.py", line 135, in caller
+    return f(ctx, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bin/worker.py", line 356, in worker
+    worker.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/worker/worker.py", line 202, in start
+    self.blueprint.start(self)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/bootsteps.py", line 365, in start
+    return self.obj.start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/base.py", line 130, in start
+    self.on_start()
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/prefork.py", line 109, in on_start
+    P = self._pool = Pool(processes=self.limit,
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 464, in __init__
+    super().__init__(processes, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1046, in __init__
+    self._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/concurrency/asynpool.py", line 482, in _create_worker_process
+    return super()._create_worker_process(i)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 1158, in _create_worker_process
+    w.start()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 120, in start
+    self._popen = self._Popen(self)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/context.py", line 331, in _Popen
+    return Popen(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 22, in __init__
+    self._launch(process_obj)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/popen_fork.py", line 77, in _launch
+    code = process_obj._bootstrap()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 323, in _bootstrap
+    self.run()
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+  File "/home/***/.local/lib/python3.12/site-packages/billiard/pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 651, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 139, in execute_command
+    _execute_in_fork(command_to_exec, celery_task_id)
+  File "/home/***/.local/lib/python3.12/site-packages/***/providers/celery/executors/celery_executor_utils.py", line 171, in _execute_in_fork
+    args.func(args)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 254, in _run_task_by_selected_method
+    return _run_task_by_local_task_job(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 322, in _run_task_by_local_task_job
+    ret = run_job(job=job_runner.job, execute_callable=job_runner._execute)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 421, in run_job
+    return execute_job(job, execute_callable=execute_callable)
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/job.py", line 450, in execute_job
+    ret = execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/jobs/local_task_job_runner.py", line 171, in _execute
+    self.task_runner.start()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 55, in start
+    self.process = self._start_by_fork()
+  File "/home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/***/.local/lib/python3.12/site-packages/***/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/decorators/base.py", line 266, in execute
+    return_value = super().execute(context)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/***/.local/lib/python3.12/site-packages/***/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/***/.local/lib/python3.12/site-packages/***/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 64, in img_preprocess_task
+    output = function_info["function"](input,**stepinfo["param"])
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 407, in calc_angle_set2
+    print(f"osd {idx}",total_angle,best_angle,scores.index(max(scores)), max(scores), scores)
+  File "/opt/***/dags/tasks/img_preprocess_task.py", line 386, in long_kernal_score
+    score = cv2.countNonZero(horizon_eroded) + cv2.countNonZero(vertical_eroded) + cv2.countNonZero(horizon_eroded2) + cv2.countNonZero(vertical_eroded2)
+  File "/opt/***/dags/utils/type_convert_util.py", line 24, in convert_type
+    return _call_with_compatible_args(func_info, data, params)
+  File "/opt/***/dags/utils/type_convert_util.py", line 193, in _call_with_compatible_args
+    return f(data, **call_args)
+  File "/opt/***/dags/utils/type_convert_util.py", line 70, in np_bgr_to_file
+    return _np_to_file(_img,file_path)
+  File "/opt/***/dags/utils/type_convert_util.py", line 154, in _np_to_file
+    status = cv2.imwrite(file_path, _img)
+  File "/home/***/.local/lib/python3.12/site-packages/***/models/taskinstance.py", line 3095, in signal_handler
+    self.log.error("Stacktrace: \n%s", "".join(traceback.format_stack()))
+
+[2025-06-24T15:00:27.261+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-24T15:00:27.295+0900] {process_utils.py:80} INFO - Process psutil.Process(pid=46341, status='terminated', exitcode=0, started='14:58:04') (46341) terminated with exit code 0

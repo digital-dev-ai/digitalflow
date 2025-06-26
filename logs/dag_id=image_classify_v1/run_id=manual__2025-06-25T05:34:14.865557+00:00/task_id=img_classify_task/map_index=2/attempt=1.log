@@ -1,0 +1,27 @@
+[2025-06-25T14:34:46.895+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T14:34:46.920+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:34:14.865557+00:00 map_index=2 [queued]>
+[2025-06-25T14:34:46.935+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:34:14.865557+00:00 map_index=2 [queued]>
+[2025-06-25T14:34:46.936+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T14:34:46.950+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_classify_task> on 2025-06-25 05:34:14.865557+00:00
+[2025-06-25T14:34:46.963+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=87124) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T14:34:46.965+0900] {standard_task_runner.py:72} INFO - Started process 87168 to run task
+[2025-06-25T14:34:46.966+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'img_classify_task', 'manual__2025-06-25T05:34:14.865557+00:00', '--job-id', '5287', '--raw', '--subdir', 'DAGS_FOLDER/img_classify_dag.py', '--cfg-path', '/tmp/tmpy1m82dqn', '--map-index', '2']
+[2025-06-25T14:34:46.969+0900] {standard_task_runner.py:105} INFO - Job 5287: Subtask img_classify_task
+[2025-06-25T14:34:47.017+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:34:14.865557+00:00 map_index=2 [running]> on host f6d4228a9eb8
+[2025-06-25T14:34:47.115+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='img_classify_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T05:34:14.865557+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T05:34:14.865557+00:00'
+[2025-06-25T14:34:47.117+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T14:34:49.991+0900] {logging_mixin.py:190} INFO - 1. 모델 및 프로세서 로드 완료
+[2025-06-25T14:34:50.016+0900] {logging_mixin.py:190} INFO - 3-2. OCR 수행 시작
+[2025-06-25T14:36:23.502+0900] {logging_mixin.py:190} INFO - 3-3. OCR 수행 완료
+[2025-06-25T14:36:23.503+0900] {logging_mixin.py:190} INFO - 3-4. 전처리 완료 (단어 수: 226, 박스 수: 226)
+[2025-06-25T14:36:23.504+0900] {logging_mixin.py:190} INFO - 4-1. 모델 입력 생성 시작
+[2025-06-25T14:36:23.509+0900] {logging_mixin.py:190} INFO - 4-2. 모델 입력 생성 완료
+[2025-06-25T14:36:23.514+0900] {logging_mixin.py:190} INFO - 4-3. 모델 예측 중...
+[2025-06-25T14:36:25.932+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '0d4dcac5-7809-42ce-9d32-52b9f19b3631', 'file_path': '/opt/***/data/upload/Gas Engine 점검일지_ 2021년 2월.pdf-image-007.jpg', 'a_class_preprc': {'process_id': '_c6332ee1-a4b5-4f0c-ba17-0b177b032d71_pre', 'folder_path': '0d4dcac5-7809-42ce-9d32-52b9f19b3631/c6332ee1-a4b5-4f0c-ba17-0b177b032d71', 'step_list': [{'name': 'cache', 'param': {'cache_key': 'origin'}}], 'result_file_map': {'_result': '/opt/***/data/temp/0d4dcac5-7809-42ce-9d32-52b9f19b3631/c6332ee1-a4b5-4f0c-ba17-0b177b032d71/_result.png'}}, 'classify': {'a_class': {'pred': 0, 'confidence': 0.9993948936462402}}}
+[2025-06-25T14:36:25.992+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T14:36:25.992+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_classify_v1, task_id=img_classify_task, run_id=manual__2025-06-25T05:34:14.865557+00:00, map_index=2, execution_date=20250625T053414, start_date=20250625T053446, end_date=20250625T053625
+[2025-06-25T14:36:26.095+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T14:36:26.127+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T14:36:26.131+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

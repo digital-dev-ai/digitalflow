@@ -1,0 +1,21 @@
+[2025-06-26T09:47:04.728+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-26T09:47:04.752+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_preprocess_v1.init_task manual__2025-06-26T00:47:02.756279+00:00 [queued]>
+[2025-06-26T09:47:04.770+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_preprocess_v1.init_task manual__2025-06-26T00:47:02.756279+00:00 [queued]>
+[2025-06-26T09:47:04.771+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-26T09:47:04.830+0900] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): init_task> on 2025-06-26 00:47:02.756279+00:00
+[2025-06-26T09:47:04.856+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=16237) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-26T09:47:04.863+0900] {standard_task_runner.py:72} INFO - Started process 16246 to run task
+[2025-06-26T09:47:04.865+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_preprocess_v1', 'init_task', 'manual__2025-06-26T00:47:02.756279+00:00', '--job-id', '5520', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmp9hepkn2w']
+[2025-06-26T09:47:04.876+0900] {standard_task_runner.py:105} INFO - Job 5520: Subtask init_task
+[2025-06-26T09:47:05.054+0900] {task_command.py:467} INFO - Running <TaskInstance: image_preprocess_v1.init_task manual__2025-06-26T00:47:02.756279+00:00 [running]> on host f6d4228a9eb8
+[2025-06-26T09:47:05.403+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_preprocess_v1' AIRFLOW_CTX_TASK_ID='init_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-26T00:47:02.756279+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-26T00:47:02.756279+00:00'
+[2025-06-26T09:47:05.409+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-26T09:47:05.458+0900] {base.py:84} INFO - Retrieving connection 'maria_db_conn'
+[2025-06-26T09:47:05.502+0900] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-26T09:47:05.543+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-26T09:47:05.546+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_preprocess_v1, task_id=init_task, run_id=manual__2025-06-26T00:47:02.756279+00:00, execution_date=20250626T004702, start_date=20250626T004704, end_date=20250626T004705
+[2025-06-26T09:47:05.669+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-26T09:47:05.825+0900] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-26T09:47:05.832+0900] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,27 @@
+[2025-06-25T14:05:11.988+0900] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-25T14:05:12.014+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:04:43.509185+00:00 map_index=3 [queued]>
+[2025-06-25T14:05:12.028+0900] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:04:43.509185+00:00 map_index=3 [queued]>
+[2025-06-25T14:05:12.029+0900] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-06-25T14:05:12.041+0900] {taskinstance.py:2890} INFO - Executing <Mapped(_PythonDecoratedOperator): img_classify_task> on 2025-06-25 05:04:43.509185+00:00
+[2025-06-25T14:05:12.055+0900] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=86379) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-25T14:05:12.057+0900] {standard_task_runner.py:72} INFO - Started process 86435 to run task
+[2025-06-25T14:05:12.057+0900] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'image_classify_v1', 'img_classify_task', 'manual__2025-06-25T05:04:43.509185+00:00', '--job-id', '5265', '--raw', '--subdir', 'DAGS_FOLDER/img_classify_dag.py', '--cfg-path', '/tmp/tmp826t4ql4', '--map-index', '3']
+[2025-06-25T14:05:12.060+0900] {standard_task_runner.py:105} INFO - Job 5265: Subtask img_classify_task
+[2025-06-25T14:05:12.111+0900] {task_command.py:467} INFO - Running <TaskInstance: image_classify_v1.img_classify_task manual__2025-06-25T05:04:43.509185+00:00 map_index=3 [running]> on host f6d4228a9eb8
+[2025-06-25T14:05:12.209+0900] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='image_classify_v1' AIRFLOW_CTX_TASK_ID='img_classify_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-25T05:04:43.509185+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-25T05:04:43.509185+00:00'
+[2025-06-25T14:05:12.210+0900] {taskinstance.py:732} INFO - ::endgroup::
+[2025-06-25T14:05:15.252+0900] {logging_mixin.py:190} INFO - 1. 모델 및 프로세서 로드 완료
+[2025-06-25T14:05:15.312+0900] {logging_mixin.py:190} INFO - 3-2. OCR 수행 시작
+[2025-06-25T14:07:30.343+0900] {logging_mixin.py:190} INFO - 3-3. OCR 수행 완료
+[2025-06-25T14:07:30.352+0900] {logging_mixin.py:190} INFO - 3-4. 전처리 완료 (단어 수: 226, 박스 수: 226)
+[2025-06-25T14:07:30.352+0900] {logging_mixin.py:190} INFO - 4-1. 모델 입력 생성 시작
+[2025-06-25T14:07:30.363+0900] {logging_mixin.py:190} INFO - 4-2. 모델 입력 생성 완료
+[2025-06-25T14:07:30.365+0900] {logging_mixin.py:190} INFO - 4-3. 모델 예측 중...
+[2025-06-25T14:07:33.956+0900] {python.py:240} INFO - Done. Returned value was: {'file_id': '367dcbce-6066-4b14-9af3-6ba49b1ffe6c', 'file_path': '/opt/***/data/upload/광장동 가람빌딩 - 정부24 - 건축물대장 등본(초본) 발급(열람) _ 문서출력_page_1_aug1.png', 'a_class_preprc': {'process_id': '_06d6fd95-dbb7-4892-b74f-6a0af936eac1_pre', 'folder_path': '367dcbce-6066-4b14-9af3-6ba49b1ffe6c/06d6fd95-dbb7-4892-b74f-6a0af936eac1', 'step_list': [{'name': 'cache', 'param': {'cache_key': 'origin'}}], 'result_file_map': {'_result': '/opt/***/data/temp/367dcbce-6066-4b14-9af3-6ba49b1ffe6c/06d6fd95-dbb7-4892-b74f-6a0af936eac1/_result.png'}}, 'classify': {'a_class': {'pred': 1, 'confidence': 0.9994679093360901}}}
+[2025-06-25T14:07:34.022+0900] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-06-25T14:07:34.026+0900] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=image_classify_v1, task_id=img_classify_task, run_id=manual__2025-06-25T05:04:43.509185+00:00, map_index=3, execution_date=20250625T050443, start_date=20250625T050512, end_date=20250625T050734
+[2025-06-25T14:07:34.137+0900] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-25T14:07:34.196+0900] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-25T14:07:34.202+0900] {local_task_job_runner.py:245} INFO - ::endgroup::
