@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.decorators import task, task_group
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import os
 import json
@@ -49,11 +49,31 @@ with DAG(
     check_file_branch >> file_info_list_task >> classify_preprocess_task >> classify_preprocess_result_task
     classify_preprocess_result_task >> all_clear_temp_folder_task
 
-# Airflow 2.x에서 Python 스크립트 직접 실행 시에는 DAG가 파싱만 됩니다.
-# 실제 테스트는 Airflow CLI를 통해 실행해야 합니다.
 if __name__ == "__main__":
-    print("이 스크립트를 직접 실행하면 DAG가 Airflow에 로드됩니다.")
-    print("DAG를 테스트하려면 Airflow CLI 명령을 사용하세요.")
-    print("예: airflow dags test image_processing_per_file_v2 2024-01-01")
-    # 주의: 이 부분은 Airflow 2.x에서는 dag_instance를 직접 호출하여 테스트하는 방식이 아닙니다.
-    # DAG 파일은 단순히 Airflow 스케줄러/웹서버가 읽고 파싱할 수 있도록 존재합니다.
+    # 현재 Executor가 DebugExecutor인지 확인
+    # 1. 환경 변수에서 직접 확인
+    current_executor = os.getenv("AIRFLOW__CORE__EXECUTOR", "")
+    is_debug_executor = current_executor.lower() == "debugexecutor"
+
+    # debugExecutor를 사용하면 dag 디버깅이 가능합니다.
+    # 병렬 처리는 안되고 순차적으로 처리됩니다.
+    if is_debug_executor:
+        from pytz import timezone
+        # DebugExecutor 환경에서만 아래 코드 실행
+        KST = timezone(timedelta(hours=9))
+        start_date = datetime(year=2022, month=5, day=1, hour=21, minute=0, second=0, tzinfo=KST)
+        end_date = datetime(year=2022, month=6, day=1, hour=21, minute=0, second=0, tzinfo=KST)
+
+        # 'transform_load' 태스크만 클리어 (실행 전 초기화)
+        dag.clear(task_ids=['transform_load'])
+
+        # DAG 실행 (의존성 무시)
+        dag.run(start_date=start_date, end_date=end_date, ignore_task_deps=True)
+    # Airflow 2.x에서 Python 스크립트 직접 실행 시에는 DAG가 파싱만 됩니다.
+    # 실제 테스트는 Airflow CLI를 통해 실행해야 합니다.
+    else:
+        # 주의: 이 부분은 Airflow 2.x에서는 dag_instance를 직접 호출하여 테스트하는 방식이 아닙니다.
+        # DAG 파일은 단순히 Airflow 스케줄러/웹서버가 읽고 파싱할 수 있도록 존재합니다.
+        print("이 스크립트를 직접 실행하면 DAG가 Airflow에 로드됩니다.")
+        print("DAG를 테스트하려면 Airflow CLI 명령을 사용하세요.")
+        print("예: airflow dags test image_processing_per_file_v2 2024-01-01")

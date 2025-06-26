@@ -50,7 +50,7 @@ def img_preprocess_task(step_info:dict,file_info:dict,result_key:str="result")->
         "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"angle_key"},
         "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":""},
         "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"angle_key"},
-        "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key"},
+        "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,angle_keys"},
         
         "line_tracking": {"function": line_tracking, "input_type": "np_gray", "output_type": "np_gray","param":"iter_save"},
         
@@ -667,9 +667,14 @@ def calc_orientation(img_np_bgr: np.ndarray,angle_key:str) -> np.ndarray:
     return img_np_bgr
 
 
-def rotate(img_np_bgr: np.ndarray,angle_key:str) -> np.ndarray:
+def rotate(img_np_bgr: np.ndarray,angle_key:str=None,angle_keys:List=[]) -> np.ndarray:
     """이미지 회전 함수"""
-    angle = work_in_progress_map[f"angle_{angle_key}"]
+    if len(angle_keys)>0:
+        angle=0.0
+        for angle_key in angle_keys:
+            angle += work_in_progress_map.get(f"angle_{angle_key}",0)
+    else:
+        angle = work_in_progress_map.get(f"angle_{angle_key}",0)
     if angle == 0:
         return img_np_bgr
     rotated = _rotate(img_np_bgr,angle)

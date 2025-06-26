@@ -26,19 +26,20 @@ def get_step_info_list(*keys):
                         {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
                         {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1.0,"limit":8,"iterations":2,"iter_save":False}},
                         {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
-                        #{"name":"save","param":{"save_key":"ag1"}},
                         {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":3,"iter_save":False}},
-                        #{"name":"save","param":{"save_key":"ag2"}},
                         {"name":"load","param":{"cache_key":"origin"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_1"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_2"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_3"}},
-                        {"name":"rotate","param":{"angle_key":"orint"}},
+                        {"name":"rotate","param":{"angle_keys":["angle2_1","angle2_2","angle2_3","orint"]}},
                         {"name":"del_blank_set1","param":{}},
                     ], 
                 }
             },
-            "area_cut":{},
+            "area_cut":{
+                "area_id":113,
+                "area_cnt":1,
+                "area_list":[
+
+                ]
+            },
             "ocr":{},
             "save":{
                 "save_list":[
