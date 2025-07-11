@@ -4,6 +4,8 @@ import chardet
 from typing import Union, Any, List
 
 import logging
+
+from utils.com import file_util
 logger = logging.getLogger(__name__)
 
 def load(file_path:str)->str:
@@ -24,7 +26,7 @@ def load(file_path:str)->str:
         with open(file_path, 'r', encoding=encoding) as file:
             content = file.read()
         logger.info(f"'{os.path.abspath(file_path)}' 파일에서 JSON 데이터를 로드하였습니다.")
-        return content
+        return json.loads(content)
     except FileNotFoundError:
         logger.error(f"오류: '{os.path.abspath(file_path)}' 파일을 찾을 수 없습니다.")
     except UnicodeDecodeError:
@@ -52,17 +54,25 @@ def save(file_path:str, data:Any)->None:
                 return obj.tolist()
             return super().default(obj)
     try:
+        if os.path.exists(file_path):
+            backup_path = file_path + ".bak"
+            file_util.file_copy(file_path, backup_path)  # 기존 파일 백업
         with open(file_path, 'w', encoding='utf-8') as file:
             json.dump(json_data, file, ensure_ascii=False, indent=4, cls=NpEncoder)
         logger.info(f"JSON 데이터가 성공적으로 '{os.path.abspath(file_path)}'에 저장되었습니다.")
+    except FileNotFoundError:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        file_path = save(file_path, data)
     except IOError as e:
         logger.error(f"파일 저장 중 오류가 발생했습니다: {e}")
+        file_path = None
     except json.JSONDecodeError as e:
         logger.error(f"JSON 인코딩 중 오류가 발생했습니다: {e}")
+        file_path = None
     except Exception as e:
         logger.critical(f"예상치 못한 오류가 발생했습니다: {e}")
-        
-
+        file_path = None
+    return file_path
 
 def to_json_text(data:Any) -> str:
     class NpEncoder(json.JSONEncoder):

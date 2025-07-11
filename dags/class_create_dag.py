@@ -3,10 +3,10 @@ from airflow.decorators import task, task_group
 from datetime import datetime
 from tasks.class_create_task import balance_false_images, build_balanced_dataset, train_lilt, image_data_augment
 from tasks.file_task import get_file_info_list_task, copy_results_folder_task
-from tasks.init_task import init_task
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 from airflow.models import Variable,XCom
-from utils import file_util
+from utils.com import file_util
 
 
 NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/none_class") # 비서식 일반 문서 이미지
@@ -30,24 +30,24 @@ with DAG(
     catchup=False,
     tags=['document', 'classification', 'balanced']
 ) as dag:
-    class_create_init_task = init_task()
+    t_class_create_setup_runtime = setup_runtime()
     # 증강 처리
-    image_data_augment_task = image_data_augment(ORIGIN_TRUE_IMAGE_DIR,READY_TRUE_IMAGE_DIR)
+    t_image_data_augment = image_data_augment(ORIGIN_TRUE_IMAGE_DIR,READY_TRUE_IMAGE_DIR)
     # true 파일에 따라 false 파일 채우기
-    balance_result_task = balance_false_images(READY_IMAGE_DIR)
+    t_balance_false_images = balance_false_images(READY_IMAGE_DIR)
     
     #스텝정보 가져오기
-    a_class_classify_preprocess_info = file_util.get_step_info_list("a_class","classify","img_preprocess")
+    d_aclass_classify_preprocess_step_info = file_util.get_config("a_class","classify","img_preprocess")
 
-    true_file_info_list_task = get_file_info_list_task(READY_TRUE_IMAGE_DIR)
-    true_file_preprocess_partial_task = img_preprocess_task.partial(step_info=a_class_classify_preprocess_info,result_key="true")
+    true_file_info_list_task = setup_target_file_list(READY_TRUE_IMAGE_DIR)
+    true_file_preprocess_partial_task = img_preprocess_task.partial(step_info=d_aclass_classify_preprocess_step_info,target_key="_origin")
     true_file_list_task = true_file_preprocess_partial_task.expand(file_info=true_file_info_list_task)
-    true_copy_results_task = copy_results_folder_task(true_file_list_task,dest_folder=PREPRC_TRUE_IMAGE_DIR,result_key="true")
+    true_copy_results_task = copy_results_folder_task(true_file_list_task,dest_folder=PREPRC_TRUE_IMAGE_DIR,target_key="_result")
     
     false_file_info_list_task = get_file_info_list_task(READY_FALSE_IMAGE_DIR)
-    false_file_preprocess_partial_task = img_preprocess_task.partial(step_info=a_class_classify_preprocess_info,result_key="false")
+    false_file_preprocess_partial_task = img_preprocess_task.partial(step_info=d_aclass_classify_preprocess_step_info,target_key="_origin")
     false_file_list_task = false_file_preprocess_partial_task.expand(file_info=false_file_info_list_task)
-    false_copy_results_task = copy_results_folder_task(false_file_list_task,dest_folder=PREPRC_FALSE_IMAGE_DIR,result_key="false")
+    false_copy_results_task = copy_results_folder_task(false_file_list_task,dest_folder=PREPRC_FALSE_IMAGE_DIR,target_key="_result")
 
     # 3. 균형이 맞춰진 데이터셋 구성
     #dataset = build_balanced_dataset(PREPRC_IMAGE_DIR)
@@ -55,8 +55,8 @@ with DAG(
     # 4. 모델 학습
     #train = train_lilt(dataset,OUTPUT_MODEL_DIR)
     
-    class_create_init_task >> image_data_augment_task
-    image_data_augment_task >> balance_result_task >> [true_file_info_list_task, false_file_info_list_task]
+    t_class_create_setup_runtime >> t_image_data_augment
+    t_image_data_augment >> t_balance_false_images >> [true_file_info_list_task, false_file_info_list_task]
     true_file_info_list_task >> true_file_list_task >> true_copy_results_task
     false_file_info_list_task >> false_file_list_task >> false_copy_results_task
     #[true_copy_results_task,false_copy_results_task] >> dataset >> train

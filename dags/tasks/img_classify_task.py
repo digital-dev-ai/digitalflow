@@ -6,9 +6,9 @@ import numpy as np
 import json
 from typing import Any,List
 import uuid
-from utils.db.maria_util import insert_map
-from utils import file_util, json_util
-from utils import type_convert_util
+from utils.db import dococr_query_util
+from utils.com import file_util, json_util
+from utils.img import type_convert_util
 from airflow.models import Variable,XCom
 from datetime import datetime
 import pytesseract
@@ -20,7 +20,7 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 
 @task
-def img_classify_task(ai_info: dict, file_info: dict, result_key: str = "result", class_key: str = "class") -> dict:
+def img_classify_task(ai_info: dict, file_info: dict, target_key: str, class_key: str = "class", **context) -> dict:
     """LiLT 모델로 이미지 분류 결과를 file_info에 저장하여 반환"""
     ai_dir = ai_info["ai_dir"]
     processor_name = ai_info["processor_name"]
@@ -109,16 +109,24 @@ def img_classify_task(ai_info: dict, file_info: dict, result_key: str = "result"
         return pred, confidence
 
     # 실행
-    if result_key not in file_info:
-        image_path = file_info.file_path
-    image_path = file_info[result_key]["result_file_map"]["_result"]
+    if target_key not in file_info["file_path"]:
+        image_path = file_info["file_path"]["_origin"]
+    image_path = file_info["file_path"][target_key]
     pred, confidence = predict(image_path, model, processor)
-    file_info["classify"] = {}
-    file_info["classify"][class_key] = {"pred": pred, "confidence": confidence}
+    classify_result = {"pred": pred, "confidence": confidence}
+    
+    classify_map = file_info.get("classify",{})
+    classify_map[class_key] = classify_result
+    file_info["classify"] = classify_map
+
+    # 결과 폴더에 파일 복사
+    run_id = context['dag_run'].run_id
+    target_id = file_info["file_id"]
+    dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
     return file_info
 
 @task
-def aggregate_classify_results_task(file_infos,class_keys,**context):
+def aggregate_classify_results_task(file_infos:List,class_keys,**context):
     """
     파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
     결과는 파일 정보에 추가되고, 분류 결과 및 파일 복사, DB 저장 등의 후처리를 수행한다.
@@ -136,12 +144,8 @@ def aggregate_classify_results_task(file_infos,class_keys,**context):
         best_class = None
         # 각 클래스별로 신뢰도 비교
         for class_key in class_keys:
-            print(class_key,"시작") 
-            print("1file_info",file_info)
             classify_result = file_info.get("classify", {})
-            print("2classify_result",classify_result)
             class_result = classify_result.get(class_key, {})
-            print("3class_result",class_result)
             pred = class_result.get("pred", 0)
             conf = class_result.get("confidence", 0)
             print(class_key, " - ", pred, " ", conf)
@@ -162,7 +166,7 @@ def aggregate_classify_results_task(file_infos,class_keys,**context):
         run_id = context['dag_run'].run_id
         target_id = file_info["file_id"]
         result_folder = Path(RESULT_FOLDER)/run_id
-        file_util.file_copy(file_info["file_path"],result_folder/Path(file_info["file_path"]).name)
-        insert_map("insertClassifyResult",(run_id,target_id,json.dumps([file_info])))
+        file_util.file_copy(file_info["file_path"]["_origin"],result_folder/Path(file_info["file_path"]["_origin"]).name)
+        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
 
     return file_infos

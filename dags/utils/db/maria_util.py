@@ -1,7 +1,7 @@
 from airflow.providers.mysql.hooks.mysql import MySqlHook
 
 class DBUtil:
-    def __init__(self, conn_id='your_mysql_conn_id'):
+    def __init__(self, conn_id='maria_db_conn'):
         self.conn_id = conn_id
 
     def execute_query(self, query, params=None, fetch=False):
@@ -30,14 +30,30 @@ class DBUtil:
             cursor.close()
             conn.close()
 
+    def execute_many_query(self, query, params_list):
+        """
+        Bulk Insert 쿼리를 실행합니다.
+        :param query: 실행할 SQL 쿼리
+        :param params_list: 파라미터 리스트 (튜플의 리스트)
+        """
+        hook = MySqlHook(mysql_conn_id=self.conn_id)
+        conn = hook.get_conn()
+        cursor = conn.cursor()
+        try:
+            cursor.executemany(query, params_list)  # Bulk Insert
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            raise e
+        finally:
+            cursor.close()
+            conn.close()
+
 def execute(query, params=None, fetch=False):
     db = DBUtil(conn_id='maria_db_conn')
     results = db.execute_query(query, params=params, fetch=fetch)
     return results
 
-def insert_map(key, params=None, fetch=False):
-    map = {
-        "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id) VALUES (%s, %s)",
-        "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)"
-    }
-    execute(map[key], params=params, fetch=fetch)
+def execute_many(query, params_list):
+    db = DBUtil(conn_id='maria_db_conn')
+    db.execute_many_query(query, params_list)

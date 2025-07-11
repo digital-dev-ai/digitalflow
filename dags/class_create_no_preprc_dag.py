@@ -4,7 +4,7 @@ from datetime import datetime
 
 from tasks.class_create_task import balance_false_images, build_balanced_dataset, train_lilt, image_data_augment
 from tasks.file_task import get_file_info_list_task, copy_results_folder_task
-from tasks.init_task import init_task
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 # 경로 설정 (DAG 파라미터로 받거나 환경변수로 설정 가능)
@@ -28,12 +28,12 @@ with DAG(
     catchup=False,
     tags=['document', 'classification', 'balanced']
 ) as dag:
-    class_create_init_task = init_task()
+    class_create_runtime_setup_task = setup_runtime()
     # 3. 균형이 맞춰진 데이터셋 구성
     dataset = build_balanced_dataset(PREPRC_IMAGE_DIR)
 
     # 4. 모델 학습
     train = train_lilt(dataset,OUTPUT_MODEL_DIR)
     
-    class_create_init_task >> dataset >> train
+    class_create_runtime_setup_task >> dataset >> train
     # image_data_augment_task >> balance_result_task >> dataset >> train

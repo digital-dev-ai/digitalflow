@@ -5,15 +5,16 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import os
 import json
-from airflow.models import Variable,XCom
+from airflow.models import Variable, XCom
 # utils 모듈 임포트 (PYTHONPATH에 proj
 # ect_root가 잡혀있다고 가정)
 # 만약 utils 모듈이 DAG 파일과 같은 디렉토리 내에 있다면, 상대 경로 임포트를 고려하거나
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
-from utils import file_util
-from tasks.file_task import check_file_exists_branch,get_file_info_list_task,end_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.init_task import init_task
+from tasks.ocr_task_sjh import ocr_dispatcher_task
+from utils.com import file_util
+from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
@@ -22,38 +23,38 @@ UPLOAD_FOLDER = Variable.get("UPLOAD_FOLDER", default_var="/opt/airflow/data/upl
 
 # DAG 정의 (DAG 클래스 직접 사용)
 with DAG(
-    dag_id="image_preprocess_v1", # 이전 DAG ID와 충돌 방지를 위해 변경
+    dag_id="test_ocr_v1", # 이전 DAG ID와 충돌 방지를 위해 변경
     start_date=datetime(2024, 1, 1),
     schedule=None, # None으로 설정하면 수동 트리거만 가능
     catchup=False,
     tags=['image', 'batch']
 ) as dag:
-    #A클래스 분류를 위한 전처리 스텝 목록
-    test_init_task = init_task()
+    t_test_setup_runtime = setup_runtime()
     
-    a_class_classify_preprocess_info = file_util.get_step_info_list("a_class","classify","img_preprocess")
-    check_file_branch = check_file_exists_branch(UPLOAD_FOLDER)
-    file_info_list_task = get_file_info_list_task(UPLOAD_FOLDER)
-
-    no_file_task = end_task("폴더 안에 파일이 존재하지 않습니다.")
-    classify_preprocess_partial_task = img_preprocess_task.partial(step_info=a_class_classify_preprocess_info)
-    classify_preprocess_task = classify_preprocess_partial_task.expand(file_info=file_info_list_task)
-    classify_preprocess_result_task = copy_results_folder_task(classify_preprocess_task, last_folder="a_class")
-    #a_class_classify_result_task = class_classify_result_task(classify_preprocess_result_task,"a_class")
+    #A클래스에서 분리된 영역
+    STANDARD_FOLDER = "/opt/airflow/data/standard"
+    b_check_file_exists = check_file_exists(STANDARD_FOLDER)
+    t_no_file_end = end_runtime("폴더 안에 파일이 존재하지 않습니다.")
+    t_target_file_info_list = setup_target_file_list(STANDARD_FOLDER)
     
-    all_clear_temp_folder_task = clear_temp_folder_task()
+    area_list = file_util.get_config("a_class","ocr","area_list")
+    t_ocr_dispatcher_task = ocr_dispatcher_task.partial(area_list=area_list,target_key="_origin").expand(file_info=t_target_file_info_list)
+                                                 
+    
+    #all_clear_temp_folder_task = clear_temp_folder_task()
     # 태스크 간 의존성 설정
     # XCom을 통해 데이터가 전달되므로, 태스크 실행 순서만 정의합니다.
-    test_init_task>> check_file_branch
-    check_file_branch >> no_file_task
-    check_file_branch >> file_info_list_task >> classify_preprocess_task >> classify_preprocess_result_task
-    classify_preprocess_result_task >> all_clear_temp_folder_task
+    t_test_setup_runtime>> b_check_file_exists
+    b_check_file_exists >> t_no_file_end
+    b_check_file_exists >> t_target_file_info_list >> t_ocr_dispatcher_task 
+    #t_table_ocr_by_cell >> all_clear_temp_folder_task
 
 if __name__ == "__main__":
     # 현재 Executor가 DebugExecutor인지 확인
     # 1. 환경 변수에서 직접 확인
     current_executor = os.getenv("AIRFLOW__CORE__EXECUTOR", "")
     is_debug_executor = current_executor.lower() == "debugexecutor"
+    print(current_executor,is_debug_executor)
 
     # debugExecutor를 사용하면 dag 디버깅이 가능합니다.
     # 병렬 처리는 안되고 순차적으로 처리됩니다.

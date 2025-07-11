@@ -1,29 +1,16 @@
 from airflow.decorators import task
-from collections import Counter
-from pathlib import Path
-from PIL import Image
-import numpy as np
-import cv2, os
-from typing import Any,List
-import uuid
-from utils.db.maria_util import insert_map
-from utils import file_util, json_util
-from utils import type_convert_util
-from airflow.models import Variable,XCom
-from datetime import datetime
-import pytesseract
-from scipy.ndimage import interpolation as inter
-from transformers import AutoModelForSequenceClassification, AutoProcessor
-import torch
+import os
+from torchvision.transforms import InterpolationMode
+from utils.com import file_util
+from airflow.models import Variable
 import torch.nn.functional as F  # 상단에 추가
+import random
+import shutil
 
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/none_class") # 비서식 일반 문서 이미지
 
-from utils import file_util
-import random
-import shutil
 @task
 def balance_false_images(root_path:str):
     def get_image_count(root_dir):
@@ -272,28 +259,34 @@ def image_data_augment(origin_dir: str, ready_dir: str, threshold=200):
     from PIL import Image
     from torchvision.transforms import functional as F
     
-    def get_augmentation():
-        return transforms.Compose([
-            transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255),
-            transforms.ColorJitter(brightness=0.2, contrast=0.2),
-            transforms.ToTensor()
-        ])
-
     image_paths = file_util.get_image_paths(origin_dir)
+    os.makedirs(ready_dir, exist_ok=True)
     if len(image_paths) < threshold:
-        augmentation = get_augmentation() # 증강 함수
         num_aug = 3  # 원본 1장당 증강 이미지 개수
     else:
-        augmentation = transforms.ToTensor() # 증강없이 진행
         num_aug = 1 # 원본만
-    os.makedirs(ready_dir, exist_ok=True)
 
     for img_path in image_paths:
         img = Image.open(img_path).convert('RGB')
+        width, height = img.size
+        
+        def get_augmentation(width, height):
+            return transforms.Compose([
+                transforms.Resize((height*2, width*2), interpolation=InterpolationMode.BICUBIC),
+                transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255, interpolation=InterpolationMode.BICUBIC),
+                transforms.Resize((height, width), interpolation=InterpolationMode.BICUBIC),
+                transforms.ColorJitter(brightness=0.2, contrast=0.2),
+                transforms.ToTensor()
+            ])
+        if len(image_paths) < threshold:
+            augmentation = get_augmentation(width, height) # 증강 함수
+        else:
+            augmentation = transforms.ToTensor()
+        
         base_name = os.path.splitext(os.path.basename(img_path))[0]
         for i in range(num_aug):
             aug_img = augmentation(img)
             aug_img_pil = transforms.ToPILImage()(aug_img)
             save_path = os.path.join(ready_dir, f"{base_name}_aug{i}.png")
-            aug_img_pil.save(save_path)
+            aug_img_pil.save(save_path, quality=95)
 
