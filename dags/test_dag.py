@@ -11,10 +11,10 @@ from airflow.models import Variable, XCom
 # 만약 utils 모듈이 DAG 파일과 같은 디렉토리 내에 있다면, 상대 경로 임포트를 고려하거나
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
-from tasks.ocr_task_sjh import ocr_dispatcher_task
+from tasks.ocr_task_sjh import ocr_task
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
@@ -37,8 +37,7 @@ with DAG(
     t_no_file_end = end_runtime("폴더 안에 파일이 존재하지 않습니다.")
     t_target_file_info_list = setup_target_file_list(STANDARD_FOLDER)
     
-    area_list = file_util.get_config("a_class","ocr","area_list")
-    t_ocr_dispatcher_task = ocr_dispatcher_task.partial(area_list=area_list,target_key="_origin").expand(file_info=t_target_file_info_list)
+    t_ocr_task = ocr_task.partial(target_key="_origin").expand(file_info=t_target_file_info_list)
                                                  
     
     #all_clear_temp_folder_task = clear_temp_folder_task()
@@ -46,7 +45,7 @@ with DAG(
     # XCom을 통해 데이터가 전달되므로, 태스크 실행 순서만 정의합니다.
     t_test_setup_runtime>> b_check_file_exists
     b_check_file_exists >> t_no_file_end
-    b_check_file_exists >> t_target_file_info_list >> t_ocr_dispatcher_task 
+    b_check_file_exists >> t_target_file_info_list >> t_ocr_task 
     #t_table_ocr_by_cell >> all_clear_temp_folder_task
 
 if __name__ == "__main__":

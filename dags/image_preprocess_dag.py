@@ -13,7 +13,7 @@ from airflow.models import Variable,XCom
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
@@ -35,20 +35,22 @@ with DAG(
     t_no_file_end = end_runtime("폴더 안에 파일이 존재하지 않습니다.")
     t_target_file_info_list = setup_target_file_list(UPLOAD_FOLDER)
 
-    d_aclass_classify_preprocess_info = file_util.get_config("a_class","classify","img_preprocess")
+    d_aclass_classify_preprocess_info = file_util.get_config("general_building_register","a_class","classify","img_preprocess")
     
-    classify_preprocess_task = img_preprocess_task.partial(step_info=d_aclass_classify_preprocess_info,target_key="_origin").expand(file_info=t_target_file_info_list)
-    classify_preprocess_result_task = copy_results_folder_task(classify_preprocess_task, last_folder="a_class", target_key="_result")
+    t_classify_preprocess_task = img_preprocess_task.partial(step_info=d_aclass_classify_preprocess_info,target_key="_origin").expand(file_info=t_target_file_info_list)
+    t_classify_preprocess_remove_failed_results = remove_failed_results(t_classify_preprocess_task)
+    classify_preprocess_result_task = copy_results_folder_task(t_classify_preprocess_remove_failed_results, last_folder="a_class", target_key="_result")
     
     #a_class_classify_result_task = class_classify_result_task(classify_preprocess_result_task,"a_class")
     
-    all_clear_temp_folder_task = clear_temp_folder_task()
+    #all_clear_temp_folder_task = clear_temp_folder_task()
     # 태스크 간 의존성 설정
     # XCom을 통해 데이터가 전달되므로, 태스크 실행 순서만 정의합니다.
     t_test_setup_runtime>> b_check_file_exists
     b_check_file_exists >> t_no_file_end
-    b_check_file_exists >> t_target_file_info_list >> classify_preprocess_task
-    classify_preprocess_task >> classify_preprocess_result_task >> all_clear_temp_folder_task
+    b_check_file_exists >> t_target_file_info_list >> t_classify_preprocess_task >> t_classify_preprocess_remove_failed_results
+    t_classify_preprocess_remove_failed_results >> classify_preprocess_result_task
+    #classify_preprocess_result_task >> all_clear_temp_folder_task
 
 if __name__ == "__main__":
     # 현재 Executor가 DebugExecutor인지 확인

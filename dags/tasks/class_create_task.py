@@ -1,15 +1,22 @@
 from airflow.decorators import task
 import os
+import cv2
+import numpy as np  # np import 추가
+from pandas.core.base import np
 from torchvision.transforms import InterpolationMode
+from utils.ocr import separate_area_util  # import 경로 수정
+from utils.img import img_preprocess_util
+from utils.com import json_util
 from utils.com import file_util
 from airflow.models import Variable
 import torch.nn.functional as F  # 상단에 추가
 import random
 import shutil
+import uuid
 
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
-NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/none_class") # 비서식 일반 문서 이미지
+NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/common/none_class") # 비서식 일반 문서 이미지
 
 @task
 def balance_false_images(root_path:str):
@@ -70,10 +77,10 @@ def balance_false_images(root_path:str):
     return {"copied_count": copied_count, "total_false_count": false_count + copied_count}
 
 @task
-def build_balanced_dataset(root_path):
+def build_balanced_dataset(true_folder:str,false_folder:str):
     """균형이 맞춰진 데이터셋 구성"""
-    true_folder = f"{root_path}/true"
-    false_folder = f"{root_path}/false"
+    # true_folder = f"{root_path}/true"
+    # false_folder = f"{root_path}/false"
     true_image_paths = file_util.get_image_paths(true_folder)
     false_image_paths = file_util.get_image_paths(false_folder)
     
@@ -96,7 +103,7 @@ def build_balanced_dataset(root_path):
 
 
 @task
-def train_lilt(dataset: list, model_dir:str):
+def train_lilt(dataset: list, model_dir:str, horizontal_kernel_ratio: float = 0.8, vertical_kernel_ratio: float = 0.038):
     """LiLT 경량 모델 학습 및 검증 (메모리 최적화 버전)"""
     import torch
     from torch.utils.data import Dataset, DataLoader, random_split
@@ -137,6 +144,26 @@ def train_lilt(dataset: list, model_dir:str):
             image = Image.open(item["image_path"]).convert("RGB")
             image_width, image_height = image.size
 
+            process_id = f"_cc_{str(uuid.uuid4())}"
+            # 1. 상단 헤더 영역만 분리하여 OCR 수행
+            header_img, _ = separate_area_util.separate_area_step_list(
+                image, data_type="pil", output_type="pil",
+                step_list=[{"name":"save","param":{"save_key":"_origin","tmp_save":True}},
+                    {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","area_ratio":[-0.083,0.068,0.188,0.068],"iter_save":False}},
+                    {"name":"save","param":{"save_key":"_cutted","tmp_save":True}}
+                ],
+                result_map={"folder_path":process_id}
+            )
+            # header_img는 PIL.Image 객체
+            header_width, header_height = header_img.size
+            # 헤더 OCR
+            try:
+                data = pytesseract.image_to_data(header_img, output_type=pytesseract.Output.DICT, lang='kor+eng', config='--psm 6 --oem 3')
+            except Exception as e:
+                print(f"OCR error: {e}")
+                data = {"text": [], "left": [], "top": [], "width": [], "height": []}
+            
+            # 1-1. OCR 결과를 lilt 학습을 위햐 변환
             def normalize_bbox(bbox, image_width, image_height):
                 x1, y1, x2, y2 = bbox
                 x1 = int(1000 * (x1 / image_width))
@@ -145,36 +172,72 @@ def train_lilt(dataset: list, model_dir:str):
                 y2 = int(1000 * (y2 / image_height))
                 return [x1, y1, x2, y2]
 
-            try:
-                data = pytesseract.image_to_data(image, output_type=pytesseract.Output.DICT, lang='kor+eng', config='--psm 4 --oem 3')
-            except Exception as e:
-                print(f"OCR error: {e}")
-                data = {"text": [], "left": [], "top": [], "width": [], "height": []}
             words = []
             boxes = []
             for word, x, y, w, h in zip(data['text'], data['left'], data['top'], data['width'], data['height']):
-                if word.strip():  # 공백이나 빈 문자열이 아니면
+                if word.strip():
                     words.append(word.strip())
-                    # 바운딩 박스 좌표 정규화 (x, y, x+w, y+h)
                     bbox = (x, y, x + w, y + h)
-                    norm_bbox = normalize_bbox(bbox, image_width, image_height)
+                    norm_bbox = normalize_bbox(bbox, header_width, header_height)
                     boxes.append(norm_bbox)
 
+            # 2. 표(원본) 영역에서 수평/수직선만 검출 (OCR X)
+            cv_image = np.array(image)
+            if len(cv_image.shape) == 3:
+                cv_image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2GRAY)
+            _, binary = cv2.threshold(cv_image, 180, 255, cv2.THRESH_BINARY_INV)
+            # binary = cv2.MORPH_DILATE 작성중.
+
+            # 수평선 검출 (비율 기반 커널)
+            dilate_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+            detect_horizontal = cv2.morphologyEx(binary, cv2.MORPH_DILATE, dilate_kernel, iterations=1)
             
+            horizontal_kernel_size = max(1, int(image_width * horizontal_kernel_ratio))
+            horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (horizontal_kernel_size, 1))
+            detect_horizontal = cv2.morphologyEx(detect_horizontal, cv2.MORPH_OPEN, horizontal_kernel, iterations=1)
+            detect_horizontal = cv2.morphologyEx(detect_horizontal, cv2.MORPH_CLOSE, horizontal_kernel, iterations=2)
+            contours_h, _ = cv2.findContours(detect_horizontal, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            for cnt in contours_h:
+                x, y, w, h = cv2.boundingRect(cnt)
+                bbox = (x, y, x + w, y + h)
+                norm_bbox = normalize_bbox(bbox, image_width, image_height)
+                words.append('─')
+                boxes.append(norm_bbox)
+            separate_area_util.separate_area_step_list(detect_horizontal, data_type='np_bgr', output_type='np_bgr',
+                step_list=[{"name":"save","param":{"save_key":"_h_contour","tmp_save":True}}], result_map={"folder_path":process_id})
+
+            # 수직선 검출 (비율 기반 커널)
+            vertical_kernel_size = max(1, int(image_height * vertical_kernel_ratio))
+            vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, vertical_kernel_size))
+            detect_vertical = cv2.morphologyEx(binary, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
+            contours_v, _ = cv2.findContours(detect_vertical, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            for cnt in contours_v:
+                x, y, w, h = cv2.boundingRect(cnt)
+                bbox = (x, y, x + w, y + h)
+                norm_bbox = normalize_bbox(bbox, image_width, image_height)
+                words.append('│')
+                boxes.append(norm_bbox)
+            separate_area_util.separate_area_step_list(detect_vertical, data_type='np_bgr', output_type='np_bgr',
+                step_list=[{"name":"save","param":{"save_key":"_v_contour","tmp_save":True}}], result_map={"folder_path":process_id})
+            # data에 words, boxes만 저장
+            data['words'] = words
+            data['boxes'] = boxes
+            # data = {'words': words, 'boxes': boxes}
+            ocr_save_dir = "/opt/airflow/data/class/a_class/classify/ocr"
+            os.makedirs(ocr_save_dir, exist_ok=True)
+            base_name = os.path.splitext(os.path.basename(item["image_path"]))[0]
+            ocr_save_path = os.path.join(ocr_save_dir, f"{base_name}_ocr.json")
+            json_util.save(ocr_save_path, data)
+
             # 워드와 박스 개수 검증 및 길이 맞추기
             if len(words) != len(boxes):
                 print(f"Mismatch between words and boxes: words={len(words)}, boxes={len(boxes)}")
                 min_len = min(len(words), len(boxes))
                 words = words[:min_len]
                 boxes = boxes[:min_len]
-            
-            # 단어가 하나도 없으면 "[UNK]" 하나로 처리
             if not words:
                 words = ["[UNK]"]
                 boxes = [[0, 0, 100, 100]]
-            
-            # boxes를 2D 리스트로 변환 (LayoutLMv3 요구사항)
-            #box_list = [list(box) for box in boxes] if boxes else [[0, 0, 100, 100]]
 
             encoding = self.processor(
                 text=words,

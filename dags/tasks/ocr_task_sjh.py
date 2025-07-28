@@ -1,12 +1,18 @@
+from collections import defaultdict
+import json
 from airflow.decorators import task
 import cv2
+from utils.com import file_util, json_util
+from utils.ocr import structuring_util
+from utils.ocr import ocr_cleansing_util
 import numpy as np
+from utils.db import dococr_query_util
 from utils.dev import draw_block_box_util
-from utils.ocr import separate_area_util, separate_block_util, ocr_util
+from utils.ocr import separate_area_util, separate_block_util, ocr_util, match_block_util
 from typing import List, Dict, Any
 
 @task
-def ocr_dispatcher_task(file_info: Dict, area_list: List, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
+def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
     """
     OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
     
@@ -55,42 +61,95 @@ def ocr_dispatcher_task(file_info: Dict, area_list: List, target_key: Dict[str, 
     # 1. 파일 로딩
     original_image = file_info["file_path"][target_key]
     
+    section_list = dococr_query_util.select_list_map("selectSectionList",params=(file_info["layout_class_id"],))
+    structed_layout = defaultdict(list)
+    
     # 2. 영역 분할
-    for area_info in area_list:
-        area_name = area_info["area_name"]
-        separate_area_step_info = area_info["separate_area"]
+    for section_info in section_list:
+        section_class_id = section_info["section_class_id"]
+        section_name = section_info["section_name"]
+        section_type = section_info["section_type"]
+        separate_area_step_info = json.loads(section_info["separate_area"])
         img_np_bgr,result_map = separate_area_util.separate_area(original_image, data_type="file_path", output_type="np_bgr", step_info=separate_area_step_info)
         area_x, area_y = result_map["_area"]
-        print(area_name,"separate_area completed:")
-        block_map = {"block_id": area_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]]}
+        print(section_name,"separate_area completed:")
+        block_map = {"block_id": section_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]],"section_class_id":section_class_id,"section_name":section_name}
         block_data = (img_np_bgr,block_map)
-        separate_block_step_info = area_info["separate_block"]
+        # draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
+        #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        separate_block_step_info = json.loads(section_info["separate_block"])
         block_list = separate_block_util.separate_block(block_data, input_img_type="np_bgr", output_img_type="np_bgr", step_info=separate_block_step_info)
-        print(area_name,"separate_block completed:", len(block_list))
+        print(section_name,"separate_block completed:", len(block_list))
         
-        # 4. C목록에서 child==0인 블록정보로 OCR 수행
+        # 4. 블록 목록에서 child==0인 블록정보(추출대상)로 OCR 수행
         ocr_list = []
-        draw_block_list = []
-        #block_box_list = [item[1]["block_box"] for item in block_list]
+        # 리프노드만 추출하여 박스 그림
         block_box_list = [item[1]["block_box"] for item in block_list if item[1]["child"] == 0]
-        draw_block_box_util.draw_block_box_step_list((original_image, block_box_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
-        for block_data in block_list:
+        draw_block_box_util.draw_block_box_step_list((original_image, block_box_list), input_img_type="file_path", 
+            step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        
+        # 추출대상인 블록만 추출
+        leaf_block_list = [block_data for block_data in block_list if block_data[1].get("child") == 0]
+        separate_block_step_info = json.loads(section_info.get("match_block", '{"name": "match_block", "step_list": [{"name":"detect_row_col_set1","param":{"gap_threshold":25} },{"name":"save","param":{} }] }'))
+        matched_block_list = match_block_util.match_block(leaf_block_list, step_info=separate_block_step_info, result_map={"folder_path":section_name})
+        
+        table_map = []
+        for block_data in matched_block_list:
             block_img_np_bgr, block_map = block_data
-            print(area_name,"block_map:", block_map)
-            if block_map['child'] == 0:
-                ocr_step_info = area_info["ocr"]  
-                block_map = ocr_util.ocr((block_img_np_bgr, block_map), input_img_type="np_bgr", step_info=ocr_step_info, result_map={"folder_path":area_name}) # ocr결과가 추가된 block_map 반환
-                print("=========",block_map)
-                draw_block_list.append(block_map)
-                ocr_list.append(block_map)
-        
-        #draw_block_box_util.draw_block_box_step_list((original_image, draw_block_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
-        
-        file_info["ocr_results"] = ocr_list
+            print(section_name,"block_map:", block_map)
+            ocr_step_info = json.loads(section_info["ocr"])
+            block_map = ocr_util.ocr((block_img_np_bgr, block_map), input_img_type="np_bgr", step_info=ocr_step_info, result_map={"folder_path":section_name}) # ocr결과가 추가된 block_map 반환
+            print("=========",block_map)
+            #cleansing
+            cleansing_step_info = json.loads(section_info["cleansing"])
+            block_data = ocr_cleansing_util.ocr_cleansing((block_img_np_bgr, block_map), step_info=cleansing_step_info, result_map={"folder_path":section_name}) # 정제 데이터가 추가된 block_map 반환
+            ocr_list.append(block_data[1])
+            table_map.append(block_data)
+        file_info.setdefault("ocr_results", {})[section_name] = ocr_list
 
+        #structuring_step_info = json.loads(section_info["structuring"])
+        structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
+                                 "step_list":[{"name":"structuring_by_type","param":{"section_class_id":section_class_id,"section_name":section_name,"section_type":section_type}}]}
+        try:
+            structed_section = structuring_util.structuring(table_map, step_info=structuring_step_info) # {table1:[{col1:val1,...},{col1:val1,...},...],table2:[...]}
+        except Exception as e:
+            from pathlib import Path
+            from airflow.models import Variable
+            CLASS_FOLDER = Variable.get("CLASS_FOLDER", default_var="/opt/airflow/data/class")
+            error_folder = Path(CLASS_FOLDER) / "error" / f"{section_class_id}_{section_name}"
+            
+            parts = str(e).split('|', 1)
+            if len(parts) > 1:
+                error_file_name = parts[0].strip()
+                error_json_path = str(error_folder / f"{error_file_name}.json")
+                error_img_path = str(error_folder / f"{error_file_name}.png")
+                file_util.file_copy(original_image,error_img_path)
+                json_util.save(error_json_path,file_info)
+            raise
+        
+        #draw_block_box_util.draw_block_box_step_list((original_image, ocr_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        print(f"structed_section : {structed_section}")
+
+        for key, list_of_dicts in structed_section.items():
+            # key가 빈 값이거나 "null"일 경우 넘어감
+            if not key or key == "null" or key is None:
+                continue
+            # merged에 해당 key가 아직 없으면 그대로 리스트 복사
+            if not structed_layout[key]:
+                structed_layout[key] = [{} for _ in range(len(list_of_dicts))]
+            for i, item_dict in enumerate(list_of_dicts):
+                # 여러 dict가 있으면 각각 인덱스 딕셔너리에 병합
+                structed_layout[key][i].update(item_dict)
+        
+        run_id = context['dag_run'].run_id
+        target_id = file_info["file_id"]
+        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
+    file_info["structed_layout"] = structed_layout
+    file_info["status"] = "success"
     return file_info
     
 def _perform_ocr(img_np_bgr):
+    
     return [
         {
             "text": "Sample OCR Text",
@@ -98,3 +157,25 @@ def _perform_ocr(img_np_bgr):
             "confidence": 0.95
         }
     ]
+
+@task
+def only_ocr(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
+    """
+    OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
+    
+    :param file_info: 처리할 파일 정보 딕셔너리
+    :param area_info: OCR을 수행할 영역의 설정 정보 (ocr_type 포함)
+    :param context: Airflow 컨텍스트 딕셔너리
+    :return: OCR 결과가 추가된 file_info 딕셔너리
+    """
+    original_image = file_info["file_path"][target_key]
+    
+    structed_layout = defaultdict(list)
+    block_map = ocr_util.ocr((original_image, {}), input_img_type="file_path", step_info={"name": "doc_subject ocr", "type": "ocr_step_list", 
+        "step_list": [{"name": "tesseract", "param": {"lang": "kor+eng", "config": "--oem 3 --psm 3", "iter_save": True}},
+                      {"name": "save", "param": {"save_key":"block_ocr","tmp_save":True}}] }, 
+        result_map={"folder_path":"block_ocr"}) # ocr결과가 추가된 block_map 반환
+
+    file_info["status"] = "success"
+    return file_info
+    

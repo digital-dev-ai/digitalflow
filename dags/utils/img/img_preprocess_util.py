@@ -51,8 +51,8 @@ def img_preprocess_step_list(data:Any, data_type:str="file_path", output_type:st
         step_list = STEP_INFO_DEFAULT["step_list"]
     if result_map is None:
         result_map = {}
-    process_id = str(uuid.uuid4())
-    result_map["process_id"] = f"_{process_id}_pre"
+    process_id = f"_pre_{str(uuid.uuid4())}"
+    result_map["process_id"] = process_id
     result_map["folder_path"] = result_map.get("folder_path",f"{TEMP_FOLDER}/{process_id}")
     result_map["cache"] = {}
     result_map["save_path"] = {}
@@ -81,18 +81,16 @@ def cache(file_path:str,cache_key:str,result_map:dict)->str:
 def load(_,cache_key:str,result_map:dict)->str:
     return result_map["cache"][f"filepath_{cache_key}"]
 
-def save(file_path:str,save_key:str,result_map:dict,tmp_save:bool=False)->str:
-    if not save_key:
-        save_key = "tmp"
+def save(file_path:str,save_key:str="tmp",tmp_save:bool=False,result_map:dict=None)->str:
+    if not result_map:
+        result_map = {}
     if tmp_save:
         if result_map.get("folder_path", "temp").startswith(TEMP_FOLDER) or result_map.get("folder_path", "temp").startswith(RESULT_FOLDER) :
-            save_path = result_map.get("folder_path","temp") / f"{save_key}.png"
+            save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.png"
         else : 
             save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
-        save_path = file_util.file_copy(file_path,save_path)
-    else:
-        save_path = file_path
-    result_map["save_path"][save_key]=save_path
+        file_util.file_copy(file_path,save_path)
+    result_map["save_path"][save_key]=file_path
     return file_path
 
 def scale1(img_np_bgr:np.ndarray,width:int,height:int, **kwargs) -> np.ndarray:
@@ -126,6 +124,49 @@ def scale1(img_np_bgr:np.ndarray,width:int,height:int, **kwargs) -> np.ndarray:
     background[paste_y:paste_y+new_height, paste_x:paste_x+new_width] = resized_image
 
     return background
+
+def scale2(img_np_bgr:np.ndarray, calc_type:str="width", length:int=1024, **kwargs) -> np.ndarray:
+    """
+    type이 'width' 또는 'height'일 때, 해당 길이를 length로 맞추고
+    비율에 맞게 다른 축도 조정하는 함수
+
+    :param img_np_bgr: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
+    :param calc_type: 'long', 'short', 'width', 'height'
+    :param length: 조정할 길이
+    :return: 비율 유지하며 크기 조정된 BGR numpy 배열
+    """
+    original_height, original_width = img_np_bgr.shape[:2]
+    if calc_type == "long":
+        if original_height > original_width:
+            calc_type = "height"
+        else:
+            calc_type = "width"
+    elif calc_type == "short":
+        if original_height < original_width:
+            calc_type = "height"
+        else:
+            calc_type = "width"
+    
+    if calc_type == "width":
+        scale_ratio = length / original_width
+        new_width = length
+        new_height = int(original_height * scale_ratio)
+    elif calc_type == "height":
+        scale_ratio = length / original_height
+        new_height = length
+        new_width = int(original_width * scale_ratio)
+    else:
+        raise ValueError("type은 'width' 또는 'height'만 가능합니다.")
+
+    # 리사이즈
+    if scale_ratio < 1.0:
+        resized_image = cv2.resize(img_np_bgr, (new_width, new_height), interpolation=cv2.INTER_AREA)
+    else:
+        resized_image = cv2.resize(img_np_bgr, (new_width, new_height), interpolation=cv2.INTER_CUBIC)
+
+    return resized_image
+
+
 
 def gray(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
     """
@@ -194,7 +235,20 @@ def adaptive_threshold(img_np_gray:np.ndarray,type:int=cv2.THRESH_BINARY,block:i
     )
     return binary_np_gray
 
-def morphology1(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
+def morphology1(img_np_bgr: np.ndarray, kernel:tuple=(3,3), op:int=cv2.MORPH_OPEN, **kwargs) -> np.ndarray:
+    """
+    형태학적 연산(열기 → 닫기)을 적용해 노이즈를 제거하고 객체 경계를 보정합니다.
+    열기 후 닫기 - 검정을 늘리는 쪽으로 노이즈 제거
+    닫기 후 열기 - 흰색 객체를 늘리는 쪽으로 노이즈 제거
+    [열기 : 침식 후 팽창] → [닫기 : 팽창 후 침식]
+    :param img_np_bgr: 이진화된 numpy 배열(OpenCV 이미지)
+    :return: 형태학적 연산이 적용된 numpy 배열
+    """
+    target_kernel = np.ones(kernel, np.uint8) #커널은 중앙 홀수로 작업
+    morphology_img_np_bgr = cv2.morphologyEx(img_np_bgr, op, target_kernel)
+    return morphology_img_np_bgr
+
+def morphology2(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
     """
     형태학적 연산(열기 → 닫기)을 적용해 노이즈를 제거하고 객체 경계를 보정합니다.
     열기 후 닫기 - 검정을 늘리는 쪽으로 노이즈 제거
@@ -208,6 +262,7 @@ def morphology1(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
     morphology_img_bin = cv2.morphologyEx(open_img_np_bgr, cv2.MORPH_CLOSE, kernel)
     return morphology_img_bin
 
+
 def canny(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
     # 엣지 검출
     edges = cv2.Canny(img_np_bgr, 30, 100, apertureSize=3)
@@ -218,41 +273,6 @@ def thinner(img_np_bgr: np.ndarray, **kwargs) -> np.ndarray:
     kernel = np.ones((3,3), np.uint8)
     edges = cv2.erode(img_np_bgr, kernel, iterations=1)
     return edges
-def del_blank_set1(img_np_bgr: np.ndarray, padding: int = 5, **kwargs) -> np.ndarray:
-    """
-    이미지에서 불필요한 상하좌우 공백을 제거하고 약간의 여백(padding)을 줍니다.
-    :param img_np_bgr: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
-    :param padding: 잘라낸 이미지 주위에 추가할 픽셀 수
-    :return: 공백이 제거된 BGR numpy 배열
-    """
-    # 1. 그레이스케일 변환 및 이진화 (콘텐츠를 흰색으로)
-    gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
-    # 배경이 주로 흰색(255)이므로, 콘텐츠(검정)를 찾기 위해 반전(THRESH_BINARY_INV)
-    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-
-    # 2. 콘텐츠 영역 찾기
-    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    if not contours:
-        # 콘텐츠가 없으면 원본 반환
-        print("콘텐츠가 없습니다.")
-        return img_np_bgr
-
-    # 3. 모든 콘텐츠를 포함하는 하나의 큰 바운딩 박스 계산
-    all_points = np.concatenate(contours, axis=0)
-    x, y, w, h = cv2.boundingRect(all_points)
-
-    # 4. 패딩 적용
-    h_img, w_img = img_np_bgr.shape[:2]
-    x_start = max(0, x - padding)
-    y_start = max(0, y - padding)
-    x_end = min(w_img, x + w + padding)
-    y_end = min(h_img, y + h + padding)
-
-    # 5. 원본 이미지에서 해당 영역 잘라내기
-    cropped_img = img_np_bgr[y_start:y_end, x_start:x_end]
-    print('공백 제거 완료')
-    return cropped_img
 
 def separate_areas_set1(
     img_np_bgr: np.ndarray,
@@ -324,6 +344,43 @@ def separate_areas_set1(
 
     return cropped_image
 
+def del_blank_set1(img_np_bgr: np.ndarray, padding: int = 5, **kwargs) -> np.ndarray:
+    """
+    이미지에서 불필요한 상하좌우 공백을 제거하고 약간의 여백(padding)을 줍니다.
+    이미지 내에 긴 선이 없거나 너무 얇은 선만 있는 경우 추천
+    :param img_np_bgr: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
+    :param padding: 잘라낸 이미지 주위에 추가할 픽셀 수
+    :return: 공백이 제거된 BGR numpy 배열
+    """
+    # 1. 그레이스케일 변환 및 이진화 (콘텐츠를 흰색으로)
+    gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
+    # 배경이 주로 흰색(255)이므로, 콘텐츠(검정)를 찾기 위해 반전(THRESH_BINARY_INV)
+    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+
+    # 2. 콘텐츠 영역 찾기
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    if not contours:
+        # 콘텐츠가 없으면 원본 반환
+        print("콘텐츠가 없습니다.")
+        return img_np_bgr
+
+    # 3. 모든 콘텐츠를 포함하는 하나의 큰 바운딩 박스 계산
+    all_points = np.concatenate(contours, axis=0)
+    x, y, w, h = cv2.boundingRect(all_points)
+
+    # 4. 패딩 적용
+    h_img, w_img = img_np_bgr.shape[:2]
+    x_start = max(0, x - padding)
+    y_start = max(0, y - padding)
+    x_end = min(w_img, x + w + padding)
+    y_end = min(h_img, y + h + padding)
+
+    # 5. 원본 이미지에서 해당 영역 잘라내기
+    cropped_img = img_np_bgr[y_start:y_end, x_start:x_end]
+    print('공백 제거 완료')
+    return cropped_img
+
 def del_blank_set2( # del_blank_set2만 수정
     img_np_bgr: np.ndarray,
     line_ratios: List[float] = [0.05, 0.05], # [length_ratio, height_ratio] 순서
@@ -333,7 +390,7 @@ def del_blank_set2( # del_blank_set2만 수정
 ) -> np.ndarray:
     """
     이미지 내의 긴 수평/수직선을 기준으로 상하좌우 공백을 제거합니다.
-    패딩은 이미지 크기에 대한 백분율로 적용됩니다.
+    이미지 크기 비율 패딩을 통해 표 외부도 일부 포함 가능합니다.
 
     :param img_np_bgr: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
     :param line_ratios: [이미지 너비 대비 '긴 선' 길이 비율, 이미지 높이 대비 '긴 선' 길이 비율] 순서의 리스트.
@@ -448,7 +505,7 @@ def del_blank_set2( # del_blank_set2만 수정
     return background
 
 
-def calc_angle_set1(img_np_bgr: np.ndarray,key:str, result_map:dict, iterations:int=3, iter_save:bool=False) -> np.ndarray:
+def calc_angle_set1(img_np_bgr: np.ndarray,angle_key:str, result_map:dict, iterations:int=3, iter_save:bool=False) -> np.ndarray:
     """
     다각형 근사화를 활용한 표 인식 및 미세회전
     문서 방향 조정을 위해 text_orientation_set과 함께 사용 추천
@@ -512,7 +569,7 @@ def calc_angle_set1(img_np_bgr: np.ndarray,key:str, result_map:dict, iterations:
             target_img = rotated
             idx+=1
     
-    result_map["cache"][f"angle_{key}"] = total_angle
+    result_map["cache"][f"angle_{angle_key}"] = total_angle
     return target_img
 
 
@@ -652,7 +709,7 @@ def calc_angle_set2(img_np_bgr:np.ndarray,angle_key:str, result_map:dict,delta:f
         if max(scores) <= threshold_val:
             best_angle = 0
         total_angle+=best_angle
-        print(f"osd {idx}",total_angle,best_angle,scores.index(max(scores)), max(scores), scores)
+        print(f"angle_score {idx}",total_angle,best_angle, max(scores), scores)
         
         # 3. 타겟이미지를 보정 각도만큼 회전
         rotated = _rotate(target_img,best_angle)
@@ -840,7 +897,7 @@ def text_orientation_set(img_np_bgr:np.ndarray,angle_key:str, result_map:dict,it
             print(f"osd {idx} break ",total_angle,rotation, orientation_confidence, script_name, script_confidence)
             break
         total_angle+=rotation
-        print(f"osd {idx}",total_angle,rotation, orientation_confidence, script_name, script_confidence)
+        print(f"osd {idx}",total_angle, rotation, orientation_confidence, script_name, script_confidence)
         
         # 3. 타겟이미지를 보정 각도만큼 회전
         rotated = _rotate(target_img,rotation)
@@ -976,36 +1033,82 @@ def _rotate(img_np_bgr: np.ndarray, angle:float) -> np.ndarray:
         borderValue=tuple(most_common.tolist())
     )
     return rotated
+#이전
+# function_map = {
+#     #common
+#     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
+#     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
+#     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
+#     #set
+#     "calc_angle_set1": {"function": calc_angle_set1, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+#     "calc_angle_set2": {"function": calc_angle_set2, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,delta,limit,iterations,iter_save"},
+#     "calc_angle_set3": {"function": calc_angle_set3, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+#     "calc_angle_set4": {"function": calc_angle_set4, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+#     "text_orientation_set": {"function": text_orientation_set, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
+#     "del_blank_set1": {"function": del_blank_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "padding"},
+#     "del_blank_set2": {"function": del_blank_set2, "input_type": "np_bgr", "output_type": "np_bgr", "param": "line_ratios,padding_ratios,iter_save"},
+#     # ocr
+#     "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
+#     #preprocess
+#     "scale1": {"function": scale1, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "gray": {"function": gray, "input_type": "np_bgr", "output_type": "np_gray"},
+#     "denoising1": {"function": denoising1, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "denoising2": {"function": denoising2, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "threshold": {"function": threshold, "input_type": "np_gray", "output_type": "np_gray"},
+#     "morphology1": {"function": morphology1, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "canny": {"function": canny, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "thinner": {"function": thinner, "input_type": "np_bgr", "output_type": "np_bgr"},
+#     "before_angle1": {"function": before_angle1, "input_type": "np_bgr", "output_type": "np_gray","param":""},
+#     "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"angle_key"},
+#     "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":""},
+#     "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"angle_key"},
+#     "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key"},
 
+#     "line_tracking": {"function": line_tracking, "input_type": "np_gray", "output_type": "np_gray","param":"iter_save"},
+# }
+
+#이후
 function_map = {
-    #common
-    "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
-    "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
-    "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
-    #set
-    "calc_angle_set1": {"function": calc_angle_set1, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-    "calc_angle_set2": {"function": calc_angle_set2, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,delta,limit,iterations,iter_save"},
-    "calc_angle_set3": {"function": calc_angle_set3, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-    "calc_angle_set4": {"function": calc_angle_set4, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-    "text_orientation_set": {"function": text_orientation_set, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-    "del_blank_set1": {"function": del_blank_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "padding"},
-    "del_blank_set2": {"function": del_blank_set2, "input_type": "np_bgr", "output_type": "np_bgr", "param": "line_ratios,padding_ratios,iter_save"},
-    # ocr
-    "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
-    #preprocess
-    "scale1": {"function": scale1, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "gray": {"function": gray, "input_type": "np_bgr", "output_type": "np_gray"},
-    "denoising1": {"function": denoising1, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "denoising2": {"function": denoising2, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "threshold": {"function": threshold, "input_type": "np_gray", "output_type": "np_gray"},
-    "morphology1": {"function": morphology1, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "canny": {"function": canny, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "thinner": {"function": thinner, "input_type": "np_bgr", "output_type": "np_bgr"},
-    "before_angle1": {"function": before_angle1, "input_type": "np_bgr", "output_type": "np_gray","param":""},
-    "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"angle_key"},
-    "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":""},
-    "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"angle_key"},
-    "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key"},
+    # 공통
+    "cache": {"function": cache,"input_type": "file_path","output_type": "file_path","param": "cache_key"},
+    "load": {"function": load,"input_type": "any","output_type": "file_path","param": "cache_key"},
+    "save": {"function": save,"input_type": "file_path","output_type": "file_path","param": "save_key,tmp_save"},
 
-    "line_tracking": {"function": line_tracking, "input_type": "np_gray", "output_type": "np_gray","param":"iter_save"},
+    # 전처리/스케일/그레이/노이즈
+    "scale": {"function": scale1,"input_type": "np_bgr","output_type": "np_bgr","param": "width,height"},
+    "scale1": {"function": scale1,"input_type": "np_bgr","output_type": "np_bgr","param": "width,height"},
+    "scale2": {"function": scale2,"input_type": "np_bgr","output_type": "np_bgr","param": "calc_type,length"},
+    "gray": {"function": gray,"input_type": "np_bgr","output_type": "np_gray","param": ""},
+    "denoising": {"function": denoising1,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+    "denoising1": {"function": denoising1,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+    "denoising2": {"function": denoising2,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+
+    # 이진화/형태학/엣지
+    "threshold": {"function": threshold,"input_type": "np_gray","output_type": "np_gray","param": "thresh,type"},
+    "adaptive_threshold": {"function": adaptive_threshold,"input_type": "np_gray","output_type": "np_gray","param": "type,block"},
+    "morphology1": {"function": morphology1,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+    "canny": {"function": canny,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+    "thinner": {"function": thinner,"input_type": "np_bgr","output_type": "np_bgr","param": ""},
+
+    # 공백/크롭/분리
+    "del_blank_set1": {"function": del_blank_set1,"input_type": "np_bgr","output_type": "np_bgr","param": "padding"},
+    "del_blank_set2": {"function": del_blank_set2,"input_type": "np_bgr","output_type": "np_bgr","param": "line_ratios,padding_ratios,iter_save"},
+    "separate_areas_set1": {"function": separate_areas_set1,"input_type": "np_bgr","output_type": "np_bgr","param": "area_type,offset,width,height,iter_save"},
+
+    # 각도/방향 보정
+    "calc_angle_set1": {"function": calc_angle_set1,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,iterations,iter_save"},
+    "calc_angle_set2": {"function": calc_angle_set2,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,delta,limit,iterations,iter_save"},
+    "calc_angle_set3": {"function": calc_angle_set3,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,iterations,iter_save"},
+    "calc_angle_set4": {"function": calc_angle_set4,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,iterations,iter_save"},
+    "text_orientation_set": {"function": text_orientation_set,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,iterations,iter_save"},
+
+    "before_angle1": {"function": before_angle1,"input_type": "np_bgr","output_type": "np_gray","param": ""},
+    "calc_angle1": {"function": calc_angle1,"input_type": "np_gray","output_type": "np_gray","param": "angle_key"},
+    "before_orientation": {"function": before_orientation,"input_type": "np_bgr","output_type": "np_gray","param": ""},
+    "calc_orientation": {"function": calc_orientation,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key"},
+    "rotate": {"function": rotate,"input_type": "np_bgr","output_type": "np_bgr","param": "angle_key,angle_keys"},
+
+    # 표 구조 라인 추적
+    "line_tracking": {"function": line_tracking,"input_type": "np_gray","output_type": "np_gray","param": "iter_save"
+    }
 }

@@ -1,0 +1,60 @@
+# #origianl_airflow 생성 명령어
+# cd /home/digital-033/work/docker/digitalflow/translate
+# docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow ./original_airflow
+
+#airflow 내 webserver 수정
+cd /home/digital-033/work/docker/digitalflow/translate
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
+
+# login 페이지 수정중
+cd /home/digital-033/work/docker/digitalflow/login
+docker cp /home/digital-033/work/docker/digitalflow/login/custom_flask_appbuilder/templates/appbuilder/general/security/login_db.html digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/templates/appbuilder/general/security/.
+
+# trs_loader.py 파일을 airflow에 복사
+cd /home/digital-033/work/docker/digitalflow/translate
+docker cp /home/digital-033/work/docker/digitalflow/translate/trs_loader.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
+
+
+
+
+
+; #custom_static에 있는 파일들을 docker에 복사
+; cd /home/digital-033/work/docker/digitalflow/translate/www_custom
+; docker cp /home/digital-033/work/docker/digitalflow/translate/www_custom/custom_static/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/www/static/
+
+; #custom_template에 있는 파일들을 docker에 복사
+; cd /home/digital-033/work/docker/digitalflow/translate/www_custom
+; docker cp /home/digital-033/work/docker/digitalflow/translate/www_custom/custom_templates/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/www/templates/
+; #custom_extensions에 있는 파일들을 docker에 복사
+; cd /home/digital-033/work/docker/digitalflow/translate/www_custom
+; docker cp /home/digital-033/work/docker/digitalflow/translate/www_custom/custom_extensions/. 
+; digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/www/extensions/
+
+
+; #airflow 상단의 security 메뉴 수정을 위한 파일 수정.
+; cd /home/digital-033/work/docker/digitalflow/translate/providers_custom
+; docker cp /home/digital-033/work/docker/digitalflow/translate/providers_custom/fab_custom/auth_manager_custom/security_manager/override.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/fab/auth_manager/security_manager/
+
+
+# 브랜드 로고는 /home/airflow/.local/lib/python3.12/site-packages/airflow/www/templates/appbuilder/navbar.html안에 있음
+<svg class="brand-logo" viewBox="0 0 104 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+# 이 부분을 디지탈쉽 로고에 맞게 변경. -> js파일 수정해야함.
+<img class="brand-logo" src="/static/dship.png" alt="Company Logo">
+
+# 로고 크기 변경 
+
+/home/digital-033/work/docker/digitalflow/translate/www_custom/custom_static/css/main.css
+ width: 140px; ->  width: 200px;
+
+# 메인 화면 상의 영어, 한글화 진행중.
+/home/digital-033/work/docker/digitalflow/translate/www_custom/custom_templates/airflow/dags.html
+# 위 파일의 한국어 입력 부분 참조
+
+
+# 메인 화면 하단의 버전 한글화
+/home/digital-033/work/docker/digitalflow/translate/www_custom/custom_templates/airflow/main.html
+
+
+
+# 메인 화면 상단의 헤더 변경 중
+/home/digital-033/work/docker/digitalflow/translate/www_custom/custom_extensions/init_appbuilder_links.py

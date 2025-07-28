@@ -2,275 +2,420 @@ from airflow.decorators import task
 from pathlib import Path
 import shutil, os, json
 from airflow.models import Variable
+import cv2
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 
 def get_config(*keys):
+    #레이아웃 클래스
     class_map = {
-        "a_class":{
-            "class_id":1111,
-            "classify":{
-                "classify_id":1111,
-                "classify_ai":{
-                    "ai_id":15,
-                    "ai_dir":"/opt/airflow/data/class/a_class/classify/model",
-                    "processor_name":"SCUT-DLVCLab/lilt-roberta-en-base",
-                    "model_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+        "general_building_register":{ # 일반건축물대장
+            "a_class":{ # 일반건축물대장 갑 1페이지
+                "class_id":1111,
+                "classify":{
+                    "classify_id":1111,
+                    "classify_ai":{
+                        "ai_id":15,
+                        "ai_dir":"/opt/airflow/data/class/a_class/classify/model",
+                        "processor_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+                        "model_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+                        "class_key":"a_class",
+                        "save_input":True,
+                    },
+                    "img_preprocess":{
+                        "name":"a_class classify img_preprc",
+                        "type":"img_preprocess_step_list",
+                        "step_list":[
+                            {"name":"cache","param":{"cache_key":"origin"}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1.0,"limit":8,"iterations":2,"iter_save":False}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
+                            {"name":"text_orientation_set","param":{"angle_key":"orient","iterations":3,"iter_save":False}},
+                            {"name":"load","param":{"cache_key":"origin"}},
+                            {"name":"rotate","param":{"angle_keys":["angle2_1","angle2_2","angle2_3","orient"]}},
+                            {"name":"del_blank_set2","param":{"line_ratios": [0.2, 0.06], "padding_ratios": [0.21, 0.29, 0.09, 0.12],"iter_save": False}},
+                            {"name":"save","param":{"save_key":"_classify","tmp_save":True}},
+                        ], 
+                    }
                 },
-                "img_preprocess":{
-                    "name":"a_class classify img_preprc",
-                    "type":"img_preprocess_step_list",
-                    "step_list":[
-                        {"name":"cache","param":{"cache_key":"origin"}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1.0,"limit":8,"iterations":2,"iter_save":False}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
-                        {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":3,"iter_save":False}},
-                        {"name":"load","param":{"cache_key":"origin"}},
-                        {"name":"rotate","param":{"angle_keys":["angle2_1","angle2_2","angle2_3","orint"]}},
-                        {"name":"del_blank_set2","param":{"line_ratios": [0.2, 0.06], "padding_ratios": [0.21, 0.29, 0.09, 0.12],"iter_save": False}},
-                        {"name":"save","param":{"save_key":"test"}},
-                    ], 
-                }
-            },
-            "ocr":{
-                "area_cnt":3,
-                "area_list":[
-                    {
-                        "area_name":"doc_subject",
-                        "img_preprocess":{
-                            "name":"doc_subject img_preprc",
-                            "type":"img_preprocess_step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","offset":[-180,100],"width":410,"height":100,
-                                                                        "process_type":"fix_text","key_list":["일반건축물대장(갑)"],"iter_save":False}},
-                                {"name":"save","param":{"save_key":""}},
-                            ], 
+                "ocr":{
+                    "area_cnt":5,
+                    "area_list":[
+                        {
+                            "area_name":"doc_subject",
+                            "img_preprocess":{
+                                "name":"doc_subject img_preprc",
+                                "type":"img_preprocess_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","offset":[-180,100],"width":410,"height":100,
+                                                                            "process_type":"fix_text","key_list":["일반건축물대장(갑)"],"iter_save":False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                ], 
+                            },
+                            "separate_area":{
+                                "name":"doc_subject separate_area",
+                                "type":"separate_area_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","area_ratio":[-0.083,0.068,0.188,0.068],"iter_save":False}}, #"area_box":[-180,100,410,100],
+                                ], 
+                            },
+                            "separate_block":{
+                                "name":"doc_subject separate_block",
+                                "type":"separate_block_step_list",
+                                "step_list":[
+                                    {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.5, "horizontal_min_gap": 10, 
+                                                                                "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
+                                ], 
+                            },
+                            "ocr":{
+                                "name":"doc_subject ocr",
+                                "type":"ocr_step_list",
+                                "step_list":[
+                                    {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
+                                ],
+                            },
+                            "cleansing":{"name": "doc_subject cleansing", 
+                                "type": "cleansing_step_list", 
+                                "step_list": [
+                                    {"name": "sanitize_text", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_common_dictionary", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_block_dictionary", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "pattern_check", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "save","param": {}}
+                                ]
+                            },
+                            "structuring":{
+                                "name":"doc_subject structuring",
+                                "type":"structuring_step_list",
+                                "step_list":[
+                                    {"name":"structuring_one_row","param":{"doc_class":"general_building_register", "layout_class":"a_class", "section_name":"doc_subject"}},
+                                ]
+                            },
+                            "ocr_type": "text",
+                            "iter_save": True
                         },
-                        "separate_area":{
-                            "name":"doc_subject separate_area",
-                            "type":"separate_area_step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","area_box":[-180,100,410,100],"iter_save":False}},
-                            ], 
+                        {
+                            "area_name":"building_info",
+                            "img_preprocess":{
+                                "name":"building_info img_preprc",
+                                "type":"step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","offset":[50,205],"width":-1,"height":430,
+                                                                            "process_type":"key_value_in_cell",
+                                                                                "iter_save":False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                    {"name" : "separate_areas_set2", "param": {"area_name":"building_info","first_axis": "horizontal", 
+                                                                            "horizontal_line_ratio": 0.3, "horizontal_min_gap": 10, 
+                                                                            "vertical_line_ratio": 0.85, "vertical_min_gap" :20,
+                                                                                "iter_save": False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                ]                                                                 
+                            },
+                            "separate_area":{
+                                "name":"building_info separate_area",
+                                "type":"separate_area_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","area_ratio":[0.023,0.139,-1,0.098],"iter_save":False}}, #"area_box":[50,205,-1,145],
+                                ], 
+                            },
+                            "separate_block":{
+                                "name":"building_info separate_block",
+                                "type":"separate_block_step_list",
+                                "step_list":[
+                                    {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
+                                                                                "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
+                                    {"name":"split_image_by_vertical_gaps","param":{"min_start_point":10,"min_gap_width":30, "iter_save":True}},
+                                ], 
+                            },
+                            "ocr":{
+                                "name":"building_info ocr",
+                                "type":"ocr_step_list",
+                                "step_list":[
+                                    {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
+                                ],
+                            },
+                            "cleansing":{
+                                "name":"building_info cleansing",
+                                "type": "cleansing_step_list", 
+                                "step_list": [
+                                    {"name": "sanitize_text", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_common_dictionary", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_block_dictionary", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "pattern_check", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "save","param": {}}
+                                ]
+                            },
+                            "structuring":{
+                                "name":"building_status structuring",
+                                "type":"structuring_step_list",
+                                "step_list":[
+                                    {"name":"structuring_one_row","param":{"doc_class":"general_building_register", "layout_class":"a_class", "section_name":"building_info"}},
+                                ]
+                            },
+                            "ocr_type": "table",
+                            "iter_save": True,
+                            "detection_params": {
+                                "h_kernel_divisor": 40,
+                                "v_kernel_divisor": 15,
+                                "min_cell_area": 5000,
+                                "min_cell_width": 20,
+                                "min_cell_height": 50,
+                                "dilation_iterations": 3,
+                                "adaptive_thresh_block_size": 25,
+                                "adaptive_thresh_c": -3
+                            }
                         },
-                        "separate_block":{
-                            "name":"doc_subject separate_block",
-                            "type":"separate_block_step_list",
-                            "step_list":[
-                                {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.5, "horizontal_min_gap": 10, 
-                                                                              "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
-                            ], 
+                        {
+                            "area_name":"building_detail",
+                            "img_preprocess":{
+                                "name":"building_detail img_preprc",
+                                "type":"step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","offset":[50,205],"width":-1,"height":430,
+                                                                            "process_type":"key_value_in_cell",
+                                                                                "iter_save":False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                    {"name" : "separate_areas_set2", "param": {"area_name":"building_info","first_axis": "horizontal", 
+                                                                            "horizontal_line_ratio": 0.3, "horizontal_min_gap": 10, 
+                                                                            "vertical_line_ratio": 0.85, "vertical_min_gap" :20,
+                                                                                "iter_save": False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                ]                                                                 
+                            },
+                            "separate_area":{
+                                "name":"building_detail separate_area",
+                                "type":"separate_area_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_detail","area_type":"top_left","area_ratio":[0.023,0.237,-1,0.193],"iter_save":False}}, #"area_box":[50,350,-1,285],
+                                ], 
+                            },
+                            "separate_block":{
+                                "name":"building_detail separate_block",
+                                "type":"separate_block_step_list",
+                                "step_list":[
+                                    {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
+                                                                                "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
+                                    {"name":"split_image_by_vertical_gaps","param":{"min_start_point":25,"min_gap_width":4,"angle":90,"iter_save":True}},
+                                ], 
+                            },
+                            "ocr":{
+                                "name":"building_detail ocr",
+                                "type":"ocr_step_list",
+                                "step_list":[
+                                    {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
+                                ],
+                            },
+                            "cleansing":{
+                                "name":"building_detail cleansing",
+                                "type": "cleansing_step_list", 
+                                "step_list": [
+                                    {"name": "sanitize_text", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_common_dictionary", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_block_dictionary", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "pattern_check", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "save","param": {}}
+                                ]
+                            },
+                            "structuring":{
+                                "name":"building_detail structuring",
+                                "type":"structuring_step_list",
+                                "step_list":[
+                                    {"name":"structuring_one_row","param":{"doc_class":"general_building_register", "layout_class":"a_class", "section_name":"building_detail"}},
+                                ]
+                            },
+                            "ocr_type": "table",
+                            "iter_save": True,
+                            "detection_params": {
+                                "h_kernel_divisor": 40,
+                                "v_kernel_divisor": 15,
+                                "min_cell_area": 5000,
+                                "min_cell_width": 20,
+                                "min_cell_height": 50,
+                                "dilation_iterations": 3,
+                                "adaptive_thresh_block_size": 25,
+                                "adaptive_thresh_c": -3
+                            }
                         },
-                        "ocr":{
-                            "name":"doc_subject ocr",
-                            "type":"ocr_step_list",
-                            "step_list":[
-                                {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
-                            ],
-                        },
-                        "ocr_type": "text",
-                        "iter_save": True
-                    },
-                    {
-                        "area_name":"building_info",
-                        "img_preprocess":{
-                            "name":"building_info img_preprc",
-                            "type":"step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","offset":[50,205],"width":-1,"height":430,
-                                                                        "process_type":"key_value_in_cell",
-                                                                            "iter_save":False}},
-                                {"name":"save","param":{"save_key":""}},
-                                {"name" : "separate_areas_set2", "param": {"area_name":"building_info","first_axis": "horizontal", 
-                                                                        "horizontal_line_ratio": 0.3, "horizontal_min_gap": 10, 
-                                                                        "vertical_line_ratio": 0.85, "vertical_min_gap" :20,
+                        {
+                            "area_name":"building_status",
+                            "img_preprocess":{
+                                "name":"building_status img_preprc",
+                                "type":"step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_status","area_type":"top_left","offset":[50,638],"width":-1,"height":310,
+                                                                            "process_type":"key_value_in_cell",   
+                                                                                "iter_save": False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                    {"name" : "separate_areas_set2", "param": {"area_name":"building_status", "first_axis": "horizontal",
+                                                                            "horizontal_line_ratio": 0.43, "horizontal_min_gap": 10, 
+                                                                            "vertical_line_ratio":0.4, "vertical_min_gap" : 10,
                                                                             "iter_save": False}},
-                                {"name":"save","param":{"save_key":""}},
-                            ]                                                                 
+                                    {"name":"save","param":{"save_key":""}},
+                                ]                
+                            },
+                            "separate_area":{
+                                "name":"building_status separate_area",
+                                "type":"separate_area_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"building_status","area_type":"top_left","area_ratio":[0.023,0.433,0.49,0.21],"iter_save": False}}, #"area_box":[50,638,-1,310],
+                                ], 
+                            },
+                            "separate_block":{
+                                "name":"building_status separate_block",
+                                "type":"separate_block_step_list",
+                                "step_list":[
+                                    {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
+                                                                                "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}}
+                                ], 
+                            },
+                            "ocr":{
+                                "name":"building_status ocr",
+                                "type":"ocr_step_list",
+                                "step_list":[
+                                    {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
+                                ],
+                            },
+                            "cleansing":{
+                                "name":"building_status cleansing",
+                                "type": "cleansing_step_list", 
+                                "step_list": [
+                                    {"name": "sanitize_text", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_common_dictionary", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_block_dictionary", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "pattern_check", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "save","param": {}}
+                                ]
+                            },
+                            "structuring":{
+                                "name":"building_status structuring",
+                                "type":"structuring_step_list",
+                                "step_list":[
+                                    {"name":"structuring_multi_row","param":{"doc_class":"general_building_register", "layout_class":"a_class", "section_name":"building_status"}},
+                                ]
+                            },
+                            "ocr_type": "table",
+                            "iter_save": True,
+                            "detection_params": {
+                                "h_kernel_divisor": 40,
+                                "v_kernel_divisor": 15,
+                                "min_cell_area": 1000,
+                                "min_cell_width": 40,
+                                "min_cell_height": 20,
+                                "dilation_iterations": 2
+                            }
                         },
-                        "separate_area":{
-                            "name":"building_info separate_area",
-                            "type":"separate_area_step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","area_box":[50,205,-1,145],"iter_save":False}},
-                            ], 
-                        },
-                        "separate_block":{
-                            "name":"doc_subject separate_block",
-                            "type":"separate_block_step_list",
-                            "step_list":[
-                                {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
-                                                                              "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
-                                {"name":"split_image_by_vertical_gaps","param":{"min_start_point":10,"min_gap_width":30, "iter_save":True}},
-                            ], 
-                        },
-                        "ocr":{
-                            "name":"doc_subject ocr",
-                            "type":"ocr_step_list",
-                            "step_list":[
-                                {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":True}},
-                            ],
-                        },
-                        "ocr_type": "table",
-                        "iter_save": True,
-                        "detection_params": {
-                            "h_kernel_divisor": 40,
-                            "v_kernel_divisor": 15,
-                            "min_cell_area": 5000,
-                            "min_cell_width": 20,
-                            "min_cell_height": 50,
-                            "dilation_iterations": 3,
-                            "adaptive_thresh_block_size": 25,
-                            "adaptive_thresh_c": -3
-                        }
-                    },
-                    {
-                        "area_name":"building_detail",
-                        "img_preprocess":{
-                            "name":"building_detail img_preprc",
-                            "type":"step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","offset":[50,205],"width":-1,"height":430,
-                                                                        "process_type":"key_value_in_cell",
-                                                                            "iter_save":False}},
-                                {"name":"save","param":{"save_key":""}},
-                                {"name" : "separate_areas_set2", "param": {"area_name":"building_info","first_axis": "horizontal", 
-                                                                        "horizontal_line_ratio": 0.3, "horizontal_min_gap": 10, 
-                                                                        "vertical_line_ratio": 0.85, "vertical_min_gap" :20,
+                        {
+                            "area_name":"owner_status",
+                            "img_preprocess":{
+                                "name":"owner_status img_preprc",
+                                "type":"step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"owner_status","area_type":"top_left","offset":[50,638],"width":-1,"height":310,
+                                                                            "process_type":"key_value_in_cell",
+                                                                                "iter_save": False}},
+                                    {"name":"save","param":{"save_key":""}},
+                                    {"name" : "separate_areas_set2", "param": {"area_name":"owner_status", "first_axis": "horizontal",
+                                                                            "horizontal_line_ratio": 0.43, "horizontal_min_gap": 10,
+                                                                            "vertical_line_ratio":0.4, "vertical_min_gap" : 10,
                                                                             "iter_save": False}},
-                                {"name":"save","param":{"save_key":""}},
-                            ]                                                                 
+                                    {"name":"save","param":{"save_key":""}},
+                                ]
+                            },
+                            "separate_area":{
+                                "name":"owner_status separate_area",
+                                "type":"separate_area_step_list",
+                                "step_list":[
+                                    {"name" : "separate_areas_set1", "param": {"area_name":"owner_status","area_type":"top_left","area_ratio":[0.513,0.433,0.486,0.21],"iter_save": False}}, #"area_box":[50,638,-1,310],
+                                ], 
+                            },
+                            "separate_block":{
+                                "name":"owner_status separate_block",
+                                "type":"separate_block_step_list",
+                                "step_list":[
+                                    {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
+                                                                                "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}}
+                                ], 
+                            },
+                            "ocr":{
+                                "name":"owner_status ocr",
+                                "type":"ocr_step_list",
+                                "step_list":[
+                                    {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":False}},
+                                ],
+                            },
+                            "cleansing":{
+                                "name":"owner_status cleansing",
+                                "type": "cleansing_step_list", 
+                                "step_list": [
+                                    {"name": "sanitize_text", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_common_dictionary", "param": {"ocr_type": "tesseract"}}, 
+                                    {"name": "apply_block_dictionary", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "pattern_check", "param": {"ocr_type": "tesseract"}},
+                                    {"name": "save","param": {}}
+                                ]
+                            },
+                            "structuring":{
+                                "name":"owner_status structuring",
+                                "type":"structuring_step_list",
+                                "step_list":[
+                                    {"name":"structuring_multi_row","param":{"doc_class":"general_building_register", "layout_class":"a_class", "section_name":"owner_status"}},
+                                ]
+                            },
+                            "ocr_type": "table",
+                            "iter_save": True,
+                            "detection_params": {
+                                "h_kernel_divisor": 40,
+                                "v_kernel_divisor": 15,
+                                "min_cell_area": 1000,
+                                "min_cell_width": 40,
+                                "min_cell_height": 20,
+                                "dilation_iterations": 2
+                            }
                         },
-                        "separate_area":{
-                            "name":"building_info separate_area",
-                            "type":"separate_area_step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_info","area_type":"top_left","area_box":[50,350,-1,285],"iter_save":False}},
-                            ], 
-                        },
-                        "separate_block":{
-                            "name":"doc_subject separate_block",
-                            "type":"separate_block_step_list",
-                            "step_list":[
-                                {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
-                                                                              "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}},
-                                {"name":"split_image_by_vertical_gaps","param":{"min_start_point":25,"min_gap_width":4,"angle":90,"iter_save":True}},
-                            ], 
-                        },
-                        "ocr":{
-                            "name":"doc_subject ocr",
-                            "type":"ocr_step_list",
-                            "step_list":[
-                                {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":True}},
-                            ],
-                        },
-                        "ocr_type": "table",
-                        "iter_save": True,
-                        "detection_params": {
-                            "h_kernel_divisor": 40,
-                            "v_kernel_divisor": 15,
-                            "min_cell_area": 5000,
-                            "min_cell_width": 20,
-                            "min_cell_height": 50,
-                            "dilation_iterations": 3,
-                            "adaptive_thresh_block_size": 25,
-                            "adaptive_thresh_c": -3
-                        }
-                    },
-                    {
-                        "area_name":"building_user_status",
-                        "img_preprocess":{
-                            "name":"building_user_status img_preprc",
-                            "type":"step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_user_status","area_type":"top_left","offset":[50,638],"width":-1,"height":310,
-                                                                        "process_type":"key_value_in_cell",   
-                                                                            "iter_save": False}},
-                                {"name":"save","param":{"save_key":""}},
-                                {"name" : "separate_areas_set2", "param": {"area_name":"building_user_status", "first_axis": "horizontal",
-                                                                        "horizontal_line_ratio": 0.43, "horizontal_min_gap": 10, 
-                                                                        "vertical_line_ratio":0.4, "vertical_min_gap" : 10,
-                                                                        "iter_save": False}},
-                                {"name":"save","param":{"save_key":""}},
-                            ]                
-                        },
-                        "separate_area":{
-                            "name":"building_info separate_area",
-                            "type":"separate_area_step_list",
-                            "step_list":[
-                                {"name" : "separate_areas_set1", "param": {"area_name":"building_user_status","area_type":"top_left","area_box":[50,638,-1,310],"iter_save": False}},
-                            ], 
-                        },
-                        "separate_block":{
-                            "name":"doc_subject separate_block",
-                            "type":"separate_block_step_list",
-                            "step_list":[
-                                {"name" : "separate_block_by_line", "param": {"horizontal_first":True,"horizontal_line_ratio": 0.4, "horizontal_min_gap": 10, 
-                                                                              "vertical_line_ratio": 0.85, "vertical_min_gap" :20,"iter_save":False}}
-                            ], 
-                        },
-                        "ocr":{
-                            "name":"doc_subject ocr",
-                            "type":"ocr_step_list",
-                            "step_list":[
-                                {"name" : "tesseract", "param": {"lang":"kor+eng","config":"--oem 3 --psm 6","iter_save":True}},
-                            ],
-                        },
-                        "ocr_type": "table",
-                        "iter_save": True,
-                        "detection_params": {
-                            "h_kernel_divisor": 40,
-                            "v_kernel_divisor": 15,
-                            "min_cell_area": 1000,
-                            "min_cell_width": 40,
-                            "min_cell_height": 20,
-                            "dilation_iterations": 2
-                        }
-                    },
-                ]                
-            },
-            "save":{
-                "save_list":[
-                    "classify_preprocess"
-                ],
-            },
-        },
-        "b_class":{
-            "class_id":1111,
-            "classify":{
-                "classify_id":1111,
-                "classify_ai":{
-                    "ai_id":15,
-                    "ai_dir":"/opt/airflow/data/class/b_class/classify/model",
-                    "processor_name":"SCUT-DLVCLab/lilt-roberta-en-base",
-                    "model_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+                    ]                
                 },
-                "img_preprocess":{
-                    "name":"b_class classify img_preprc",
-                    "type":"step_list",
-                    "step_list":[
-                        {"name":"cache","param":{"cache_key":"origin"}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1,"limit":8,"iterations":2,"iter_save":False}},
-                        {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
-                        {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":2,"iter_save":False}},
-                        {"name":"load","param":{"cache_key":"origin"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_1"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_2"}},
-                        {"name":"rotate","param":{"angle_key":"angle2_3"}},
-                        {"name":"rotate","param":{"angle_key":"orint"}},
-                    ], 
-                }
+                "save":{
+                    "save_list":[
+                        "classify_preprocess"
+                    ],
+                },
             },
-            "area_cut":{},
-            "ocr":{},
-            "save":{
-                "save_list":[
-                    "classify_preprocess"
-                ],
-            },
+            "b_class":{
+                "class_id":1111,
+                "classify":{
+                    "classify_id":1111,
+                    "classify_ai":{
+                        "ai_id":15,
+                        "ai_dir":"/opt/airflow/data/class/b_class/classify/model",
+                        "processor_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+                        "model_name":"SCUT-DLVCLab/lilt-roberta-en-base",
+                    },
+                    "img_preprocess":{
+                        "name":"b_class classify img_preprc",
+                        "type":"step_list",
+                        "step_list":[
+                            {"name":"cache","param":{"cache_key":"origin"}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_1","delta":8.0,"limit":40,"iterations":2,"iter_save":False}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_2","delta":1,"limit":8,"iterations":2,"iter_save":False}},
+                            {"name":"calc_angle_set2","param":{"angle_key":"angle2_3","delta":0.125,"limit":1,"iterations":2,"iter_save":False}},
+                            {"name":"text_orientation_set","param":{"angle_key":"orint","iterations":2,"iter_save":False}},
+                            {"name":"load","param":{"cache_key":"origin"}},
+                            {"name":"rotate","param":{"angle_key":"angle2_1"}},
+                            {"name":"rotate","param":{"angle_key":"angle2_2"}},
+                            {"name":"rotate","param":{"angle_key":"angle2_3"}},
+                            {"name":"rotate","param":{"angle_key":"orint"}},
+                        ], 
+                    }
+                },
+                "area_cut":{},
+                "ocr":{},
+                "save":{
+                    "save_list":[
+                        "classify_preprocess"
+                    ],
+                },
+            }
         }
     }
     return _get_deep_info(class_map,*keys)

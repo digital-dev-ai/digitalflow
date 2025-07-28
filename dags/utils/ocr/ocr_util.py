@@ -54,9 +54,9 @@ def ocr_step_list(block_data:Tuple[Any,Dict], input_img_type:str="np_bgr", step_
         step_list = STEP_INFO_DEFAULT["step_list"]
     if result_map is None:
         result_map = {}
-    process_id = str(uuid.uuid4())
-    result_map["process_id"] = f"_spb{process_id}"
-    result_map["folder_path"] = result_map.get("folder_path",process_id)
+    process_id = f"_ocr_{str(uuid.uuid4())}"
+    result_map["process_id"] = process_id
+    result_map["folder_path"] = result_map.get("folder_path",f"{TEMP_FOLDER}/{process_id}")
     result_map["cache"] = {}
     result_map["save_path"] = {}
     
@@ -83,49 +83,31 @@ def cache(block_data:Tuple[Any,Dict],cache_key:str,result_map:dict)->Tuple[Any,D
 def load(_,cache_key:str,result_map:dict)->Tuple[Any,Dict]:
     return result_map["cache"][f"filepath_{cache_key}"]
 
-    if tmp_save:
-        if result_map.get("folder_path", "abcd").startswith(TEMP_FOLDER) or result_map.get("folder_path", "abcd").startswith(RESULT_FOLDER) :
-            save_path = result_map.get("folder_path","temp") / f"{save_key}.png"
-        else : 
-            save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
-        save_path = file_util.file_copy(file_path,save_path)
-    else:
-        save_path = file_path
-    result_map["save_path"][save_key]=save_path
-    return file_path
-
-
-def save(block_data:Tuple[Any,Dict],save_key:str,result_map:dict,tmp_save:bool=False)->Tuple[Any,Dict]:
-    print("save called with save_key:", save_key)
-    if not save_key:
-        save_key = "tmp"
+def save(block_data:Tuple[Any,Dict],save_key:str="tmp",tmp_save:bool=False,result_map:dict=None)->Tuple[Any,Dict]:
+    if not result_map:
+        result_map = {}
     if tmp_save:
         if result_map.get("folder_path", "temp").startswith(TEMP_FOLDER) or result_map.get("folder_path", "temp").startswith(RESULT_FOLDER) :
-            save_path = result_map.get("folder_path","temp") / f"{save_key}.png"
+            img_save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.png"
+            json_save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.json"
         else : 
-            save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
-
-        img_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path",result_map.get("process_id","temp")) / f"{save_key}.png"
-        img_save_path = file_util.file_copy(block_data[0],img_save_path) # 복사 후 실제 경로 전달(중복 방지로 인한 파일명 변경 등 반영)
-        json_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path",result_map.get("process_id","temp")) / f"{save_key}.json"
+            img_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
+            json_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.json"
+        file_util.file_copy(block_data[0],img_save_path)
         json_util.save(str(json_save_path),block_data[1])
-    else:
-        img_save_path = block_data[0]
-    result = (img_save_path, block_data[1])
-    result_map["save_path"][save_key]=result
-    return result
+    result_map["save_path"][save_key]=block_data
+    return block_data
 
-def tesseract(block_data:Tuple[Any,Dict], lang:str="kor+eng", config:str="--oem 3 --psm 3", iter_save:bool=False, result_map:dict=None) -> List[Tuple[Any, Dict]]:
+def tesseract(block_data:Tuple[Any,Dict], lang:str="kor", config:str="--psm 6", return_type:str="text", iter_save:bool=False, result_map:dict=None) -> List[Tuple[Any, Dict]]:
     img_np_bgr, block_map = block_data
     
-    # 
     gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
     
     # 스케일 -> 이진화
-    # # 확대
-    # x_scale = 2.0
-    # y_scale = 2.0
-    # scaled = cv2.resize(gray, None, fx=x_scale, fy=y_scale, interpolation=cv2.INTER_LINEAR)
+    # 확대
+    x_scale = 2.0
+    y_scale = 2.0
+    scaled = cv2.resize(gray, None, fx=x_scale, fy=y_scale, interpolation=cv2.INTER_LINEAR)
 
     # #강화된 이진화
     # thresh = cv2.adaptiveThreshold(
@@ -133,58 +115,61 @@ def tesseract(block_data:Tuple[Any,Dict], lang:str="kor+eng", config:str="--oem 
     #     cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
     #     cv2.THRESH_BINARY, 11, 2
     # )
-
-    # 이진화 -> 스케일
-    #강화된 이진화
-    thresh = cv2.adaptiveThreshold(
-        gray, 255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY, 11, 2
-    )
-
-    # 확대
-    x_scale = 2.0
-    y_scale = 2.0
-    scaled = cv2.resize(thresh, None, fx=x_scale, fy=y_scale, interpolation=cv2.INTER_LINEAR)
+    _, thresh = cv2.threshold(scaled, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
     # 🔧 morphology로 결손 복원
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-    thresh = cv2.morphologyEx(scaled, cv2.MORPH_OPEN, kernel, iterations=1)
-    # thresh = cv2.morphologyEx(scaled, cv2.MORPH_CLOSE, kernel, iterations=1)
+    thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
+    morphed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+    
+    thresh_invert = cv2.bitwise_not(morphed)
+
     
     data = pytesseract.image_to_data(
-        thresh, lang=lang, config=config, output_type=pytesseract.Output.DICT
-    )
+        thresh_invert, lang=lang, config=config, output_type=pytesseract.Output.DICT)
+    if not any(word.strip() for word in data.get('text', [])):
+        print("추가 ocr")
+        data = pytesseract.image_to_data(
+            thresh_invert, lang=lang, config="--oem 3 --psm 8", output_type=pytesseract.Output.DICT)
+        
+    if iter_save:
+        # ocr 처리 이미지 기준 블록 그리기
+        draw_block_box_util.draw_block_box_step_list((thresh_invert, data), input_img_type="np_gray", 
+            step_list=[{"name": "tesseract_data_to_json", "param": {}},
+                    {"name": "draw_block_box_xywh2", "param": {"box_color": 1, "iter_save": True}}],
+            result_map={"folder_path":result_map["process_id"]})
     
-    # draw_block_list = []
-    # for i in range(len(data['level'])):
-    #     block_id = data['text'][i]
-    #     block_box = [data['left'][i], data['top'][i], data['width'][i], data['height'][i]]
-    #     draw_block_list.append({'block_id': block_id, 'block_box': block_box})
-    #draw_block_box_util.draw_block_box_step_list((thresh, draw_block_list), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
+    #증가배율에 맞춰 좌표 복구
     converted = data.copy()
     for key in ['left', 'width']:
         converted[key] = [value / x_scale for value in data[key]]
     for key in ['top', 'height']:
         converted[key] = [value / y_scale for value in data[key]]
     
+    # #블록별 추출 문자 박스 그리기
     # converted_draw_block_list = []
     # for i in range(len(converted['level'])):
     #     block_id = converted['text'][i]
     #     block_box = [converted['left'][i], converted['top'][i], converted['width'][i], converted['height'][i]]
     #     converted_draw_block_list.append({'block_id': block_id, 'block_box': block_box})
-    #draw_block_box_util.draw_block_box_step_list((img_np_bgr, converted_draw_block_list), input_img_type="np_bgr", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
+    #draw_block_box_util.draw_block_box_step_list((img_np_bgr, converted_draw_block_list), input_img_type="np_bgr", 
+    #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],
+    #     result_map={"folder_path":result_map["process_id"]})
     combined_text = ' '.join([word for word in data['text'] if word.strip() != ''])
-    block_map['ocr'] = {"summary":combined_text,"tesseract":converted}
-    if iter_save:
-        save((type_convert_util.convert_type(thresh, "np_gray", "file_path"), block_map), result_map=result_map, save_key=block_map["block_id"], tmp_save=True)
+    conf_values = [int(c) for c in data['conf'] if ((isinstance(c, str) and c.isdigit()) or isinstance(c, int)) and int(c) >= 0]
+    mean_conf = sum(conf_values)/len(conf_values) if conf_values else 0
+    block_map['ocr'] = {"tesseract":{"text":combined_text,"conf":mean_conf,"data":converted}}
+    print("-_-_-",block_map)
+    # if iter_save:
+    #     save((type_convert_util.convert_type(thresh_invert, "np_gray", "file_path"), block_map), save_key=block_map["block_id"], tmp_save=True, result_map={"folder_path":result_map["process_id"]})
    
     return (img_np_bgr,block_map)
+
 function_map = {
     #common
     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
-    "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
+    "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key,tmp_save"},
     #ocr
     "tesseract": {"function": tesseract, "input_type": "np_bgr", "output_type": "np_bgr", "param": "lang,config,iter_save"},
     

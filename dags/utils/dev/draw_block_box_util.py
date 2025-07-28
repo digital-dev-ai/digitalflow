@@ -12,8 +12,8 @@ from utils.img import type_convert_util
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 STEP_INFO_DEFAULT = {
-    "name":"separate area default",
-    "type":"separate_area_step_list",
+    "name":"draw block box default",
+    "type":"draw_block_box_step_list",
     "step_list":[
         {"name":"save","param":{"save_key":"tmp_save"}}
     ]
@@ -50,9 +50,9 @@ def draw_block_box_step_list(data:Tuple[Any,List], input_img_type:str="file_path
         step_list = STEP_INFO_DEFAULT["step_list"]
     if result_map is None:
         result_map = {}
-    process_id = str(uuid.uuid4())
-    result_map["process_id"] = f"_box{process_id}"
-    result_map["folder_path"] = result_map.get("folder_path",process_id)
+    process_id = f"_box_{str(uuid.uuid4())}"
+    result_map["process_id"] = process_id
+    result_map["folder_path"] = result_map.get("folder_path",f"{TEMP_FOLDER}/{process_id}")
     result_map["cache"] = {}
     result_map["save_path"] = {}
     
@@ -65,10 +65,11 @@ def draw_block_box_step_list(data:Tuple[Any,List], input_img_type:str="file_path
             print(f"경고: '{stepinfo['name']}' 함수가 정의되지 않아 다음 단계를 진행합니다.")
             continue  # 정의되지 않은 함수는 건너뜀
         function_info = function_map[stepinfo["name"]]
+        
         convert_param = stepinfo.get("convert_param", {})
         input = (type_convert_util.convert_type(output[0],before_output_type,function_info["input_type"],params=convert_param), output[1])
         output = function_info["function"](input,**stepinfo["param"],result_map=result_map)
-        before_output_type = function_info["output_type"]
+        before_output_type = function_info["output_type"] if function_info["output_type"]!="any" else before_output_type
     
     result = type_convert_util.convert_type(output[0],before_output_type,output_img_type)
     return result
@@ -80,18 +81,16 @@ def cache(file_path:str,cache_key:str,result_map:dict)->str:
 def load(_,cache_key:str,result_map:dict)->str:
     return result_map["cache"][f"filepath_{cache_key}"]
 
-def save(file_path:str,save_key:str,result_map:dict,tmp_save:bool=False)->str:
-    if not save_key:
-        save_key = "tmp"
+def save(file_path:str,save_key:str="tmp",tmp_save:bool=False,result_map:dict=None)->str:
+    if not result_map:
+        result_map = {}
     if tmp_save:
-        if result_map.get("folder_path", "abcd").startswith(TEMP_FOLDER) or result_map.get("folder_path", "abcd").startswith(RESULT_FOLDER) :
-            save_path = result_map.get("folder_path","temp") / f"{save_key}.png"
+        if result_map.get("folder_path", "temp").startswith(TEMP_FOLDER) or result_map.get("folder_path", "temp").startswith(RESULT_FOLDER) :
+            save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.png"
         else : 
             save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
-        save_path = file_util.file_copy(file_path,save_path)
-    else:
-        save_path = file_path
-    result_map["save_path"][save_key]=save_path
+        file_util.file_copy(file_path,save_path)
+    result_map["save_path"][save_key]=file_path
     return file_path
 
 def draw_block_box_xywh1(block_data:Tuple[Any,List], box_color:int=1, iter_save:bool=False, result_map:dict=None) -> tuple:
@@ -141,23 +140,20 @@ def draw_block_box_xywh1(block_data:Tuple[Any,List], box_color:int=1, iter_save:
     
     if iter_save:
         img_path = type_convert_util.convert_type(img_np_bgr, "np_bgr", "file_path")
-        save(img_path, result_map=result_map, save_key=str(width)+"-"+str(height), tmp_save=True)
+        save(img_path, result_map=result_map, save_key="dw"+str(width)+"-"+str(height), tmp_save=True)
     return img_np_bgr, block_map
 
 def draw_block_box_xywh2(block_data:Tuple[Any,List], box_color:int=1, iter_save:bool=False, result_map:dict=None) -> tuple:
     """
     블록 박스를 그리는 유틸리티 함수
     :param block_data: (이미지 numpy 배열, 블록 정보 딕셔너리)
-    :param area_type: 영역 타입 ("horizontal" 또는 "vertical")
-    :param offset: 오프셋 값
-    :param width: 너비
-    :param height: 높이
+    :param box_color: 박스 및 글자색
     :param iter_save: 반복 저장 여부
     :return: (이미지 numpy 배열, 블록 정보 딕셔너리)
     """
     img_pil, block_list = block_data
     draw = ImageDraw.Draw(img_pil)
-    font_path="/opt/airflow/data/font/NanumGothic.ttf"
+    font_path="/opt/airflow/data/common/font/NanumGothic.ttf"
     font_size=16
     font = ImageFont.truetype(font_path, font_size)
     
@@ -192,18 +188,43 @@ def draw_block_box_xywh2(block_data:Tuple[Any,List], box_color:int=1, iter_save:
     
     if iter_save:
         img_path = type_convert_util.convert_type(img_pil, "pil", "file_path")
-        save(img_path, result_map=result_map, save_key=str(width)+"-"+str(height), tmp_save=True)
+        save(img_path, result_map=result_map, save_key="dw"+str(width)+"-"+str(height), tmp_save=True)
     return img_pil, block_map
 
+def contours_to_json(block_data:Tuple[Any,List], result_map:dict=None) -> tuple:
+    #contours, hierarchy = cv2.findContours의 contours를 변환하는 함수
+    img, contours = block_data
+    result = []
+    for idx, contour in enumerate(contours):
+        x, y, w, h = cv2.boundingRect(contour)
+        block_info = {
+            "block_id": idx + 1,
+            "block_box": [x, y, w, h]  # x, y, w, h
+        }
+        result.append(block_info)
+    return (img, result)
+
+def tesseract_data_to_json(block_data:Tuple[Any,List], result_map:dict=None) -> tuple:
+    #contours, hierarchy = cv2.findContours의 contours를 변환하는 함수
+    img, data = block_data
+    result = []
+    for i in range(len(data['level'])):
+        block_id = data['text'][i]
+        block_box = [data['left'][i], data['top'][i], data['width'][i], data['height'][i]]
+        result.append({'block_id': block_id, 'block_box': block_box})
+    return (img, result)
 
 function_map = {
     #common
     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
-    "draw_block_box_xywh": {"function": draw_block_box_xywh1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
-    "draw_block_box_xywh1": {"function": draw_block_box_xywh1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
-    "draw_block_box_xywh2": {"function": draw_block_box_xywh2, "input_type": "pil", "output_type": "pil", "param": "area_type,offset,width,height,iter_save"},
+    "draw_block_box_xywh": {"function": draw_block_box_xywh2, "input_type": "pil", "output_type": "pil", "param": "box_color,iter_save"},
+    "draw_block_box_xywh1": {"function": draw_block_box_xywh1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "box_color,iter_save"},
+    "draw_block_box_xywh2": {"function": draw_block_box_xywh2, "input_type": "pil", "output_type": "pil", "param": "box_color,iter_save"},
+    #json 변환
+    "contours_to_json": {"function": contours_to_json, "input_type": "any", "output_type": "any", "param": ""},
+    "tesseract_data_to_json": {"function": tesseract_data_to_json, "input_type": "any", "output_type": "any", "param": ""},
     
 }
 CV_COLOR_MAP = {

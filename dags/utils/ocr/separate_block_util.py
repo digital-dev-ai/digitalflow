@@ -1,16 +1,14 @@
-from collections import Counter, deque
+from collections import deque
 from pathlib import Path
 from airflow.models import Variable, XCom
-from typing import Any, List, Dict, Tuple
+from typing import Any
 import uuid
 import cv2, os
 import numpy as np
-import pytesseract
 from scipy.ndimage import interpolation as inter
 from utils.dev import draw_block_box_util
 from utils.com import json_util, file_util
 from utils.img import type_convert_util
-from typing import Tuple, List
 import numpy as np
 import cv2
 from pathlib import Path
@@ -25,7 +23,7 @@ STEP_INFO_DEFAULT = {
     ]
 }
 
-def separate_block(block_data:Tuple[Any,Dict], input_img_type:str="np_bgr", output_img_type:str="file_path", step_info:Dict=None, result_map:dict=None) -> List[Tuple[Any, Dict]]:
+def separate_block(block_data:tuple[Any, dict], input_img_type:str="np_bgr", output_img_type:str="file_path", step_info:dict=None, result_map:dict=None) -> list[tuple[Any, dict]]:
     """
     이미지 전처리 함수
     :param data: 이미지 파일 경로 또는 numpy 배열
@@ -42,7 +40,7 @@ def separate_block(block_data:Tuple[Any,Dict], input_img_type:str="np_bgr", outp
     step_list = step_info.get("step_list", STEP_INFO_DEFAULT["step_list"])
     return separate_block_step_list(block_data=block_data, input_img_type=input_img_type, output_img_type=output_img_type, step_list=step_list, result_map=result_map)
 
-def separate_block_step_list(block_data:Tuple[Any,Dict], input_img_type:str="np_bgr", output_img_type:str="file_path", step_list:List[Dict]=None, result_map:dict=None) -> List[Tuple[Any, Dict]]:
+def separate_block_step_list(block_data:tuple[Any, dict], input_img_type:str="np_bgr", output_img_type:str="file_path", step_list:list[dict]=None, result_map:dict=None) -> list[tuple[Any, dict]]:
     """
     이미지 전처리 함수
     :param data: 이미지 파일 경로 또는 numpy 배열
@@ -56,9 +54,9 @@ def separate_block_step_list(block_data:Tuple[Any,Dict], input_img_type:str="np_
         step_list = STEP_INFO_DEFAULT["step_list"]
     if result_map is None:
         result_map = {}
-    process_id = str(uuid.uuid4())
-    result_map["process_id"] = f"_{process_id}_spb"
-    result_map["folder_path"] = result_map.get("folder_path",process_id)
+    process_id = f"_spb_{str(uuid.uuid4())}"
+    result_map["process_id"] = process_id
+    result_map["folder_path"] = result_map.get("folder_path",f"{TEMP_FOLDER}/{process_id}")
     result_map["cache"] = {}
     result_map["save_path"] = {}
     
@@ -92,30 +90,30 @@ def separate_block_step_list(block_data:Tuple[Any,Dict], input_img_type:str="np_
     result_list.append(result)
     return result_list
 
-def cache(block_data:Tuple[Any,Dict],cache_key:str,result_map:dict)->Tuple[Any,Dict]:
+def cache(block_data:tuple[Any, dict],cache_key:str,result_map:dict)->tuple[Any, dict]:
     result_map["cache"][f"filepath_{cache_key}"] = block_data
     return block_data
 
-def load(_,cache_key:str,result_map:dict)->Tuple[Any,Dict]:
+def load(_,cache_key:str,result_map:dict)->tuple[Any, dict]:
     return result_map["cache"][f"filepath_{cache_key}"]
 
-def save(block_data:Tuple[Any,Dict],save_key:str,result_map:dict,tmp_save:bool=False)->Tuple[Any,Dict]:
-    print("save called with save_key:", save_key)
-    if not save_key:
-        save_key = "tmp"
+def save(block_data:tuple[Any,dict],save_key:str="tmp",tmp_save:bool=False,result_map:dict=None)->tuple[Any,dict]:
+    if not result_map:
+        result_map = {}
     if tmp_save:
-        img_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path",result_map.get("process_id","temp")) / f"{save_key}.png"
-        img_save_path = file_util.file_copy(block_data[0],img_save_path) # 복사 후 실제 경로 전달(중복 방지로 인한 파일명 변경 등 반영)
-        json_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path",result_map.get("process_id","temp")) / f"{save_key}.json"
+        if result_map.get("folder_path", "temp").startswith(TEMP_FOLDER) or result_map.get("folder_path", "temp").startswith(RESULT_FOLDER) :
+            img_save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.png"
+            json_save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.json"
+        else : 
+            img_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
+            json_save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.json"
+        file_util.file_copy(block_data[0],img_save_path)
         json_util.save(str(json_save_path),block_data[1])
-    else:
-        img_save_path = block_data[0]
-    result = (img_save_path, block_data[1])
-    result_map["save_path"][save_key]=result
-    return result
+    result_map["save_path"][save_key]=block_data
+    return block_data
 
 def separate_block_by_line(
-    block_data: Tuple[Any, Dict],
+    block_data: tuple[Any, dict],
     horizontal_first: bool = True,
     horizontal_line_ratio: float = 0.7,
     horizontal_min_gap: int = 15,
@@ -123,7 +121,7 @@ def separate_block_by_line(
     vertical_min_gap: int = 15,
     iter_save: bool = False,
     result_map: dict = None
-) -> List[Tuple[np.ndarray, Dict]]:
+) -> list[tuple[np.ndarray, dict]]:
     """
     이미지에서 수평선 또는 수직선을 기준으로 반복적으로 영역을 분리합니다.
     각 방향의 분할은 더 이상 선이 검출되지 않을 때까지 반복됩니다.
@@ -192,7 +190,7 @@ def separate_block_by_line(
     # 4. 최종 결과 저장
     return complete_block_list
 
-def split_image_contours_gaps(block_data: Tuple[Any, Dict], min_start_point:int=10, min_gap_width:int=20, angle:int=0, iter_save:bool=False, result_map:dict=None):
+def split_image_contours_gaps(block_data: tuple[Any, dict], min_start_point:int=10, min_gap_width:int=20, angle:int=0, iter_save:bool=False, result_map:dict=None):
     """
     이미지 내 텍스트 사이의 수직 공백을 감지하여 이미지를 분할합니다.
 
@@ -207,7 +205,9 @@ def split_image_contours_gaps(block_data: Tuple[Any, Dict], min_start_point:int=
     img_np_bgr,block_map = block_data  # block_data는 (이미지 경로, 메타데이터) 형태이므로, 이미지 경로를 추출합니다.
     img_np_bgr = _rotate(img_np_bgr, angle)
     rotated_h, rotated_w, _ = img_np_bgr.shape
-    block_id = block_map.get("block_id", "area_name")
+    block_id = block_map.get("block_id", "block_name")
+    section_name = block_map.get("section_name", "section_name")
+    section_class_id = block_map.get("section_class_id", "section_class_id")
     # 2. 이미지 전처리 (텍스트를 흰색, 배경을 검은색으로)
     gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
     # Otsu의 이진화는 임계값을 자동으로 계산해줍니다.
@@ -269,12 +269,12 @@ def split_image_contours_gaps(block_data: Tuple[Any, Dict], min_start_point:int=
 
     # 6. 이미지 자르기 및 저장
     cutted_block_data = []
-    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0}))
-    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0}))
+    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
 
     if iter_save:
-        save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
-        save((type_convert_util.convert_type(cutted_block_data[1][0], "np_bgr", "file_path"),cutted_block_data[1][1]), cutted_block_data[1][1]["block_id"], tmp_save=True, result_map=result_map)
+        save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), save_key=cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
+        save((type_convert_util.convert_type(cutted_block_data[1][0], "np_bgr", "file_path"),cutted_block_data[1][1]), save_key=cutted_block_data[1][1]["block_id"], tmp_save=True, result_map=result_map)
         
     complete_block_list = []
     block_map["child"]=2
@@ -284,7 +284,7 @@ def split_image_contours_gaps(block_data: Tuple[Any, Dict], min_start_point:int=
     return complete_block_list
 
 
-def split_image_by_vertical_gaps(block_data: Tuple[Any, Dict], min_start_point:int=10, min_gap_width:int=20, angle:int=0, iter_save:bool=False, result_map:dict=None):
+def split_image_by_vertical_gaps(block_data: tuple[Any, dict], min_start_point:int=None, min_gap_width:int=None, min_start_ratio:float=None, min_gap_ratio:float=None, angle:int=0, iter_save:bool=False, result_map:dict=None):
     """
     이미지 내 텍스트 사이의 수직 공백을 감지하여 이미지를 분할합니다.
 
@@ -296,10 +296,25 @@ def split_image_by_vertical_gaps(block_data: Tuple[Any, Dict], min_start_point:i
     Returns:
         list[str]: 저장된 개별 이미지 파일의 경로 리스트.
     """
+    # 설정값 초기화
     img_np_bgr,block_map = block_data  # block_data는 (이미지 경로, 메타데이터) 형태이므로, 이미지 경로를 추출합니다.
     img_np_bgr = _rotate(img_np_bgr, angle)
     rotated_h, rotated_w, _ = img_np_bgr.shape
+    # 글자 이전 여백으로 잘못 추출되는 것을 방지하기 위한 설정값
+    if min_start_point is None:
+        if min_start_ratio is None:
+            min_start_point = 10
+        else:
+            min_start_point = int(min_start_ratio * rotated_w)
+    # 일정 이상의 공백만 추출하기 위한 설정값
+    if min_gap_width is None:
+        if min_gap_ratio is None:
+            min_gap_width = 20
+        else:
+            min_gap_width = int(min_gap_ratio * rotated_w)
     block_id = block_map.get("block_id", "area_name")
+    section_name = block_map.get("section_name", "section_name")
+    section_class_id = block_map.get("section_class_id", "section_class_id")
     
     # 2. 이미지 전처리 (텍스트를 흰색, 배경을 검은색으로)
     gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
@@ -326,6 +341,9 @@ def split_image_by_vertical_gaps(block_data: Tuple[Any, Dict], min_start_point:i
                 gap_start = x
             consecutive_count += 1
             if consecutive_count >= min_gap_width: # 최소 갭 너비보다 커지면 추출 break
+                if gap_start == min_start_point:
+                    print("예상하지 못한 위치에서 수평 공백을 발견했습니다. 이미지를 통째로 처리합니다.")
+                    return block_data
                 gap_end = x + 1
                 first_gap = {'start': gap_start, 'end': gap_end, 'width': gap_end - gap_start}
                 break
@@ -335,8 +353,6 @@ def split_image_by_vertical_gaps(block_data: Tuple[Any, Dict], min_start_point:i
 
     # 7. 분할 기준을 충족하는 공백 중 가장 왼쪽에 있는 공백을 기준으로 이미지 분할
     if first_gap is None:
-        draw_block_box_util.draw_block_box_step_list((closed, [[0,0,1,1]]), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":block_id})
-        
         print("분할할 만큼 충분히 넓은 수평 공백을 찾지 못했습니다. 이미지를 통째로 처리합니다.")
         return block_data
     
@@ -355,12 +371,12 @@ def split_image_by_vertical_gaps(block_data: Tuple[Any, Dict], min_start_point:i
 
     # 6. 이미지 자르기 및 저장
     cutted_block_data = []
-    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0}))
-    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0}))
+    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
 
     if iter_save:
-        save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
-        save((type_convert_util.convert_type(cutted_block_data[1][0], "np_bgr", "file_path"),cutted_block_data[1][1]), cutted_block_data[1][1]["block_id"], tmp_save=True, result_map=result_map)
+        save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), save_key=cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
+        save((type_convert_util.convert_type(cutted_block_data[1][0], "np_bgr", "file_path"),cutted_block_data[1][1]), save_key=cutted_block_data[1][1]["block_id"], tmp_save=True, result_map=result_map)
         
     complete_block_list = []
     block_map["child"]=2
@@ -440,14 +456,19 @@ def _reorient_box(main_block_box,sub_block_box,rotated_angle):
     return [new_x, new_y, new_w, new_h]
     
 def _separate_areas_by_lines_with_rotation(
-    block_data: Tuple[Any, Dict],
+    block_data: tuple[Any, dict],
     result_map: dict,
     line_ratio: float = 0.7,
     min_gap: int = 15,
     rotation: bool = False,  # 수평은 False, 수직은 True로 설정
     iter_save: bool = False,
     **kwargs
-) -> Tuple[List[Tuple[np.ndarray, str]], bool]:
+) -> tuple[list[tuple[np.ndarray, str]], bool]:
+    """
+    return 나뉜 블록의 이미지, 블록맵 목록을 리턴.
+    유효한 블록들만 리턴해야함. 의미 없는 블록(너무 작음)은 제외.
+    전부 의미없는 블록일 경우 빈 리스트 리턴.
+    """
     img_np_bgr, block_map = block_data
     direction = "h"
     # -90도 회전(시계방향)
@@ -456,34 +477,54 @@ def _separate_areas_by_lines_with_rotation(
         img_np_bgr = _rotate(img_np_bgr, -90)
     
     gray = cv2.cvtColor(img_np_bgr, cv2.COLOR_BGR2GRAY)
-    binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-    dilated_binary = cv2.dilate(binary, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)), iterations=1)
+    _, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    closing_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 1))  # 수평선
+    closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, closing_kernel, iterations=1) # 반전 시 끊김 연결
+    dilated_binary = cv2.dilate(closing, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)), iterations=1)
     h, w = dilated_binary.shape
+
+    if iter_save:
+        # 라인 디텍트
+        block_id = block_map.get("block_id")
+        save((type_convert_util.convert_type(dilated_binary, "np_gray", "file_path"),{}), f"{block_id}_delited_binay", tmp_save=True, result_map=result_map)
+        meta_path = Path(TEMP_FOLDER) / result_map["folder_path"] / f"{block_id}.json"
+        json_util.save(str(meta_path), block_map)
 
     horizontal_kernel_size = int(w * line_ratio)
     #너무 작은 커널 사이즈는 의미가 없으므로 빈 리스트 반환
-    if horizontal_kernel_size < 1:
+    if horizontal_kernel_size < 5:
         return []
 
+    # 반전이미지를 긴 커널로 OPEN하여 긴 선 외의 검정선 제거
     detected_lines = cv2.morphologyEx(
         dilated_binary,
         cv2.MORPH_OPEN,
         cv2.getStructuringElement(cv2.MORPH_RECT, (horizontal_kernel_size, 1)),
         iterations=2
     )
+    if iter_save:
+        # 라인 디텍트
+        block_id = block_map.get("block_id")
+        save((type_convert_util.convert_type(detected_lines, "np_gray", "file_path"),{}), f"{block_id}_line_detect", tmp_save=True, result_map=result_map)
+        meta_path = Path(TEMP_FOLDER) / result_map["folder_path"] / f"{block_id}.json"
+        json_util.save(str(meta_path), block_map)
+
     contours, _ = cv2.findContours(detected_lines, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     y_coords = [cv2.boundingRect(c)[1] + cv2.boundingRect(c)[3] // 2 for c in contours]
-    split_points = sorted(set([0] + y_coords + [h]))
+    if not y_coords:
+        # 유효한 분할선이 발견되지 않았을 경우 빈 리스트 반환
+        return []
+    
 
     # 분할된 영역의 메타데이터를 저장하기 위한 경로
     block_id = block_map.get("block_id", "area_name")
+    section_name = block_map.get("section_name", "section_name")
+    section_class_id = block_map.get("section_class_id", "section_class_id")
     orig_x, orig_y, orig_w, orig_h = block_map.get("block_box", [0, 0, 0, 0])
-
-    if len(split_points) < 3:
-        # 분할이 일어나지 않았으므로 결과 무시
-        return []
+    
     results = []
     split_num = 1
+    split_points = sorted(set([0] + y_coords + [h]))
     for i in range(len(split_points) - 1):
         print(f"Processing split {i+1}/{len(split_points)-1} for {block_id} in {direction} direction")
         y1, y2 = split_points[i], split_points[i + 1]
@@ -496,7 +537,9 @@ def _separate_areas_by_lines_with_rotation(
         
         sub_block_map = {
             "block_id": sub_block_id,
-            "block_box": [0, y1, w, y2 - y1]
+            "block_box": [0, y1, w, y2 - y1],
+            "section_class_id":section_class_id,
+            "section_name": section_name
         }
 
         results.append((sub_img, sub_block_map))
@@ -550,7 +593,7 @@ function_map = {
     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
     #set
     "separate_block_by_line": {"function": separate_block_by_line, "input_type": "np_bgr", "output_type": "np_bgr", "param": "horizontal_first,horizontal_line_ratio,horizontal_min_gap,vertical_line_ratio,vertical_min_gap,iter_save"},
-    "split_image_by_vertical_gaps": {"function": split_image_by_vertical_gaps, "input_type": "np_bgr", "output_type": "np_bgr", "param": "min_gap_width"},
+    "split_image_by_vertical_gaps": {"function": split_image_by_vertical_gaps, "input_type": "np_bgr", "output_type": "np_bgr", "param": "min_start_point,min_gap_width,min_start_ratio,min_gap_ratio,angle,iter_save"},
 }
 
 

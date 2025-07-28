@@ -12,7 +12,6 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 OCR_DEBUG_FOLDER = Variable.get("OCR_DEBUG_FOLDER", default_var="/opt/airflow/data/ocr_debug")
 OCR_RESULT_FOLDER = Variable.get("OCR_RESULT_FOLDER", default_var="/opt/airflow/data/class/a_class/ocr")
 
-
 #dag_id = 순환하지 않는 방향성있는 그래프로 표현한 워크플로우의 관리번호(속성: dag소스, 스케쥴 등)
 #run_id = dag의 워크플로우에 따른 실행 인스턴스 관리번호(속성: 시작일시, 종료일시, 실행상태 등)
 #task_id = 워크플로우의 개별 작업 단위(속성: task소스, 파라미터, 로그 등)
@@ -38,7 +37,7 @@ def setup_runtime(**context):
     # b_class의 각 영역별 results 폴더를 DAG 실행 시마다 초기화합니다.
     # 이렇게 하면 이전 실행에서 남은 .json 파일이 다음 실행에 영향을 주는 것을 방지합니다.
     ocr_b_class_path = Path(OCR_RESULT_FOLDER)
-    b_class_ocr_config = file_util.get_config("a_class", "ocr")
+    b_class_ocr_config = file_util.get_config("general_building_register","a_class", "ocr")
 
     if ocr_b_class_path.is_dir() and b_class_ocr_config and 'area_list' in b_class_ocr_config:
         print(f"'{ocr_b_class_path}' 경로의 OCR 결과 폴더 초기화를 시작합니다.")
@@ -63,16 +62,38 @@ def check_file_exists(folder_path):
 def setup_target_file_list(folder_path:str,**context):
     run_id = context['dag_run'].run_id
     p = Path(folder_path)
+    doc_name = "general_building_register"
+    layout_name = "a_class"
+    layout_class_id = "9"
     files = [str(f) for f in p.rglob("*") if f.is_file()]
     file_info_list = []
     db_params_list = []
     for path in files:
         id = str(uuid.uuid4())
-        content = {"file_id":id, "file_path":{"_origin":path}}
+        content = {
+            "file_id":id, "file_path":{"_origin":path}, 
+            "layout_class_id":layout_class_id
+        }
         file_info_list.append(content)
         db_params_list.append( (run_id,id,json.dumps(content)) )
     dococr_query_util.insert_map("insertTargetFile", params=db_params_list)
     return file_info_list
+
+# 이전 타스크가 일부만 성공한 경우엔 중단된 파일정보를 제거 후 다음 타스크로 넘김.
+# 반복 사용을 위해 status는 제거.
+@task(trigger_rule="all_done")
+def remove_failed_results(preprocess_results:list[dict]):
+    # 성공한 결과만 필터링하여 다음 단계로 넘김
+    if preprocess_results is None:
+        return []
+    result_only_success = []
+    for r in preprocess_results:
+        if r and r.get("status") == "success":
+            r.pop("status", None)  # status 키 제거
+            result_only_success.append(r)
+    return result_only_success
+
+
 
 @task
 def end_runtime(msg="dag을 종료합니다.",**context):

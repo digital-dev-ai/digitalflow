@@ -23,7 +23,7 @@ with DAG(
 
     # 2. 처리할 OCR 영역 목록을 설정 파일에서 가져오기
     # 'b_class'는 예시이며, 필요에 따라 다른 클래스 이름으로 변경할 수 있습니다.
-    area_list = file_util.get_config("a_class", "ocr", "area_list")
+    area_list = file_util.get_config("general_building_register","a_class", "ocr", "area_list")
 
     # 3. 각 영역별로 동적 파이프라인 생성
     for area_info in area_list:

@@ -26,7 +26,10 @@ def convert_type(data: Any, from_type: str, to_type: str, params: dict = None) -
 #실제 변환 함수
 #file_to
 def file_to_pil(_file_path: str) -> Image.Image:
-    return Image.open(_file_path)
+    img = Image.open(_file_path)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    return img
 
 def file_to_np_bgr(_file_path: str) -> np.ndarray:
     return cv2.imread(_file_path)
@@ -45,18 +48,19 @@ def file_to_np_gray(_file_path: str) -> np.ndarray:
 #pil_to
 def pil_to_file(_img: Image.Image, file_path: str = None) -> str:
     file_path = _get_file_path(file_path)
-    try:
-        _img.save(file_path)
-    except (FileNotFoundError, OSError):
-        Path(file_path).parent.mkdir(parents=True, exist_ok=True)
-        _img.save(file_path)
+    Path(file_path).parent.mkdir(parents=True, exist_ok=True)
+    _img.save(file_path)
     return file_path
 
 def pil_to_np_bgr(_img: Image.Image) -> np.ndarray:
+    if _img.mode != "RGB":
+        _img = _img.convert("RGB")
     np_img = np.array(_img)
     return cv2.cvtColor(np_img, cv2.COLOR_RGB2BGR)
 
 def pil_to_np_rgb(_img: Image.Image) -> np.ndarray:
+    if _img.mode != "RGB":
+        _img = _img.convert("RGB")
     return np.array(_img)
 
 def pil_to_np_gray(_img: Image.Image) -> np.ndarray:
@@ -86,7 +90,10 @@ def np_rgb_to_file(_img: np.ndarray, file_path: str = None) -> str:
     return _np_to_file(bgr_img, file_path)
 
 def np_rgb_to_pil(_img: np.ndarray) -> Image.Image:
-    return Image.fromarray(_img)
+    pil_img = Image.fromarray(_img)
+    if pil_img.mode != "RGB":
+        pil_img = pil_img.convert("RGB")
+    return pil_img
 
 def np_rgb_to_np_bgr(_img: np.ndarray) -> np.ndarray:
     return cv2.cvtColor(_img, cv2.COLOR_RGB2BGR)
@@ -102,7 +109,9 @@ def np_gray_to_file(_img: np.ndarray, file_path: str = None) -> str:
 
 def np_gray_to_pil(_img: np.ndarray) -> Image.Image:
     # numpy 2D 배열을 PIL 이미지로 변환
-    return Image.fromarray(_img)
+    pil_img = Image.fromarray(_img)
+    pil_img = pil_img.convert("RGB")
+    return pil_img
 
 def np_gray_to_np_bgr(_img: np.ndarray) -> np.ndarray:
     # 그레이스케일 이미지를 BGR 3채널로 변환
@@ -156,7 +165,9 @@ def _np_to_file(_img: np.ndarray, file_path: str = None) -> str:
         Path(file_path).parent.mkdir(parents=True, exist_ok=True)
         status = cv2.imwrite(file_path, _img)
         if not status:
-            raise ValueError(f"파일 생성이 실패하였습니다.")
+            print("img shape:", _img.shape if _img is not None else None)
+            print("img dtype:", _img.dtype if _img is not None else None)
+            raise ValueError(f"파일 생성이 실패하였습니다. {file_path}")
     return file_path
 def _get_file_path(file_path: str = None) -> str:
     if file_path is not None:

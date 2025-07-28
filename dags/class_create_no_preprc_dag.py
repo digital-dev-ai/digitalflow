@@ -18,7 +18,7 @@ READY_FALSE_IMAGE_DIR = f"{READY_IMAGE_DIR}/false" # 일반 증강된 문서 이
 PREPRC_IMAGE_DIR = f"{DATA_DIR}/class/a_class/classify/preprc"   # 전처리된 문서 이미지
 PREPRC_TRUE_IMAGE_DIR = f"{PREPRC_IMAGE_DIR}/true"   # 특정 서식 전처리된 문서 이미지
 PREPRC_FALSE_IMAGE_DIR = f"{PREPRC_IMAGE_DIR}/false" # 일반 전처리된 문서 이미지
-NONE_DOC_IMAGE_DIR = f"{DATA_DIR}/none_class" # 비서식 일반 문서 이미지
+NONE_DOC_IMAGE_DIR = f"{DATA_DIR}/common/none_class" # 비서식 일반 문서 이미지
 OUTPUT_MODEL_DIR = f"{DATA_DIR}/class/a_class/classify/model"   #ai 모델
 
 with DAG(
@@ -30,7 +30,7 @@ with DAG(
 ) as dag:
     class_create_runtime_setup_task = setup_runtime()
     # 3. 균형이 맞춰진 데이터셋 구성
-    dataset = build_balanced_dataset(PREPRC_IMAGE_DIR)
+    dataset = build_balanced_dataset(PREPRC_TRUE_IMAGE_DIR,PREPRC_FALSE_IMAGE_DIR)
 
     # 4. 모델 학습
     train = train_lilt(dataset,OUTPUT_MODEL_DIR)

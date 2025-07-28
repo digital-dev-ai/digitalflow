@@ -51,9 +51,9 @@ def separate_area_step_list(data:Any, data_type:str="file_path", output_type:str
         step_list = STEP_INFO_DEFAULT["step_list"]
     if result_map is None:
         result_map = {}
-    process_id = str(uuid.uuid4())
-    result_map["process_id"] = f"_spa{process_id}"
-    result_map["folder_path"] = result_map.get("folder_path",process_id)
+    process_id = f"_spa_{str(uuid.uuid4())}"
+    result_map["process_id"] = process_id
+    result_map["folder_path"] = result_map.get("folder_path",f"{TEMP_FOLDER}/{process_id}")
     result_map["cache"] = {}
     result_map["save_path"] = {}
     
@@ -81,21 +81,23 @@ def cache(file_path:str,cache_key:str,result_map:dict)->str:
 def load(_,cache_key:str,result_map:dict)->str:
     return result_map["cache"][f"filepath_{cache_key}"]
 
-def save(file_path:str,save_key:str,result_map:dict,tmp_save:bool=False)->str:
-    if not save_key:
-        save_key = "tmp"
+def save(file_path:str,save_key:str="tmp",tmp_save:bool=False,result_map:dict=None)->str:
+    if not result_map:
+        result_map = {}
     if tmp_save:
-        save_path = Path(TEMP_FOLDER) / result_map.get("folder_path",result_map.get("process_id","temp")) / f"{save_key}.png"
-        save_path = file_util.file_copy(file_path,save_path)
-    else:
-        save_path = file_path
-    result_map["save_path"][save_key]=save_path
+        if result_map.get("folder_path", "temp").startswith(TEMP_FOLDER) or result_map.get("folder_path", "temp").startswith(RESULT_FOLDER) :
+            save_path = Path(result_map.get("folder_path","temp")) / f"{save_key}.png"
+        else : 
+            save_path = Path(TEMP_FOLDER) / result_map.get("folder_path","temp") / f"{save_key}.png"
+        file_util.file_copy(file_path,save_path)
+    result_map["save_path"][save_key]=file_path
     return file_path
 
 
 def separate_areas_set1(
     img_np_bgr: np.ndarray,
     area_type: str = "top_left",
+    area_ratio: List[float] = None,
     area_box: List[int] = None,
     result_key: str = "_area",
     iter_save: bool = False,
@@ -113,8 +115,22 @@ def separate_areas_set1(
     :param iter_save: 비교를 위한 원본 이미지 저장 여부
     :return: 분리된 이미지(np.ndarray).
     """
+    h_img, w_img = img_np_bgr.shape[:2]
     if area_box is None:
-        area_box = [0, 0, -1, -1]
+        if area_ratio is None:
+            area_box = [0, 0, -1, -1]
+        else:
+            x_ratio,y_ratio,w_ratio,h_ratio = area_ratio
+            if w_ratio == -1:
+                w=-1
+            if h_ratio == -1:
+                h=-1
+            x = int(w_img * x_ratio)
+            y = int(h_img * y_ratio)
+            w = (int(w_img * w_ratio)) if w_ratio != -1 else -1
+            h = (int(h_img * h_ratio)) if h_ratio != -1 else -1
+            area_box = [x, y, w, h]
+
     width = area_box[2] if area_box and len(area_box) > 2 else -1
     height = area_box[3] if area_box and len(area_box) > 3 else -1
     h_img, w_img = img_np_bgr.shape[:2]
@@ -122,7 +138,7 @@ def separate_areas_set1(
     # iter_save가 True일 경우, 영역 분리 전 원본 이미지를 저장합니다.
     if iter_save:
         file_path = type_convert_util.convert_type(img_np_bgr, "np_bgr", "file_path")
-        save(file_path, "separate_areas_set1_original")
+        save(file_path, "separate_areas_set1_original",result_map=result_map)
 
     # 1. 기준점(anchor) 계산
     anchor_points = {
@@ -163,5 +179,5 @@ function_map = {
     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
-    "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
+    "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,area_ratio,area_box,result_key,iter_save"},
 }

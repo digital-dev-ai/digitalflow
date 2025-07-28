@@ -18,6 +18,517 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 result_map = {}           # 최종 결과 파일 경로 관리
 
+#---------------------------------와일드 카드, 특수문자 제거, 공백 제거 코드----------------------------
+def _extract_word_details_from_tesseract_data(data: dict) -> list:
+    """
+    pytesseract image_to_data 결과(dict)에서 단어 리스트 추출
+    """
+    word_details = []
+    num_items = len(data['level'])
+    for i in range(num_items):
+        # 기호제거
+        # clean_text = re.sub(r'[_\,\|\,\=]', '', data['text'][i])
+        clean_text = re.sub(r'[_,|=~^*#@%$&;:?!\[\]{}<>/’※.\-()]', '', data['text'][i])
+        if int(data['conf'][i]) > -1 and data['text'][i].strip():
+            word_details.append({
+                'level': data['level'][i],
+                'page_num': data['page_num'][i],
+                'block_num': data['block_num'][i],
+                'par_num': data['par_num'][i],
+                'line_num': data['line_num'][i],
+                'word_num': data['word_num'][i],
+                'left': data['left'][i],
+                'top': data['top'][i],
+                'width': data['width'][i],
+                'height': data['height'][i],
+                'conf': data['conf'][i],
+                'text': clean_text,
+            })
+    return word_details
+
+#-------------------------------------행렬 정보 추출 후 json 삽입-------------------------------------
+import glob
+import os
+import json
+import numpy as np
+from collections import defaultdict
+from utils.com import json_util
+import csv
+import pymysql
+
+def get_all_y_gaps_from_json_files(json_file_list: list):
+    """
+    모든 json 파일에서 block_box의 y값을 추출하여,
+    정렬 후 y값의 차이(행간 차이,gap) 리스트를 반환.
+    """
+    y_list = []
+    for json_path in json_file_list:
+        try:
+            data = json_util.load(json_path)
+            if not isinstance(data, dict):
+                try:
+                    data = json.loads(data)
+                except Exception:
+                    data = None
+            if isinstance(data, dict):
+                block_box = data.get('block_box', None)
+                if block_box and len(block_box) >= 1:
+                    y = block_box[1]
+                    y_list.append(y)
+        except Exception as e:
+            print(f"Error reading {json_path}: {e}")
+    if len(y_list) < 2:
+        print("x값이 2개 미만입니다.")
+        return [], []
+    y_list.sort()
+    gaps = [y_list[i+1] - y_list[i] for i in range(len(y_list)-1)]
+    return y_list, gaps
+
+
+def cluster_by_gap_analysis(y_list, method: str = "mean+std"):
+    """
+    Gap 분석을 통해 클러스터링. 예를들어,평균+표준편차로 계산한다고 할때 y축 차이(gaps)의 차이를 오름차순으로 비교하여 
+    평균+표준편차보다 작으면 같은 클러스터이고, 크면 다른 클러스터임.
+
+    method: 'mean+std', 'median+std', 'percentile75' 등 선택 가능
+    
+    """
+    if len(y_list) < 2:
+        return [y_list] if y_list else []
+
+    y_list = sorted(y_list)
+    gaps = [y_list[i+1] - y_list[i] for i in range(len(y_list)-1)]
+
+    # 임계값 자동 계산
+    if method == "mean+std":
+        gap_threshold = np.mean(gaps) + np.std(gaps)
+    elif method == "median+std":
+        gap_threshold = np.median(gaps) + np.std(gaps)
+    elif method == "percentile75":
+        gap_threshold = np.percentile(gaps, 75)
+    else:
+        gap_threshold = np.mean(gaps) + np.std(gaps)  # 기본값
+
+    clusters = []
+    current_cluster = [y_list[0]]
+
+    for i in range(1, len(y_list)):
+        gap = y_list[i] - y_list[i-1]
+        if gap <= gap_threshold:
+            current_cluster.append(y_list[i])
+        else:
+            clusters.append(current_cluster)
+            current_cluster = [y_list[i]]
+
+    clusters.append(current_cluster)
+    return clusters
+
+def extract_yx_pairs(json_file_list):
+    """
+    (y,x) 추출 및 yx_pairs 생성. 
+    """
+    yx_pairs = []
+    for json_path in json_file_list:
+        try:
+            data = json_util.load(json_path)
+            if not isinstance(data, dict):
+                try:
+                    data = json.loads(data)
+                except Exception:
+                    data = None
+            if isinstance(data, dict):
+                block_box = data.get('block_box', None)
+                if block_box and len(block_box) >= 2:
+                    x = block_box[0]
+                    y = block_box[1]
+                    yx_pairs.append((y, x, json_path))
+        except Exception as e:
+            print(f"Error reading {json_path}: {e}")
+    return yx_pairs
+
+
+def create_2d_matrix_from_clusters(json_file_list, clusters, yx_pairs=None):
+    """
+    행 클러스터 정보를 기반으로 2차원 리스트를 생성.
+    각 행은 클러스터를 나타내고, 각 열은 x축 정보를 나타냄.
+    Args:
+        json_file_list (list): json 파일 경로 리스트
+        clusters (list): y값 클러스터 리스트 (각 클러스터는 y값들의 리스트)
+        yx_pairs (list): (y, x, json_path) 리스트 (optional)
+    Returns:
+        matrix (list): 2차원 리스트 [[x1, x2, ...], [x1, x2, ...], ...]
+        cluster_info (list): 각 행의 y값 정보
+    """
+    if yx_pairs is None:
+        yx_pairs = extract_yx_pairs(json_file_list)
+    # 2차원 리스트 초기화
+    matrix = []
+    cluster_info = []
+    # 각 클러스터(행)에 대해 처리
+    for row_idx, cluster in enumerate(clusters):
+        row_x_values = []
+        row_y_values = []
+        # 해당 클러스터의 y값 범위 내에 있는 모든 (y, x) 쌍 찾기
+        cluster_min_y = min(cluster)
+        cluster_max_y = max(cluster)
+        # 해당 클러스터에 속하는 모든 x값 찾기
+        cluster_x_values = []
+        for y, x, json_path in yx_pairs:
+            if cluster_min_y <= y <= cluster_max_y:
+                cluster_x_values.append(x)
+        # x값을 오름차순으로 정렬
+        cluster_x_values.sort()
+        matrix.append(cluster_x_values)
+        cluster_info.append({
+            'row': row_idx + 1,
+            'y_range': [cluster_min_y, cluster_max_y],
+            'x_count': len(cluster_x_values),
+            'x_values': cluster_x_values
+        })
+    return matrix, cluster_info
+
+def create_coordinate_mapping(matrix, cluster_info, yx_pairs):
+    """
+    2차원 리스트를 기반으로 좌표 매핑을 생성.
+    Args:
+        matrix (list): 2차원 리스트
+        cluster_info (list): 각 행의 y값 정보
+        yx_pairs (list): (y, x, json_path) 리스트
+    Returns:
+        coordinates (list): [행, 열, x, y] 형태의 좌표 리스트
+    """
+    coordinates = []
+    # yx_pairs를 (x, y) 쌍으로 빠르게 찾을 수 있도록 set/dict 생성
+    xy_set = set((x, y) for y, x, _ in yx_pairs)
+    for row_idx, row in enumerate(matrix):
+        # 해당 행의 y값 범위
+        y_range = cluster_info[row_idx]['y_range']
+        for col_idx, x_value in enumerate(row):
+            # 이 x값에 대해, 해당 y_range 내에 있는 y값을 찾음
+            # 여러 y가 있을 수 있으니 모두 좌표로 추가
+            for y, x, _ in yx_pairs:
+                if x == x_value and y_range[0] <= y <= y_range[1]:
+                    coordinates.append([row_idx + 1, col_idx + 1, x_value, y])
+    return coordinates
+
+def cleansing():
+    # 임시 데이터가 저장된 기본 경로
+    base_path = '/opt/airflow/data/temp'
+    # 처리할 폴더 목록
+    folder_names = ['building_user_status', 'building_info', 'building_detail','doc_subject']
+    # 각 폴더별로 반복
+    for folder_name in folder_names:
+        folder_path = os.path.join(base_path, folder_name)
+        print(f"\n=== {folder_name} 폴더 처리 시작 ===")
+        # 폴더 내 모든 json 파일 리스트 생성
+        json_file_list = glob.glob(os.path.join(folder_path, '*.json'))
+        # 파일 리스트에서 모든 y 좌표와 각 블록 간 y 간격 추출
+        y_list, y_gaps = get_all_y_gaps_from_json_files(json_file_list)
+        if not y_list:
+            # 만약 y 좌표 리스트가 비어 있으면 해당 폴더 처리 건너뜀
+            print("y_list가 비어있어 종료합니다.")
+            continue
+        # (y, x, 파일경로)로 pairing된 리스트 추출
+        yx_pairs = extract_yx_pairs(json_file_list)
+        # y값의 평균+표준편차 기준으로 그룹핑(클러스터링) 
+        clusters_by_gap = cluster_by_gap_analysis(y_list, "mean+std")
+        # 각 클러스터에 따라 2차원 매트릭스 및 클러스터 정보 구성
+        matrix, cluster_info = create_2d_matrix_from_clusters(json_file_list, clusters_by_gap, yx_pairs)
+        # 매트릭스, 클러스터 정보를 이용해 (y, x) → (row, col)로 매핑
+        coordinates = create_coordinate_mapping(matrix, cluster_info, yx_pairs)
+        # (y, x) → (row, col) 변환 결과 출력
+        print("\n=== (y, x) → (row, col) 매핑 ===")
+        xy_to_row_col = {(x, y): [row, col] for row, col, x, y in coordinates}
+        for y, x, json_path in yx_pairs:
+            row_col = xy_to_row_col.get((x, y), None)
+            if row_col:
+                print(f"(y={y}, x={x}) → (row={row_col[0]}, col={row_col[1]})")
+            else:
+                print(f"(y={y}, x={x}) → 매핑 없음")
+        # 각 json 파일별로 row, col 정보를 추가 저장하고 결과 출력
+        print("\n=== 파일별 row_col_info 추가 결과 ===")
+        for y, x, json_path in yx_pairs:
+            try:
+                data = json_util.load(json_path)
+                block_box = data.get('block_box', None) if isinstance(data, dict) else None
+                row_col = xy_to_row_col.get((x, y), None)
+                # block_box가 있고 row/col 매핑이 있으면 해당 정보 추가 후 저장
+                if block_box and len(block_box) >= 2 and row_col and isinstance(data, dict):
+                    data['row'] = row_col[0]
+                    data['col'] = row_col[1]
+                    json_util.save(json_path, data)
+                    print(f"파일명: {os.path.basename(json_path)} → row: {row_col[0]}, col: {row_col[1]}")
+                elif not row_col:
+                    print(f"파일명: {os.path.basename(json_path)} → row, col 매핑 없음")
+            except Exception as e:
+                # 파일 저장/처리 중 오류 발생시 에러 메시지 출력
+                print(f"Error updating {json_path}: {e}")
+        print(f"=== {folder_name} 폴더 처리 완료 ===")
+
+if __name__ == '__main__':
+    cleansing()
+
+
+
+
+
+#-------------------------------------file_util의 get_config 정보 테이블 이관-------------------------------------
+import pymysql
+import json
+
+from utils.com.file_util import get_config
+
+# DB 연결 설정 (환경에 맞게 수정)
+conn = pymysql.connect(
+    host='192.168.10.18',
+    user='digitalflow',
+    password='digital10',
+    db='dococr',
+    charset='utf8mb4',
+    autocommit=True
+)
+cursor = conn.cursor()
+
+# 1. a_class 정보 추출
+def insert_doc():
+    doc_name = "general_building_register"
+    layout_name = "general_building_register"
+    config = get_config(doc_name, layout_name)
+    
+    for idx, area in enumerate(config['layout_list']):
+        section_name
+    # config가 None인 경우 예외 처리
+    if config is None:
+        raise ValueError(f"설정을 가져올 수 없습니다. {layout_name} 설정을 확인해주세요.")
+    
+    
+    # TB_DI_DOC_CLASS
+    # sql = """
+    # INSERT INTO TB_DI_DOC_CLASS (DOC_NAME)
+    # VALUES (%s)
+    # """
+    # cursor.execute(sql, (doc_name,))
+    # print('1')
+    # doc_class_id = cursor.lastrowid
+    doc_class_id = 4
+    
+    
+    # TB_DI_LAYOUT_CLASS (img_preprocess, classify_ai)
+    img_preprocess = json.dumps(config['classify']['img_preprocess'], ensure_ascii=False)
+    classify_ai = json.dumps(config['classify']['classify_ai'], ensure_ascii=False)
+    print('2')
+    sql = """
+    INSERT INTO TB_DI_LAYOUT_CLASS (DOC_CLASS_ID, LAYOUT_NAME, IMG_PREPROCESS_INFO, CLASSIFY_AI_INFO)
+    VALUES (%s, %s, %s, %s)
+    """
+    cursor.execute(sql, (doc_class_id, layout_name, img_preprocess, classify_ai))
+    layout_class_id = cursor.lastrowid
+    print('3')
+
+    # TB_DI_SECTION_CLASS (area_name, separate_area, separate_block, ocr)
+    for idx, area in enumerate(config['ocr']['area_list']):
+        # section_id = idx + 1  # 실제 환경에 맞게 지정
+        section_name = area['area_name']
+        separate_area = json.dumps(area['separate_area'], ensure_ascii=False)
+        separate_block = json.dumps(area['separate_block'], ensure_ascii=False)
+        ocr = json.dumps(area['ocr'], ensure_ascii=False)
+
+        sql = """
+        INSERT INTO TB_DI_SECTION_CLASS (LAYOUT_CLASS_ID,
+        SECTION_NAME,SEPARATE_AREA_INFO, 
+        SEPARATE_BLOCK_INFO, OCR_INFO
+        )
+        VALUES (%s,%s, %s, %s, %s)
+        """
+        cursor.execute(sql, (layout_class_id ,section_name, separate_area, separate_block, ocr))
+
+if __name__ == "__main__":
+    try:
+        insert_layout()
+        print("데이터 이관이 완료되었습니다.")
+    except Exception as e:
+        print(f"오류 발생: {e}")
+    finally:
+        cursor.close()
+        conn.close()
+
+
+
+
+#-------------------------------------행렬정보 및 ocr 데이터 수정 후, 검증 테이블로 이관-------------------------------------
+import os
+import json
+import pymysql
+
+# DB 연결 설정 (환경에 맞게 수정)
+conn = pymysql.connect(
+    host='192.168.10.18',
+    user='digitalflow',
+    password='digital10',
+    db='dococr',
+    charset='utf8mb4',
+    autocommit=True
+)
+cursor = conn.cursor()
+
+def get_section_class_id_map():
+    sql = "SELECT SECTION_NAME, SECTION_CLASS_ID FROM TB_DI_SECTION_CLASS"
+    cursor.execute(sql)
+    return {row[0]: row[1] for row in cursor.fetchall()}
+
+def migrate_blocks_from_json():
+    base_dirs = [
+        '/opt/airflow/data/temp/building_detail',
+        '/opt/airflow/data/temp/building_info',
+        '/opt/airflow/data/temp/building_user_status'
+    ]
+    section_class_id_map = get_section_class_id_map()
+
+    for base_dir in base_dirs:
+        section_name = os.path.basename(base_dir)
+        section_class_id = section_class_id_map.get(section_name)
+        if section_class_id is None:
+            print(f"섹션 정보 없음: {section_name}")
+            continue
+        for filename in os.listdir(base_dir):
+            if filename.endswith('.json'):
+                file_path = os.path.join(base_dir, filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                except Exception as e:
+                    print(f"파일 읽기 오류: {file_path}, {e}")
+                    continue
+                # block_id = data.get('block_id')
+                row = data.get('row')
+                column = data.get('col')
+                # full_text는 중첩 구조에서 추출
+                full_text = None
+                if (
+                    isinstance(data.get('ocr'), dict) and
+                    isinstance(data['ocr'].get('tesseract'), dict)
+                ):
+                    full_text = data['ocr']['tesseract'].get('full_text')
+
+                if row is None or column is None or full_text is None:
+                    print(f"필수 데이터 누락: {file_path}")
+                    continue
+
+                # BLOCK_TYPE 결정
+                if section_name in ['building_detail', 'building_info', 'building_user_status']:
+                    block_type = 'table'
+                else:
+                    block_type = 'header'
+
+                # TB_DI_BLOCK_CLASS에 insert
+                sql_block = """
+                INSERT INTO TB_DI_BLOCK_CLASS (
+                 SECTION_CLASS_ID, BLOCK_ROW_NUM, BLOCK_COL_NUM, BLOCK_TYPE, DEFAULT_TEXT
+                ) VALUES ( %s, %s, %s, %s, %s)
+                """
+                cursor.execute(sql_block, (section_class_id, row, column, block_type, full_text))
+                print(f"이관 완료: {file_path}")
+
+if __name__ == "__main__":
+    try:
+        migrate_blocks_from_json()
+        print("블록 데이터 이관이 완료되었습니다.")
+    except Exception as e:
+        print(f"오류 발생: {e}")
+    finally:
+        cursor.close()
+        conn.close() 
+
+
+
+
+#--------------------------------------공통 교정 사항 수정 및 테이블 이관------------------------------------
+
+
+import glob
+import os
+import json
+import pymysql
+import csv
+from utils.com import json_util
+
+def load_correction_dict(csv_path):
+    correction_dict = {}
+    with open(csv_path, 'r', encoding='cp949') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            ocr = row['OCR_TEXT'].strip().replace('"', '')
+            fix = row['FIX_TEXT'].strip().replace('"', '')
+            if ocr and fix:
+                correction_dict[ocr] = fix
+    return correction_dict
+
+def fix_ocr_text(ocr_text, correction_dict):
+    fixed_text = ocr_text
+    for wrong, right in correction_dict.items():
+        if wrong in fixed_text:
+            fixed_text = fixed_text.replace(wrong, right)
+    return fixed_text
+
+def upload_common_crctn_from_json():
+    # DB 연결 설정
+    conn = pymysql.connect(
+        host='192.168.10.18',
+        user='digitalflow',
+        password='digital10',
+        db='dococr',
+        charset='utf8mb4',
+        autocommit=True
+    )
+    cursor = conn.cursor()
+    base_path = '/opt/airflow/data/temp'
+    folder_names = ['building_user_status', 'building_info', 'building_detail', 'doc_subject']
+    correction_dict = load_correction_dict('/opt/airflow/data/fixing_dict/TB_FIX_OCR_COM.csv')
+
+    for folder_name in folder_names:
+        folder_path = os.path.join(base_path, folder_name)
+        json_file_list = glob.glob(os.path.join(folder_path, '*.json'))
+        for json_path in json_file_list:
+            try:
+                data = json_util.load(json_path)
+                if not isinstance(data, dict):
+                    try:
+                        data = json.loads(data)
+                    except Exception:
+                        data = None
+                if isinstance(data, dict):
+                    ocr = data.get('ocr', {})
+                    if isinstance(ocr, dict):
+                        tesseract = ocr.get('tesseract', {})
+                        if isinstance(tesseract, dict):
+                            full_text = tesseract.get('full_text', '')
+                            for wrong, right in correction_dict.items():
+                                count = full_text.count(wrong)
+                                if count > 0:
+                                    fixed_text = fix_ocr_text(full_text, {wrong: right})
+                                    # DB에 insert
+                                    sql = """
+                                    INSERT INTO TB_DI_COMMON_CRCTN (ERROR_TEXT, CRRCT_TEXT, CRCTN_CNT)
+                                    VALUES (%s, %s, %s)
+                                    """
+                                    cursor.execute(sql, (full_text, fixed_text, count))
+                                    print(f"DB 업로드 완료: {json_path} | ERROR_TEXT: {full_text} | CRRCT_TEXT: {fixed_text} | CRCTN_CNT: {count}")
+            except Exception as e:
+                print(f"Error exporting {json_path}: {e}")
+    cursor.close()
+    conn.close()
+
+if __name__ == '__main__':
+    upload_common_crctn_from_json() 
+
+
+#========================sjh========================
+
+
+
+
+
+
 # --- 사전 설정 ---
 # Tesseract-OCR 설치 경로를 지정해야 할 수 있습니다 (Windows 사용자).
 # 시스템 PATH에 Tesseract가 추가되어 있다면 이 줄은 주석 처리하거나 삭제해도 됩니다.
@@ -599,7 +1110,7 @@ def separate_areas_set1(
     # iter_save가 True일 경우, 영역  분리 전 원본 이미지를 저장합니다.
     if iter_save:
         file_path = type_convert_util.convert_type(img_np_bgr, "np_bgr", "file_path")
-        save(file_path, "separate_areas_set1_original")
+        save(file_path, "separate_areas_set1_original",result_map=result_map)
 
     if width is None or height is None:
         print(f"경고: 영역의 너비(width) 또는 높이(height)가 지정되지 않아 건너뜁니다.")

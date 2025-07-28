@@ -14,6 +14,7 @@ from utils.img import type_convert_util,img_preprocess_util
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 
+
 @task
 def img_preprocess_task(file_info:dict,step_info:dict,target_key:str="_origin")->dict:
     rslt_map = {}
@@ -26,8 +27,9 @@ def img_preprocess_task(file_info:dict,step_info:dict,target_key:str="_origin")-
     file_info["file_path"].update(rslt_map["save_path"])
     
     # 가장 마지막 결과는 _result로 저장하여 리턴
-    result = type_convert_util.convert_type(data,data_type,"file_path")    
+    result = type_convert_util.convert_type(result,data_type,"file_path")    
     file_info["file_path"]["_result"] = result
+    file_info["status"] = "success"
 
     return file_info
 

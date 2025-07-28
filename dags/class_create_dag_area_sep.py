@@ -9,7 +9,7 @@ from airflow.models import Variable,XCom
 from utils.com import file_util
 
 
-NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/none_class") # 비서식 일반 문서 이미지
+NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/common/none_class") # 비서식 일반 문서 이미지
 # 경로 설정 (DAG 파라미터로 받거나 환경변수로 설정 가능)
 DATA_DIR = "/opt/airflow/data"   # 루트
 ORIGIN_IMAGE_DIR = f"{DATA_DIR}/class/a_class/classify/origin"   # 원본 문서 이미지
@@ -36,7 +36,7 @@ with DAG(
     # 1. 진행할 파일 목록 가져오기
     preprced_file_info_list_task = get_file_info_list_task(UPLOAD_IMAGE_DIR)
     # 2. 처리 영역 목록 가져오기
-    area_list = file_util.get_config("a_class", "ocr", "area_list")
+    area_list = file_util.get_config("general_building_register", "a_class", "ocr", "area_list")
     # 3. 동적 전처리 및 파이프라인 생성 (해당 루프는 각 area 설정에 대해 별도의 Airflow 태스크 파이프라인을 생성)
     for area_info in area_list:
         # area_name을 사용하여 태스크와 결과물 구분

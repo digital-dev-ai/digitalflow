@@ -1,3 +1,4 @@
+import json
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.decorators import task, task_group
@@ -9,10 +10,12 @@ from airflow.models import Variable,XCom
 # 만약 utils 모듈이 DAG 파일과 같은 디렉토리 내에 있다면, 상대 경로 임포트를 고려하거나
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
+from utils.db import dococr_query_util
+from tasks.ocr_task_sjh import ocr_task
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task, save_file_info_task
 from tasks.img_preprocess_task import img_preprocess_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, end_runtime
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
 from tasks.img_classify_task import img_classify_task, aggregate_classify_results_task
 
 
@@ -33,58 +36,65 @@ with DAG(
     b_check_file_exists = check_file_exists(UPLOAD_FOLDER)
     t_no_file_end = end_runtime("폴더 안에 파일이 존재하지 않습니다.")
     t_get_file_info_list = setup_target_file_list(UPLOAD_FOLDER)
-
+    # 1-z. 실행순서
     t_img_classify_runtime_setup >> b_check_file_exists >> [t_no_file_end,t_get_file_info_list]
 
 
     # 2. 클래스 분류를 위한 각 클래스 전처리 작업
     # 2-0. 클래스 지정. (나중에 클래스 목록 가져오는 함수로 변경)
-    class_keys = ["a_class"]
-    class_name = "a_class"
+    layout_list = dococr_query_util.select_list_map("selectLayoutList")
+    class_keys = [str(item["layout_class_id"]) for item in layout_list]
+    #for layout_info in layout_list:
+    # if layout_list:
+    layout_info = layout_list[0]
+    layout_class_id = layout_info["layout_class_id"]
+    layout_name = layout_info["layout_name"]
+    doc_class_id = layout_info["doc_class_id"]
+    class_classify_preprocess_info = json.loads(layout_info["img_preprocess_info"])
+    class_classify_ai_info = json.loads(layout_info["classify_ai_info"])
 
-    # 2-1. 분류 전처리 작업 정보 로드
-    preprocess_pass=False
-    if preprocess_pass:
-        class_classify_preprocess_info = {
-                    "name":"a_class classify img_preprc",
-                    "type":"step_list",
-                    "step_list":[
-                        {"name":"cache","param":{"cache_key":"origin"}},
-                    ], 
-                }
-    else:
-        class_classify_preprocess_info = file_util.get_config(class_name,"classify","img_preprocess")
-    
     # 2-2. 분류 전처리 작업 실행
     t_classify_preprocess_task = img_preprocess_task.partial(step_info=class_classify_preprocess_info,target_key="_origin").expand(file_info=t_get_file_info_list)
-    
-    # #분류 전처리 후 결과 이미지 취합용
-    # classify_preprocess_result_task = copy_results_folder_task(classify_preprocess_task, dest_folder=RESULT_FOLDER, last_folder=class_name)
+    t_classify_preprocess_remove_failed_results = remove_failed_results(t_classify_preprocess_task)
+    #분류 전처리 후 결과 이미지 취합용(분류 작업 확인용)
+    classify_preprocess_result_task = copy_results_folder_task(t_classify_preprocess_remove_failed_results, dest_folder=RESULT_FOLDER, last_folder=layout_name)
 
-    t_get_file_info_list >> t_classify_preprocess_task
-    # classify_preprocess_task >> classify_preprocess_result_task
+    # 2-z. 실행순서
+    t_get_file_info_list >> t_classify_preprocess_task >> t_classify_preprocess_remove_failed_results
+    t_classify_preprocess_remove_failed_results >> classify_preprocess_result_task
 
 
     # 3. AI를 통한 분류
-    # 3-1. 분류 AI 작업 정보 로드
-    class_classify_ai_info = file_util.get_config(class_name,"classify","classify_ai")
-    
     # 3-2. 분류 AI 작업 실행
-    t_image_classify_task = img_classify_task.partial(ai_info=class_classify_ai_info,class_key=class_name,target_key=f"_result").expand(file_info=t_classify_preprocess_task)
-    
+    t_image_classify_task = img_classify_task.partial(ai_info=class_classify_ai_info,class_key=class_keys[0],target_key=f"_result").expand(file_info=t_classify_preprocess_remove_failed_results)
+    t_image_classify_remove_failed_results = remove_failed_results(t_image_classify_task)
+
     # 3-3. 분류 AI 작업 취합 및 분석 후 클래스 결정
-    t_classify_result_task = aggregate_classify_results_task(t_image_classify_task, class_keys=class_keys)
+    t_classify_result_task = aggregate_classify_results_task(t_image_classify_remove_failed_results, class_keys=class_keys)
     
-    t_classify_preprocess_task >> t_image_classify_task >> t_classify_result_task
+    # 3-z. 실행순서
+    t_classify_preprocess_remove_failed_results >> t_image_classify_task >> t_image_classify_remove_failed_results >> t_classify_result_task
+
+
+    # 4. OCR
+    t_ocr_dispatcher_task = ocr_task.partial(target_key="_classify").expand(file_info=t_classify_result_task)
+    t_ocr_dispatcher_remove_failed_results = remove_failed_results(t_ocr_dispatcher_task)
+
+    # 5. 
+    
 
 
     # Y. 저장
-    t_save_file_info_task = save_file_info_task.partial(dest_folder=RESULT_FOLDER).expand(file_info=t_classify_result_task)
+    t_save_file_info_task = save_file_info_task.partial(save_type="result").expand(file_info=t_ocr_dispatcher_remove_failed_results)
+    
+    # Y-z. 실행순서
     t_classify_result_task >> t_save_file_info_task
+
 
     # Z. 템프폴더 제거
     all_clear_temp_folder_task = clear_temp_folder_task()
     
+    # Z-z. 실행순서
     t_save_file_info_task >> all_clear_temp_folder_task
 
 # Airflow 2.x에서 Python 스크립트 직접 실행 시에는 DAG가 파싱만 됩니다.

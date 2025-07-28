@@ -32,7 +32,7 @@ def get_file_info_list_task(folder_path,**context):
 @task
 def copy_results_folder_task(file_infoes: list, target_key:str=None, dest_folder:str=None, last_folder:str=None, **context):
     """
-    result_map["result_file_map"]에 저장된 경로의 파일들을
+    file_infoes["file_path"]에 저장된 경로의 파일들을
     지정된 폴더로 복사. 파일명 앞에 result_map["process_id"]를 붙임.
     """
     if not dest_folder:
