@@ -4,7 +4,7 @@ class DBUtil:
     def __init__(self, conn_id='maria_db_conn'):
         self.conn_id = conn_id
 
-    def execute_query(self, query, params=None, fetch=False):
+    def execute_query(self, query, params=None, fetch=False, return_id=False):
         """
         쿼리를 실행하고 결과를 반환합니다.
         :param query: 실행할 SQL 쿼리
@@ -17,10 +17,11 @@ class DBUtil:
         cursor = conn.cursor()
         try:
             cursor.execute(query, params)
+            result = None
             if fetch:
                 result = cursor.fetchall()
-            else:
-                result = None
+            elif return_id:
+                result = cursor.lastrowid  # PK 반환
             conn.commit()
             return result
         except Exception as e:
@@ -49,9 +50,9 @@ class DBUtil:
             cursor.close()
             conn.close()
 
-def execute(query, params=None, fetch=False):
+def execute(query, params=None, fetch=False, return_id=False):
     db = DBUtil(conn_id='maria_db_conn')
-    results = db.execute_query(query, params=params, fetch=fetch)
+    results = db.execute_query(query, params=params, fetch=fetch, return_id=return_id)
     return results
 
 def execute_many(query, params_list):

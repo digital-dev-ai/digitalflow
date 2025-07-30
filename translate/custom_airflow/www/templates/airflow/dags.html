@@ -241,7 +241,7 @@
           <tr>
             <td style="padding-right:0;">
               {% if dag.can_edit %}
-                {% set switch_tooltip = '{{ trs_dict.www_templates_airflow_dags.pause_unpause }}' %}
+                {% set switch_tooltip = trs_dict.www_templates_airflow_dags.pause_unpause %}
               {% else %}
                 {% set switch_tooltip = 'DAG is Paused' if dag_is_paused else 'DAG is Active' %}
               {% endif %}
@@ -410,36 +410,36 @@
                   <div class="dags-table-more__links">
                     <a href="{{ url_for('Airflow.code', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">code</span>
-                      Code
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_code }}
                     </a>
                     <a href="{{ url_for('Airflow.gantt', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">vertical_distribute</span>
-                      Gantt
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_gantt }}
                     </a>
                     <a href="{{ url_for('Airflow.landing_times', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">flight_land</span>
-                      Landing
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_landing }}
                     </a>
                     <a href="{{ url_for('Airflow.tries', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">repeat</span>
-                      Tries
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_tries }}
                     </a>
                     <a href="{{ url_for('Airflow.duration', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">hourglass_bottom</span>
-                      Duration
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_duration }}
                     </a>
                     <a href="{{ url_for('Airflow.calendar', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">event</span>
-                      Calendar
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_calender }}
                     </a>
                     <a href="{{ url_for('Airflow.graph', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">account_tree</span>
-                      Graph
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_graph }}
                     </a>
                     <a href="{{ url_for('Airflow.grid', dag_id=dag.dag_id, num_runs=num_runs) }}"
                        class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">grid_on</span>
-                      Grid
+                      {{ trs_dict.www_templates_airflow_dags.more_menu_grid }}
                     </a>
                   </div>
                   <span class="dags-table-more__toggle"><span class="material-icons">more_horiz</span></span>

@@ -10,9 +10,10 @@ from airflow.models import Variable,XCom
 # 만약 utils 모듈이 DAG 파일과 같은 디렉토리 내에 있다면, 상대 경로 임포트를 고려하거나
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
+from tasks.export_output_task import export_output_task
 from utils.db import dococr_query_util
-from tasks.ocr_task_sjh import ocr_task
 from utils.com import file_util
+from tasks.ocr_task_sjh import ocr_task, aggregate_ocr_results_task
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task, save_file_info_task
 from tasks.img_preprocess_task import img_preprocess_task
 from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
@@ -79,16 +80,23 @@ with DAG(
     # 4. OCR
     t_ocr_dispatcher_task = ocr_task.partial(target_key="_classify").expand(file_info=t_classify_result_task)
     t_ocr_dispatcher_remove_failed_results = remove_failed_results(t_ocr_dispatcher_task)
-
-    # 5. 
     
+    # 4-3. OCR 후 취합 작업
+    t_ocr_result_task = aggregate_ocr_results_task(t_ocr_dispatcher_remove_failed_results)
+    
+    t_classify_result_task >> t_ocr_dispatcher_task >> t_ocr_dispatcher_remove_failed_results >> t_ocr_result_task
+
+    # 5. 내보내기(DB화)
+    t_export_output_task = export_output_task.expand(doc_info=t_ocr_result_task)
+    
+    t_ocr_result_task >> t_export_output_task
 
 
-    # Y. 저장
+    # Y. 완료처리
     t_save_file_info_task = save_file_info_task.partial(save_type="result").expand(file_info=t_ocr_dispatcher_remove_failed_results)
     
     # Y-z. 실행순서
-    t_classify_result_task >> t_save_file_info_task
+    t_export_output_task >> t_save_file_info_task
 
 
     # Z. 템프폴더 제거

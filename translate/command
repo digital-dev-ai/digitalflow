@@ -14,8 +14,20 @@ docker cp /home/digital-033/work/docker/digitalflow/login/custom_flask_appbuilde
 cd /home/digital-033/work/docker/digitalflow/translate
 docker cp /home/digital-033/work/docker/digitalflow/translate/trs_loader.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
 
+# 웹서버 root 접속 명령어
+docker exec -it --user airflow digitalflow-airflow-worker-1 bash
+docker exec -it --user airflow digitalflow-airflow-webserver-1 bash
+docker exec -it --user airflow digitalflow-airflow-triggerer-1 bash
+docker exec -it --user airflow digitalflow-airflow-scheduler-1 bash
+docker exec -it --user airflow digitalflow-postgres-1 bash
+docker exec -it --user airflow digitalflow-redis-1 bash
 
-
+docker exec -it --user root digitalflow-airflow-worker-1 bash
+docker exec -it --user root digitalflow-airflow-webserver-1 bash
+docker exec -it --user root digitalflow-airflow-triggerer-1 bash
+docker exec -it --user root digitalflow-airflow-scheduler-1 bash
+docker exec -it --user root digitalflow-postgres-1 bash
+docker exec -it --user root digitalflow-redis-1 bash
 
 
 ; #custom_static에 있는 파일들을 docker에 복사

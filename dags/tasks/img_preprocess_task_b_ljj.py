@@ -18,6 +18,263 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 result_map = {}           # 최종 결과 파일 경로 관리
 
+
+#---------------------------------DB 적재 코드-----------------------------------
+
+import re
+import mysql.connector
+from typing import Dict, List, Any
+import json # 예시 출력을 위한 임시 모듈
+import os # 예시 출력을 위한 임시 모듈
+
+
+
+# DB 연결 정보
+DB_CONFIG = {
+    "host": "192.168.10.18",
+    "database": "dococr",
+    "user": "digitalflow",
+    "password": "digital10",
+    "port": "3306" 
+}
+
+
+def clean_and_convert_numeric(value_str: Any) -> float | None:
+    """
+    문자열에서 숫자만 추출하여 float이나 실수로 변환할 수 있도록 함.(스키마 상의 decimal 인식 위함)
+    '㎡', '%', 'm' 등의 단위 문자를 제거하고, 숫자가 없으면 None을 반환.
+    """
+    if value_str is None:
+        return None
+    
+    s = str(value_str).strip()
+    if not s: # 빈 문자열인 경우 None 반환
+        return None
+
+    # 숫자, 소수점, 마이너스 부호만 남기고 모두 제거
+    cleaned_str = re.sub(r'[^\d.-]', '', s)
+    
+    # 숫자로 시작하지 않거나, 소수점이 두 개 이상이거나, 마이너스 부호가 중간에 있는 경우 등 유효하지 않은 숫자 형식 처리
+    if not cleaned_str or cleaned_str.count('.') > 1 or (cleaned_str.count('-') > 1) or (cleaned_str.startswith('.') and len(cleaned_str) == 1):
+        return None
+    
+    try:
+        return float(cleaned_str)
+    except ValueError:
+        return None
+
+# 차장님 제공 실데이타
+def create_sample_ocr_data() -> Dict[str, List[Dict[str, Any]]]:
+    """
+    제공된 이미지의 OCR 결과와 유사한 샘플 데이터를 생성하여 반환합니다.
+    TB_OCR_BILD_BASIC_INFO 테이블 스키마에 맞춰 컬럼명을 매핑하고 데이터 타입을 변환합니다.
+    """
+
+
+    sample_data={
+        "TB_OCR_BILD_BASIC_INFO": [
+            {
+                "BILD_ID": "2120101430000183",
+                "UNIQUE_NUM": "2671025622107480002",
+                "BILD_NAME": "",
+                "UNIT_HOUSEHOLD_POP": "0호0가구0세대",
+                "LAND_LOC_ADDR": "부산광역시기장군정관읍매학리",
+                "LAND_LOT_NUM": "7482",
+                "ROAD_NM_ADDR": "부산광역시기장군정관읍정관중앙로56",
+                "LAND_AREA_SQM": "1417m", # 단위가 'm'로 되어 있어, 문자열로 변환됨. 
+                "TOT_FLR_AREA_SQM": "3.053.27ㅠ", # 천단위로 쉼표가 포함되어 있고, 단위가 'ㅠ'로 되어 있어, 문자열로 변환됨.
+                "ADMIN_DIST_NM": "일반상업지역",
+                "SECT_TYPE": "택지개발예정지구외2",
+                "ZONE_TYPE": "제1종지구단위계획구역",
+                "BILD_AREA_SQM":"725.88m", # 단위가 'm'로 되어 있어, 문자열로 변환됨. 
+                "FAR_CALC_AREA_SQM": "3013.27m",  # 단위가 'm'로 되어 있어, 문자열로 변환됨. 
+                "MAIN_STRUCT_TYPE": "철근콘크리트구조",
+                "MAIN_PURPOSE_TYPE": "의료시설외2",
+                "TOT_FLR_CNT": "지하:1층지상:5층",
+                "BILD_COVERAGE_RATIO": "51.23",
+                "FLR_AREA_RATIO": "212.65",
+                "BILD_HEIGHT_METER": "21.350",
+                "ROOF_STRUCT_TYPE": "(철근)콘크리트",
+                "ANNEX_BILD_TYPE": "동m",
+                "LNDSCP_AREA_SQM": "a", # a -> m로 추정,  0으로 변경필요.
+                "PUB_OPEN_AREA_SQM":"가이", # 가이 -> m로 추정,  0으로 변경필요.
+                "SETBACK_AREA_SQM": "at",# at -> m로 추정,  0으로 변경필요.
+                "SETBACK_DIST_METER": "m" # 0으로 변경필요.
+            }
+        ],
+        "TB_OCR_FLR_STATUS": [
+            {
+                "FLR_CLASS_TYPE": "주1",
+                "FLR_NUM_TEXT": "지1층",
+                "FLR_STRUCT_TYPE": "철근콘크리트구조",
+                "FLR_PURP_TYPE": "펌프실",
+                "FLR_AREA_SQM": "40"
+            },
+            {
+                "FLR_CLASS_TYPE": "주1",
+                "FLR_NUM_TEXT": "1층",
+                "FLR_STRUCT_TYPE": "철근콘크콘크리트구조",
+                "FLR_PURP_TYPE": "제2종근린생활시설(금융업소:은행)",
+                "FLR_AREA_SQM": "169.69"
+            },
+            {
+                "FLR_CLASS_TYPE": "주1",
+                "FLR_NUM_TEXT": "1층",
+                "FLR_STRUCT_TYPE": "철근콘크리트구조",
+                "FLR_PURP_TYPE": "공용계단등",
+                "FLR_AREA_SQM": "1121.69"
+            },
+            {
+                "FLR_CLASS_TYPE": "주1",
+                "FLR_NUM_TEXT": "1층",
+                "FLR_STRUCT_TYPE": "철근콘크리트구조",
+                "FLR_PURP_TYPE": "제1종근린생활시설(소매점:약국)",
+                "FLR_AREA_SQM": "107.36"
+            }
+        ],
+        "TB_OCR_OWN_STATUS": [
+            {
+                "OWNR_FULL_NM": "백상호",
+                "OWNR_ADDR_FULL": "THSSAHeat센덤종로25103동2802호(우동대우월드마SAE)",
+                "OWNR_SHARE_RATIO": "11",
+                "OWNR_CHG_DATE": "2016.7.8.",
+                "OWNR_ID_REG_NUM": "6410051",
+                "ADDR_CHG_CATEGORY": "소유권이전"
+            },
+            {
+                "OWNR_FULL_NM": "",
+                "OWNR_ADDR_FULL": "이하여백",
+                "OWNR_SHARE_RATIO": "",
+                "OWNR_CHG_DATE": "", # 값이 없을때는 날짜 기본값으로 처리?
+                "OWNR_ID_REG_NUM": "",
+                "ADDR_CHG_CATEGORY": ""
+            }
+        ]
+    }
+    
+
+    return sample_data
+
+
+
+# DB 적재
+def transfer_data_to_db(data_map: Dict[str, List[Dict[str, Any]]]):
+    """
+    주어진 맵 형태의 데이터를 데이터베이스로 이관합니다.
+    각 맵의 키(key)는 테이블 이름으로 간주하고, 값(value)은 해당 테이블의 레코드 리스트로 간주합니다.
+    AUTO_INCREMENT 시퀀스 컬럼은 INSERT 문에서 제외됩니다.
+    """
+    conn = None
+    try:
+        # DB_CONFIG에서 port 값을 int로 변환
+        db_config_int_port = DB_CONFIG.copy()
+        db_config_int_port['port'] = int(db_config_int_port['port'])
+
+        conn = mysql.connector.connect(**db_config_int_port)
+        cur = conn.cursor()
+        
+
+        # TB_OCR_BILD_BASIC_INFO에 먼저 데이터 삽입 및 BILD_SEQ_NUM 얻기
+        bild_basic_info_records = data_map.get("TB_OCR_BILD_BASIC_INFO", [])
+        if not bild_basic_info_records:
+            print("경고: 'TB_OCR_BILD_BASIC_INFO' 테이블에 삽입할 데이터가 없습니다. 건너뜁니다.")
+            return # 필수 데이터가 없으므로 종료
+
+        # BILD_SEQ_NUM을 제외한 컬럼 목록 준비
+        bild_columns_to_insert = list(bild_basic_info_records[0].keys())
+        if "BILD_SEQ_NUM" in bild_columns_to_insert:
+            bild_columns_to_insert.remove("BILD_SEQ_NUM")
+
+        bild_placeholders = ', '.join(['%s'] * len(bild_columns_to_insert))
+        bild_column_names_quoted = ', '.join([f"`{col}`" for col in bild_columns_to_insert])
+        bild_insert_sql = f"INSERT INTO `TB_OCR_BILD_BASIC_INFO` ({bild_column_names_quoted}) VALUES ({bild_placeholders})"
+
+        inserted_bild_seq_num = None
+        try:
+            bild_values = [bild_basic_info_records[0].get(col, None) for col in bild_columns_to_insert]
+            cur.execute(bild_insert_sql, bild_values)
+            inserted_bild_seq_num = cur.lastrowid # 삽입된 AUTO_INCREMENT 값 가져오기
+            conn.commit()
+            print(f"TB_OCR_BILD_BASIC_INFO에 데이터 삽입 완료. BILD_SEQ_NUM: {inserted_bild_seq_num}")
+        except mysql.connector.Error as e:
+            print(f"TB_OCR_BILD_BASIC_INFO에 데이터 삽입 중 오류 발생: {e} - 데이터: {bild_basic_info_records[0]}")
+            conn.rollback()
+            return # 핵심 데이터 삽입 실패 시 종료
+
+        # 다른 테이블 데이터 삽입 루프
+        # TB_OCR_BILD_BASIC_INFO는 이미 처리했으므로 건너뛰거나, data_map에서 제거하고 시작
+        tables_to_process = ["TB_OCR_FLR_STATUS", "TB_OCR_OWN_STATUS"]
+
+        for table_name in tables_to_process:
+            records = data_map.get(table_name, [])
+            if not records:
+                print(f"경고: '{table_name}' 테이블에 삽입할 데이터가 없습니다. 건너뜁니다.")
+                continue
+
+            # 이 테이블들의 스키마에 BILD_SEQ_NUM이 있다고 가정
+            # AUTO_INCREMENT 컬럼 이름 설정 (FLR_SEQ_NUM 또는 OWNR_SEQ_NUM)
+            auto_increment_col = None
+            if table_name == "TB_OCR_FLR_STATUS":
+                auto_increment_col = "FLR_SEQ_NUM"
+            elif table_name == "TB_OCR_OWN_STATUS":
+                auto_increment_col = "OWNR_SEQ_NUM"
+
+            # 컬럼 목록 준비 (AUTO_INCREMENT 컬럼 제외)
+            columns_to_insert = list(records[0].keys())
+            if auto_increment_col and auto_increment_col in columns_to_insert:
+                columns_to_insert.remove(auto_increment_col)
+            
+            # BILD_SEQ_NUM 컬럼 추가
+            # BILD_SEQ_NUM이 이미 records[0].keys()에 포함되어 있지 않다면 추가해야 합니다.
+            # (만약 샘플 데이터에 BILD_SEQ_NUM을 포함시키지 않았다면)
+            if "BILD_SEQ_NUM" not in columns_to_insert:
+                columns_to_insert.insert(0, "BILD_SEQ_NUM") # 첫 번째 컬럼으로 추가 (순서가 중요하진 않음)
+
+
+            # INSERT SQL 문 생성
+            placeholders = ', '.join(['%s'] * len(columns_to_insert))
+            column_names_quoted = ', '.join([f"`{col}`" for col in columns_to_insert])
+            insert_sql = f"INSERT INTO `{table_name}` ({column_names_quoted}) VALUES ({placeholders})"
+
+            for record in records:
+                try:
+                    # BILD_SEQ_NUM 값을 레코드에 추가 (또는 덮어쓰기)
+                    record["BILD_SEQ_NUM"] = inserted_bild_seq_num
+                    
+                    # record 딕셔너리에서 columns_to_insert 순서에 맞춰 값 추출
+                    values = [record.get(col, None) for col in columns_to_insert]
+                    cur.execute(insert_sql, values)
+                except mysql.connector.Error as e:
+                    print(f"'{table_name}'에 데이터 삽입 중 오류 발생: {e} - 데이터: {record}")
+                    # conn.rollback() # 필요에 따라 오류 레코드만 건너뛰고 다음 레코드 처리
+
+        conn.commit() # 모든 삽입 작업 완료 후 최종 커밋
+        print("모든 데이터 이관 작업 완료.")
+
+    except mysql.connector.Error as e:
+        print(f"데이터베이스 연결 또는 작업 중 오류 발생: {e}")
+    finally:
+        if conn and conn.is_connected():
+            cur.close()
+            conn.close()
+            print("데이터베이스 연결 종료.")
+
+# --- 메인 실행 부분 ---
+if __name__ == "__main__":
+    # 1. 샘플 데이터 생성
+    ocr_result_data = create_sample_ocr_data()
+    
+    # 2. 생성된 샘플 데이터 출력 (확인용)
+    print("--- 생성된 샘플 데이터 ---")
+    print(json.dumps(ocr_result_data, indent=2, ensure_ascii=False))
+    print("-------------------------\n")
+
+    # 3. 데이터베이스로 이관
+    print("--- 데이터베이스 이관 시작 ---")
+    transfer_data_to_db(ocr_result_data)
+    print("--- 데이터베이스 이관 종료 ---")
+
+
 #---------------------------------와일드 카드, 특수문자 제거, 공백 제거 코드----------------------------
 def _extract_word_details_from_tesseract_data(data: dict) -> list:
     """

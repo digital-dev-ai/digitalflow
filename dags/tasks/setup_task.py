@@ -58,24 +58,48 @@ def check_file_exists(folder_path):
             return "setup_target_file_list"
     return "end_runtime"
 
+from pdf2image import convert_from_path
 @task
 def setup_target_file_list(folder_path:str,**context):
     run_id = context['dag_run'].run_id
     p = Path(folder_path)
     doc_name = "general_building_register"
     layout_name = "a_class"
-    layout_class_id = "9"
-    files = [str(f) for f in p.rglob("*") if f.is_file()]
+    default_doc_class_id = "5"
+    default_layout_class_id = "9"
+    files = [f for f in p.rglob("*") if f.is_file()]
     file_info_list = []
     db_params_list = []
-    for path in files:
+    for file_path in files:
         id = str(uuid.uuid4())
-        content = {
-            "file_id":id, "file_path":{"_origin":path}, 
-            "layout_class_id":layout_class_id
-        }
-        file_info_list.append(content)
-        db_params_list.append( (run_id,id,json.dumps(content)) )
+        if file_path.suffix.lower() == '.pdf':
+            path_str = str(file_path)
+            file_name = file_path.stem
+            images = convert_from_path(path_str, dpi=300)
+            output_folder = Path(TEMP_FOLDER) / run_id
+            for i, image in enumerate(images):
+                page_num = i+1
+                img_file_path = os.path.join(output_folder, f'{file_name}_page_{page_num}.png')
+                image.save(img_file_path, 'PNG')
+                content = {
+                    "file_id": id,
+                    "page_num": page_num,
+                    "file_path": {"_origin": img_file_path, "_origindoc": path_str},
+                    "layout_class_id": default_layout_class_id,
+                    "doc_class_id": default_doc_class_id
+                }
+                file_info_list.append(content)
+                db_params_list.append((run_id, id, json.dumps(content)))                
+        else:
+            content = {
+                "file_id":id, 
+                "page_num":1, 
+                "file_path":{"_origin":str(file_path)}, 
+                "layout_class_id":default_layout_class_id,
+                "doc_class_id": default_doc_class_id
+            }
+            file_info_list.append(content)
+            db_params_list.append( (run_id,id,json.dumps(content)) )
     dococr_query_util.insert_map("insertTargetFile", params=db_params_list)
     return file_info_list
 

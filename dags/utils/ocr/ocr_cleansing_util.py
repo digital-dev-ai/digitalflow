@@ -133,29 +133,28 @@ def apply_block_dictionary(
     result_map: dict = None,
     **kwargs
 ) -> tuple[Any,dict]:
-    """딕셔너리 기반 치환. 긴 키를 먼저 처리하기 위해 길이순 정렬."""
+    """블록 별 딕셔너리 기반 치환. 블록 텍스트가 완전 일치할 경우에만 치환."""
     _, data = block_data
     block_row = data.get("row",0)
     block_col = data.get("col",0)
     section_class_id = data.get("section_class_id",None)
     section_name = data.get("section_name",None)
     dic_prc = "db"
+    text = data.get("ocr", {}).get(ocr_type, {}).get("text", "")
+    if not isinstance(text, str):  # 혹시 text가 None이거나 비정상적이면 빈 문자열 처리
+        text = ""
+    
     if dic_prc == "file":
         dictionary_path = f"/opt/airflow/data/class/a_class/ocr/dictionary/{section_name}_{block_row}_{block_col}.json"
         dictionary = json_util.load(dictionary_path)
+        if not dictionary:
+            return block_data
+        if text in dictionary:
+            text = dictionary[text]
     elif dic_prc == "db":
-        result = dococr_query_util.select_list_map("selectBlockCrctnList",(section_class_id,block_row,block_col))
-        dictionary = {item["error_text"]: item["crrct_text"] for item in result}
-    if not dictionary:
-        return block_data
-
-    text = data.get("ocr", {}).get(ocr_type, {}).get("text", "")
-    if not isinstance(text, str):  # 혹시 text가 None이거나 비정상적이면 빈 문자열 처리
-        text = ""   
-    
-    # 역순 길이 기준 정렬(긴 키 우선)
-    for wrong, correct in dictionary.items():
-        text = text.replace(wrong, correct)
+        result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,block_row,block_col,text))
+        if result:
+            text = result
     # 원래 위치에 넣기
     data.setdefault("ocr", {}).setdefault(ocr_type, {})["text"] = text
     data.setdefault("ocr", {})["text"] = text
@@ -183,11 +182,11 @@ def pattern_check(
             pattern = pattern_info["pattern"]
             if pattern and not re.match(pattern, text):
                 # 숫자 및 점(.) 문자만 남기기
-                filtered = ''.join(ch for ch in text if ch.isdigit() or ch == '.')
-                if filtered.count('.') > 1:
+                text = ''.join(ch for ch in text if ch.isdigit() or ch == '.')
+                if text.count('.') > 1:
                     # 소수점이 두 개 이상이면 마지막 점만 살리고 나머지는 제거
-                    parts = filtered.split('.')
-                    filtered = parts[0] + '.' + ''.join(parts[1:])
+                    parts = text.split('.')
+                    text = ''.join(parts[:-1]) + '.' + parts[-1]
         elif dtype == "date": 
             pattern = pattern_info.get("pattern",None)
             error_occurred, dt = False, None

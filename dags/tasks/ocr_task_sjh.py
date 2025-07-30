@@ -10,6 +10,7 @@ from utils.db import dococr_query_util
 from utils.dev import draw_block_box_util
 from utils.ocr import separate_area_util, separate_block_util, ocr_util, match_block_util
 from typing import List, Dict, Any
+from copy import deepcopy
 
 @task
 def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
@@ -105,7 +106,8 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
             block_data = ocr_cleansing_util.ocr_cleansing((block_img_np_bgr, block_map), step_info=cleansing_step_info, result_map={"folder_path":section_name}) # 정제 데이터가 추가된 block_map 반환
             ocr_list.append(block_data[1])
             table_map.append(block_data)
-        file_info.setdefault("ocr_results", {})[section_name] = ocr_list
+        # #ocr 디버깅용
+        #file_info.setdefault("ocr_results", {})[section_name] = ocr_list
 
         #structuring_step_info = json.loads(section_info["structuring"])
         structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
@@ -178,4 +180,101 @@ def only_ocr(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
 
     file_info["status"] = "success"
     return file_info
+    
+
+@task
+def aggregate_ocr_results_task(file_infos:list[dict],**context):
+    """
+    파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
+    결과는 파일 정보에 추가되고, 분류 결과 및 파일 복사, DB 저장 등의 후처리를 수행한다.
+
+    Args:
+        file_infos (list): 각 파일의 정보(분류 결과 포함)가 담긴 딕셔너리 리스트
+        class_keys (list): 분류 기준이 되는 클래스 키 리스트
+        context (dict): Airflow 등에서 전달되는 context 정보(예: dag_run 등)
+    Returns:
+        list: 최종 분류 결과가 추가된 파일 정보 리스트
+    """
+    # 1) file_id별로 그룹핑
+    file_groups = defaultdict(list)
+    
+    for file_info in file_infos:
+        file_groups[file_info['file_id']].append(file_info)
+
+    doc_info_list = []
+    layout_class_ids = []
+    origin_path = {}
+    for file_id, items in file_groups.items():
+        # 2) page_num 순 정렬
+        items_sorted = sorted(items, key=lambda x: x['page_num'])
+        if len(items_sorted)>0:
+            entry = items_sorted[0]
+            if "_origindoc" in entry.get("file_path", {}):
+                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origindoc")} 
+            elif "_origin" in entry.get("file_path", {}):
+                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origin")} 
+        
+
+        # 3) structed 병합 준비
+        merged_structed = defaultdict(list)  # table명: list of dict(row)
+
+        for entry in items_sorted:
+            layout_class_ids.append(str(entry["layout_class_id"]))
+            structed = entry.get('structed_layout', {})
+            print("222222222",structed)
+            for table_name, rows in structed.items():
+                if table_name not in merged_structed:
+                    print("33333333333333",table_name)
+                    merged_structed[table_name] = deepcopy(rows)
+                else:
+                    # 이미 있는 행들과 병합 로직 수행
+                    existing_rows = merged_structed[table_name]
+                    # 첫 번째 기존 행과 키 겹침 여부 판단
+                    first_existing_row = existing_rows[0]
+                    # rows 내 임의의 row 중 첫 번째 new_row와만 비교해도 무방하다 판단 시
+                    # 아니면 전체 rows와 상관없이 첫 행만으로 결정
+                    # first_existing_row 의 키 집합
+                    first_existing_keys = set(first_existing_row.keys())
+
+                    # 우선 rows 중 첫번째 행을 기준으로 판단 (or 그냥 첫 행만 비교)
+                    # 이 예시는 첫 row 기준 비교해서 overlapped 여부 판단
+                    overlapped = False
+                    # 전체 rows가 아닌, 첫 new_row 만 검사
+                    if not rows:
+                        continue
+                    first_new_row = rows[0]
+                    if first_existing_keys & set(first_new_row.keys()):
+                        overlapped = True
+
+                    # 결정된 overlapped 결과를 모든 new_row에 적용
+                    if overlapped:
+                        # 키 겹침으로 판단 → 모든 new_row append
+                        for new_row in rows:
+                            existing_rows.append(deepcopy(new_row))
+                    else:
+                        # 키 겹치지 않음 → 같은 인덱스끼리 병합 시도
+                        for idx, new_row in enumerate(rows):
+                            if idx < len(existing_rows):
+                                merged_row = dict(existing_rows[idx])  # 복사
+                                merged_row.update(new_row)
+                                existing_rows[idx] = merged_row
+                            else:
+                                existing_rows.append(deepcopy(new_row))
+        doc_class_id = dococr_query_util.select_doc_class_id(params=layout_class_ids)
+        # 결과 조립
+        doc_info_list.append({
+            "file_id": file_id,
+            "pages": items_sorted,  # 같은 file_id의 원본 page_num 순 리스트 (필요하다면 items_sorted 수정 가능)
+            "structed_doc": dict(merged_structed),
+            "doc_class_id":doc_class_id,
+            "doc_path":origin_path
+        })
+
+    return doc_info_list
+
+
+    
+    
+    
+    
     

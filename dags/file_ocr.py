@@ -24,7 +24,7 @@ UPLOAD_FOLDER = Variable.get("UPLOAD_FOLDER", default_var="/opt/airflow/data/upl
 
 # DAG 정의 (DAG 클래스 직접 사용)
 with DAG(
-    dag_id="test_ocr_v1", # 이전 DAG ID와 충돌 방지를 위해 변경
+    dag_id="file_ocr_v1", # 이전 DAG ID와 충돌 방지를 위해 변경
     start_date=datetime(2024, 1, 1),
     schedule=None, # None으로 설정하면 수동 트리거만 가능
     catchup=False,

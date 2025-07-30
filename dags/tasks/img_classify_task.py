@@ -63,54 +63,6 @@ def img_classify_task(ai_info: dict, file_info: dict, target_key: str, **context
     file_info["status"] = "success"
     return file_info
     
-
-@task
-def aggregate_classify_results_task(file_infos:List,class_keys,**context):
-    """
-    파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
-    결과는 파일 정보에 추가되고, 분류 결과 및 파일 복사, DB 저장 등의 후처리를 수행한다.
-
-    Args:
-        file_infos (list): 각 파일의 정보(분류 결과 포함)가 담긴 딕셔너리 리스트
-        class_keys (list): 분류 기준이 되는 클래스 키 리스트
-        context (dict): Airflow 등에서 전달되는 context 정보(예: dag_run 등)
-    Returns:
-        list: 최종 분류 결과가 추가된 파일 정보 리스트
-    """
-    for file_info in file_infos:
-        # 각 파일별로 최대 신뢰도와 해당 클래스를 찾기 위한 초기화
-        max_conf = -1
-        best_class = None
-        # 각 클래스별로 신뢰도 비교
-        for class_key in class_keys:
-            classify_result = file_info.get("classify", {})
-            print(classify_result)
-            class_result = classify_result.get(class_key, {})
-            pred = class_result.get("pred", 0)
-            conf = class_result.get("confidence", 0)
-            print(class_key, " - ", pred, " ", conf)
-            if pred == 1:
-                if conf > max_conf:
-                    max_conf = conf
-                    best_class = class_key # layout_class_id
-                    print("max_conf:", max_conf, "best_class:", best_class, "pred", pred)
-        # 신뢰도가 0.8을 초과하면 최종 클래스로 설정, 아니면 "None"으로 처리
-        if max_conf>0.9:
-            file_info["layout_class_id"] = best_class
-            file_info["confidence"] = max_conf
-        else:
-            file_info["layout_class_id"] = "None"
-            file_info["confidence"] = max_conf
-
-        # 결과 폴더에 파일 복사
-        run_id = context['dag_run'].run_id
-        target_id = file_info["file_id"]
-        temp_folder = Path(TEMP_FOLDER)/run_id
-        file_util.file_copy(file_info["file_path"]["_origin"],temp_folder/Path(file_info["file_path"]["_origin"]).name)
-        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
-
-    return file_infos
-
 def predict(image_path, model, processor, device):
     """예측 수행"""
     image, words, boxes = preprocess_image(image_path)
@@ -249,3 +201,50 @@ def normalize_bbox(bbox, image_width, image_height, image1000=True):
         y2 = int(1000 * (y2 / image_height))
     return [x1, y1, x2, y2]
 
+
+@task
+def aggregate_classify_results_task(file_infos:List,class_keys,**context):
+    """
+    파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
+    결과는 파일 정보에 추가되고, 분류 결과 및 파일 복사, DB 저장 등의 후처리를 수행한다.
+
+    Args:
+        file_infos (list): 각 파일의 정보(분류 결과 포함)가 담긴 딕셔너리 리스트
+        class_keys (list): 분류 기준이 되는 클래스 키 리스트
+        context (dict): Airflow 등에서 전달되는 context 정보(예: dag_run 등)
+    Returns:
+        list: 최종 분류 결과가 추가된 파일 정보 리스트
+    """
+    for file_info in file_infos:
+        # 각 파일별로 최대 신뢰도와 해당 클래스를 찾기 위한 초기화
+        max_conf = -1
+        best_class = None
+        # 각 클래스별로 신뢰도 비교
+        for class_key in class_keys:
+            classify_result = file_info.get("classify", {})
+            print(classify_result)
+            class_result = classify_result.get(class_key, {})
+            pred = class_result.get("pred", 0)
+            conf = class_result.get("confidence", 0)
+            print(class_key, " - ", pred, " ", conf)
+            if pred == 1:
+                if conf > max_conf:
+                    max_conf = conf
+                    best_class = class_key # layout_class_id
+                    print("max_conf:", max_conf, "best_class:", best_class, "pred", pred)
+        # 신뢰도가 0.8을 초과하면 최종 클래스로 설정, 아니면 "None"으로 처리
+        if max_conf>0.9:
+            file_info["layout_class_id"] = best_class
+            file_info["confidence"] = max_conf
+        else:
+            file_info["layout_class_id"] = "None"
+            file_info["confidence"] = max_conf
+
+        # 결과 폴더에 파일 복사
+        run_id = context['dag_run'].run_id
+        target_id = file_info["file_id"]
+        temp_folder = Path(TEMP_FOLDER)/run_id
+        file_util.file_copy(file_info["file_path"]["_origin"],temp_folder/Path(file_info["file_path"]["_origin"]).name)
+        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
+
+    return file_infos

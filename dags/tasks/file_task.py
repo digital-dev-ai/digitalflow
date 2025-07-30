@@ -98,7 +98,7 @@ def save_file_info_task(file_info: dict, save_type: str="result", **context):
         dest_folder.mkdir(parents=True, exist_ok=True)
         output_file = dest_folder / f"{original_filename_stem}.json"
         json_util.save(str(output_file),file_info)
-    elif save_type == "temp`":
+    elif save_type == "temp":
         run_id = context['run_id']
         original_filename_stem = Path(file_info["file_path"]["_origin"]).stem
         dest_folder = Path(TEMP_FOLDER) / run_id
