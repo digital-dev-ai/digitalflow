@@ -11,10 +11,10 @@ from airflow.models import Variable, XCom
 # 만약 utils 모듈이 DAG 파일과 같은 디렉토리 내에 있다면, 상대 경로 임포트를 고려하거나
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
-from tasks.ocr_task_sjh import ocr_task, only_ocr
+from tasks.ocr_task import ocr_task, only_ocr
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
+from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, get_success_results, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")

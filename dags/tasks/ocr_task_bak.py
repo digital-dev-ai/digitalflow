@@ -9,7 +9,7 @@ from pathlib import Path
 from airflow.models import Variable
 import json
 
-@task
+@task 
 def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
     """
     OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
@@ -19,9 +19,6 @@ def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **
     :param context: Airflow 컨텍스트 딕셔너리
     :return: OCR 결과가 추가된 file_info 딕셔너리
     """
-    # 1. 원본 이미지를 받아 영역 별로 자른다.
-    
-
     ocr_type = area_info.get("ocr_type", "text")  # 기본값은 "text"
     
     if ocr_type == "text":
@@ -30,6 +27,32 @@ def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **
         return _table_ocr_task(file_info, area_info, **context)
     else:
         raise ValueError(f"지원되지 않는 ocr_type입니다: {ocr_type}. 'text' 또는 'table'만 지원됩니다.")
+
+
+def _detect_script(image_np: np.ndarray) -> Dict[str, Any]:
+    """
+    Tesseract OSD(Orientation and Script Detection)를 사용하여 이미지의 스크립트(언어)를 감지합니다.
+
+    :param image_np: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
+    :return: 스크립트와 신뢰도 정보가 담긴 딕셔너리
+    """
+    try:
+        # Tesseract OSD는 RGB 이미지를 기대하므로 변환합니다.
+        rgb_img = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
+        
+        # image_to_osd는 감지된 정보를 딕셔너리 형태로 반환합니다.
+        osd_data = pytesseract.image_to_osd(rgb_img, output_type=pytesseract.Output.DICT)
+        
+        script = osd_data.get('script', 'Unknown')
+        confidence = osd_data.get('sconf', 0.0)
+        
+        print(f"Script detection: {script} (Confidence: {confidence:.2f})")
+        return {"script": script, "script_confidence": confidence}
+
+    except pytesseract.TesseractError as e:
+        print(f"Script detection failed: {e}")
+        return {"script": "Error", "script_confidence": 0.0}
+
 
 def _text_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
     """
@@ -62,18 +85,57 @@ def _text_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **conte
     ocr_results_with_pos: List[Dict[str, Any]] = []
     script_info = {} # 스크립트 정보 초기화
     try:
-        img = cv2.imread(image_path)
+        # 이미지 파일인지 확장자 확인
+        image_path_obj = Path(image_path)
+        if image_path_obj.suffix.lower() not in ['.png', '.jpg', '.jpeg', '.bmp', '.tiff']:
+            print(f"이미지 파일이 아니므로 건너뜁니다: {image_path}")
+            return
+            # if "ocr_results" not in file_info:
+            #     file_info["ocr_results"] = {}
+            # file_info["ocr_results"][area_name] = {"error": f"Skipped non-image file: {image_path}"}
+            # return file_info
+
+        img = cv2.imread(str(image_path_obj))
         if img is None:
             raise FileNotFoundError(f"이미지 파일을 찾을 수 없거나 읽을 수 없습니다: {image_path}")
 
         # OCR 수행 전, 이미지 전체에 대해 스크립트 감지
         script_info = _detect_script(img)
 
+        # 좌우 padding 제공
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        # 확대 -> 이진화 수행중, 이진화 후 스케일 작업의 ocr 성능이 더 우수함.
+
+        # 확대
+        xw = 2.0
+        yw = 2.0
+        scaled = cv2.resize(gray, None, fx=xw, fy=yw, interpolation=cv2.INTER_LINEAR)
+
+
+        #강화된 이진화
+        thresh = cv2.adaptiveThreshold(
+            scaled, 255,
+            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+            cv2.THRESH_BINARY, 11, 2
+        )
+
+        # 🔧 morphology로 결손 복원
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+        
+
+        # #이진화 디버깅 이미지 저장
+        # #디버깅 이미지 저장용 경로
+        # FAILED_FOLDER = Variable.get("FAILED_FOLDER", default_var="/opt/airflow/data/failed")
+        # save_path = Path(FAILED_FOLDER) / context['dag_run'].run_id / f"{Path(file_info['file_path']['_origin']).stem}_{area_name}_scale-thresh-morphology.png"
+        # save_path.parent.mkdir(parents=True, exist_ok=True)
+        # cv2.imwrite(str(save_path), thresh)
+
         # Tesseract OCR을 'data' 형태로 수행하여 위치, 신뢰도 등 상세 정보 획득
-        # psm 4: 텍스트의 단일 열로 가정. 일반적인 텍스트 영역에 더 적합합니다.
-        # psm 6: 텍스트의 단일 블록으로 가정. 문장 단위 추출에 더 유리할 수 있습니다.
         data = pytesseract.image_to_data(
-            img, lang='kor+eng', config='--psm 6', output_type=pytesseract.Output.DICT
+            thresh, lang='kor+eng', config='--oem 3 --psm 6', output_type=pytesseract.Output.DICT
         )
 
         # OCR 결과를 줄(line) 단위로 그룹화하기 위한 로직
@@ -101,29 +163,39 @@ def _text_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **conte
         for line_key, words in sorted(lines.items()):
             if not words:
                 continue
-
-            # 줄의 텍스트 조합
-            line_text = ' '.join(word['text'] for word in words)
             
-            # 줄의 전체 바운딩 박스 계산 (모든 단어를 포함하는 최소 사각형)
-            x_coords = [word['left'] for word in words]
-            y_coords = [word['top'] for word in words]
-            x_ends = [word['left'] + word['width'] for word in words]
-            y_ends = [word['top'] + word['height'] for word in words]
+            for word in words:
+                ocr_results_with_pos.append({
+                    "text": word['text'],
+                    "box": [word['left']/xw, word['top']/yw, word['width']/xw, word['height']/yw],
+                    "confidence": round(word['conf'], 2)
+                })
             
-            min_x, min_y = min(x_coords), min(y_coords)
-            max_x, max_y = max(x_ends), max(y_ends)
+
+
+            # 임시 각주 처리
+            # # # 줄의 텍스트 조합
+            # line_text = ' '.join(word['text'] for word in words)
             
-            line_box = [min_x, min_y, max_x - min_x, max_y - min_y]
+            # # 줄의 전체 바운딩 박스 계산 (모든 단어를 포함하는 최소 사각형)
+            # x_coords = [word['left'] for word in words]
+            # y_coords = [word['top'] for word in words]
+            # x_ends = [word['left'] + word['width'] for word in words]
+            # y_ends = [word['top'] + word['height'] for word in words]
+            
+            # min_x, min_y = min(x_coords), min(y_coords)
+            # max_x, max_y = max(x_ends), max(y_ends)
+            
+            # line_box = [min_x, min_y, max_x - min_x, max_y - min_y]
 
-            # 줄의 평균 신뢰도 계산
-            line_confidence = sum(word['conf'] for word in words) / len(words)
+            # # 줄의 평균 신뢰도 계산
+            # line_confidence = sum(word['conf'] for word in words) / len(words)
 
-            ocr_results_with_pos.append({
-                "text": line_text,
-                "box": line_box,
-                "confidence": round(line_confidence, 2)
-            })
+            # ocr_results_with_pos.append({
+            #     "text": line_text,
+            #     "box": line_box,
+            #     "confidence": round(line_confidence, 2)
+            # })
         
         print(f"'{area_name}' 영역 Text OCR 완료. 추출된 텍스트 라인 수: {len(ocr_results_with_pos)}")
 
@@ -146,7 +218,16 @@ def _text_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **conte
 
     # (선택) iter_save가 True일 경우, 디버깅용 이미지 저장
     if area_info.get("iter_save", False):
+        # 이미 위에서 이미지 파일 여부를 확인했으므로, 여기서는 읽기 실패만 처리합니다.
         debug_img = cv2.imread(image_path)
+        if debug_img is None:
+            print(f"디버그 이미지 저장 실패: {image_path}를 읽을 수 없습니다.")
+            return file_info
+
+        # ocr_results_with_pos가 비어있거나, 에러 메시지만 담고 있을 경우를 대비
+        if not ocr_results_with_pos or "error" in ocr_results_with_pos[0]:
+            print(f"유효한 OCR 결과가 없어 디버그 이미지를 생성하지 않습니다.")
+            return file_info
         for item in ocr_results_with_pos:
             if 'box' in item:
                 x, y, w, h = item['box']
@@ -368,27 +449,3 @@ def _table_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **cont
         print(f"필터링 임계값: min_area={min_cell_area}, min_width={min_cell_width}, min_height={min_cell_height}. 녹색: 통과, 빨간색: 필터링됨.")
 
     return file_info
-
-def _detect_script(image_np: np.ndarray) -> Dict[str, Any]:
-    """
-    Tesseract OSD(Orientation and Script Detection)를 사용하여 이미지의 스크립트(언어)를 감지합니다.
-
-    :param image_np: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
-    :return: 스크립트와 신뢰도 정보가 담긴 딕셔너리
-    """
-    try:
-        # Tesseract OSD는 RGB 이미지를 기대하므로 변환합니다.
-        rgb_img = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
-        
-        # image_to_osd는 감지된 정보를 딕셔너리 형태로 반환합니다.
-        osd_data = pytesseract.image_to_osd(rgb_img, output_type=pytesseract.Output.DICT)
-        
-        script = osd_data.get('script', 'Unknown')
-        confidence = osd_data.get('sconf', 0.0)
-        
-        print(f"Script detection: {script} (Confidence: {confidence:.2f})")
-        return {"script": script, "script_confidence": confidence}
-
-    except pytesseract.TesseractError as e:
-        print(f"Script detection failed: {e}")
-        return {"script": "Error", "script_confidence": 0.0}

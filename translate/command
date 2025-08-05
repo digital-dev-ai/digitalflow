@@ -1,3 +1,5 @@
+# airflow 라이브러리 설치 시에는 컨테이너 중 scheduler에 설치하면 된다.
+
 # #origianl_airflow 생성 명령어
 # cd /home/digital-033/work/docker/digitalflow/translate
 # docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow ./original_airflow
@@ -7,8 +9,8 @@ cd /home/digital-033/work/docker/digitalflow/translate
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
 
 # login 페이지 수정중
-cd /home/digital-033/work/docker/digitalflow/login
-docker cp /home/digital-033/work/docker/digitalflow/login/custom_flask_appbuilder/templates/appbuilder/general/security/login_db.html digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/templates/appbuilder/general/security/.
+cd /home/digital-033/work/docker/digitalflow/translate
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/templates/appbuilder/general/security/login_db.html digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/templates/appbuilder/general/security/.
 
 # trs_loader.py 파일을 airflow에 복사
 cd /home/digital-033/work/docker/digitalflow/translate

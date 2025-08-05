@@ -5,19 +5,21 @@ from utils.db.maria_util import execute, execute_many
 #insert만 벌크 실행 가능
 def insert_map(key, params:Union[list,tuple]=None, fetch:bool=False, return_id:bool=False):
     map = {
-        "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id, start_date, status) VALUES (%s, %s, current_timestamp(), 'P')",
+        "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id, start_date, status) VALUES (%s, %s, current_timestamp(), 'P')", # W 대기, P 진행중
         "insertTargetFile":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
-        "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)"
+        "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
+        "insertTranslateLog":"INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
     }
     if isinstance(params, list):  # 벌크 삽입(벌크 입력은 return_id 지원 안함)
-        print("bulk insert execute",len(params))
+        print("bulk insert execute",params)
         return execute_many(map[key], params_list=params) 
     elif isinstance(params, tuple):  # 단일 삽입
+        print("insert execute",params)
         return execute(map[key], params=params, fetch=fetch, return_id=return_id)
     else :
         print("error", "파라미터가 list나 tuple이 아닙니다.")
         raise ValueError("파라미터가 list나 tuple이 아닙니다.")
-
+    
 
 def update_map(key, params:tuple=None):
     map = {
@@ -166,6 +168,7 @@ def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
             col_placeholders = ', '.join(['%s'] * len(col_list))
             col_names_quoted = ', '.join([f"`{col}`" for col in col_list])
             insert_sql = f"INSERT INTO `{table_name}` ({col_names_quoted}) VALUES ({col_placeholders})"
+            print(insert_sql)
             for record in records:
                 col_values = [record.get(col, None) for col in col_list]
                 pk_value = execute(insert_sql, params=col_values, return_id=True)
@@ -206,3 +209,43 @@ def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
                 col_values.append(parent_pk_value)
                 pk_value = execute(insert_sql, params=col_values, return_id=True)
                 print(f"{table_name}에 데이터 삽입 완료. pk:{pk_value}")
+
+def select_translate_target_list(table_name: str, id_col_name: str):
+    """
+    번역 대상 테이블과 컬럼을 선택합니다.
+    :return: 번역 대상 테이블과 컬럼의 리스트
+    """
+    col_values = (table_name,)
+    query = f"""SELECT B.*
+    FROM {table_name} B
+    LEFT JOIN TB_OCR_TRN_LOG A 
+    ON B.{id_col_name} = A.TRN_TABLE_PK 
+    AND A.TRN_TABLE_NAME = %s
+    WHERE A.TRN_TABLE_PK IS NULL;
+    """
+    print(" query : ",query, col_values)
+    list = execute(query, params=col_values, fetch=True, dictionary=True)
+    return list 
+    
+def update_for_translate(table_name: str, id_col_name:str, latest_id: str, update_target: dict):
+    """
+    번역된 컬럼을 원본 테이블에 업데이트합니다.
+    
+    :param updates: dict - 컬럼명과 번역된 텍스트의 딕셔너리
+    """        
+    # 원본 테이블 업데이트
+    set_clauses = [f"{col} = %s" for col in update_target.keys()]
+    set_values = [v[1] for v in update_target.values()]
+    
+    update_query = f"UPDATE {table_name} SET {', '.join(set_clauses)} WHERE {id_col_name} = %s;"
+    update_values = set_values + [latest_id]
+    execute(update_query, params=update_values)
+
+    insert_log_query = "INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
+    params_list = [
+        (table_name, latest_id, col, ori_text, trn_text)
+        for col, (ori_text, trn_text) in update_target.items()
+    ]
+    execute_many(insert_log_query, params_list=params_list)
+
+    return

@@ -18,6 +18,189 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 result_map = {}           # 최종 결과 파일 경로 관리
 
+#---------------------------------한국어 번역 코드(translate_util사용)-----------------------------------
+import mysql.connector
+from mysql.connector import Error
+import logging
+from utils.translate.translate_util import is_korean, translate
+
+
+# 로거 설정
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# DB 연결 설정
+DB_CONFIG = {
+    "host": "192.168.10.18",
+    "database": "dococr",
+    "user": "digitalflow",
+    "password": "digital10",
+    "port": "3306"
+}
+from airflow.providers.mysql.hooks.mysql import MySqlHook
+def get_db_connection():
+    """데이터베이스 연결을 설정하고 반환합니다."""
+    try:
+        conn = mysql.connector.connect(**DB_CONFIG)
+        if conn.is_connected():
+            logger.info("데이터베이스에 성공적으로 연결되었습니다.")
+            return conn
+    except Error as e:
+        logger.error(f"데이터베이스 연결 오류: {e}")
+        return None
+
+def close_db_connection(conn, cursor):
+    """데이터베이스 연결과 커서를 닫습니다."""
+    if cursor:
+        cursor.close()
+    if conn and conn.is_connected():
+        conn.close()
+        logger.info("데이터베이스 연결이 닫혔습니다.")
+
+def translate_update_and_log_db(table_name: str, id_col: str):
+    """
+    지정된 테이블에서 가장 큰 ID (최근에 삽입된) 로우의 영문 텍스트를 한국어로 번역하고
+    원본 테이블을 업데이트한 후, 번역 내역을 TB_OCR_TRN_LOG 테이블에 기록합니다.
+
+    Args:
+        table_name (str): 데이터를 읽고 번역할 테이블 이름.
+        id_col (str): 각 레코드를 식별하며 시퀀스 번호 역할도 하는 ID 컬럼 이름.
+    """
+    conn = None
+    cursor = None
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            return
+
+        # autocommit을 False로 설정하여 수동 트랜잭션 관리를 합니다.
+        # 이렇게 하면 메인 테이블 업데이트와 로그 기록이 하나의 트랜잭션으로 묶일 수 있습니다.
+        conn.autocommit = False 
+        cursor = conn.cursor(dictionary=True) # 딕셔너리 형태로 결과를 가져오기 위해 dictionary=True 설정
+
+        logger.info(f"테이블 '{table_name}' 번역, 업데이트 및 로그 기록 시작...")
+
+        # 1. 가장 큰 ID를 가진 로우를 찾습니다. (ID가 시퀀스 번호 역할)
+        try:
+            max_id_query = f"""
+                SELECT {id_col}
+                FROM {table_name}
+                ORDER BY {id_col} DESC
+                LIMIT 1;
+            """
+            cursor.execute(max_id_query)
+            latest_row_info_list = cursor.fetchall() 
+
+            if not latest_row_info_list:
+                logger.info(f"테이블 '{table_name}'에 로우가 없습니다. 다음 테이블로 이동합니다.")
+                return 
+
+            latest_row_info = latest_row_info_list[0]
+            latest_id = latest_row_info[id_col]
+            logger.info(f"테이블 '{table_name}'에서 가장 최근 로우 ({id_col}: {latest_id})를 선택했습니다.")
+
+            # 2. 선택된 로우의 모든 컬럼 데이터를 가져옵니다.
+            select_row_query = f"SELECT * FROM {table_name} WHERE {id_col} = %s;"
+            cursor.execute(select_row_query, (latest_id,))
+            row_data_list = cursor.fetchall()
+
+            if not row_data_list:
+                logger.warning(f"테이블 '{table_name}'에서 {id_col} {latest_id}에 해당하는 로우를 찾을 수 없습니다. 건너뜁니다.")
+                return
+
+            row_data = row_data_list[0]
+
+            updates_for_main_table = {}
+            log_entries_to_insert = []
+            
+            # 3. 각 컬럼을 순회하며 영문 텍스트를 찾아 번역합니다.
+            for col_name, col_value in row_data.items():
+                if col_name == id_col:
+                    continue
+
+                if isinstance(col_value, str) and col_value.strip():
+                    if not is_korean(col_value):
+                        logger.info(f"테이블 '{table_name}', {id_col} {latest_id}, 컬럼 '{col_name}': '{col_value[:50]}...' 번역 시작")
+                        translated_text = translate(col_value, from_lang="en", to_lang="ko")
+
+                        if "Error: 번역에 실패했습니다." in translated_text:
+                            logger.error(f"테이블 '{table_name}', {id_col} {latest_id}, 컬럼 '{col_name}': 번역 실패로 이 컬럼에 대한 업데이트 및 로그 기록을 건너뜁니다.")
+                        else:
+                            updates_for_main_table[col_name] = translated_text
+                            log_entries_to_insert.append((table_name, str(latest_id), col_name, col_value, translated_text))
+                            logger.info(f"테이블 '{table_name}', {id_col} {latest_id}, 컬럼 '{col_name}': 번역 완료. 업데이트 및 로그 대기 중.")
+                    else:
+                        logger.debug(f"테이블 '{table_name}', {id_col} {latest_id}, 컬럼 '{col_name}': 이미 한국어이거나 번역 불필요. 건너뜁니다.")
+                else:
+                    logger.debug(f"테이블 '{table_name}', {id_col} {latest_id}, 컬럼 '{col_name}': 문자열이 아니거나 비어있습니다. 건너뜁니다.")
+
+            # 4. 번역된 컬럼이 있다면 원본 테이블을 업데이트하고 로그 테이블에 기록합니다.
+            if updates_for_main_table:
+                try:
+                    # 원본 테이블 업데이트
+                    set_clauses = [f"{col} = %s" for col in updates_for_main_table.keys()]
+                    set_values = list(updates_for_main_table.values())
+                    
+                    update_main_query = f"UPDATE {table_name} SET {', '.join(set_clauses)} WHERE {id_col} = %s;"
+                    update_main_values = set_values + [latest_id]
+
+                    cursor.execute(update_main_query, tuple(update_main_values))
+                    logger.info(f"테이블 '{table_name}', {id_col} {latest_id}: 원본 테이블 업데이트 준비 완료.")
+
+                    # 로그 테이블에 번역 내역 삽입
+                    if log_entries_to_insert:
+                        insert_log_query = """
+                            INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT)
+                            VALUES (%s, %s, %s, %s, %s)
+                        """
+                        cursor.executemany(insert_log_query, log_entries_to_insert)
+                        logger.info(f"테이블 '{table_name}', {id_col} {latest_id}: 로그 테이블 삽입 준비 완료 ({len(log_entries_to_insert)}개 항목).")
+                    
+                    conn.commit() # 모든 변경 사항을 한 번에 커밋
+                    logger.info(f"테이블 '{table_name}', {id_col} {latest_id}: 원본 테이블 업데이트 및 로그 기록 모두 완료.")
+
+                except Error as e:
+                    logger.error(f"테이블 '{table_name}', {id_col} {latest_id}: 업데이트 또는 로그 기록 실패: {e}")
+                    conn.rollback() # 오류 발생 시 모든 변경 사항 롤백
+                except Exception as e:
+                    logger.error(f"테이블 '{table_name}', {id_col} {latest_id}: 예상치 못한 오류 발생 중 업데이트 또는 로그 기록 실패: {e}")
+                    conn.rollback() # 오류 발생 시 모든 변경 사항 롤백
+            else:
+                logger.info(f"테이블 '{table_name}', {id_col} {latest_id}: 번역할 영문 컬럼이 없거나 모든 번역이 실패했습니다. 업데이트/로그할 내용이 없습니다.")
+
+        except Error as e:
+            logger.error(f"테이블 '{table_name}' 처리 중 데이터베이스 오류 발생: {e}")
+            if conn:
+                conn.rollback()
+        except Exception as e:
+            logger.error(f"테이블 '{table_name}' 처리 중 예상치 못한 오류 발생: {e}")
+            if conn:
+                conn.rollback()
+
+    except Error as e:
+        logger.error(f"전체 데이터베이스 작업 중 오류 발생: {e}")
+        if conn:
+            conn.rollback()
+    finally:
+        if conn:
+            conn.autocommit = True # 작업 완료 후 autocommit을 다시 True로 설정 (선택 사항)
+        close_db_connection(conn, cursor)
+
+if __name__ == "__main__":
+    table_configs = {
+        "TB_OCR_BILD_BASIC_INFO": {"id_col": "BILD_SEQ_NUM"},
+        "TB_OCR_FLR_STATUS": {"id_col": "BILD_SEQ_NUM"},
+        "TB_OCR_OWN_STATUS": {"id_col": "BILD_SEQ_NUM"},
+    }
+
+    for table_name, config in table_configs.items():
+        translate_update_and_log_db(
+            table_name=table_name,
+            id_col=config["id_col"]
+        )
+
+
+
 
 #---------------------------------DB 적재 코드-----------------------------------
 

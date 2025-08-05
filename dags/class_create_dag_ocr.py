@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 from tasks.setup_task import setup_runtime, setup_target_file_list
 from tasks.file_task import save_ocr_json_task
-from tasks.ocr_task import ocr_dispatcher_task
+from tasks.ocr_task_bak import ocr_dispatcher_task
 from airflow.models import Variable
 from utils.com import file_util
 import json

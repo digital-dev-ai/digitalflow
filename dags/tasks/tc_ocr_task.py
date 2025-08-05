@@ -57,7 +57,7 @@ def table_ocr_by_cell(file_info: dict, ocr_info: dict, **context):
         file_info["ocr_result"] = cell_results
 
         run_id = context['dag_run'].run_id
-        target_id = file_info["file_id"]
+        target_id = file_info.get("layout_id",file_info["file_id"])
         print(file_info)
         json_util.save("/opt/airflow/data/temp/"+run_id+"/"+target_id+".json",file_info)
         dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))

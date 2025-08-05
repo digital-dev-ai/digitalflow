@@ -12,10 +12,10 @@ from airflow.models import Variable, XCom
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
 from tasks.export_output_task import export_output_task
-from tasks.ocr_task_sjh import aggregate_ocr_results_task, ocr_task
+from tasks.ocr_task import aggregate_ocr_results_task, ocr_task 
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
+from tasks.setup_task import get_failed_results, setup_runtime, check_file_exists, setup_target_file_list, get_success_results, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
@@ -39,11 +39,13 @@ with DAG(
     t_target_file_info_list = setup_target_file_list(STANDARD_FOLDER)
     
     t_ocr_task = ocr_task.partial(target_key="_origin").expand(file_info=t_target_file_info_list)
-    t_ocr_dispatcher_remove_failed_results = remove_failed_results(t_ocr_task)
+    t_ocr_success_results = get_success_results(t_ocr_task)
+    t_ocr_failed_results = get_failed_results(t_ocr_task)
 
-    t_ocr_result_task = aggregate_ocr_results_task(t_ocr_dispatcher_remove_failed_results)
+    t_ocr_result_task = aggregate_ocr_results_task(t_ocr_success_results)
 
-    t_ocr_task >> t_ocr_dispatcher_remove_failed_results >> t_ocr_result_task
+    t_ocr_task >> [t_ocr_success_results,t_ocr_failed_results] 
+    t_ocr_success_results >> t_ocr_result_task
 
     t_export_output_task = export_output_task.expand(doc_info=t_ocr_result_task)
 

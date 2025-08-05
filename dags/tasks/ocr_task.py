@@ -1,16 +1,19 @@
+from collections import defaultdict
+import json
 from airflow.decorators import task
 import cv2
+from utils.com import file_util, json_util
+from utils.ocr import structuring_util
+from utils.ocr import ocr_cleansing_util
 import numpy as np
-from utils.com import file_util
-import pytesseract
+from utils.db import dococr_query_util
+from utils.dev import draw_block_box_util
+from utils.ocr import separate_area_util, separate_block_util, ocr_util, match_block_util
 from typing import List, Dict, Any
-from utils.img import type_convert_util
-from pathlib import Path
-from airflow.models import Variable
-import json
+from copy import deepcopy
 
-@task
-def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
+@task(pool='ocr_pool') 
+def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
     """
     OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
     
@@ -19,433 +22,259 @@ def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **
     :param context: Airflow 컨텍스트 딕셔너리
     :return: OCR 결과가 추가된 file_info 딕셔너리
     """
-    ocr_type = area_info.get("ocr_type", "text")  # 기본값은 "text"
+    # 1. 파일 로딩
+    #    - file_info에 저장된 이미지를 원본으로 통칭
+    #    - 2번작업으로 잘린 이미지들을 영역으로 통칭
+    #    - 3번작업으로 잘린 이미지들을 블록으로 통칭
+    #    - 블록맵은 {id:"",cell_box:[x,y,w,h],child:0} 형태로 저장
+    #    - (원본이미지,블록맵)을 블록정보로 통칭
+    #    - 원본의 블록맵 생성하여 A(가로),B(세로)큐 중 하나에 (원본이미지,블록맵) 입력
+    #(area_info 기준 for문 시작)
+    # 2. 영역 분할
+    #    - 원본의 블록정보에서 area_info에 정의된 정보를 기준으로 영역 추출
+    #    - 추출된 영역을 분석하여 블록맵 생성
+    #    - 블록정보를 area_info에 설정된 값에 따라 A(가로),B(세로) 큐에 저장
+    #(A/B큐 기준 while문 시작)
+    # 3. while 루프를 통해 경계선 기준으로 파일 자르기(A큐, B큐)
+    #    - 자르기 전 이미지는 부모, 자른 이미지는 자식으로 통칭
+    #    - A, B큐의 모든 파일 처리할 때까지 반복
+    #    - 플래그를 통해 이번 와일문에서 A큐를 작업할 지 B큐를 작업할지 결정(디폴트 A큐)
+    #    (A큐 기준 while문)
+    #    - A큐에서 이미지를 뽑아 수평으로 자르기
+    #    - 자식id는 부모id + "_h" + n (n은 1부터 시작하는 인덱스)
+    #    - 자식 좌표는 부모 좌표를 더하여 원본 기준 좌표로 계산
+    #    - 자식 블록정보는 B큐에 입력
+    #    - 자르는 작업이 완료된 부모는 child 개수를 추가한 블록정보를 C목록에 저장
+    #    - A큐가 비어있으면 플래그를 B큐로 변경
+    #    (B큐 기준 while문)
+    #    - B큐에서 이미지를 뽑아 수직으로 자르기
+    #    - 자식id는 부모id + "_v" + n (n은 1부터 시작하는 인덱스)
+    #    - 자식 좌표는 부모 좌표를 더하여 원본 기준 좌표로 계산
+    #    - 자식 블록정보는 A큐에 입력
+    #    - 자르는 작업이 완료된 부모는 child 개수를 추가한 블록정보를 C목록에 저장
+    #    - B큐가 비어있으면 플래그를 A큐로 변경
+    #(A/B큐 기준 while문 종료)
+    # 4. C목록에서 child 개수가 0인 블록정보를 기준으로 OCR 수행
+    #    - 이미지 OCR 수행 후 결과를 블록맵에 ocr로 추가하여 D목록에 저장
+    #    - D목록은 (img_np_bgr,{block_id:"tab_v2h3",block_box:[x,y,w,h], child:0, ocr:[{text:"", confidence:0.0}]}) 형태로 저장
+    #    - D목록은 A큐, B큐에서 모두 처리된 블록정보를 포함
+    #(area_info 기준 for문 종료)
+    # 1. 파일 로딩
+    original_image = file_info["file_path"][target_key]
     
-    if ocr_type == "text":
-        return _text_ocr_task(file_info, area_info, **context)
-    elif ocr_type == "table":
-        return _table_ocr_task(file_info, area_info, **context)
-    else:
-        raise ValueError(f"지원되지 않는 ocr_type입니다: {ocr_type}. 'text' 또는 'table'만 지원됩니다.")
-
-
-def _detect_script(image_np: np.ndarray) -> Dict[str, Any]:
-    """
-    Tesseract OSD(Orientation and Script Detection)를 사용하여 이미지의 스크립트(언어)를 감지합니다.
-
-    :param image_np: BGR 채널을 가진 numpy 배열(OpenCV 이미지)
-    :return: 스크립트와 신뢰도 정보가 담긴 딕셔너리
-    """
-    try:
-        # Tesseract OSD는 RGB 이미지를 기대하므로 변환합니다.
-        rgb_img = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
-        
-        # image_to_osd는 감지된 정보를 딕셔너리 형태로 반환합니다.
-        osd_data = pytesseract.image_to_osd(rgb_img, output_type=pytesseract.Output.DICT)
-        
-        script = osd_data.get('script', 'Unknown')
-        confidence = osd_data.get('sconf', 0.0)
-        
-        print(f"Script detection: {script} (Confidence: {confidence:.2f})")
-        return {"script": script, "script_confidence": confidence}
-
-    except pytesseract.TesseractError as e:
-        print(f"Script detection failed: {e}")
-        return {"script": "Error", "script_confidence": 0.0}
-
-
-def _text_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
-    """
-    이미지의 특정 영역에서 일반 텍스트를 OCR합니다.
-    단어 단위로 위치 정보와 함께 텍스트를 추출합니다.
-
-    :param file_info: 처리할 파일 정보 딕셔너리
-    :param area_info: OCR을 수행할 영역의 설정 정보
-    :param context: Airflow 컨텍스트 딕셔너리
-    :return: OCR 결과가 추가된 file_info 딕셔너리
-    """
-    area_name = area_info.get("area_name", "unknown_area")
-
-    # 처리할 이미지 경로를 찾습니다. (table_ocr_task와 동일한 로직)
-    image_path = (
-        file_info["file_path"].get(area_name)
-        or file_info["file_path"].get("_result")
-        or file_info["file_path"].get("_origin")
-    )
-
-    if not image_path:
-        raise ValueError(
-            f"'{area_name}' 영역의 이미지 경로를 찾을 수 없습니다. "
-            f"'file_info[file_path]'에 '{area_name}', '_result' 또는 '_origin' 키 중 하나가 필요합니다. "
-            f"현재 키: {list(file_info['file_path'].keys())}"
-        )
-
-    print(f"'{area_name}' 영역 Text OCR 시작. 사용할 이미지: {image_path}")
+    section_list = dococr_query_util.select_list_map("selectSectionList",params=(file_info["layout_class_id"],))
+    structed_layout = defaultdict(list)
     
-    ocr_results_with_pos: List[Dict[str, Any]] = []
-    script_info = {} # 스크립트 정보 초기화
-    try:
-        # 이미지 파일인지 확장자 확인
-        image_path_obj = Path(image_path)
-        if image_path_obj.suffix.lower() not in ['.png', '.jpg', '.jpeg', '.bmp', '.tiff']:
-            print(f"이미지 파일이 아니므로 건너뜁니다: {image_path}")
-            return
-            # if "ocr_results" not in file_info:
-            #     file_info["ocr_results"] = {}
-            # file_info["ocr_results"][area_name] = {"error": f"Skipped non-image file: {image_path}"}
-            # return file_info
-
-        img = cv2.imread(str(image_path_obj))
-        if img is None:
-            raise FileNotFoundError(f"이미지 파일을 찾을 수 없거나 읽을 수 없습니다: {image_path}")
-
-        # OCR 수행 전, 이미지 전체에 대해 스크립트 감지
-        script_info = _detect_script(img)
-
-        # 좌우 padding 제공
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        # 확대 -> 이진화 수행중, 이진화 후 스케일 작업의 ocr 성능이 더 우수함.
-
-        # 확대
-        xw = 2.0
-        yw = 2.0
-        scaled = cv2.resize(gray, None, fx=xw, fy=yw, interpolation=cv2.INTER_LINEAR)
-
-
-        #강화된 이진화
-        thresh = cv2.adaptiveThreshold(
-            scaled, 255,
-            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-            cv2.THRESH_BINARY, 11, 2
-        )
-
-        # 🔧 morphology로 결손 복원
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-        thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
-        thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+    # 2. 영역 분할
+    for section_info in section_list:
+        section_class_id = section_info["section_class_id"]
+        section_name = section_info["section_name"]
+        section_type = section_info["section_type"]
+        separate_area_step_info = json.loads(section_info["separate_area"])
+        img_np_bgr,result_map = separate_area_util.separate_area(original_image, data_type="file_path", output_type="np_bgr", step_info=separate_area_step_info)
+        area_x, area_y = result_map["_area"]
+        print(section_name,"separate_area completed:")
+        block_map = {"block_id": section_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]],"section_class_id":section_class_id,"section_name":section_name}
+        block_data = (img_np_bgr,block_map)
+        # draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
+        #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        separate_block_step_info = json.loads(section_info["separate_block"])
+        block_list = separate_block_util.separate_block(block_data, input_img_type="np_bgr", output_img_type="np_bgr", step_info=separate_block_step_info)
+        print(section_name,"separate_block completed:", len(block_list))
         
+        # 4. 블록 목록에서 child==0인 블록정보(추출대상)로 OCR 수행
+        ocr_list = []
+        # 리프노드만 추출하여 박스 그림
+        block_box_list = [item[1]["block_box"] for item in block_list if item[1]["child"] == 0]
+        draw_block_box_util.draw_block_box_step_list((original_image, block_box_list), input_img_type="file_path", 
+            step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        
+        # 추출대상인 블록만 추출
+        leaf_block_list = [block_data for block_data in block_list if block_data[1].get("child") == 0]
+        separate_block_step_info = json.loads(section_info.get("match_block", '{"name": "match_block", "step_list": [{"name":"detect_row_col_set1","param":{"gap_threshold":25} },{"name":"save","param":{} }] }'))
+        matched_block_list = match_block_util.match_block(leaf_block_list, step_info=separate_block_step_info, result_map={"folder_path":section_name})
+        
+        table_map = []
+        for block_data in matched_block_list:
+            block_img_np_bgr, block_map = block_data
+            print(section_name,"block_map:", block_map)
+            ocr_step_info = json.loads(section_info["ocr"])
+            block_map = ocr_util.ocr((block_img_np_bgr, block_map), input_img_type="np_bgr", step_info=ocr_step_info, result_map={"folder_path":section_name}) # ocr결과가 추가된 block_map 반환
+            print("=========",block_map)
+            #cleansing
+            cleansing_step_info = json.loads(section_info["cleansing"])
+            block_data = ocr_cleansing_util.ocr_cleansing((block_img_np_bgr, block_map), step_info=cleansing_step_info, result_map={"folder_path":section_name}) # 정제 데이터가 추가된 block_map 반환
+            ocr_list.append(block_data[1])
+            table_map.append(block_data)
+        # #ocr 디버깅용
+        #file_info.setdefault("ocr_results", {})[section_name] = ocr_list
 
-        # #이진화 디버깅 이미지 저장
-        # #디버깅 이미지 저장용 경로
-        # OCR_DEBUG_FOLDER = Variable.get("OCR_DEBUG_FOLDER", default_var="/opt/airflow/data/class/b_class/ocr_debug")
-        # save_path = Path(OCR_DEBUG_FOLDER) / context['dag_run'].run_id / f"{Path(file_info['file_path']['_origin']).stem}_{area_name}_scale-thresh-morphology.png"
-        # save_path.parent.mkdir(parents=True, exist_ok=True)
-        # cv2.imwrite(str(save_path), thresh)
+        #structuring_step_info = json.loads(section_info["structuring"])
+        structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
+                                 "step_list":[{"name":"structuring_by_type","param":{"section_class_id":section_class_id,"section_name":section_name,"section_type":section_type}}]}
+        try:
+            structed_section = structuring_util.structuring(table_map, step_info=structuring_step_info) # {table1:[{col1:val1,...},{col1:val1,...},...],table2:[...]}
+        except Exception as e:
+            from pathlib import Path
+            from airflow.models import Variable
+            CLASS_FOLDER = Variable.get("CLASS_FOLDER", default_var="/opt/airflow/data/class")
+            error_folder = Path(CLASS_FOLDER) / "error" / f"{section_class_id}_{section_name}"
+            
+            parts = str(e).split('|', 1)
+            if len(parts) > 1:
+                error_file_name = parts[0].strip()
+                error_json_path = str(error_folder / f"{error_file_name}.json")
+                error_img_path = str(error_folder / f"{error_file_name}.png")
+                file_util.file_copy(original_image,error_img_path)
+                json_util.save(error_json_path,file_info)
+            raise
+        
+        #draw_block_box_util.draw_block_box_step_list((original_image, ocr_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        print(f"structed_section : {structed_section}")
 
-        # Tesseract OCR을 'data' 형태로 수행하여 위치, 신뢰도 등 상세 정보 획득
-        data = pytesseract.image_to_data(
-            thresh, lang='kor+eng', config='--oem 3 --psm 6', output_type=pytesseract.Output.DICT
-        )
-
-        # OCR 결과를 줄(line) 단위로 그룹화하기 위한 로직
-        lines = {}
-        for i in range(len(data['text'])):
-            # 신뢰도가 0 이상이고 텍스트가 있는 경우만 처리
-            if int(data['conf'][i]) > -1 and data['text'][i].strip():
-                # (페이지, 블록, 문단, 줄) 번호를 키로 사용하여 단어들을 그룹화합니다.
-                line_key = (data['page_num'][i], data['block_num'][i], data['par_num'][i], data['line_num'][i])
-                
-                if line_key not in lines:
-                    lines[line_key] = []
-                
-                word_info = {
-                    'text': data['text'][i],
-                    'conf': float(data['conf'][i]),
-                    'left': data['left'][i],
-                    'top': data['top'][i],
-                    'width': data['width'][i],
-                    'height': data['height'][i]
-                }
-                lines[line_key].append(word_info)
-
-        # 그룹화된 단어들을 문장으로 조합하고 전체 바운딩 박스 계산
-        for line_key, words in sorted(lines.items()):
-            if not words:
+        for key, list_of_dicts in structed_section.items():
+            # key가 빈 값이거나 "null"일 경우 넘어감
+            if not key or key == "null" or key is None:
                 continue
-            
-            for word in words:
-                ocr_results_with_pos.append({
-                    "text": word['text'],
-                    "box": [word['left']/xw, word['top']/yw, word['width']/xw, word['height']/yw],
-                    "confidence": round(word['conf'], 2)
-                })
-            
-
-
-            # 임시 각주 처리
-            # # # 줄의 텍스트 조합
-            # line_text = ' '.join(word['text'] for word in words)
-            
-            # # 줄의 전체 바운딩 박스 계산 (모든 단어를 포함하는 최소 사각형)
-            # x_coords = [word['left'] for word in words]
-            # y_coords = [word['top'] for word in words]
-            # x_ends = [word['left'] + word['width'] for word in words]
-            # y_ends = [word['top'] + word['height'] for word in words]
-            
-            # min_x, min_y = min(x_coords), min(y_coords)
-            # max_x, max_y = max(x_ends), max(y_ends)
-            
-            # line_box = [min_x, min_y, max_x - min_x, max_y - min_y]
-
-            # # 줄의 평균 신뢰도 계산
-            # line_confidence = sum(word['conf'] for word in words) / len(words)
-
-            # ocr_results_with_pos.append({
-            #     "text": line_text,
-            #     "box": line_box,
-            #     "confidence": round(line_confidence, 2)
-            # })
+            # merged에 해당 key가 아직 없으면 그대로 리스트 복사
+            if not structed_layout[key]:
+                structed_layout[key] = [{} for _ in range(len(list_of_dicts))]
+            for i, item_dict in enumerate(list_of_dicts):
+                # 여러 dict가 있으면 각각 인덱스 딕셔너리에 병합
+                structed_layout[key][i].update(item_dict)
         
-        print(f"'{area_name}' 영역 Text OCR 완료. 추출된 텍스트 라인 수: {len(ocr_results_with_pos)}")
-
-    except Exception as e:
-        print(f"'{area_name}' 영역 Text OCR 처리 중 오류 발생: {e}")
-        # 오류 발생 시에도 후속 태스크가 비정상 종료되지 않도록 오류 정보를 결과에 포함
-        ocr_results_with_pos.append({"error": f"ERROR: {str(e)}"})
-
-    # 7. 결과를 file_info에 저장
-    if "ocr_results" not in file_info:
-        file_info["ocr_results"] = {}
-    
-    # 최종 결과 구조: 스크립트 정보와 라인 정보를 함께 저장
-    final_result = {
-        "script": script_info.get("script", "N/A"),
-        "script_confidence": script_info.get("script_confidence", 0.0),
-        "lines": ocr_results_with_pos
-    }
-    file_info["ocr_results"][area_name] = final_result
-
-    # (선택) iter_save가 True일 경우, 디버깅용 이미지 저장
-    if area_info.get("iter_save", False):
-        # 이미 위에서 이미지 파일 여부를 확인했으므로, 여기서는 읽기 실패만 처리합니다.
-        debug_img = cv2.imread(image_path)
-        if debug_img is None:
-            print(f"디버그 이미지 저장 실패: {image_path}를 읽을 수 없습니다.")
-            return file_info
-
-        # ocr_results_with_pos가 비어있거나, 에러 메시지만 담고 있을 경우를 대비
-        if not ocr_results_with_pos or "error" in ocr_results_with_pos[0]:
-            print(f"유효한 OCR 결과가 없어 디버그 이미지를 생성하지 않습니다.")
-            return file_info
-        for item in ocr_results_with_pos:
-            if 'box' in item:
-                x, y, w, h = item['box']
-                cv2.rectangle(debug_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        
-        OCR_DEBUG_FOLDER = Variable.get("OCR_DEBUG_FOLDER", default_var="/opt/airflow/data/class/b_class/ocr_debug")
-        save_path = Path(OCR_DEBUG_FOLDER) / context['dag_run'].run_id / f"{Path(file_info['file_path']['_origin']).stem}_{area_name}_text_detection.png"
-        save_path.parent.mkdir(parents=True, exist_ok=True)
-        cv2.imwrite(str(save_path), debug_img)
-        print(f"디버그 이미지 저장: {save_path}")
-
+        run_id = context['dag_run'].run_id
+        target_id = file_info.get("layout_id",file_info["file_id"])
+        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
+    file_info["structed_layout"] = structed_layout
+    file_info["status"] = "success"
     return file_info
+    
+def _perform_ocr(img_np_bgr):
+    
+    return [
+        {
+            "text": "Sample OCR Text",
+            "box": [10, 20, 100, 50],
+            "confidence": 0.95
+        }
+    ]
 
-def _table_ocr_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
+@task
+def only_ocr(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
     """
-    이미지의 특정 영역 내 표 구조를 인식하고 OCR을 수행합니다.
-
-    이 태스크는 다음 단계를 따릅니다:
-    1. 이미지 영역에서 모든 수직, 수평선을 검출합니다.
-    2. 선들의 교차로 만들어진 박스(셀)를 식별합니다.
-    3. 각 박스(셀) 내부의 텍스트를 OCR로 추출합니다.
-    4. 구조화된 결과(텍스트 및 좌표)를 file_info에 저장합니다.
-
-    :param file_info: 처리된 이미지를 포함한 파일 정보 딕셔너리
-    :param area_info: 특정 영역에 대한 설정 정보 (탐지 파라미터 포함)
+    OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
+    
+    :param file_info: 처리할 파일 정보 딕셔너리
+    :param area_info: OCR을 수행할 영역의 설정 정보 (ocr_type 포함)
     :param context: Airflow 컨텍스트 딕셔너리
     :return: OCR 결과가 추가된 file_info 딕셔너리
     """
-    # 1. 이미지 및 파라미터 로드
-    area_name = area_info.get("area_name", "unknown_area")
-
-    # 처리할 이미지 경로를 찾습니다.
-    # 우선순위:
-    # 1. area_name 키: 특정 영역에 대해 분리된 이미지가 있는 경우 (예: file_info['file_path']['building_info'])
-    # 2. '_result' 키: 이전 전처리 태스크의 결과물인 경우
-    # 3. '_origin' 키: 원본 이미지 자체를 처리하는 경우 (현재 DAG와 같은 경우)
-    image_path = (
-        file_info["file_path"].get(area_name)
-        or file_info["file_path"].get("_result")
-        or file_info["file_path"].get("_origin")
-    )
-
-    if not image_path:
-        raise ValueError(
-            f"'{area_name}' 영역의 이미지 경로를 찾을 수 없습니다. "
-            f"'file_info[file_path]'에 '{area_name}', '_result' 또는 '_origin' 키 중 하나가 필요합니다. "
-            f"현재 키: {list(file_info['file_path'].keys())}"
-        )
-    print(f"'{area_name}' 영역 OCR 시작. 사용할 이미지: {image_path}")
-    img = cv2.imread(image_path)
-    if img is None:
-        raise FileNotFoundError(f"이미지 파일을 찾을 수 없거나 읽을 수 없습니다: {image_path}")
-
-    # 표 구조 분석 전, 이미지 전체에 대해 스크립트 감지
-    script_info = _detect_script(img)
-
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    params = area_info.get("detection_params", {})
+    original_image = file_info["file_path"][target_key]
     
-    # 파라미터가 없으면 기본값 사용
-    h_kernel_divisor = params.get("h_kernel_divisor", 40)
-    v_kernel_divisor = params.get("v_kernel_divisor", 40)
-    min_cell_area = params.get("min_cell_area", 100)
-    min_cell_width = params.get("min_cell_width", 10)    # 최소 셀 너비
-    min_cell_height = params.get("min_cell_height", 10)   # 최소 셀 높이
-    dilation_iterations = params.get("dilation_iterations", 2)
-    adaptive_thresh_block_size = params.get("adaptive_thresh_block_size", 25)
-    adaptive_thresh_c = params.get("adaptive_thresh_c", -3)
+    structed_layout = defaultdict(list)
+    block_map = ocr_util.ocr((original_image, {}), input_img_type="file_path", step_info={"name": "doc_subject ocr", "type": "ocr_step_list", 
+        "step_list": [{"name": "tesseract", "param": {"lang": "kor+eng", "config": "--oem 3 --psm 3", "iter_save": True}},
+                      {"name": "save", "param": {"save_key":"block_ocr","tmp_save":True}}] }, 
+        result_map={"folder_path":"block_ocr"}) # ocr결과가 추가된 block_map 반환
 
-    print(f"사용 파라미터: {params}")
-
-    # 2. 전처리
-    # 적응형 스레시홀드로 깨끗한 이진 이미지 생성 (선을 흰색으로)
-    binary_img = cv2.adaptiveThreshold(
-        gray,
-        255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY_INV,
-        blockSize=adaptive_thresh_block_size,
-        C=adaptive_thresh_c
-    )
-
-    # 3. 수평/수직선 검출
-    height, width = binary_img.shape
-
-    # 수평선 검출
-    hor_kernel_size = width // h_kernel_divisor
-    horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (hor_kernel_size, 1))
-    detected_horizontal = cv2.morphologyEx(binary_img, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
-
-    # 수직선 검출
-    ver_kernel_size = height // v_kernel_divisor
-    vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, ver_kernel_size))
-    detected_vertical = cv2.morphologyEx(binary_img, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
-
-    # 4. 선들을 합쳐 표 그리드 생성
-    table_grid = cv2.add(detected_horizontal, detected_vertical)
-
-    # 선들을 연결하여 셀 형태를 명확하게 만듦
-    if dilation_iterations > 0:
-        table_grid = cv2.dilate(table_grid, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)), iterations=dilation_iterations)
-
-    # 5. Contours를 이용해 셀(박스) 검출
-    # cv2.RETR_EXTERNAL은 가장 바깥쪽 외곽선만 찾으므로, 모든 셀을 찾기 위해 cv2.RETR_LIST로 변경합니다.
-    contours, _ = cv2.findContours(table_grid, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-
-    # 면적으로 노이즈를 거르고 정렬
-    cells = []
-    # 디버깅을 위해 필터링 전 모든 contour를 저장
-    all_detected_contours = []
-    for c in contours:
-        area = cv2.contourArea(c)
-        x, y, w, h = cv2.boundingRect(c)
-        # 필터링 전 contour 정보 저장
-        all_detected_contours.append({'x': x, 'y': y, 'w': w, 'h': h, 'area': area})
-
-        if area > min_cell_area and w > min_cell_width and h > min_cell_height:
-            cells.append({'x': x, 'y': y, 'w': w, 'h': h, 'text': ''})
-
-    if not cells:
-        print(f"{area_name} 영역에서 셀을 찾지 못했습니다.")
-        if "ocr_results" not in file_info:
-            file_info["ocr_results"] = {}
-        # 셀이 없더라도 스크립트 정보는 저장
-        final_result = {
-            "script": script_info.get("script", "N/A"),
-            "script_confidence": script_info.get("script_confidence", 0.0),
-            "cells": []
-        }
-        file_info["ocr_results"][area_name] = final_result
-        return file_info
-
-    # 셀을 위->아래, 왼쪽->오른쪽 순서로 정렬
-    cells.sort(key=lambda c: (c['y'], c['x']))
-
-    # 6. 각 셀에 대해 OCR 수행
-    ocr_results = []
-    for i, cell in enumerate(cells):
-        x, y, w, h = cell['x'], cell['y'], cell['w'], cell['h']
-        
-        # 텍스트 잘림 방지를 위해 셀에 패딩 추가
-        padding = 5
-        cell_img_crop = gray[max(0, y - padding):min(height, y + h + padding), 
-                             max(0, x - padding):min(width, x + w + padding)]
-
-        if cell_img_crop.size == 0:
-            continue
-
-        # Tesseract로 텍스트 추출 (psm 6: 단일 텍스트 블록으로 가정)
-        # (psm 7 : 줄단위)
-        # (psm 8 : 단어 단위)
-        ocr_config = r'--oem 3 --psm 6'
-        data = pytesseract.image_to_data(
-            cell_img_crop, lang='kor+eng', config=ocr_config, output_type=pytesseract.Output.DICT
-        )
-
-        # 추출된 단어와 신뢰도를 리스트에 저장
-        words = []
-        confidences = []
-        for j in range(len(data['text'])):
-            # 신뢰도가 0 이상이고 실제 텍스트가 있는 경우만 처리
-            if int(data['conf'][j]) > -1 and data['text'][j].strip():
-                words.append(data['text'][j].strip())
-                confidences.append(float(data['conf'][j]))
-
-        # 단어들을 합쳐 최종 텍스트를 만들고, 평균 신뢰도를 계산
-        text = ' '.join(words)
-        avg_confidence = sum(confidences) / len(confidences) if confidences else 0.0
-
-        cell['text'] = text
-        # cell['data'] = data
-        cell['confidence'] = round(avg_confidence, 2)
-        ocr_results.append(cell)
-        print(f"셀 {i+1}/{len(cells)} OCR 완료: ({x},{y},{w},{h}) -> '{text[:30]}...' (신뢰도: {cell['confidence']:.2f}%)")
-
-        
-        # cell['text'] = text
-        # ocr_results.append(cell)
-        # print(f"셀 {i+1}/{len(cells)} OCR 완료: ({x},{y},{w},{h}) -> '{text[:30]}...'")
-
-    # 7. 결과를 file_info에 저장
-    if "ocr_results" not in file_info:
-        file_info["ocr_results"] = {}
-    
-    # 최종 결과 구조: 스크립트 정보와 셀 정보를 함께 저장
-    final_result = {
-        "script": script_info.get("script", "N/A"),
-        "script_confidence": script_info.get("script_confidence", 0.0),
-        "cells": ocr_results
-    }
-    file_info["ocr_results"][area_name] = final_result
-
-    # (선택) iter_save가 True일 경우, 디버깅용 이미지 저장
-    if area_info.get("iter_save", False):
-        debug_img = img.copy()
-
-        # 디버깅 강화: 모든 검출된 contour와 그 면적을 표시 (필터링된 것은 빨간색)
-        for contour_info in all_detected_contours:
-            x, y, w, h, area = contour_info['x'], contour_info['y'], contour_info['w'], contour_info['h'], contour_info['area']
-
-            # min_cell_area(영역), min_cell_width(너비),  min_cell_height(높이) 기준으로 필터링 통과 여부에 따라 색상 변경
-            if area > min_cell_area and w > min_cell_width and h > min_cell_height:
-                color = (0, 255, 0)  # 통과 (녹색)
-            else:
-                color = (0, 0, 255)  # 필터링됨 (빨간색)
-
-            cv2.rectangle(debug_img, (x, y), (x + w, y + h), color, 2)
-            # 면적(area)을 사각형 위에 텍스트로 표시
-            cv2.putText(debug_img, f"A:{int(area)} W:{w} H:{h}", (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, color, 1)
-        
-        # 디버그 파일을 임시 폴더가 아닌 전용 폴더에 저장하여 DAG 종료 후에도 확인할 수 있도록 합니다.
-        # Airflow Variable에 DEBUG_FOLDER를 정의하거나, 없으면 기본 경로를 사용합니다.
-        OCR_DEBUG_FOLDER = Variable.get("OCR_DEBUG_FOLDER", default_var="/opt/airflow/data/class/a_class/ocr_debug")
-        save_path = Path(OCR_DEBUG_FOLDER) / context['dag_run'].run_id / f"{Path(file_info['file_path']['_origin']).stem}_{area_name}_table_detection.png"
-        save_path.parent.mkdir(parents=True, exist_ok=True)
-        cv2.imwrite(str(save_path), debug_img)
-        print(f"디버그 이미지 저장: {save_path}")
-        print(f"필터링 임계값: min_area={min_cell_area}, min_width={min_cell_width}, min_height={min_cell_height}. 녹색: 통과, 빨간색: 필터링됨.")
-
+    file_info["status"] = "success"
     return file_info
+    
+
+@task
+def aggregate_ocr_results_task(file_infos:list[dict],**context):
+    """
+    파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
+    결과는 파일 정보에 추가되고, 분류 결과 및 파일 복사, DB 저장 등의 후처리를 수행한다.
+
+    Args:
+        file_infos (list): 각 파일의 정보(분류 결과 포함)가 담긴 딕셔너리 리스트
+        class_keys (list): 분류 기준이 되는 클래스 키 리스트
+        context (dict): Airflow 등에서 전달되는 context 정보(예: dag_run 등)
+    Returns:
+        list: 최종 분류 결과가 추가된 파일 정보 리스트
+    """
+    # 1) file_id별로 그룹핑
+    file_groups = defaultdict(list)
+    
+    for file_info in file_infos:
+        file_groups[file_info['file_id']].append(file_info)
+
+    doc_info_list = []
+    layout_class_ids = []
+    origin_path = {}
+    for file_id, items in file_groups.items():
+        # 2) page_num 순 정렬
+        items_sorted = sorted(items, key=lambda x: x['page_num'])
+        if len(items_sorted)>0:
+            entry = items_sorted[0]
+            if "_origindoc" in entry.get("file_path", {}):
+                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origindoc")} 
+            elif "_origin" in entry.get("file_path", {}):
+                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origin")} 
+        
+
+        # 3) structed 병합 준비
+        merged_structed = defaultdict(list)  # table명: list of dict(row)
+
+        for entry in items_sorted:
+            layout_class_ids.append(str(entry["layout_class_id"]))
+            structed = entry.get('structed_layout', {})
+            print("222222222",structed)
+            for table_name, rows in structed.items():
+                if table_name not in merged_structed:
+                    print("33333333333333",table_name)
+                    merged_structed[table_name] = deepcopy(rows)
+                else:
+                    # 이미 있는 행들과 병합 로직 수행
+                    existing_rows = merged_structed[table_name]
+                    # 첫 번째 기존 행과 키 겹침 여부 판단
+                    first_existing_row = existing_rows[0]
+                    # rows 내 임의의 row 중 첫 번째 new_row와만 비교해도 무방하다 판단 시
+                    # 아니면 전체 rows와 상관없이 첫 행만으로 결정
+                    # first_existing_row 의 키 집합
+                    first_existing_keys = set(first_existing_row.keys())
+
+                    # 우선 rows 중 첫번째 행을 기준으로 판단 (or 그냥 첫 행만 비교)
+                    # 이 예시는 첫 row 기준 비교해서 overlapped 여부 판단
+                    overlapped = False
+                    # 전체 rows가 아닌, 첫 new_row 만 검사
+                    if not rows:
+                        continue
+                    first_new_row = rows[0]
+                    if first_existing_keys & set(first_new_row.keys()):
+                        overlapped = True
+
+                    # 결정된 overlapped 결과를 모든 new_row에 적용
+                    if overlapped:
+                        # 키 겹침으로 판단 → 모든 new_row append
+                        for new_row in rows:
+                            existing_rows.append(deepcopy(new_row))
+                    else:
+                        # 키 겹치지 않음 → 같은 인덱스끼리 병합 시도
+                        for idx, new_row in enumerate(rows):
+                            if idx < len(existing_rows):
+                                merged_row = dict(existing_rows[idx])  # 복사
+                                merged_row.update(new_row)
+                                existing_rows[idx] = merged_row
+                            else:
+                                existing_rows.append(deepcopy(new_row))
+        doc_class_id = dococr_query_util.select_doc_class_id(params=layout_class_ids)
+        # 결과 조립
+        doc_info_list.append({
+            "file_id": file_id,
+            "pages": items_sorted,  # 같은 file_id의 원본 page_num 순 리스트 (필요하다면 items_sorted 수정 가능)
+            "structed_doc": dict(merged_structed),
+            "doc_class_id":doc_class_id,
+            "doc_path":origin_path
+        })
+
+    return doc_info_list
+
+
+    
+    
+    
+    
+    

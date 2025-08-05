@@ -97,21 +97,6 @@
   {% endif %}
 {% endblock %}
 
-<!-- {% block footer %}
-  {% if auth_manager.is_logged_in() %}
-    {% set version_label = '버전' %}
-    <footer class="footer">
-      <div class="container">
-        <div>
-          {{ version_label }}: {% if airflow_version %}<a href="https://pypi.python.org/pypi/apache-airflow/{{ airflow_version }}" target="_blank" rel="noopener noreferrer">v{{ airflow_version }}</a>{% else %} N/A{% endif %}
-          {% if git_version %}<br>Git 버전: <strong>{{ git_version }}</strong>{% endif %}
-        </div>
-        <div></div>
-      </div>
-    </footer>
-  {% endif %}
-{% endblock %} -->
-
 {% block tail_js %}
   {{ super() }}
   <script>

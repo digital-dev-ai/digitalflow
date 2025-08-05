@@ -11,7 +11,6 @@ from airflow.models import Variable,XCom
 # Airflow DAGs 폴더 구조에 맞게 배치해야 합니다.
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
 from tasks.export_output_task import export_output_task
-from tasks.translate_output_task import translate_output_task
 from utils.db import dococr_query_util
 from utils.com import file_util
 from tasks.ocr_task import ocr_task, aggregate_ocr_results_task
@@ -27,7 +26,7 @@ UPLOAD_FOLDER = Variable.get("UPLOAD_FOLDER", default_var="/opt/airflow/data/upl
 
 # DAG 정의 (DAG 클래스 직접 사용)
 with DAG(
-    dag_id="image_classify_v1.1", # 이전 DAG ID와 충돌 방지를 위해 변경
+    dag_id="image_classify_sample", # 이전 DAG ID와 충돌 방지를 위해 변경
     start_date=datetime(2024, 1, 1),
     schedule=None, # None으로 설정하면 수동 트리거만 가능
     catchup=False,
@@ -46,15 +45,20 @@ with DAG(
     # 2-0. 클래스 지정. (나중에 클래스 목록 가져오는 함수로 변경)
     layout_list = dococr_query_util.select_list_map("selectLayoutList")
     class_keys = [str(item["layout_class_id"]) for item in layout_list]
-    #for layout_info in layout_list:
-    # if layout_list:
-    layout_info = layout_list[0]
+    # layout_class_id가 10인 항목을 찾습니다.
+    # 인덱스를 직접 사용하는 것은 데이터 변경에 취약하므로, id를 기준으로 찾는 것이 안전합니다.
+    # try:
+    #     layout_info = next(item for item in layout_list if item['layout_class_id'] == 10)
+    #     print(layout_info)
+    # except StopIteration:
+    #     # 리스트에 해당 id를 가진 항목이 없을 경우 에러를 발생시킵니다.
+    #     raise ValueError("layout_class_id가 10인 layout을 찾을 수 없습니다.")
+    layout_info = layout_list[1]
     layout_class_id = layout_info["layout_class_id"]
     layout_name = layout_info["layout_name"]
     doc_class_id = layout_info["doc_class_id"]
     class_classify_preprocess_info = json.loads(layout_info["img_preprocess_info"])
     class_classify_ai_info = json.loads(layout_info["classify_ai_info"])
-
     # 2-2. 분류 전처리 작업 실행
     t_classify_preprocess_task = img_preprocess_task.partial(step_info=class_classify_preprocess_info,target_key="_origin").expand(file_info=t_get_file_info_list)
     t_classify_preprc_failed_results = get_failed_results(t_classify_preprocess_task)
@@ -113,18 +117,11 @@ with DAG(
     t_complete_doc = complete_runtime.expand(doc_info=t_ocr_result_task)
     
     # 5-2. 내보내기(DB화)
-    t_export_output = export_output_task.expand(doc_info=t_complete_doc)
+    t_export_output_task = export_output_task.expand(doc_info=t_complete_doc)
     
     # 5-z. 실행순서
-    t_ocr_result_task >>  t_complete_doc >> t_export_output
+    t_ocr_result_task >>  t_complete_doc >> t_export_output_task
     
-    # 6. 완료 작업에 대해 번역 작업
-
-    t_translate_output = translate_output_task.expand(doc_info=t_export_output)
-
-    t_export_output >> t_translate_output
-
-
     # Y. 저장
     t_save_file_info_task = save_file_info_task.partial(save_type="result").expand(file_info=t_ocr_failed_results)
     
@@ -136,7 +133,7 @@ with DAG(
     all_clear_temp_folder_task = clear_temp_folder_task()
     
     # Z-z. 실행순서
-    t_export_output >> all_clear_temp_folder_task
+    t_export_output_task >> all_clear_temp_folder_task
 
 # Airflow 2.x에서 Python 스크립트 직접 실행 시에는 DAG가 파싱만 됩니다.
 # 실제 테스트는 Airflow CLI를 통해 실행해야 합니다.

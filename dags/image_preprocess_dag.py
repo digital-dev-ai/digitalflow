@@ -13,7 +13,7 @@ from airflow.models import Variable,XCom
 # 예: dags/your_dag_file.py, dags/utils/file_util.py
 from utils.com import file_util
 from tasks.file_task import get_file_info_list_task,copy_results_folder_task, clear_temp_folder_task
-from tasks.setup_task import setup_runtime, check_file_exists, setup_target_file_list, remove_failed_results, end_runtime
+from tasks.setup_task import failed_result_task, get_failed_results, setup_runtime, check_file_exists, setup_target_file_list, get_success_results, end_runtime
 from tasks.img_preprocess_task import img_preprocess_task
 
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
@@ -38,9 +38,11 @@ with DAG(
     d_aclass_classify_preprocess_info = file_util.get_config("general_building_register","a_class","classify","img_preprocess")
     
     t_classify_preprocess_task = img_preprocess_task.partial(step_info=d_aclass_classify_preprocess_info,target_key="_origin").expand(file_info=t_target_file_info_list)
-    t_classify_preprocess_remove_failed_results = remove_failed_results(t_classify_preprocess_task)
-    classify_preprocess_result_task = copy_results_folder_task(t_classify_preprocess_remove_failed_results, last_folder="a_class", target_key="_result")
-    
+    t_classify_success_results = get_success_results(t_classify_preprocess_task)
+    t_classify_failed_results = get_failed_results(t_classify_preprocess_task)
+    classify_preprocess_result_task = copy_results_folder_task(t_classify_success_results, last_folder="a_class", target_key="_result")
+    t_fail_classify = failed_result_task.expand(file_info=t_classify_failed_results)
+
     #a_class_classify_result_task = class_classify_result_task(classify_preprocess_result_task,"a_class")
     
     #all_clear_temp_folder_task = clear_temp_folder_task()
@@ -48,8 +50,9 @@ with DAG(
     # XCom을 통해 데이터가 전달되므로, 태스크 실행 순서만 정의합니다.
     t_test_setup_runtime>> b_check_file_exists
     b_check_file_exists >> t_no_file_end
-    b_check_file_exists >> t_target_file_info_list >> t_classify_preprocess_task >> t_classify_preprocess_remove_failed_results
-    t_classify_preprocess_remove_failed_results >> classify_preprocess_result_task
+    b_check_file_exists >> t_target_file_info_list >> t_classify_preprocess_task >> [t_classify_success_results, t_classify_failed_results]
+    t_classify_success_results >> classify_preprocess_result_task
+    t_classify_failed_results >> t_fail_classify
     #classify_preprocess_result_task >> all_clear_temp_folder_task
 
 if __name__ == "__main__":

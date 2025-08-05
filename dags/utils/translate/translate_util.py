@@ -17,7 +17,26 @@ def is_korean(text: str) -> bool:
         return lang == "ko"
     except Exception:
         return False
+
+# 결과 일관성을 위해 seed 고정
+DetectorFactory.seed = 0
+
+def detect_lang(text: str) -> str:
+    """
+    입력된 텍스트의 언어코드를 감지하여 반환합니다.
     
+    Args:
+        text (str): 감지할 텍스트
+        
+    Returns:
+        str: 감지된 언어코드 (예: 'ko', 'en', 'fr'), 실패 시 'unknown'
+    """
+    try:
+        lang = _detect(text)
+        return convert_lang(lang)
+    except Exception:
+        return ""
+
 def translate(origin_text: str, from_lang: str = "auto", to_lang: str = "ko") -> str:
     """
     GoogleTranslator를 이용해 텍스트를 번역합니다.

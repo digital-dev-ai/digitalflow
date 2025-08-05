@@ -424,7 +424,7 @@ def get_image_paths(directory: str) -> list[str]:
     """해당 폴더의 이미지 경로 리스트 반환"""
     if not os.path.exists(directory):
         return []
-    return [os.path.join(directory, f) for f in os.listdir(directory) 
+        return [os.path.join(directory, f) for f in os.listdir(directory) 
             if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
 def get_image_paths_recursive(directory: str) -> list[str]:
@@ -436,16 +436,23 @@ def get_image_paths_recursive(directory: str) -> list[str]:
                 image_paths.append(os.path.join(root, f))
     return image_paths
 
-def file_copy(src_file: str, dest_file: str) -> str:
+def file_copy(src_file: str, dest_file:str=None, dest_folder:str=None) -> str:
     """
     파일을 복사하는 함수
     
     :param src_file: 복사할 파일 경로(문자열)
     :param dest_file: 붙여넣을 파일 경로(문자열)
+    :param dest_folder: 붙여넣을 폴더 경로(문자열)
     :return: 실제로 복사된 파일 경로(문자열)
     """
     print("file_copy:",dest_file)
     src = Path(src_file)
+    if dest_file is None:
+        if dest_folder is not None:
+            # d`est_folder가 폴더이므로, dest_file은 그 안에 src파일명을 붙임
+            dest_file = Path(dest_folder) / src.name
+        else:
+            raise ValueError("dest_file이나 dest_folder가 존재하지 않습니다.")
     dest = Path(dest_file)
 
     # 붙여넣을 폴더가 없으면 생성
@@ -463,8 +470,18 @@ def file_copy(src_file: str, dest_file: str) -> str:
 
     # 파일 복사
     shutil.copy2(src, dest)
-
+    
     return str(dest)
+
+def file_move(src_file: str, dest_file:str=None, dest_folder:str=None) -> str:
+    dest = file_copy(src_file,dest_file,dest_folder)
+    # move_at이 True면 원본 파일 삭제
+    try:
+        Path(src_file).unlink()  # 원본 파일 삭제
+    except Exception as e:
+        print(f"원본 파일 삭제 실패: {e}")
+    return dest
+
 
 #내부함수
 #dict 데이터 값 찾아가기
