@@ -21,7 +21,7 @@ import pytesseract
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 
-@task
+@task(pool='ocr_pool') 
 def img_classify_task(ai_info: dict, file_info: dict, target_key: str, **context) -> dict:
     """ai_info로 LiLT 모델로 이미지 분류 결과를 file_info에 저장하여 반환"""
     processor_name = ai_info["processor_name"]
@@ -43,7 +43,7 @@ def img_classify_task(ai_info: dict, file_info: dict, target_key: str, **context
     file_info["status"] = "success"
     return file_info
     
-@task
+@task(pool='ocr_pool') 
 def aggregate_classify_results_task(file_infos:List,class_keys,**context):
     """
     파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
@@ -56,6 +56,20 @@ def aggregate_classify_results_task(file_infos:List,class_keys,**context):
     Returns:
         list: 최종 분류 결과가 추가된 파일 정보 리스트
     """
+    # 1. 같은 file_id, page_num별로 classify 합치기
+    merged_info_map = {}  # key: (file_id, page_num), value: 합친 file_info
+    for info in file_infos:
+        key = (info['file_id'], info['page_num'])
+        if key not in merged_info_map:
+            # 새 객체 생성 (deepcopy 필요시 import copy 후 copy.deepcopy 사용)
+            merged_info_map[key] = {k: v for k, v in info.items() if k != 'classify'}
+            merged_info_map[key]['classify'] = {}
+        # 기존 classify에 추가/업데이트
+        merged_info_map[key]['classify'].update(info.get('classify', {}))
+
+    # 합쳐진 file_info 리스트로 변환
+    file_infos = list(merged_info_map.values())
+    
     for file_info in file_infos:
         # 각 파일별로 최대 신뢰도와 해당 클래스를 찾기 위한 초기화
         max_conf = -1
@@ -73,14 +87,16 @@ def aggregate_classify_results_task(file_infos:List,class_keys,**context):
                     max_conf = conf
                     best_class = class_key # layout_class_id
                     print("max_conf:", max_conf, "best_class:", best_class, "pred", pred)
-        # 신뢰도가 0.8을 초과하면 최종 클래스로 설정, 아니면 "None"으로 처리
-        if max_conf>0.9:
+        # 신뢰도가 0.5을 초과하면 최종 클래스로 설정, 아니면 "None"으로 처리
+        if max_conf>0.5:
             file_info["layout_class_id"] = best_class
+            file_info["doc_class_id"] = dococr_query_util.select_doc_class_id([best_class])
             file_info["confidence"] = max_conf
         else:
             file_info["layout_class_id"] = "None"
+            file_info["doc_class_id"] = "None"
             file_info["confidence"] = max_conf
-
+        
         # 결과 폴더에 파일 복사
         run_id = context['dag_run'].run_id
         target_id = file_info.get("layout_id",file_info["file_id"])

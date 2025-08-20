@@ -9,7 +9,7 @@ from pathlib import Path
 from airflow.models import Variable
 import json
 
-@task 
+@task(pool='ocr_pool')  
 def ocr_dispatcher_task(file_info: Dict[str, Any], area_info: Dict[str, Any], **context) -> Dict[str, Any]:
     """
     OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.

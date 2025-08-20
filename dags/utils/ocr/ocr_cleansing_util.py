@@ -114,18 +114,62 @@ def apply_common_dictionary(
     **kwargs
 ) -> tuple[Any,dict]:
     """딕셔너리 기반 치환. 긴 키를 먼저 처리하기 위해 길이순 정렬."""
-    dictionary_path="/opt/airflow/data/common/dictionary/common_dictionary.json"    
-    dictionary = json_util.load(dictionary_path)
+    dic_prc = "db"  # 'file' or 'db'
+    if dic_prc == "file":
+        dictionary_path="/opt/airflow/data/common/dictionary/common_dictionary.json"    
+        dictionary = json_util.load(dictionary_path)
+        if not dictionary:
+            return block_data
+        sorted_dict = dict(sorted(dictionary.items(), key=lambda item: len(item[0]), reverse=True))
+    elif dic_prc == "db":
+        dictionary = dococr_query_util.select_list_map("selectCommonCrctnList",None)
+        if not dictionary:
+            return block_data
+        sorted_list = sorted(dictionary, key=lambda x: len(x["error_text"]), reverse=True)
+        sorted_dict = {item["error_text"]: item["crrct_text"] for item in sorted_list}
     _, data = block_data
     text = data.get("ocr", {}).get(ocr_type, {}).get("text", "")
     if not isinstance(text, str):  # 혹시 text가 None이거나 비정상적이면 빈 문자열 처리
         text = ""
-    for wrong, correct in dictionary.items():
+    for wrong, correct in sorted_dict.items():
         text = text.replace(wrong, correct)
     data.setdefault("ocr", {}).setdefault(ocr_type, {})["text"] = text
     data.setdefault("ocr", {})["text"] = text
     return block_data
 
+
+# def apply_block_dictionary(
+#     block_data: tuple[Any,dict],
+#     ocr_type: str = "tesseract",
+#     result_map: dict = None,
+#     **kwargs
+# ) -> tuple[Any,dict]:
+#     """블록 별 딕셔너리 기반 치환. 블록 텍스트가 완전 일치할 경우에만 치환."""
+#     _, data = block_data
+#     block_row = data.get("row",0)
+#     block_col = data.get("col",0)
+#     section_class_id = data.get("section_class_id",None)
+#     section_name = data.get("section_name",None)
+#     dic_prc = "db"
+#     text = data.get("ocr", {}).get(ocr_type, {}).get("text", "")
+#     if not isinstance(text, str):  # 혹시 text가 None이거나 비정상적이면 빈 문자열 처리
+#         text = ""
+    
+#     if dic_prc == "file":
+#         dictionary_path = f"/opt/airflow/data/class/a_class/ocr/dictionary/{section_name}_{block_row}_{block_col}.json"
+#         dictionary = json_util.load(dictionary_path)
+#         if not dictionary:
+#             return block_data
+#         if text in dictionary:
+#             text = dictionary[text]
+#     elif dic_prc == "db":
+#         result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,block_row,block_col,text))
+#         if result:
+#             text = result
+#     # 원래 위치에 넣기
+#     data.setdefault("ocr", {}).setdefault(ocr_type, {})["text"] = text
+#     data.setdefault("ocr", {})["text"] = text
+#     return block_data
 
 def apply_block_dictionary(
     block_data: tuple[Any,dict],
@@ -153,12 +197,41 @@ def apply_block_dictionary(
             text = dictionary[text]
     elif dic_prc == "db":
         result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,block_row,block_col,text))
+        if not result:
+            # 반복되는 행 처리
+            # 여러 줄이 감지된 경우, 특정 행을 선택하여 치환
+            minmax_row_list = dococr_query_util.select_list_map("selectMultiRowInfo",(section_class_id,))
+            print(minmax_row_list)
+            min_row_num = 0
+            max_row_num = 0
+            # 리스트에 결과가 있고, 첫 번째 항목이 딕셔너리인지 확인
+            if minmax_row_list and isinstance(minmax_row_list[0], dict):
+                minmax_row_dict = minmax_row_list[0]
+                
+                # 딕셔너리에서 값을 가져올 때 None인 경우 0으로 대체
+                # dict.get() 메서드는 키가 없으면 기본값을 반환하지만,
+                # 키가 있어도 값이 None일 수 있으므로 추가로 확인
+                if minmax_row_dict.get("minnum") is not None:
+                    min_row_num = minmax_row_dict.get("minnum")
+                
+                if minmax_row_dict.get("maxnum") is not None:
+                    max_row_num = minmax_row_dict.get("maxnum")
+            
+            # 만약 minmax_row_list 자체가 비어있거나, 값이 None이라면,
+            # min_row_num과 max_row_num은 초기값인 0으로 유지됩니다.
+            
+            selected_row = max_row_num - min_row_num + 1 # ocr결과에서 감지된 여러 줄의 전체 행 개수를 계산
+            index_num = (max_row_num - min_row_num)%selected_row # 여러 줄 중 특정 행을 선택하기 위해 인덱스 추출,1줄짜리면 0만 나옴, 2줄 짜리면 0,1
+            final_row = index_num + min_row_num #쿼리에 사용할 특정 행 번호 계산
+            result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,final_row,block_col,text))
         if result:
             text = result
     # 원래 위치에 넣기
     data.setdefault("ocr", {}).setdefault(ocr_type, {})["text"] = text
     data.setdefault("ocr", {})["text"] = text
     return block_data
+
+
 
 def pattern_check(
     block_data: tuple[Any,dict],

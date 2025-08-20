@@ -11,14 +11,14 @@ from utils.db import dococr_query_util
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/result")
     
-@task
+@task(pool='ocr_pool') 
 def get_file_list_task(folder_path):
     files = [str(f) for f in Path(folder_path).iterdir() if f.is_file()]
     if not files:
         raise ValueError(f"No files found in: {folder_path}")
     return files
 
-@task
+@task(pool='ocr_pool') 
 def get_file_info_list_task(folder_path,**context):
     p = Path(folder_path)
     files = [str(f) for f in p.rglob("*") if f.is_file()]
@@ -29,7 +29,7 @@ def get_file_info_list_task(folder_path,**context):
         file_info_list.append(content)
     return file_info_list
 
-@task
+@task(pool='ocr_pool') 
 def copy_results_folder_task(file_infoes: list, target_key:str=None, dest_folder:str=None, last_folder:str=None, **context):
     """
     file_infoes["file_path"]에 저장된 경로의 파일들을
@@ -77,7 +77,7 @@ def copy_results_folder_task(file_infoes: list, target_key:str=None, dest_folder
 
     return dest_folder
 
-@task
+@task(pool='ocr_pool') 
 def clear_temp_folder_task(**context):
     run_id = context['run_id']
     folder = Path(TEMP_FOLDER) / run_id
@@ -89,7 +89,7 @@ def clear_temp_folder_task(**context):
                 shutil.rmtree(item)
     return f"Cleared folder: {folder}"
 
-@task
+@task(pool='ocr_pool') 
 def save_file_info_task(file_info: dict, save_type: str="result", **context):
     if save_type == "result":
         run_id = context['run_id']
@@ -110,7 +110,7 @@ def save_file_info_task(file_info: dict, save_type: str="result", **context):
     
     
 # 새로히 추가
-@task
+@task(pool='ocr_pool') 
 def save_ocr_json_task(file_info: dict, dest_folder: str, area_name: str):
     """
     file_info에 저장된 구조화된 OCR 결과(텍스트 및 위치 정보)를

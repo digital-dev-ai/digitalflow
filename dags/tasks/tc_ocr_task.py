@@ -6,7 +6,7 @@ import pytesseract
 from utils.com import json_util
 from utils.db import dococr_query_util
 
-@task
+@task(pool='ocr_pool') 
 def table_ocr_by_cell(file_info: dict, ocr_info: dict, **context):
     image_path = file_info["file_path"]["_origin"]
     file_id = file_info["file_id"]

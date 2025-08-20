@@ -15,7 +15,7 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 
 
-@task
+@task(pool='ocr_pool') 
 def img_preprocess_task(file_info:dict,step_info:dict,target_key:str="_origin")->dict:
     rslt_map = {}
     rslt_map["folder_path"] = file_info["file_id"]
@@ -34,7 +34,7 @@ def img_preprocess_task(file_info:dict,step_info:dict,target_key:str="_origin")-
     return file_info
 
 # result_map = {}           # 최종 결과 파일 경로 관리
-# @task
+# @task(pool='ocr_pool') 
 # def img_preprocess_task3(file_info:dict,step_info:dict,target_key:str="_origin")->dict:
 #     process_id = str(uuid.uuid4())
 #     print("empty map check",result_map)

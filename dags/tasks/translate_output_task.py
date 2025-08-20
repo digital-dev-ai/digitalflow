@@ -17,7 +17,7 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-@task
+@task(pool='ocr_pool') 
 def translate_output_task(table_info):
     """
     지정된 테이블에서 가장 큰 ID (최근에 삽입된) 로우의 영문 텍스트를 한국어로 번역하고
@@ -70,7 +70,7 @@ def translate_output_task(table_info):
 
         # 4. 번역된 컬럼이 있다면 원본 테이블을 업데이트하고 로그 테이블에 기록합니다. 없다면 로그 테이블에 빈 로그를 기록합니다.
         if updates_for_main_table:
-            dococr_query_util.update_for_translate(table_name,id_col_name,str(latest_id),updates_for_main_table)
+            dococr_query_util.update_for_translate(table_name,id_col_name,str(latest_id),updates_for_main_table,update_origin_at=False)
         else:
             params = (table_name,latest_id,id_col_name,latest_id,latest_id)
             dococr_query_util.insert_map("insertTranslateLog", params=params)

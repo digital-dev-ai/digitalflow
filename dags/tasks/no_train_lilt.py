@@ -13,7 +13,7 @@ import cv2
 from utils.com import json_util
 from utils.ocr import separate_area_util
 
-@task
+@task(pool='ocr_pool') 
 def no_train_lilt(dataset: list, model_dir:str, horizontal_kernel_ratio: float = 0.8, vertical_kernel_ratio: float = 0.038):
     """LiLT 경량 모델 학습 및 검증 (메모리 최적화 버전)"""
     if not dataset:

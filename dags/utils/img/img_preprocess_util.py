@@ -1033,39 +1033,6 @@ def _rotate(img_np_bgr: np.ndarray, angle:float) -> np.ndarray:
         borderValue=tuple(most_common.tolist())
     )
     return rotated
-#이전
-# function_map = {
-#     #common
-#     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
-#     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
-#     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
-#     #set
-#     "calc_angle_set1": {"function": calc_angle_set1, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-#     "calc_angle_set2": {"function": calc_angle_set2, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,delta,limit,iterations,iter_save"},
-#     "calc_angle_set3": {"function": calc_angle_set3, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-#     "calc_angle_set4": {"function": calc_angle_set4, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-#     "text_orientation_set": {"function": text_orientation_set, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key,iterations,iter_save"},
-#     "del_blank_set1": {"function": del_blank_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "padding"},
-#     "del_blank_set2": {"function": del_blank_set2, "input_type": "np_bgr", "output_type": "np_bgr", "param": "line_ratios,padding_ratios,iter_save"},
-#     # ocr
-#     "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,offset,width,height,iter_save"},
-#     #preprocess
-#     "scale1": {"function": scale1, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "gray": {"function": gray, "input_type": "np_bgr", "output_type": "np_gray"},
-#     "denoising1": {"function": denoising1, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "denoising2": {"function": denoising2, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "threshold": {"function": threshold, "input_type": "np_gray", "output_type": "np_gray"},
-#     "morphology1": {"function": morphology1, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "canny": {"function": canny, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "thinner": {"function": thinner, "input_type": "np_bgr", "output_type": "np_bgr"},
-#     "before_angle1": {"function": before_angle1, "input_type": "np_bgr", "output_type": "np_gray","param":""},
-#     "calc_angle1": {"function": calc_angle1, "input_type": "np_gray", "output_type": "np_gray","param":"angle_key"},
-#     "before_angle2": {"function": before_orientation, "input_type": "np_bgr", "output_type": "np_gray","param":""},
-#     "calc_angle2": {"function": calc_orientation, "input_type": "any", "output_type": "np_bgr","param":"angle_key"},
-#     "rotate": {"function": rotate, "input_type": "np_bgr", "output_type": "np_bgr","param":"angle_key"},
-
-#     "line_tracking": {"function": line_tracking, "input_type": "np_gray", "output_type": "np_gray","param":"iter_save"},
-# }
 
 #이후
 function_map = {

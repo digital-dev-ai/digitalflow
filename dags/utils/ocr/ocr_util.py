@@ -136,7 +136,7 @@ def tesseract(block_data:Tuple[Any,Dict], lang:str="kor", config:str="--psm 6", 
         # ocr 처리 이미지 기준 블록 그리기
         draw_block_box_util.draw_block_box_step_list((thresh_invert, data), input_img_type="np_gray", 
             step_list=[{"name": "tesseract_data_to_json", "param": {}},
-                    {"name": "draw_block_box_xywh2", "param": {"box_color": 1, "iter_save": True}}],
+                    {"name": "draw_block_box_xywh2", "param": {"box_color": 2, "iter_save": True}}],
             result_map={"folder_path":result_map["process_id"]})
     
     #증가배율에 맞춰 좌표 복구
@@ -153,16 +153,15 @@ def tesseract(block_data:Tuple[Any,Dict], lang:str="kor", config:str="--psm 6", 
     #     block_box = [converted['left'][i], converted['top'][i], converted['width'][i], converted['height'][i]]
     #     converted_draw_block_list.append({'block_id': block_id, 'block_box': block_box})
     #draw_block_box_util.draw_block_box_step_list((img_np_bgr, converted_draw_block_list), input_img_type="np_bgr", 
-    #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],
+    #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}],
     #     result_map={"folder_path":result_map["process_id"]})
     combined_text = ' '.join([word for word in data['text'] if word.strip() != ''])
     conf_values = [int(c) for c in data['conf'] if ((isinstance(c, str) and c.isdigit()) or isinstance(c, int)) and int(c) >= 0]
     mean_conf = sum(conf_values)/len(conf_values) if conf_values else 0
     block_map['ocr'] = {"tesseract":{"text":combined_text,"conf":mean_conf,"data":converted}}
     print("-_-_-",block_map)
-    # if iter_save:
-    #     save((type_convert_util.convert_type(thresh_invert, "np_gray", "file_path"), block_map), save_key=block_map["block_id"], tmp_save=True, result_map={"folder_path":result_map["process_id"]})
-   
+    if iter_save:
+        save((type_convert_util.convert_type(thresh_invert, "np_gray", "file_path"), block_map), save_key=block_map["block_id"], tmp_save=True, result_map=result_map)
     return (img_np_bgr,block_map)
 
 function_map = {

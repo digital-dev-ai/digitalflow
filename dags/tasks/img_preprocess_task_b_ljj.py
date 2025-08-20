@@ -1291,7 +1291,7 @@ def intelligently_join_words(word_details: list[dict], space_threshold_ratio: fl
 
 
 
-@task
+@task(pool='ocr_pool') 
 def img_preprocess_task(step_info:dict,file_info:dict,target_key:str="_origin")->dict:
     process_id = str(uuid.uuid4())
     print("empty map check",result_map)

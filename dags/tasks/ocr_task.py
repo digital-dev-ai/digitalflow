@@ -76,8 +76,8 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
         print(section_name,"separate_area completed:")
         block_map = {"block_id": section_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]],"section_class_id":section_class_id,"section_name":section_name}
         block_data = (img_np_bgr,block_map)
-        # draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
-        #     step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
+            step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}])
         separate_block_step_info = json.loads(section_info["separate_block"])
         block_list = separate_block_util.separate_block(block_data, input_img_type="np_bgr", output_img_type="np_bgr", step_info=separate_block_step_info)
         print(section_name,"separate_block completed:", len(block_list))
@@ -85,12 +85,12 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
         # 4. 블록 목록에서 child==0인 블록정보(추출대상)로 OCR 수행
         ocr_list = []
         # 리프노드만 추출하여 박스 그림
-        block_box_list = [item[1]["block_box"] for item in block_list if item[1]["child"] == 0]
+        block_box_list = [item[1]["block_box"] for item in block_list if item[1].get("child",-1) == 0]
         draw_block_box_util.draw_block_box_step_list((original_image, block_box_list), input_img_type="file_path", 
-            step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+            step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}])
         
         # 추출대상인 블록만 추출
-        leaf_block_list = [block_data for block_data in block_list if block_data[1].get("child") == 0]
+        leaf_block_list = [block_data for block_data in block_list if block_data[1].get("child",-1) == 0]
         separate_block_step_info = json.loads(section_info.get("match_block", '{"name": "match_block", "step_list": [{"name":"detect_row_col_set1","param":{"gap_threshold":25} },{"name":"save","param":{} }] }'))
         matched_block_list = match_block_util.match_block(leaf_block_list, step_info=separate_block_step_info, result_map={"folder_path":section_name})
         
@@ -109,16 +109,20 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
         # #ocr 디버깅용
         #file_info.setdefault("ocr_results", {})[section_name] = ocr_list
 
-        #structuring_step_info = json.loads(section_info["structuring"])
-        structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
-                                 "step_list":[{"name":"structuring_by_type","param":{"section_class_id":section_class_id,"section_name":section_name,"section_type":section_type}}]}
+        if section_info.get("structuring", "") == "":
+            structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
+                                    "step_list":[{"name":"structuring_by_type","param":{"section_class_id":section_class_id,"section_name":section_name,"section_type":section_type}}]}
+        else:
+            structuring_step_info = json.loads(section_info["structuring"])
+            
+
         try:
             structed_section = structuring_util.structuring(table_map, step_info=structuring_step_info) # {table1:[{col1:val1,...},{col1:val1,...},...],table2:[...]}
         except Exception as e:
             from pathlib import Path
             from airflow.models import Variable
             CLASS_FOLDER = Variable.get("CLASS_FOLDER", default_var="/opt/airflow/data/class")
-            error_folder = Path(CLASS_FOLDER) / "error" / f"{section_class_id}_{section_name}"
+            error_folder = Path(CLASS_FOLDER) / file_info["doc_class_id"] / file_info["layout_class_id"] / "error" / f"{section_class_id}_{section_name}"
             
             parts = str(e).split('|', 1)
             if len(parts) > 1:
@@ -129,7 +133,7 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
                 json_util.save(error_json_path,file_info)
             raise
         
-        #draw_block_box_util.draw_block_box_step_list((original_image, ocr_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}])
+        #draw_block_box_util.draw_block_box_step_list((original_image, ocr_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}])
         print(f"structed_section : {structed_section}")
 
         for key, list_of_dicts in structed_section.items():
@@ -143,10 +147,10 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
                 # 여러 dict가 있으면 각각 인덱스 딕셔너리에 병합
                 structed_layout[key][i].update(item_dict)
         
-        run_id = context['dag_run'].run_id
-        target_id = file_info.get("layout_id",file_info["file_id"])
-        dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
+    run_id = context['dag_run'].run_id
+    target_id = file_info.get("layout_id",file_info["file_id"])
     file_info["structed_layout"] = structed_layout
+    dococr_query_util.update_map("updateTargetContent",(json.dumps(file_info),run_id,target_id))
     file_info["status"] = "success"
     return file_info
     
@@ -160,7 +164,7 @@ def _perform_ocr(img_np_bgr):
         }
     ]
 
-@task
+@task(pool='ocr_pool') 
 def only_ocr(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str, Any]:
     """
     OCR 타입에 따라 적절한 OCR 태스크를 선택하여 실행합니다.
@@ -180,9 +184,8 @@ def only_ocr(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
 
     file_info["status"] = "success"
     return file_info
-    
 
-@task
+@task(pool='ocr_pool') 
 def aggregate_ocr_results_task(file_infos:list[dict],**context):
     """
     파일 정보 리스트에서 각 파일별로 분류 결과를 종합하고, 가장 신뢰도가 높은 클래스로 최종 분류 결과를 저장하는 함수.
@@ -202,7 +205,7 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
         file_groups[file_info['file_id']].append(file_info)
 
     doc_info_list = []
-    layout_class_ids = []
+    
     origin_path = {}
     for file_id, items in file_groups.items():
         # 2) page_num 순 정렬
@@ -210,17 +213,25 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
         if len(items_sorted)>0:
             entry = items_sorted[0]
             if "_origindoc" in entry.get("file_path", {}):
-                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origindoc")} 
+                origin_path = {"_originfile": entry.get("file_path", {}).get("_origindoc")} 
             elif "_origin" in entry.get("file_path", {}):
-                origin_path = {"_origin_path": entry.get("file_path", {}).get("_origin")} 
+                origin_path = {"_originfile": entry.get("file_path", {}).get("_origin")} 
         
 
         # 3) structed 병합 준비
         merged_structed = defaultdict(list)  # table명: list of dict(row)
-
+        page_infos = []
+        layout_class_ids = []
         for entry in items_sorted:
             layout_class_ids.append(str(entry["layout_class_id"]))
             structed = entry.get('structed_layout', {})
+            page_infos.append({
+                "page_num": entry["page_num"],
+                "file_path": {"_normalize":entry.get("file_path", {}).get("_normalize", "")},
+                "layout_class_id": entry["layout_class_id"],
+                "doc_class_id": entry["doc_class_id"]
+            })
+            
             print("222222222",structed)
             for table_name, rows in structed.items():
                 if table_name not in merged_structed:
@@ -262,12 +273,14 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
                                 existing_rows.append(deepcopy(new_row))
         doc_class_id = dococr_query_util.select_doc_class_id(params=layout_class_ids)
         # 결과 조립
+        
         doc_info_list.append({
             "file_id": file_id,
-            "pages": items_sorted,  # 같은 file_id의 원본 page_num 순 리스트 (필요하다면 items_sorted 수정 가능)
+            "page_infos": page_infos,
             "structed_doc": dict(merged_structed),
             "doc_class_id":doc_class_id,
-            "doc_path":origin_path
+            "doc_path":origin_path,
+            "pages": items_sorted  # 같은 file_id의 원본 page_num 순 리스트 (필요하다면 items_sorted 수정 가능)
         })
 
     return doc_info_list

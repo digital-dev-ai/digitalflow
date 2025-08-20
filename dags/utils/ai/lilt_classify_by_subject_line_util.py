@@ -41,9 +41,9 @@ def classify(ai_info: dict, file_info: dict, target_key: str, **context):
     return classify_result
     
     
-def predict(image_path, model, processor, device):
+def predict(image_path, model, processor, device, class_key):
     """예측 수행"""
-    image, words, boxes = preprocess_image(image_path)
+    image, words, boxes = preprocess_image(image_path, class_key)
     print("4-1. 모델 입력 생성 시작")
     input_kwargs = {
         "text": words,
@@ -70,32 +70,34 @@ def predict(image_path, model, processor, device):
         confidence = probs[0, pred].item()
     return pred, confidence, input_kwargs
 
-def preprocess_image(image_path):
+def preprocess_image(image_path, class_key):
     """이미지 로드, OCR, 바운딩 박스 정규화"""
     image = Image.open(image_path).convert("RGB")
     image_width, image_height = image.size
 
     process_id = f"_ic_{str(uuid.uuid4())}"
     # 1. 상단 헤더 영역만 분리하여 OCR 수행
-    header_img, _ = separate_area_util.separate_area_step_list(
-        image, data_type="pil", output_type="pil",
-        step_list=[
-            {"name":"save","param":{"save_key":"_origin","tmp_save":True}},
-            {"name" : "separate_areas_set1", "param": {"area_name":"doc_subject","area_type":"top_center","area_ratio":[-0.083,0.068,0.188,0.068],"iter_save":False}},
-            {"name":"save","param":{"save_key":"_cutted","tmp_save":True}}
-        ],
-        result_map={"folder_path":process_id}
-    )
-    header_width, header_height = header_img.size
-    
-    try:
-        print("3-2. OCR 수행 시작")
-        data = pytesseract.image_to_data(
-            header_img, output_type=pytesseract.Output.DICT, lang='kor+eng', config='--psm 6 --oem 3')
-        print("3-3. OCR 수행 완료")
-    except Exception as e:
-        print(f"OCR error: {e}")
+    section_list = dococr_query_util.select_list_map("selectSectionList", params=(class_key,))
+    step_info = json.loads(section_list[0].get("separate_area")) if section_list else None
+    if step_info is None:
+        print("no separate_area step_info")
         data = {"text": [], "left": [], "top": [], "width": [], "height": []}
+    else:
+        header_img, _ = separate_area_util.separate_area(
+            image, data_type="pil", output_type="pil",
+            step_info=step_info,
+            result_map={"folder_path":process_id}
+        )
+        header_width, header_height = header_img.size
+        
+        try:
+            print("3-2. OCR 수행 시작")
+            data = pytesseract.image_to_data(
+                header_img, output_type=pytesseract.Output.DICT, lang='kor+eng', config='--psm 6 --oem 3')
+            print("3-3. OCR 수행 완료")
+        except Exception as e:
+            print(f"OCR error: {e}")
+            data = {"text": [], "left": [], "top": [], "width": [], "height": []}
 
     words = []
     boxes = []

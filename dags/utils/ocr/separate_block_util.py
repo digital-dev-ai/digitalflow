@@ -112,6 +112,12 @@ def save(block_data:tuple[Any,dict],save_key:str="tmp",tmp_save:bool=False,resul
     result_map["save_path"][save_key]=block_data
     return block_data
 
+def one_block(block_data:tuple[Any, dict], result_map:dict=None) -> tuple[Any, dict]:
+    if result_map is None:
+        result_map = {}
+    block_data[1]['child'] = 0
+    return block_data
+
 def separate_block_by_line(
     block_data: tuple[Any, dict],
     horizontal_first: bool = True,
@@ -247,7 +253,7 @@ def split_image_contours_gaps(block_data: tuple[Any, dict], min_start_point:int=
     # 7. 분할 기준을 충족하는 공백 중 가장 왼쪽에 있는 공백을 기준으로 이미지 분할
     if first_gap is None:
         bounding_boxes_list = [list(b) for b in bounding_boxes]
-        draw_block_box_util.draw_block_box_step_list((closed, bounding_boxes_list), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":block_id})
+        draw_block_box_util.draw_block_box_step_list((closed, bounding_boxes_list), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}],result_map={"folder_path":block_id})
         print("분할할 만큼 충분히 넓은 수평 공백을 찾지 못했습니다. 이미지를 통째로 처리합니다.")
         return block_data
     
@@ -269,8 +275,8 @@ def split_image_contours_gaps(block_data: tuple[Any, dict], min_start_point:int=
 
     # 6. 이미지 자르기 및 저장
     cutted_block_data = []
-    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
-    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g1","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g2","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
 
     if iter_save:
         save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), save_key=cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
@@ -371,8 +377,8 @@ def split_image_by_vertical_gaps(block_data: tuple[Any, dict], min_start_point:i
 
     # 6. 이미지 자르기 및 저장
     cutted_block_data = []
-    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g0","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
-    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g1","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((first_image,{"block_id": f"{block_id}_g1","block_box": first_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
+    cutted_block_data.append((second_image,{"block_id": f"{block_id}_g2","block_box": second_box,"child":0,"section_class_id":section_class_id,"section_name":section_name}))
 
     if iter_save:
         save((type_convert_util.convert_type(cutted_block_data[0][0], "np_bgr", "file_path"),cutted_block_data[0][1]), save_key=cutted_block_data[0][1]["block_id"], tmp_save=True, result_map=result_map)
@@ -592,6 +598,7 @@ function_map = {
     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
     "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
     #set
+    "one_block": {"function": one_block, "input_type": "np_bgr", "output_type": "np_bgr", "param": "step_info,result_map"},
     "separate_block_by_line": {"function": separate_block_by_line, "input_type": "np_bgr", "output_type": "np_bgr", "param": "horizontal_first,horizontal_line_ratio,horizontal_min_gap,vertical_line_ratio,vertical_min_gap,iter_save"},
     "split_image_by_vertical_gaps": {"function": split_image_by_vertical_gaps, "input_type": "np_bgr", "output_type": "np_bgr", "param": "min_start_point,min_gap_width,min_start_ratio,min_gap_ratio,angle,iter_save"},
 }

@@ -4,6 +4,7 @@ import cv2
 import numpy as np  # np import 추가
 from pandas.core.base import np
 from torchvision.transforms import InterpolationMode
+from utils.ai.machine_learning_dataset import extract_feature_for_table_doc_util
 from utils.ocr import separate_area_util  # import 경로 수정
 from utils.img import img_preprocess_util
 from utils.com import json_util
@@ -18,7 +19,7 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/common/none_class") # 비서식 일반 문서 이미지
 
-@task
+@task(pool='ocr_pool')
 def balance_false_images(root_path:str):
     def get_image_count(root_dir):
         """각 디렉토리의 이미지 개수를 계산"""
@@ -76,7 +77,7 @@ def balance_false_images(root_path:str):
     
     return {"copied_count": copied_count, "total_false_count": false_count + copied_count}
 
-@task
+@task(pool='ocr_pool') 
 def build_balanced_dataset(true_folder:str,false_folder:str):
     """균형이 맞춰진 데이터셋 구성"""
     # true_folder = f"{root_path}/true"
@@ -102,8 +103,18 @@ def build_balanced_dataset(true_folder:str,false_folder:str):
     return dataset
 
 
-@task
-def train_lilt(dataset: list, model_dir:str, horizontal_kernel_ratio: float = 0.8, vertical_kernel_ratio: float = 0.038):
+@task(pool='ocr_pool')
+def train(dataset: list, classify_ai_info: dict, ai_dir="/opt/airflow/data/class/noclass/classify/model/noprc",model_name=None):
+    target_processor_name = classify_ai_info.get("processor_name", "ML")
+    target_model_name = classify_ai_info.get("model_name", model_name)
+    model_dir = classify_ai_info.get("ai_dir",ai_dir)
+    class_key = classify_ai_info.get("class_key", "")
+    if target_processor_name == "SCUT-DLVCLab/lilt-roberta-en-base":
+        return train_lilt(dataset, model_dir, class_key=class_key)
+    elif target_processor_name == "ML":
+        return train_ml(dataset, model_dir, target_model_name, class_key=class_key)
+
+def train_lilt(dataset: list, model_dir:str, horizontal_kernel_ratio: float = 0.8, vertical_kernel_ratio: float = 0.038, class_key: str = ""):
     """LiLT 경량 모델 학습 및 검증 (메모리 최적화 버전)"""
     import torch
     from torch.utils.data import Dataset, DataLoader, random_split
@@ -316,42 +327,170 @@ def train_lilt(dataset: list, model_dir:str, horizontal_kernel_ratio: float = 0.
 
     return model_dir
 
+def train_ml(dataset: list, model_dir: str, target_model_name: str = None, class_key: str = ""):
+    """
+    TargetEncoder를 포함한 sklearn 파이프라인을 사용하여 여러 모델을 학습하고 저장합니다.
+    - dataset 리스트를 pandas DataFrame으로 변환
+    - 전처리기(ColumnTransformer)와 다양한 모델을 포함하는 파이프라인 구축
+    - 각 모델을 학습하고, pickle 파일로 저장
+    """
+    import os
+    import pandas as pd
+    import numpy as np
+    import pickle
+    from sklearn.model_selection import train_test_split
+    from sklearn.compose import ColumnTransformer
+    from sklearn.pipeline import Pipeline
+    from sklearn.impute import SimpleImputer
+    from sklearn.preprocessing import StandardScaler, OneHotEncoder
+    from category_encoders import TargetEncoder
+    
+    # 여러 모델 import
+    from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier, GradientBoostingClassifier
+    from sklearn.svm import SVC
+    from sklearn.linear_model import LogisticRegression
+    from xgboost import XGBClassifier
+    from lightgbm import LGBMClassifier
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+    print("1. 데이터셋 전처리 및 특징 추출 시작...")
+    processed_data = []
+    for item in dataset:
+        try:
+            features = extract_feature_for_table_doc_util.preprocess_image_and_extract_features(item['image_path'], class_key=class_key)
+            features['y'] = item['label']
+            processed_data.append(features)
+        except Exception as e:
+            print(f"이미지 전처리 실패: {item['image_path']} - {e}")
+            continue
 
+    if not processed_data:
+        print("전처리된 데이터가 없습니다. 학습을 중단합니다.")
+        return
+        
+    df = pd.DataFrame(processed_data)
+    print(df)
+    # 결측치 처리
+    df.fillna(value=np.nan, inplace=True) # TargetEncoder는 NaN 값을 처리할 수 있으므로, NaN으로 유지
 
-@task
-def image_data_augment(origin_dir: str, ready_dir: str, threshold=200):
+    # 특성 그룹 정의 (모든 피처 그룹을 사용할 수 있지만, 해당 피처만 사용해도 어느정도 성능은 보장됨.)
+    numerical_features = ['text_span_x_min', 'text_span_y_min', 'horiz_span_x_min']
+    onehot_encoding_features = ['return_tensors', 'padding']
+    target_encoding_features = ['cleaned_processed_text']
+    
+    # 전처리기 및 파이프라인 정의
+    numerical_transformer = SimpleImputer(strategy='mean', add_indicator=True)
+    onehot_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
+    target_transformer = TargetEncoder(
+        cols=target_encoding_features,
+        min_samples_leaf=20,
+        smoothing=10
+    )
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('numerical', numerical_transformer, numerical_features),
+            ('onehot', onehot_transformer, onehot_encoding_features),
+            ('target', target_transformer, target_encoding_features)
+        ],
+        remainder='passthrough'
+    )
+    final_sklearn_pipeline = None
+
+    X = df.drop('y', axis=1)
+    y = df['y']
+
+    # 데이터셋 분리
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=123)
+
+    print("2. 여러 모델 학습 및 저장 시작...")
+    
+    os.makedirs(model_dir, exist_ok=True)
+    
+    # 학습할 여러 머신러닝 모델 정의
+    models = [
+        ('ExtraTreesClassifier', ExtraTreesClassifier(n_jobs=-1, random_state=123)),
+        ('RandomForestClassifier', RandomForestClassifier(n_jobs=-1, random_state=123)),
+        ('GradientBoostingClassifier', GradientBoostingClassifier(random_state=123)),
+        ('XGBClassifier', XGBClassifier(n_jobs=-1, random_state=123, use_label_encoder=False, eval_metric='logloss')),
+        ('LGBMClassifier', LGBMClassifier(n_jobs=-1, random_state=123)),
+        ('SVC', SVC(random_state=123, probability=True)),
+        ('LogisticRegression', LogisticRegression(n_jobs=-1, random_state=123)),
+        ('DecisionTreeClassifier', DecisionTreeClassifier(random_state=123)),
+        ('KNeighborsClassifier', KNeighborsClassifier(n_jobs=-1)),
+        ('GaussianNB', GaussianNB()),
+        ('LinearDiscriminantAnalysis', LinearDiscriminantAnalysis())
+    ]
+
+    for model_name, model in models:
+        if target_model_name and model_name != target_model_name:
+            print(f"Skipping model: {model_name} (not in target_model_name)")
+            continue
+        print(f"\n--- {model_name} 학습 시작 ---")
+        try:
+            # 새로운 파이프라인 생성 (매 반복마다 새로운 모델로 교체)
+            final_sklearn_pipeline = Pipeline(steps=[
+                ('preprocessor', preprocessor),
+                ('final_imputer', SimpleImputer(strategy='mean')),
+                ('classifier', model)
+            ])
+            
+            # 파이프라인을 한 번에 학습 (y_train을 사용하여 전처리와 학습 동시 진행)
+            final_sklearn_pipeline.fit(X_train, y_train)
+
+            train_accuracy = final_sklearn_pipeline.score(X_train, y_train)
+            test_accuracy = final_sklearn_pipeline.score(X_test, y_test)
+            print(f"학습 데이터 정확도: {train_accuracy:.4f}")
+            print(f"테스트 데이터 정확도: {test_accuracy:.4f}")
+
+            model_path = os.path.join(model_dir, f"sklearn_pipeline_{model_name}.pkl")
+            with open(model_path, 'wb') as f:
+                pickle.dump(final_sklearn_pipeline, f)
+            print(f"파이프라인이 '{model_path}' 파일로 저장되었습니다.")
+        except Exception as e:
+            print(f"모델 학습 실패: {model_name} - {str(e)}")
+            continue
+            
+    print("\n모든 모델 학습 및 저장이 완료되었습니다.")
+    return model_dir
+
+#데이터가 충분하지 않을 때 증강을 통해 데이터셋을 확장합니다.
+@task(pool='ocr_pool') 
+def image_data_augment(origin_dir: str, ready_dir: str, threshold=200, aug_limit=3):
     from torchvision import transforms
     from PIL import Image
     from torchvision.transforms import functional as F
     
     image_paths = file_util.get_image_paths(origin_dir)
     os.makedirs(ready_dir, exist_ok=True)
+    
     if len(image_paths) < threshold:
-        num_aug = 3  # 원본 1장당 증강 이미지 개수
+        num_aug = min(int(threshold / len(image_paths)), aug_limit)
     else:
         num_aug = 1 # 원본만
-
+    def get_augmentation(width, height):
+        return transforms.Compose([
+            transforms.Resize((height*2, width*2), interpolation=InterpolationMode.BICUBIC),
+            transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255, interpolation=InterpolationMode.BICUBIC),
+            transforms.Resize((height, width), interpolation=InterpolationMode.BICUBIC),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2)
+        ])
+    
     for img_path in image_paths:
         img = Image.open(img_path).convert('RGB')
         width, height = img.size
-        
-        def get_augmentation(width, height):
-            return transforms.Compose([
-                transforms.Resize((height*2, width*2), interpolation=InterpolationMode.BICUBIC),
-                transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255, interpolation=InterpolationMode.BICUBIC),
-                transforms.Resize((height, width), interpolation=InterpolationMode.BICUBIC),
-                transforms.ColorJitter(brightness=0.2, contrast=0.2),
-                transforms.ToTensor()
-            ])
-        if len(image_paths) < threshold:
-            augmentation = get_augmentation(width, height) # 증강 함수
-        else:
-            augmentation = transforms.ToTensor()
-        
-        base_name = os.path.splitext(os.path.basename(img_path))[0]
-        for i in range(num_aug):
-            aug_img = augmentation(img)
-            aug_img_pil = transforms.ToPILImage()(aug_img)
-            save_path = os.path.join(ready_dir, f"{base_name}_aug{i}.png")
-            aug_img_pil.save(save_path, quality=95)
+        augmentation = get_augmentation(width, height) if num_aug > 1 else None
 
+        base_name = os.path.splitext(os.path.basename(img_path))[0]
+        orig_save_path = os.path.join(ready_dir, f"{base_name}_aug0.png")
+        img.save(orig_save_path)
+        if augmentation:
+            for i in range(1,num_aug):
+                aug_img = augmentation(img) # 증강 함수
+                save_path = os.path.join(ready_dir, f"{base_name}_aug{i}.png")
+                aug_img.save(save_path)
+                print(f"증강 이미지 저장: {save_path}")

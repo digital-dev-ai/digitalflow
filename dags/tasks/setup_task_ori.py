@@ -13,7 +13,7 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 #run_id = dag의 워크플로우에 따른 실행 인스턴스 관리번호(속성: 시작일시, 종료일시, 실행상태 등)
 #task_id = 워크플로우의 개별 작업 단위(속성: task소스, 파라미터, 로그 등)
 #target_id = 실행 인스턴스에서 동적으로 생성하여 작업할 대상 관리번호(속성: 파일경로, 클래스명, 전처리결과 등)
-@task
+@task(pool='ocr_pool') 
 def setup_runtime(**context):
     dag_id = context['dag'].dag_id
     run_id = context['dag_run'].run_id
@@ -32,7 +32,7 @@ def check_file_exists(folder_path):
             return "setup_target_file_list"
     return "end_runtime"
 
-@task
+@task(pool='ocr_pool') 
 def setup_target_file_list(folder_path:str,**context):
     run_id = context['dag_run'].run_id
     p = Path(folder_path)
@@ -47,7 +47,7 @@ def setup_target_file_list(folder_path:str,**context):
     dococr_query_util.insert_map("insertTargetFile", params=db_params_list)
     return file_info_list
 
-@task
+@task(pool='ocr_pool') 
 def end_runtime(msg="dag을 종료합니다.",**context):
     print(msg)
     dag_id = context['dag'].dag_id

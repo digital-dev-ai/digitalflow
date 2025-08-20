@@ -178,6 +178,6 @@ function_map = {
     #common
     "cache": {"function": cache, "input_type": "file_path", "output_type": "file_path","param":"cache_key"},
     "load": {"function": load, "input_type": "any", "output_type": "file_path","param":"cache_key"},
-    "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key"},
+    "save": {"function": save, "input_type": "file_path", "output_type": "file_path","param":"save_key,tmp_save"},
     "separate_areas_set1": {"function": separate_areas_set1, "input_type": "np_bgr", "output_type": "np_bgr", "param": "area_type,area_ratio,area_box,result_key,iter_save"},
 }

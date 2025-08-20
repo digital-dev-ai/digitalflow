@@ -148,7 +148,7 @@ def tesseract(block_data:Tuple[Any,Dict], lang:str="kor", config:str="--oem 3 --
     #     block_id = data['text'][i]
     #     block_box = [data['left'][i], data['top'][i], data['width'][i], data['height'][i]]
     #     draw_block_list.append({'block_id': block_id, 'block_box': block_box})
-    #draw_block_box_util.draw_block_box_step_list((thresh, draw_block_list), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
+    #draw_block_box_util.draw_block_box_step_list((thresh, draw_block_list), input_img_type="np_gray", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
     converted = data.copy()
     for key in ['left', 'width']:
         converted[key] = [value / x_scale for value in data[key]]
@@ -160,7 +160,7 @@ def tesseract(block_data:Tuple[Any,Dict], lang:str="kor", config:str="--oem 3 --
     #     block_id = converted['text'][i]
     #     block_box = [converted['left'][i], converted['top'][i], converted['width'][i], converted['height'][i]]
     #     converted_draw_block_list.append({'block_id': block_id, 'block_box': block_box})
-    #draw_block_box_util.draw_block_box_step_list((img_np_bgr, converted_draw_block_list), input_img_type="np_bgr", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 1, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
+    #draw_block_box_util.draw_block_box_step_list((img_np_bgr, converted_draw_block_list), input_img_type="np_bgr", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}],result_map={"folder_path":result_map["process_id"]})
 
     # 단어 리스트 추출 및 띄어쓰기 보정 텍스트 생성
     word_details = _extract_word_details_from_tesseract_data(converted)

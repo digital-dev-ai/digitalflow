@@ -71,7 +71,6 @@ with DAG(
     t_classify_preprc_failed_results >> t_fail_classify_preprc
     t_classify_preprc_success_results >> t_classify_preprc_result
 
-
     # 3. AI를 통한 분류
     # 3-2. 분류 AI 작업 실행
     t_img_classify_task = img_classify_task.partial(ai_info=class_classify_ai_info,class_key=class_keys[0],target_key=f"_result").expand(file_info=t_classify_preprc_success_results)
@@ -80,6 +79,8 @@ with DAG(
 
     # 3-3. 실패한 작업 처리
     t_fail_classify = failed_result_task.expand(file_info=t_img_classify_failed_results)
+    
+    
 
     # 3-4. 분류 AI 작업 취합 및 분석 후 클래스 결정
     t_classify_result_task = aggregate_classify_results_task(t_img_classify_success_results, class_keys=class_keys)
@@ -90,9 +91,8 @@ with DAG(
     t_img_classify_failed_results >> t_fail_classify
     t_img_classify_success_results >> t_classify_result_task
 
-
     # 4. OCR
-    t_ocr_dispatcher_task = ocr_task.partial(target_key="_classify").expand(file_info=t_classify_result_task)
+    t_ocr_dispatcher_task = ocr_task.partial(target_key="_normalize").expand(file_info=t_classify_result_task)
     t_ocr_failed_results = get_failed_results(t_ocr_dispatcher_task)
     t_ocr_success_results = get_success_results(t_ocr_dispatcher_task)
     
@@ -120,7 +120,12 @@ with DAG(
     
     # 6. 완료 작업에 대해 번역 작업
 
-    t_translate_output = translate_output_task.expand(doc_info=t_export_output)
+    table_info = [
+        {"table_name": "TB_OCR_BILD_BASIC_INFO","id_col_name": "BILD_SEQ_NUM"},
+        {"table_name": "TB_OCR_FLR_STATUS","id_col_name": "FLR_SEQ_NUM"},
+        {"table_name": "TB_OCR_OWN_STATUS","id_col_name": "OWNR_SEQ_NUM"},
+    ]
+    t_translate_output = translate_output_task.expand(table_info=table_info)
 
     t_export_output >> t_translate_output
 

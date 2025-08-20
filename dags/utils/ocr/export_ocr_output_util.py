@@ -1,3 +1,4 @@
+import pandas as pd
 from collections import defaultdict
 from dateutil import parser
 from datetime import datetime
@@ -71,10 +72,47 @@ def insert_ocr_result(
     doc_info: dict,
     result_map: dict = None,
     **kwargs
-) -> tuple[Any,dict]:
-    doc_class_id = (doc_info["doc_class_id"],)
-    structed_doc = doc_info["structed_doc"]
-    dococr_query_util.insert_structed_ocr_result(doc_class_id,structed_doc)
+) -> dict:
+    doc_class_id = str(doc_info.get("doc_class_id", ""))
+    structed_doc = doc_info.get("structed_doc", {})
+    complete_id = doc_info.get("complete_id", None)
+    dococr_query_util.insert_structed_ocr_result(doc_class_id,structed_doc,complete_id=complete_id)
+    return doc_info
+
+def db_to_excel(
+    doc_info: dict,
+    result_map: dict = None,
+    **kwargs
+) -> dict:
+    complete_id = doc_info.get("complete_id", None)
+    if not complete_id:
+        print("[ERROR] complete_id가 없습니다.")
+        return doc_info
+    complete_map_data_list = dococr_query_util.select_complete_map_data(complete_id)
+    if not complete_map_data_list:
+        print(f"경고: {complete_id}작업으로 등록된 결과 없습니다.")
+        return doc_info
+    
+    origin_file_path = doc_info["doc_path"]["_originfile"]
+    output_path = Path(origin_file_path).with_suffix(".xlsx")
+    
+    with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
+        for table_name, rows in complete_map_data_list.items():
+            if not rows:
+                print(f"[INFO] {table_name} 데이터 없음 → 스킵")
+                continue
+
+            # dict 리스트 → DataFrame 변환
+            df = pd.DataFrame(rows)
+
+            # 시트명은 31자 이하여야 함
+            sheet_name = table_name[:31]
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"[OK] 시트 생성: {sheet_name} ({len(df)} 건)")
+    print(f"[DONE] Excel 저장 완료: {output_path}")
+    return doc_info
+
+
 
 def _save(file_path:str,save_key:str="tmp",result_map:dict=None):
     if not result_map:
@@ -84,4 +122,5 @@ def _save(file_path:str,save_key:str="tmp",result_map:dict=None):
     
 function_map = {
     "insert_ocr_result": {"function": insert_ocr_result, "param": "ocr_type,keep_chars"},
+    "db_to_excel": {"function": db_to_excel, "param": ""},
 }

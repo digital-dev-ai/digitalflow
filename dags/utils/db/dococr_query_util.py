@@ -8,7 +8,9 @@ def insert_map(key, params:Union[list,tuple]=None, fetch:bool=False, return_id:b
         "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id, start_date, status) VALUES (%s, %s, current_timestamp(), 'P')", # W 대기, P 진행중
         "insertTargetFile":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
         "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
-        "insertTranslateLog":"INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
+        "insertTranslateLog":"INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)",
+        "insertComplete":"INSERT INTO TB_AF_COMPLETE (RUN_ID,CONTENT,USE_YN) VALUES (%s,%s,'Y')",
+        "insertCompleteMap":"INSERT INTO TB_AF_COMPLETE_MAP (COMPLETE_ID, TABLE_ID, PK_VALUE) VALUES (%s, %s, %s)"
     }
     if isinstance(params, list):  # 벌크 삽입(벌크 입력은 return_id 지원 안함)
         print("bulk insert execute",params)
@@ -31,7 +33,7 @@ def update_map(key, params:tuple=None):
     execute(map[key], params=params, fetch=False)
     
 
-def select_list_map(key, params:tuple=None):
+def select_list_map(key, params:tuple=None, dictionary:bool=False):
     map = {
         "selectLayoutList": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NAME, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "+
                 "FROM TB_DI_LAYOUT_CLASS AS A "+
@@ -45,33 +47,58 @@ def select_list_map(key, params:tuple=None):
             ,['section_class_id','section_name','section_type','separate_area','separate_block','ocr','cleansing','structuring']
         ),
         "selectBlockList": ("SELECT A.BLOCK_ROW_NUM, A.BLOCK_COL_NUM, A.BLOCK_TYPE, A.DEFAULT_TEXT, C.TABLE_NAME, B.COLUMN_NAME "+
-                "FROM TB_DI_BLOCK_CLASS A LEFT OUTER JOIN TB_DS_COLUMN B ON A.COLUMN_ID =B.COLUMN_ID "
+                "FROM TB_DI_BLOCK_CLASS A LEFT OUTER JOIN TB_DS_COLUMN B ON A.COLUMN_ID =B.COLUMN_ID "+
                 "LEFT OUTER JOIN TB_DS_TABLE C ON B.TABLE_ID=C.TABLE_ID "+
                 "WHERE A.SECTION_CLASS_ID = %s "+
                 "ORDER BY A.BLOCK_ROW_NUM, A.BLOCK_COL_NUM "
             ,['block_row_num','block_col_num','block_type','default_text','table_name','column_name']
         ),
-        "selectBlockCrctnList": ("SELECT A.ERROR_TEXT, A.CRRCT_TEXT  "+
-                "FROM TB_DI_BLOCK_CRCTN A INNER JOIN TB_DI_BLOCK_CLASS B ON A.BLOCK_CLASS_ID=B.BLOCK_CLASS_ID "+
-                "WHERE B.SECTION_CLASS_ID=%s AND B.BLOCK_ROW_NUM=%s AND B.BLOCK_COL_NUM=%s "
-                "ORDER BY CRCTN_ORDER DESC "
+        "selectCommonCrctnList": ("SELECT A.ERROR_TEXT, A.CRRCT_TEXT  "+
+                "FROM TB_DI_COMMON_CRCTN A "
             ,['error_text','crrct_text']
+        ),
+        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "+
+                "FROM VW_DI_DOC_LAYOUT_SECTION A "+
+                "WHERE A.SECTION_CLASS_ID = %s "
+                ,['doc_class_id','layout_class_id']
+        ),
+        "selectSectiontypelist": ("SELECT A.SECTION_CLASS_ID, A.SECTION_TYPE "+
+                "FROM TB_DI_SECTION_CLASS A "+
+                "WHERE A.LAYOUT_CLASS_ID = %s "
+                ,['section_class_id','section_type']
+        ),
+        "selectMultiRowInfo": ("SELECT MIN(B.BLOCK_ROW_NUM) AS minnum,MAX(B.BLOCK_ROW_NUM) AS maxnum " +
+                "FROM TB_DI_SECTION_CLASS A LEFT OUTER JOIN TB_DI_BLOCK_CLASS B ON A.SECTION_CLASS_ID=B.SECTION_CLASS_ID AND B.BLOCK_TYPE='val' "+
+                "WHERE A.SECTION_TYPE='MULTI_ROW' AND A.SECTION_CLASS_ID=%s "
+                ,['minnum','maxnum']
         ),
     }
     print(" query : ",map[key][0],params)
-    result = execute(map[key][0], params=params, fetch=True)
+    result = execute(map[key][0], params=params, fetch=True, dictionary=dictionary)
     print("result : ",result)
-    return tuples_to_dicts(result,map[key][1])
+    if dictionary:
+        return result
+    else:
+        return tuples_to_dicts(result,map[key][1])
+
+def select_row_map(key, params:tuple=None, dictionary:bool=False):
+    map = {
+        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "+
+                "FROM VW_DI_DOC_LAYOUT_SECTION A "+
+                "WHERE A.SECTION_CLASS_ID = %s "
+                ,['doc_class_id','layout_class_id']
+        ),
+    }
+    print(" query : ",map[key][0],params)
+    result = execute(map[key][0], params=params, fetch=True, dictionary=dictionary)
+    print("result : ",result)
+    if dictionary:
+        return result
+    else:
+        return tuples_to_dicts(result,map[key][1])
 
 def select_one_map(key, params:tuple=None):
-    placeholders = ''
-    if key=="selectDocClassId":
-        placeholders = ','.join(['%s'] * len(params)) 
     map = {
-        "selectDocClassId": f"SELECT DOC_CLASS_ID FROM VW_DI_DOC_LAYOUT_SECTION "+
-                "WHERE LAYOUT_CLASS_ID IN ({placeholders}) "+
-                "GROUP BY DOC_CLASS_ID ORDER BY COUNT(*) DESC "
-                "FETCH FIRST 1 ROW ONLY ",
         "selectPatternInfo":"SELECT A.FORMAT_INFO "+
                 "FROM TB_DS_COLUMN A INNER JOIN TB_DI_BLOCK_CLASS B ON A.COLUMN_ID=B.COLUMN_ID "+
                 "WHERE B.SECTION_CLASS_ID = %s AND BLOCK_ROW_NUM= %s AND BLOCK_COL_NUM = %s "+
@@ -124,9 +151,9 @@ def select_doc_class_id(params:list) -> int:
         return None 
 
 
-def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
+def insert_structed_ocr_result(doc_class_id:str, structed_doc:dict=None, complete_id:int=None):
     select_query = """
-        SELECT B.TABLE_NAME, A.COLUMN_NAME AS PK, C.TABLE_NAME AS PARENT_TABLE_NAME, D.COLUMN_NAME AS PARENT_PK 
+        SELECT B.TABLE_ID, B.TABLE_NAME, A.COLUMN_NAME AS PK, C.TABLE_NAME AS PARENT_TABLE_NAME, D.COLUMN_NAME AS PARENT_PK 
             FROM TB_DS_COLUMN A 
             INNER JOIN TB_DS_TABLE B ON A.TABLE_ID=B.TABLE_ID 
             LEFT OUTER JOIN (TB_DS_TABLE C INNER JOIN TB_DS_COLUMN D ON C.TABLE_ID=D.TABLE_ID AND D.IS_PK='Y') 
@@ -138,17 +165,19 @@ def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
                 WHERE X.DOC_CLASS_ID= %s 
                 ) 
             AND A.IS_PK='Y' """
-    dict_key_list = ['table_name','pk','parent_table_name','parent_pk']
-    
-    print(" query : ",select_query,doc_class_id)
-    result = execute(select_query, params=doc_class_id, fetch=True)
+    dict_key_list = ['table_id','table_name','pk','parent_table_name','parent_pk']
+    params = (doc_class_id,)
+    print(" query : ",select_query,params)
+    result = execute(select_query, params=params, fetch=True)
     print("result : ",result)
     table_list = tuples_to_dicts(result,dict_key_list)
+    bulk_map_list = []
     # 부모가 없는 테이블 먼저 작업
     pk_map = {}
     for table_info in table_list:
         if table_info["parent_table_name"] is None:
             # TB_OCR_BILD_BASIC_INFO에 먼저 데이터 삽입 및 BILD_SEQ_NUM 얻기
+            table_id = table_info["table_id"]
             table_name = table_info["table_name"]
             pk_name = table_info["pk"]
 
@@ -173,12 +202,15 @@ def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
                 col_values = [record.get(col, None) for col in col_list]
                 pk_value = execute(insert_sql, params=col_values, return_id=True)
                 pk_map.setdefault(table_name, {}).setdefault(pk_name, []).append(pk_value)
+                if complete_id:
+                    bulk_map_list.append((complete_id, table_id, pk_value))
             print(f"{table_name}에 데이터 삽입 완료. pk:{pk_value}")
     
     # 부모가 있고 pk_map에 pk가 있는 테이블 작업
     for table_info in table_list:
         if table_info["parent_table_name"]:
             # TB_OCR_BILD_BASIC_INFO에 먼저 데이터 삽입 및 BILD_SEQ_NUM 얻기
+            table_id = table_info["table_id"]
             table_name = table_info["table_name"]
             pk_name = table_info["pk"]
             parent_table_name = table_info["parent_table_name"]
@@ -209,6 +241,14 @@ def insert_structed_ocr_result(doc_class_id:tuple=None, structed_doc:dict=None):
                 col_values.append(parent_pk_value)
                 pk_value = execute(insert_sql, params=col_values, return_id=True)
                 print(f"{table_name}에 데이터 삽입 완료. pk:{pk_value}")
+                if complete_id:
+                    bulk_map_list.append((complete_id, table_id, pk_value))
+    # TB_AF_COMPLETE_MAP 벌크 삽입
+    if len(bulk_map_list) > 0:
+        complete_map_sql = "INSERT INTO TB_AF_COMPLETE_MAP (COMPLETE_ID, TABLE_ID, PK_VALUE) VALUES (%s, %s, %s)"
+        execute_many(complete_map_sql, params_list=bulk_map_list)
+
+    
 
 def select_translate_target_list(table_name: str, id_col_name: str):
     """
@@ -226,20 +266,51 @@ def select_translate_target_list(table_name: str, id_col_name: str):
     print(" query : ",query, col_values)
     list = execute(query, params=col_values, fetch=True, dictionary=True)
     return list 
-    
-def update_for_translate(table_name: str, id_col_name:str, latest_id: str, update_target: dict):
+
+def select_complete_map_data(complete_id:str):
+    """
+    번역 대상 테이블과 컬럼을 선택합니다.
+    :return: 번역 대상 테이블과 컬럼의 리스트
+    """
+    select_complete_query = """
+    SELECT DISTINCT M.TABLE_ID, T.TABLE_NAME, C.COLUMN_NAME
+    FROM TB_AF_COMPLETE_MAP M
+    INNER JOIN TB_DS_TABLE T ON M.TABLE_ID = T.TABLE_ID
+    INNER JOIN TB_DS_COLUMN C ON C.TABLE_ID = T.TABLE_ID AND C.IS_PK = 'Y'
+    WHERE M.COMPLETE_ID = %s
+    """
+    table_list = execute(select_complete_query, params=(complete_id,), fetch=True, dictionary=True)
+    data_map = {}
+    for table_info in table_list:
+        table_id = table_info["TABLE_ID"]
+        table_name = table_info["TABLE_NAME"]
+        pk_column_name = table_info["COLUMN_NAME"]
+        query = f"""
+        SELECT B.*
+        FROM TB_AF_COMPLETE_MAP A
+        INNER JOIN {table_name} B ON B.{pk_column_name} = A.PK_VALUE
+        WHERE A.COMPLETE_ID = %s and A.TABLE_ID = %s 
+        """
+        col_values = (complete_id, table_id)
+        print(" query : ",query, col_values)
+        rows = execute(query, params=col_values, fetch=True, dictionary=True)
+        data_map[table_name] = rows  # 테이블명 → 데이터 리스트
+    return data_map
+
+def update_for_translate(table_name: str, id_col_name:str, latest_id: str, update_target: dict, update_origin_at:bool=False):
     """
     번역된 컬럼을 원본 테이블에 업데이트합니다.
     
     :param updates: dict - 컬럼명과 번역된 텍스트의 딕셔너리
     """        
-    # 원본 테이블 업데이트
-    set_clauses = [f"{col} = %s" for col in update_target.keys()]
-    set_values = [v[1] for v in update_target.values()]
-    
-    update_query = f"UPDATE {table_name} SET {', '.join(set_clauses)} WHERE {id_col_name} = %s;"
-    update_values = set_values + [latest_id]
-    execute(update_query, params=update_values)
+    if update_origin_at:
+        # 원본 테이블 업데이트
+        set_clauses = [f"{col} = %s" for col in update_target.keys()]
+        set_values = [v[1] for v in update_target.values()]
+        
+        update_query = f"UPDATE {table_name} SET {', '.join(set_clauses)} WHERE {id_col_name} = %s;"
+        update_values = set_values + [latest_id]
+        execute(update_query, params=update_values)
 
     insert_log_query = "INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
     params_list = [

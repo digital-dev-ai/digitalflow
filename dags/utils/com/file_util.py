@@ -35,7 +35,7 @@ def get_config(*keys):
                             {"name":"load","param":{"cache_key":"origin"}},
                             {"name":"rotate","param":{"angle_keys":["angle2_1","angle2_2","angle2_3","orient"]}},
                             {"name":"del_blank_set2","param":{"line_ratios": [0.2, 0.06], "padding_ratios": [0.21, 0.29, 0.09, 0.12],"iter_save": False}},
-                            {"name":"save","param":{"save_key":"_classify","tmp_save":True}},
+                            {"name":"save","param":{"save_key":"_normalize","tmp_save":True}},
                         ], 
                     }
                 },
@@ -423,8 +423,8 @@ def get_config(*keys):
 def get_image_paths(directory: str) -> list[str]:
     """해당 폴더의 이미지 경로 리스트 반환"""
     if not os.path.exists(directory):
-        return []
-        return [os.path.join(directory, f) for f in os.listdir(directory) 
+        return [] # 임시 각주 해제
+    return [os.path.join(directory, f) for f in os.listdir(directory) 
             if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
 def get_image_paths_recursive(directory: str) -> list[str]:
