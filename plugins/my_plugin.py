@@ -1,50 +1,79 @@
+from flask import Blueprint, request, render_template, redirect, url_for, jsonify
 from airflow.plugins_manager import AirflowPlugin
-from flask_appbuilder import BaseView as AppBuilderBaseView, expose, has_access
-from flask import Blueprint
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from flask_admin.base import MenuLink
 
-bp = Blueprint(
-    "my_plugin", __name__,
-    template_folder="templates/my_plugin"
-)
+    
+# MariaDB 연결 URL 형식
+#DATABASE_URI = "mysql+pymysql://user:password@host:port/database"
+DATABASE_URI = "mysql+pymysql://digitalflow:digital10@192.168.10.18:3306/dococr"
 
-class MyView(AppBuilderBaseView):
-    @expose("/upload")
-    @has_access
-    def upload(self):
-        return self.render_template("my_plugin/upload.html")
+engine = create_engine(DATABASE_URI, pool_recycle=3600)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-v_appbuilder_view = MyView()
 
-v_appbuilder_package = {
-    "name": "My View",
-    "category": "My Plugin",
-    "view": v_appbuilder_view
-}
+bp = Blueprint("my_plugin", __name__, url_prefix="/myplugin")
 
-from airflow.plugins_manager import AirflowPlugin
-from flask_appbuilder import BaseView as AppBuilderBaseView, expose, has_access
-from flask import Blueprint
-
-bp = Blueprint(
-    "my_plugin", __name__,
-    template_folder="templates/my_plugin"
-)
-
-class MyView(AppBuilderBaseView):
-    default_view = "upload"
-    @expose("/upload")
-    @has_access
-    def upload(self):
-        return self.render_template("my_plugin/upload.html")
-
-v_appbuilder_view = MyView()
-
-v_appbuilder_package = {
-    "name": "My View",
-    "category": "My Plugin",
-    "view": v_appbuilder_view
-}
 class MyPlugin(AirflowPlugin):
     name = "my_plugin"
-    appbuilder_views = [v_appbuilder_package]
-    flask_blueprints = [bp]
+    flask_blueprints = [bp]  # 위에서 정의한 Blueprint
+    menu_links = [
+        MenuLink(
+            name="My Plugin",  # 메뉴에 표시될 이름
+            category="Custom", # 사이드바 카테고리명
+            url="/seo/list"  # 접근할 URL (Blueprint 경로 포함)
+        )
+    ]
+
+@bp.route("/list", methods=["GET"])
+def list_items():
+    session = SessionLocal()
+    try:
+        items = session.execute("SELECT * FROM your_table").fetchall()
+        return render_template("list.html", items=items)
+    finally:
+        session.close()
+
+@bp.route("/add", methods=["POST"])
+def add_item():
+    session = SessionLocal()
+    try:
+        name = request.form.get("name")
+        # 등록 쿼리 실행 예:
+        session.execute("INSERT INTO your_table (name) VALUES (:name)", {"name": name})
+        session.commit()
+        return redirect(url_for("my_plugin.list_items"))
+    except SQLAlchemyError as e:
+        session.rollback()
+        return f"Error: {str(e)}", 500
+    finally:
+        session.close()
+
+@bp.route("/edit/<int:item_id>", methods=["POST"])
+def edit_item(item_id):
+    session = SessionLocal()
+    try:
+        new_name = request.form.get("name")
+        session.execute("UPDATE your_table SET name=:name WHERE id=:id", {"name": new_name, "id": item_id})
+        session.commit()
+        return redirect(url_for("my_plugin.list_items"))
+    except SQLAlchemyError as e:
+        session.rollback()
+        return f"Error: {str(e)}", 500
+    finally:
+        session.close()
+
+@bp.route("/delete/<int:item_id>", methods=["POST"])
+def delete_item(item_id):
+    session = SessionLocal()
+    try:
+        session.execute("DELETE FROM your_table WHERE id=:id", {"id": item_id})
+        session.commit()
+        return redirect(url_for("my_plugin.list_items"))
+    except SQLAlchemyError as e:
+        session.rollback()
+        return f"Error: {str(e)}", 500
+    finally:
+        session.close()

@@ -17,7 +17,7 @@ trs_label = {
         "Datasets_label": "데이터셋"
     },
     "www_extensions_init_views": {
-        "browse_category": "탐색",
+        "browse_category": "로그 관리",
         "admin_category": "시스템 관리",
         "dag_run_label": "배치 실행",
         "job_label": "작업",
@@ -28,7 +28,7 @@ trs_label = {
         "variable_label": "매개 변수",
         "config_label": "구성",
         "connection_label": "연결 관리",
-        "pool_label": "풀",
+        "pool_label": "풀(병행 실행 작업 제한)",
         "provider_label": "제공자",
         "sla_miss_label": "서비스 계약 수준 미달",
         "plugin_label": "플러그인",

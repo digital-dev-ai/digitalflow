@@ -34,11 +34,11 @@ def init_appbuilder_links(app):
         label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("Cluster Activity_label", "Cluster Activity"),
         href="Airflow.cluster_activity")
     appbuilder.menu.menu.insert(1, appbuilder.menu.menu.pop())  # Place in the second menu slot
-    appbuilder.add_link(
-        name="Datasets", 
-        label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("Datasets_label", "Datasets"),
-        href="Airflow.datasets")
-    appbuilder.menu.menu.insert(2, appbuilder.menu.menu.pop())  # Place in the third menu slot
+    # appbuilder.add_link(
+    #     name="Datasets", 
+    #     label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("Datasets_label", "Datasets"),
+    #     href="Airflow.datasets")
+    # appbuilder.menu.menu.insert(2, appbuilder.menu.menu.pop())  # Place in the third menu slot
 
     # # Docs links
     # appbuilder.add_link(

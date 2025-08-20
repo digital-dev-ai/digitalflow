@@ -24,6 +24,7 @@ docker exec -it --user airflow digitalflow-airflow-scheduler-1 bash
 docker exec -it --user airflow digitalflow-postgres-1 bash
 docker exec -it --user airflow digitalflow-redis-1 bash
 
+
 docker exec -it --user root digitalflow-airflow-worker-1 bash
 docker exec -it --user root digitalflow-airflow-webserver-1 bash
 docker exec -it --user root digitalflow-airflow-triggerer-1 bash
