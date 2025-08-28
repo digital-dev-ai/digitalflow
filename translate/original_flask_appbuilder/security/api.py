@@ -1,14 +1,14 @@
 from flask import request, Response
-from original_flask_appbuilder.api import BaseApi, safe
-from original_flask_appbuilder.const import (
+from flask_appbuilder.api import BaseApi, safe
+from flask_appbuilder.const import (
     API_SECURITY_ACCESS_TOKEN_KEY,
     API_SECURITY_PROVIDER_DB,
     API_SECURITY_PROVIDER_LDAP,
     API_SECURITY_REFRESH_TOKEN_KEY,
     API_SECURITY_VERSION,
 )
-from original_flask_appbuilder.security.schemas import login_post
-from original_flask_appbuilder.views import expose
+from flask_appbuilder.security.schemas import login_post
+from flask_appbuilder.views import expose
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,

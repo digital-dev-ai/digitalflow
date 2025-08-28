@@ -4,7 +4,7 @@ import re
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
 from flask import Flask, g, session, url_for
-from original_flask_appbuilder.exceptions import InvalidLoginAttempt, OAuthProviderUnknown
+from flask_appbuilder.exceptions import InvalidLoginAttempt, OAuthProviderUnknown
 from flask_babel import lazy_gettext as _
 from flask_jwt_extended import current_user as current_user_jwt
 from flask_jwt_extended import JWTManager

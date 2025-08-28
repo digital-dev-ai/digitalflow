@@ -14,7 +14,7 @@ from flask import (
     session,
     url_for,
 )
-from original_flask_appbuilder.exceptions import FABException
+from flask_appbuilder.exceptions import FABException
 
 
 from ._compat import as_unicode, string_types

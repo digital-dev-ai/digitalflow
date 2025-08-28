@@ -1,4 +1,4 @@
-from original_flask_appbuilder.security.sqla.models import User
+from flask_appbuilder.security.sqla.models import User
 from marshmallow import fields, Schema
 from marshmallow.validate import Length
 

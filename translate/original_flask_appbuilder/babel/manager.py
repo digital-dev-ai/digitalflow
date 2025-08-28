@@ -1,8 +1,8 @@
 import os
 
 from flask import has_request_context, request, session
-from original_flask_appbuilder.babel.views import LocaleView
-from original_flask_appbuilder.basemanager import BaseManager
+from flask_appbuilder.babel.views import LocaleView
+from flask_appbuilder.basemanager import BaseManager
 from flask_babel import Babel
 
 

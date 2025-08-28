@@ -20,7 +20,7 @@
 {% macro locale_menu(languages) %}
   {% set locale = session['locale'] %}
   {% if not locale %}
-      {% set locale = 'en' %}
+      {% set locale = 'ko' %}
   {% endif %}
   <li class="dropdown">
     <a class="dropdown-toggle" href="javascript:void(0)">
@@ -49,7 +49,7 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu" id="timezone-menu">
-    <li id="timezone-utc"><a data-timezone="UTC" href="#">협정 세계시</a></li>
+    <li id="timezone-utc"><a data-timezone="UTC" href="#">협정 세계시11</a></li>
     <li id="timezone-server" style="display: none;"><a data-timezone="{{ server_timezone }}" href="#">{{ server_timezone }}</a></li>
     <li id="timezone-local"><a href="#">현지 시간</a></li>
     <li id="timezone-manual" style="display: none"><a data-timezone="" href="#"></a></li>
@@ -95,4 +95,20 @@
   <li>
     <a href="{{auth_manager.get_url_login()}}"><span class="material-icons">login</span>{{_("로그인")}}</a>
   </li>
+{% endif %}
+
+{{ locale_menu(languages) }}
+{% if not current_user.is_anonymous %}
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+           <span class="fa fa-user"></span> {{g.user.get_full_name()}}<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{appbuilder.get_url_for_userinfo}}"><span class="fa fa-fw fa-user"></span>{{_("Profile")}}</a></li>
+            <li><a href="{{appbuilder.get_url_for_logout}}"><span class="fa fa-fw fa-sign-out"></span>{{_("Logout")}}</a></li>
+        </ul>
+    </li>
+{% else %}
+    <li><a href="{{appbuilder.get_url_for_login}}">
+    <i class="fa fa-fw fa-sign-in"></i>{{_("Login")}}</a></li>
 {% endif %}

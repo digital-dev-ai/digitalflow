@@ -1,4 +1,4 @@
-from original_flask_appbuilder.widgets import RenderTemplateWidget
+from flask_appbuilder.widgets import RenderTemplateWidget
 
 
 class ChartWidget(RenderTemplateWidget):

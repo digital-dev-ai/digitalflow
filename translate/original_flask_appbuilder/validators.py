@@ -2,8 +2,8 @@ import re
 from typing import Optional
 
 from flask import current_app
-from original_flask_appbuilder.exceptions import PasswordComplexityValidationError
-from original_flask_appbuilder.models.base import BaseInterface
+from flask_appbuilder.exceptions import PasswordComplexityValidationError
+from flask_appbuilder.models.base import BaseInterface
 from flask_babel import gettext
 from wtforms import Field, Form, ValidationError
 

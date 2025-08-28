@@ -22,9 +22,9 @@ from .menu import Menu, MenuApiManager
 from .views import IndexView, UtilView
 
 if TYPE_CHECKING:
-    from original_flask_appbuilder.basemanager import BaseManager
-    from original_flask_appbuilder.baseviews import BaseView, AbstractViewApi
-    from original_flask_appbuilder.security.manager import BaseSecurityManager
+    from flask_appbuilder.basemanager import BaseManager
+    from flask_appbuilder.baseviews import BaseView, AbstractViewApi
+    from flask_appbuilder.security.manager import BaseSecurityManager
 
 log = logging.getLogger(__name__)
 
@@ -202,7 +202,7 @@ class AppBuilder:
                 Type["BaseSecurityManager"], security_manager_class
             )
         if self.security_manager_class is None:
-            from original_flask_appbuilder.security.sqla.manager import SecurityManager
+            from flask_appbuilder.security.sqla.manager import SecurityManager
 
             self.security_manager_class = SecurityManager
 
@@ -657,7 +657,7 @@ class AppBuilder:
             self.sm.add_limit_view(baseview)
 
     def add_permissions(self, update_perms: bool = False) -> None:
-        from original_flask_appbuilder.baseviews import AbstractViewApi
+        from flask_appbuilder.baseviews import AbstractViewApi
 
         if self.update_perms or update_perms:
             for baseview in self.baseviews:
@@ -715,7 +715,7 @@ class AppBuilder:
         return False
 
     def _process_inner_views(self) -> None:
-        from original_flask_appbuilder.baseviews import AbstractViewApi
+        from flask_appbuilder.baseviews import AbstractViewApi
 
         for view in self.baseviews:
             view = cast(AbstractViewApi, view)

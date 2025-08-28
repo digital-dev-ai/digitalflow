@@ -12,9 +12,9 @@ docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. d
 cd /home/digital-033/work/docker/digitalflow/translate
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/templates/appbuilder/general/security/login_db.html digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/templates/appbuilder/general/security/.
 
-# trs_loader.py 파일을 airflow에 복사
+# 배치관리, 로그분석 외 한글화
 cd /home/digital-033/work/docker/digitalflow/translate
-docker cp /home/digital-033/work/docker/digitalflow/translate/trs_loader.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/security/views.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/security/.
 
 # 웹서버 root 접속 명령어
 docker exec -it --user airflow digitalflow-airflow-worker-1 bash
@@ -32,6 +32,33 @@ docker exec -it --user root digitalflow-airflow-scheduler-1 bash
 docker exec -it --user root digitalflow-postgres-1 bash
 docker exec -it --user root digitalflow-redis-1 bash
 
+#현재 폴더 내 용량 큰 파일/폴더 찾기 명령어(큰파일을 위로)
+du -sh ./* ./.??* | sort -hr | head -20
+#디스크 사용량 확인
+df -h .
+
+#하드디스크 용량 클리어(Docker 가상 머신 디스크 파일 삭제) - 삭제 후 재빌드 필수
+rm ~/.docker/desktop/vms/0/data/Docker.raw
+
+#connections 등록 실패 시 실행 명령어
+airflow connections add "maria_db_conn" --conn-type "mysql" --conn-host "192.168.10.18" --conn-login "digitalflow" --conn-password "digital10" --conn-port "3306" --conn-schema "dococr"
+
+#로그 출력용
+docker logs --tail 300 digitalflow-airflow-webserver-1
+
+#tranaslate 복사(bash)
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
+
+#tranaslate 백업(bash)
+docker cp /home/digital-033/work/docker/digitalflow/translate/original_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
+docker cp /home/digital-033/work/docker/digitalflow/translate/original_flask_appbuilder/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
+
+# dockerfile용 복사
+# COPY translate/custom_airflow/. /home/airflow/.local/lib/python3.12/site-packages/airflow/
+# COPY translate/custom_flask_appbuilder/. /home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
+
+docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy /home/digital-033/work/docker/digitalflow/translate/origin_sqlalchemy
 
 ; #custom_static에 있는 파일들을 docker에 복사
 ; cd /home/digital-033/work/docker/digitalflow/translate/www_custom

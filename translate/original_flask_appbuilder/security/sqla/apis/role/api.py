@@ -1,14 +1,14 @@
 from flask import current_app, request
-from original_flask_appbuilder import ModelRestApi
-from original_flask_appbuilder.api import expose, safe
-from original_flask_appbuilder.const import API_RESULT_RES_KEY
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
-from original_flask_appbuilder.security.decorators import permission_name, protect
-from original_flask_appbuilder.security.sqla.apis.role.schema import (
+from flask_appbuilder import ModelRestApi
+from flask_appbuilder.api import expose, safe
+from flask_appbuilder.const import API_RESULT_RES_KEY
+from flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.security.decorators import permission_name, protect
+from flask_appbuilder.security.sqla.apis.role.schema import (
     RolePermissionListSchema,
     RolePermissionPostSchema,
 )
-from original_flask_appbuilder.security.sqla.models import PermissionView, Role
+from flask_appbuilder.security.sqla.models import PermissionView, Role
 from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 

@@ -23,6 +23,7 @@ def preprocess_image_and_extract_features(image_path: str, class_key: str):
     step_info = json.loads(section_list[0].get("separate_area")) if section_list else None # 첫번째 섹션정보는 항상 문서 분류를 위한 헤더로 사용. 제목이 없다면 헤더 정보 활용.
     if step_info is None:
         print("no separate_area step_info")
+        header_img = image
         data = {"text": [], "left": [], "top": [], "width": [], "height": []}
     else:
         header_img, _ = separate_area_util.separate_area(

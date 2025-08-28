@@ -1,4 +1,5 @@
 import json, os
+from pathlib import Path
 import numpy as np
 import chardet
 from typing import Union, Any, List
@@ -36,27 +37,42 @@ def load(file_path:str)->str:
     return None
 
 #json데이터 저장
-def save(file_path:str, data:Any)->None:
+def save(file_path:str, data:Any, duplicate_policy:str="exists_bakup")->None:
     """
     JSON 데이터를 지정된 파일 경로에 저장하는 함수
 
     :param file_path: 저장할 파일의 경로 (문자열)
     :param json_data: 저장할 JSON 데이터 (딕셔너리 또는 리스트)
+    :param duplicate_policy: 중복 발생 시 처리(exists_bakup|overwrite|skip)
     """
-    json_data = to_json_data(data)
-    class NpEncoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, np.integer):  # np.int32, np.int64 → Python int
-                return int(obj)
-            if isinstance(obj, np.floating):  # np.float32, np.float64 → Python float
-                return float(obj)
-            if isinstance(obj, np.ndarray):  # Numpy 배열 → Python list
-                return obj.tolist()
-            return super().default(obj)
     try:
         if os.path.exists(file_path):
-            backup_path = file_path + ".bak"
-            file_util.file_copy(file_path, backup_path)  # 기존 파일 백업
+            if duplicate_policy == "exists_bakup": # 기존 파일 백업 후 생성
+                backup_path = file_path + ".bak"
+                file_util.file_copy(file_path, backup_path) 
+            elif duplicate_policy == "exists_bakup": # 기존 파일 백업 후 생성
+                dest = Path(file_path)
+                stem = dest.stem
+                suffix = dest.suffix
+                count = 1
+                while dest.exists():
+                    dest = dest.parent / f"{stem}({count}){suffix}"
+                    count += 1
+            elif duplicate_policy == "skip": # 기존 파일 리턴
+                return file_path
+            elif duplicate_policy == "overwrite": # 기존 파일 무시하고 덮어씀
+                pass
+        json_data = to_json_data(data)
+        class NpEncoder(json.JSONEncoder):
+            def default(self, obj):
+                if isinstance(obj, np.integer):  # np.int32, np.int64 → Python int
+                    return int(obj)
+                if isinstance(obj, np.floating):  # np.float32, np.float64 → Python float
+                    return float(obj)
+                if isinstance(obj, np.ndarray):  # Numpy 배열 → Python list
+                    return obj.tolist()
+                return super().default(obj)
+        
         with open(file_path, 'w', encoding='utf-8') as file:
             json.dump(json_data, file, ensure_ascii=False, indent=4, cls=NpEncoder)
         logger.info(f"JSON 데이터가 성공적으로 '{os.path.abspath(file_path)}'에 저장되었습니다.")

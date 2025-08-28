@@ -3,21 +3,21 @@ from contextlib import suppress
 import logging
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
-from original_flask_appbuilder._compat import as_unicode
-from original_flask_appbuilder.const import (
+from flask_appbuilder._compat import as_unicode
+from flask_appbuilder.const import (
     LOGMSG_ERR_DBI_DEL_GENERIC,
     LOGMSG_WAR_DBI_ADD_INTEGRITY,
     LOGMSG_WAR_DBI_DEL_INTEGRITY,
     LOGMSG_WAR_DBI_EDIT_INTEGRITY,
 )
-from original_flask_appbuilder.exceptions import InterfaceQueryWithoutSession
-from original_flask_appbuilder.filemanager import FileManager, ImageManager
-from original_flask_appbuilder.models.base import BaseInterface
-from original_flask_appbuilder.models.filters import Filters
-from original_flask_appbuilder.models.group import GroupByCol, GroupByDateMonth, GroupByDateYear
-from original_flask_appbuilder.models.mixins import FileColumn, ImageColumn
-from original_flask_appbuilder.models.sqla import filters, Model
-from original_flask_appbuilder.utils.base import (
+from flask_appbuilder.exceptions import InterfaceQueryWithoutSession
+from flask_appbuilder.filemanager import FileManager, ImageManager
+from flask_appbuilder.models.base import BaseInterface
+from flask_appbuilder.models.filters import Filters
+from flask_appbuilder.models.group import GroupByCol, GroupByDateMonth, GroupByDateYear
+from flask_appbuilder.models.mixins import FileColumn, ImageColumn
+from flask_appbuilder.models.sqla import filters, Model
+from flask_appbuilder.utils.base import (
     get_column_leaf,
     get_column_root_relation,
     is_column_dotted,

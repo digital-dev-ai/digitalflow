@@ -1,7 +1,7 @@
 from typing import Any, Callable, Dict, List, Optional, Type
 
-from original_flask_appbuilder.models.sqla import Model
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.models.sqla import Model
+from flask_appbuilder.models.sqla.interface import SQLAInterface
 from marshmallow import fields, Schema
 from marshmallow.fields import Field
 from marshmallow_sqlalchemy import field_for

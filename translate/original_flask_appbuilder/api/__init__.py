@@ -20,8 +20,8 @@ import urllib.parse
 from apispec import APISpec, yaml_utils
 from apispec.exceptions import DuplicateComponentNameError
 from flask import Blueprint, current_app, jsonify, make_response, request, Response
-from original_flask_appbuilder.models.sqla import Model
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.models.sqla import Model
+from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_babel import lazy_gettext as _
 import jsonschema
 from marshmallow import Schema, ValidationError
@@ -80,7 +80,7 @@ from ..security.decorators import permission_name, protect
 from ..utils.limit import Limit
 
 if TYPE_CHECKING:
-    from original_flask_appbuilder import AppBuilder
+    from flask_appbuilder import AppBuilder
 
 
 log = logging.getLogger(__name__)

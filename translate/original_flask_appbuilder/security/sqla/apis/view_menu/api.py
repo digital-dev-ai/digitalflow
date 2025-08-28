@@ -1,6 +1,6 @@
-from original_flask_appbuilder import ModelRestApi
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
-from original_flask_appbuilder.security.sqla.models import ViewMenu
+from flask_appbuilder import ModelRestApi
+from flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.security.sqla.models import ViewMenu
 
 
 class ViewMenuApi(ModelRestApi):

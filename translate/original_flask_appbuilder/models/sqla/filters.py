@@ -2,8 +2,8 @@ import datetime
 import logging
 
 from dateutil import parser
-from original_flask_appbuilder.exceptions import ApplyFilterException
-from original_flask_appbuilder.models.filters import (
+from flask_appbuilder.exceptions import ApplyFilterException
+from flask_appbuilder.models.filters import (
     BaseFilter,
     BaseFilterConverter,
     FilterRelation,

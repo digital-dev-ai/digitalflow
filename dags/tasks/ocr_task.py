@@ -122,7 +122,7 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
             from pathlib import Path
             from airflow.models import Variable
             CLASS_FOLDER = Variable.get("CLASS_FOLDER", default_var="/opt/airflow/data/class")
-            error_folder = Path(CLASS_FOLDER) / file_info["doc_class_id"] / file_info["layout_class_id"] / "error" / f"{section_class_id}_{section_name}"
+            error_folder = Path(CLASS_FOLDER) / str(file_info["doc_class_id"]) / str(file_info["layout_class_id"]) / "error" / f"{section_class_id}_{section_name}"
             
             parts = str(e).split('|', 1)
             if len(parts) > 1:

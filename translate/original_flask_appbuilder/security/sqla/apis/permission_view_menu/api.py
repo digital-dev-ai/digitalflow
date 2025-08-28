@@ -1,6 +1,6 @@
-from original_flask_appbuilder import ModelRestApi
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
-from original_flask_appbuilder.security.sqla.models import PermissionView
+from flask_appbuilder import ModelRestApi
+from flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.security.sqla.models import PermissionView
 
 
 class PermissionViewMenuApi(ModelRestApi):

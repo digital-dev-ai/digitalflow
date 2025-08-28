@@ -1,7 +1,7 @@
 from typing import Union
 
 from flask import current_app
-from original_flask_appbuilder.const import (
+from flask_appbuilder.const import (
     API_SECURITY_PROVIDER_DB,
     API_SECURITY_PROVIDER_LDAP,
     AUTH_DB,

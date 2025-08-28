@@ -1,16 +1,16 @@
 from datetime import datetime
 
 from flask import g, request
-from original_flask_appbuilder import ModelRestApi
-from original_flask_appbuilder.api import expose, safe
-from original_flask_appbuilder.const import API_RESULT_RES_KEY
-from original_flask_appbuilder.models.sqla.interface import SQLAInterface
-from original_flask_appbuilder.security.decorators import permission_name, protect
-from original_flask_appbuilder.security.sqla.apis.user.schema import (
+from flask_appbuilder import ModelRestApi
+from flask_appbuilder.api import expose, safe
+from flask_appbuilder.const import API_RESULT_RES_KEY
+from flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder.security.decorators import permission_name, protect
+from flask_appbuilder.security.sqla.apis.user.schema import (
     UserPostSchema,
     UserPutSchema,
 )
-from original_flask_appbuilder.security.sqla.models import Role, User
+from flask_appbuilder.security.sqla.models import Role, User
 from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash

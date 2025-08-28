@@ -186,8 +186,8 @@ def _save_block_check_error(section_class_id,section_name,block_data,template_bl
     block_col_num = int(template_block["block_col_num"])
     default_text = template_block["default_text"]
     
-    section_parent = dococr_query_util.select_row_map("selectSectionParent",section_class_id)
-    error_folder = Path(CLASS_FOLDER) / section_parent["doc_class_id"] / section_parent["layout_class_id"] / "error" / f"{section_class_id}_{section_name}"
+    section_parent = dococr_query_util.select_row_map("selectSectionParent",(section_class_id,))
+    error_folder = Path(CLASS_FOLDER) / str(section_parent["doc_class_id"]) / str(section_parent["layout_class_id"]) / "error" / f"{section_class_id}_{section_name}"
     error_img_path = str(error_folder / f"{block_row_num}_{block_col_num}_{result_map["process_id"]}.png")
     error_json_path = str(error_folder / f"{block_row_num}_{block_col_num}_{result_map["process_id"]}.json")
     error_json = block_data[1]

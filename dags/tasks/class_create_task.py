@@ -19,6 +19,49 @@ RESULT_FOLDER = Variable.get("RESULT_FOLDER", default_var="/opt/airflow/data/res
 TEMP_FOLDER = Variable.get("TEMP_FOLDER", default_var="/opt/airflow/data/temp")
 NONE_DOC_IMAGE_DIR = Variable.get("NONE_CLASS_FOLDER", default_var="/opt/airflow/data/common/none_class") # 비서식 일반 문서 이미지
 
+
+#데이터가 충분하지 않을 때 증강을 통해 데이터셋을 확장합니다.
+@task(pool='ocr_pool') 
+def image_data_augment(origin_dir: str, ready_dir: str, threshold=200, aug_limit=3):
+    from torchvision import transforms
+    from PIL import Image
+    from torchvision.transforms import functional as F
+    
+    image_paths = file_util.get_image_paths(origin_dir)
+    os.makedirs(ready_dir, exist_ok=True)
+    
+    if len(image_paths) == 0:
+        # 파일이 하나도 없는 경우 데이터 증강 불가
+        print(f"증강을 위한 최소 데이터가 없습니다. 증강이 필요하다면 {origin_dir} 폴더에 파일을 넣어주세요.")
+        return
+    elif len(image_paths) < threshold:
+        num_aug = min(int(threshold / len(image_paths)), aug_limit)
+    else:
+        num_aug = 1 # 원본만
+    
+    def get_augmentation(width, height):
+        return transforms.Compose([
+            transforms.Resize((height*2, width*2), interpolation=InterpolationMode.BICUBIC),
+            transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255, interpolation=InterpolationMode.BICUBIC),
+            transforms.Resize((height, width), interpolation=InterpolationMode.BICUBIC),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2)
+        ])
+    
+    for img_path in image_paths:
+        img = Image.open(img_path).convert('RGB')
+        width, height = img.size
+        augmentation = get_augmentation(width, height) if num_aug > 1 else None
+
+        base_name = os.path.splitext(os.path.basename(img_path))[0]
+        orig_save_path = os.path.join(ready_dir, f"{base_name}_aug0.png")
+        img.save(orig_save_path)
+        if augmentation:
+            for i in range(1,num_aug):
+                aug_img = augmentation(img) # 증강 함수
+                save_path = os.path.join(ready_dir, f"{base_name}_aug{i}.png")
+                aug_img.save(save_path)
+                print(f"증강 이미지 저장: {save_path}")
+
 @task(pool='ocr_pool')
 def balance_false_images(root_path:str):
     def get_image_count(root_dir):
@@ -45,6 +88,7 @@ def balance_false_images(root_path:str):
     true_count = counts_info["true_count"]
     false_count = counts_info["false_count"]
     
+    # false 이미지가 부족한 경우, NONE_DOC_IMAGE_DIR에서 파일을 복사하여 균형 맞추기
     needed_files = true_count - false_count
     if needed_files <= 0:
         print(f"FALSE_IMAGE_DIR에 충분한 파일이 있습니다. (필요: {needed_files})")
@@ -57,7 +101,7 @@ def balance_false_images(root_path:str):
         print(f"경고: 사용 가능 파일 부족 (요청: {needed_files}, 실제: {none_doc_count})")
         needed_files = none_doc_count
         if false_count == 0 and none_doc_count == 0:
-            raise ValueError("학습을 위한 최소 데이터가 없습니다")
+            raise ValueError("FALSE 학습을 위한 최소 데이터가 없습니다") # 필요 시 증강으로 수정
 
     # 수정 사항 3: needed_files가 0인 경우 처리
     selected_files = random.sample(none_doc_paths, needed_files) if needed_files > 0 else []
@@ -457,40 +501,3 @@ def train_ml(dataset: list, model_dir: str, target_model_name: str = None, class
             
     print("\n모든 모델 학습 및 저장이 완료되었습니다.")
     return model_dir
-
-#데이터가 충분하지 않을 때 증강을 통해 데이터셋을 확장합니다.
-@task(pool='ocr_pool') 
-def image_data_augment(origin_dir: str, ready_dir: str, threshold=200, aug_limit=3):
-    from torchvision import transforms
-    from PIL import Image
-    from torchvision.transforms import functional as F
-    
-    image_paths = file_util.get_image_paths(origin_dir)
-    os.makedirs(ready_dir, exist_ok=True)
-    
-    if len(image_paths) < threshold:
-        num_aug = min(int(threshold / len(image_paths)), aug_limit)
-    else:
-        num_aug = 1 # 원본만
-    def get_augmentation(width, height):
-        return transforms.Compose([
-            transforms.Resize((height*2, width*2), interpolation=InterpolationMode.BICUBIC),
-            transforms.RandomAffine(degrees=5, translate=(0.02, 0.02), fill=255, interpolation=InterpolationMode.BICUBIC),
-            transforms.Resize((height, width), interpolation=InterpolationMode.BICUBIC),
-            transforms.ColorJitter(brightness=0.2, contrast=0.2)
-        ])
-    
-    for img_path in image_paths:
-        img = Image.open(img_path).convert('RGB')
-        width, height = img.size
-        augmentation = get_augmentation(width, height) if num_aug > 1 else None
-
-        base_name = os.path.splitext(os.path.basename(img_path))[0]
-        orig_save_path = os.path.join(ready_dir, f"{base_name}_aug0.png")
-        img.save(orig_save_path)
-        if augmentation:
-            for i in range(1,num_aug):
-                aug_img = augmentation(img) # 증강 함수
-                save_path = os.path.join(ready_dir, f"{base_name}_aug{i}.png")
-                aug_img.save(save_path)
-                print(f"증강 이미지 저장: {save_path}")

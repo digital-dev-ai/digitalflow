@@ -1,3 +1,4 @@
+from pathlib import Path
 from PIL import Image
 import uuid
 import json
@@ -24,6 +25,7 @@ import pandas as pd
 def classify(ai_info: dict, file_info: dict, target_key: str, **context):
     ai_dir = ai_info["ai_dir"]
     model_name= ai_info["model_name"]
+    output_csv_path = str(Path(ai_dir).parent.parent / "csv")
     save_input = ai_info["save_input"]
     class_key = ai_info["class_key"]
     
@@ -37,14 +39,14 @@ def classify(ai_info: dict, file_info: dict, target_key: str, **context):
     if target_key not in file_info["file_path"]:
         image_path = file_info["file_path"]["_origin"]
     image_path = file_info["file_path"][target_key]
-    pred, confidence, input_kwargs = predict(image_path, model,class_key=class_key)
+    pred, confidence, input_kwargs = predict(image_path, model, output_csv_path=output_csv_path,class_key=class_key)
     if save_input:
         classify_result = {"pred": pred, "confidence": confidence, "input_kwargs":input_kwargs}
     else :
         classify_result = {"pred": pred, "confidence": confidence}
     return classify_result
 
-def predict(image_path, model,output_csv_path='/opt/airflow/data/class/a_class/classify/csv',class_key:str=""):
+def predict(image_path, model, output_csv_path='/opt/airflow/data/class/noclass/classify/csv',class_key:str=""):
     """예측 수행 (머신러닝 모델용으로 수정)"""
     # 딥러닝 관련 변수 제거 (processor, device)
     

@@ -6,7 +6,7 @@ from functools import reduce
 from itertools import groupby
 import logging
 
-from original_flask_appbuilder._compat import as_unicode
+from flask_appbuilder._compat import as_unicode
 from flask_babel import lazy_gettext as _
 
 from .. import const as c

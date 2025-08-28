@@ -88,6 +88,12 @@ def select_row_map(key, params:tuple=None, dictionary:bool=False):
                 "WHERE A.SECTION_CLASS_ID = %s "
                 ,['doc_class_id','layout_class_id']
         ),
+        "selectLayoutInfo": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NAME, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "+
+                "FROM TB_DI_LAYOUT_CLASS AS A "+
+                "WHERE A.DOC_CLASS_ID = %s AND A.LAYOUT_CLASS_ID = %s"
+            ,['layout_class_id','layout_name','doc_class_id','img_preprocess_info','classify_ai_info']
+        )
+        
     }
     print(" query : ",map[key][0],params)
     result = execute(map[key][0], params=params, fetch=True, dictionary=dictionary)
@@ -95,7 +101,7 @@ def select_row_map(key, params:tuple=None, dictionary:bool=False):
     if dictionary:
         return result
     else:
-        return tuples_to_dicts(result,map[key][1])
+        return tuples_to_dicts(result,map[key][1])[0] if result else None  # 값이 없으면 None 반환
 
 def select_one_map(key, params:tuple=None):
     map = {
