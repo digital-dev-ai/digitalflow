@@ -26,14 +26,14 @@ def init_appbuilder_links(app):
     appbuilder = app.appbuilder
     appbuilder.add_link(
         name="DAGs",
-         label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("DAGs_label", "DAGs"),
+        label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("DAGs_label", "DAGs"),
         href="Airflow.index")
     appbuilder.menu.menu.insert(0, appbuilder.menu.menu.pop())  # Place in the first menu slot
     appbuilder.add_link(
         name="Cluster Activity",
         label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("Cluster Activity_label", "Cluster Activity"),
         href="Airflow.cluster_activity")
-    appbuilder.menu.menu.insert(1, appbuilder.menu.menu.pop())  # Place in the second menu slot
+    appbuilder.menu.menu.insert(2, appbuilder.menu.menu.pop())  # Place in the second menu slot
     # appbuilder.add_link(
     #     name="Datasets", 
     #     label=trs_label.get("www_extensions_init_appbuilder_links", {}).get("Datasets_label", "Datasets"),

@@ -80,10 +80,12 @@ def init_appbuilder_views(app):
         views.JobModelView, permissions.RESOURCE_JOB,label=trs_label.get("www_extensions_init_views", {}).get("job_label"), category=trs_label.get("www_extensions_init_views", {}).get("browse_category"), #category=permissions.RESOURCE_BROWSE_MENU, 
     )
     appbuilder.add_view(
-        views.LogModelView, permissions.RESOURCE_AUDIT_LOG,label=trs_label.get("www_extensions_init_views", {}).get("audit_log_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),#category=permissions.RESOURCE_BROWSE_MENU
+        views.DagDependenciesView,
+        permissions.RESOURCE_DAG_DEPENDENCIES,label=trs_label.get("www_extensions_init_views", {}).get("dag_dependency_label"),category=trs_label.get("www_extensions_init_views", {}).get("browse_category"),
+        #category=permissions.RESOURCE_BROWSE_MENU,
     )
     appbuilder.add_view(
-        views.VariableModelView, permissions.RESOURCE_VARIABLE,label=trs_label.get("www_extensions_init_views", {}).get("variable_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),#category=permissions.RESOURCE_ADMIN_MENU
+        views.SlaMissModelView, permissions.RESOURCE_SLA_MISS, label=trs_label.get("www_extensions_init_views", {}).get("sla_miss_label"),category=trs_label.get("www_extensions_init_views", {}).get("browse_category"), 
     )
     appbuilder.add_view(
         views.TaskInstanceModelView,
@@ -103,6 +105,14 @@ def init_appbuilder_views(app):
         category=trs_label.get("www_extensions_init_views", {}).get("browse_category"),
         # category=permissions.RESOURCE_BROWSE_MENU,
     )
+    appbuilder.menu.menu.insert(-1, appbuilder.menu.menu.pop()) 
+    appbuilder.add_view(
+        views.LogModelView, permissions.RESOURCE_AUDIT_LOG,label=trs_label.get("www_extensions_init_views", {}).get("audit_log_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),#category=permissions.RESOURCE_BROWSE_MENU
+    )
+    appbuilder.add_view(
+        views.VariableModelView, permissions.RESOURCE_VARIABLE,label=trs_label.get("www_extensions_init_views", {}).get("variable_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),#category=permissions.RESOURCE_ADMIN_MENU
+    )
+
     appbuilder.add_view(
         views.ConfigurationView,
         permissions.RESOURCE_CONFIG, label=trs_label.get("www_extensions_init_views", {}).get("config_label"),
@@ -112,9 +122,6 @@ def init_appbuilder_views(app):
     )
     appbuilder.add_view(
         views.ConnectionModelView, permissions.RESOURCE_CONNECTION,label=trs_label.get("www_extensions_init_views", {}).get("connection_label"),category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),
-    )
-    appbuilder.add_view(
-        views.SlaMissModelView, permissions.RESOURCE_SLA_MISS, label=trs_label.get("www_extensions_init_views", {}).get("sla_miss_label"),category=trs_label.get("www_extensions_init_views", {}).get("browse_category"), 
     )
     appbuilder.add_view(
         views.PluginView, permissions.RESOURCE_PLUGIN,label=trs_label.get("www_extensions_init_views", {}).get("plugin_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"),
@@ -128,11 +135,7 @@ def init_appbuilder_views(app):
     appbuilder.add_view(
         views.XComModelView, permissions.RESOURCE_XCOM, label=trs_label.get("www_extensions_init_views", {}).get("xcom_label"), category=trs_label.get("www_extensions_init_views", {}).get("admin_category"), # category=permissions.RESOURCE_ADMIN_MENU
     )
-    appbuilder.add_view(
-        views.DagDependenciesView,
-        permissions.RESOURCE_DAG_DEPENDENCIES,label=trs_label.get("www_extensions_init_views", {}).get("dag_dependency_label"),category=trs_label.get("www_extensions_init_views", {}).get("browse_category"),
-        #category=permissions.RESOURCE_BROWSE_MENU,
-    )
+    appbuilder.menu.menu.insert(0, appbuilder.menu.menu.pop())
     # add_view_no_menu to change item position.
     # I added link in extensions.init_appbuilder_links.init_appbuilder_links
     appbuilder.add_view_no_menu(views.RedocView)

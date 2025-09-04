@@ -12,10 +12,6 @@ docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. d
 cd /home/digital-033/work/docker/digitalflow/translate
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/templates/appbuilder/general/security/login_db.html digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/templates/appbuilder/general/security/.
 
-# 배치관리, 로그분석 외 한글화
-cd /home/digital-033/work/docker/digitalflow/translate
-docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/security/views.py digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/security/.
-
 # 웹서버 root 접속 명령어
 docker exec -it --user airflow digitalflow-airflow-worker-1 bash
 docker exec -it --user airflow digitalflow-airflow-webserver-1 bash
@@ -50,15 +46,36 @@ docker logs --tail 300 digitalflow-airflow-webserver-1
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
 
-#tranaslate 백업(bash)
+#tranaslate 원상복구(bash)
 docker cp /home/digital-033/work/docker/digitalflow/translate/original_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
 docker cp /home/digital-033/work/docker/digitalflow/translate/original_flask_appbuilder/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
 
-# dockerfile용 복사
+#translate 백업(bash)
+docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow /home/digital-033/work/docker/digitalflow/translate/original_airflow
+docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder /home/digital-033/work/docker/digitalflow/translate/original_flask_appbuilder
+
+# dockerfile용 복사 명령어
 # COPY translate/custom_airflow/. /home/airflow/.local/lib/python3.12/site-packages/airflow/
 # COPY translate/custom_flask_appbuilder/. /home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
 
-docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy /home/digital-033/work/docker/digitalflow/translate/origin_sqlalchemy
+# 국제화를 위한 명령어
+# 0. babel.cfg 파일 생성(대상함수를 사용중인 키워드 수집 설정)
+# 1. 작업 디렉토리로 이동
+cd /home/digital-033/work/docker/digitalflow
+# 2. 프로젝트 내에서 설정파일을 기반으로 키워드 수집
+pybabel extract -F ./plugins/translations/babel.cfg -o ./plugins/translations/plugins.pot ./plugins
+# 3. 수집된 키워드를 기반으로 언어별 PO파일 업데이트(ko)
+pybabel update -i ./plugins/translations/plugins.pot -d ./plugins/translations -l ko
+  # 3-1. 파일이 없는 경우 init 사용
+  #pybabel init -i ./plugins/translations/plugins.pot -d ./plugins/translations -l ko
+# 4. PO파일을 편집기로 열어 번역문 입력
+# 5. PO파일 병합(여러 플러그인 사용 시)
+msgcat --use-first ./translate/custom_flask_appbuilder/translations/ko/LC_MESSAGES/messages.po ./plugins/translations/ko/LC_MESSAGES/messages.po -o ./translate/custom_flask_appbuilder/translations/ko/LC_MESSAGES/messages.po
+# 6. 편집된 PO파일을 기반으로 MO파일 생성
+pybabel compile -d ./translate/custom_flask_appbuilder/translations -l ko
+
+#
+
 
 ; #custom_static에 있는 파일들을 docker에 복사
 ; cd /home/digital-033/work/docker/digitalflow/translate/www_custom
@@ -85,8 +102,8 @@ docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/si
 
 # 로고 크기 변경 
 
-/home/digital-033/work/docker/digitalflow/translate/www_custom/custom_static/css/main.css
- width: 140px; ->  width: 200px;
+/home/digital-033/work/docker/digitalflow/translate/custom_airflow/www/static/dist/main.fb487bd34c7cd20f02bc.css
+# 기존 width: 180px; height: 81px -> width: 90px; height: 40.5px;
 
 # 메인 화면 상의 영어, 한글화 진행중.
 /home/digital-033/work/docker/digitalflow/translate/www_custom/custom_templates/airflow/dags.html

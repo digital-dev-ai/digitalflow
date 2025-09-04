@@ -1065,7 +1065,7 @@ class Airflow(AirflowBaseView):
         state_color_mapping["null"] = state_color_mapping.pop(None)
 
         # page_title = conf.get(section="webserver", key="instance_name", fallback="DAGs")
-        page_title = conf.get(section="webserver", key="instance_name", fallback="배치관리")
+        page_title = conf.get(section="webserver", key="instance_name", fallback="프로세스관리")
         page_title_has_markup = conf.getboolean(
             section="webserver", key="instance_name_has_markup", fallback=False
         )
@@ -3696,7 +3696,7 @@ class ConfigurationView(AirflowBaseView):
     def conf(self):
         """Show configuration."""
         raw = request.args.get("raw") == "true"
-        title = "Airflow Configuration"
+        title = "설정값"
         expose_config = conf.get("webserver", "expose_config").lower()
 
         # TODO remove "if raw" usage in Airflow 3.0. Configuration can be fetched via the REST API.
@@ -3905,7 +3905,7 @@ class SlaMissModelView(AirflowModelView):
     """View to show SlaMiss table."""
 
     route_base = "/slamiss"
-
+    list_title = '서비스 계약 수준 미달'
     datamodel = AirflowModelView.CustomSQLAInterface(SlaMiss)  # type: ignore
 
     class_permission_name = permissions.RESOURCE_SLA_MISS
@@ -4019,7 +4019,7 @@ class XComModelView(AirflowModelView):
 
     route_base = "/xcom"
 
-    list_title = "List XComs"
+    list_title = "크로스 커뮤니케이션(XCom) 목록"
 
     datamodel = AirflowModelView.CustomSQLAInterface(XCom)
 
@@ -4049,6 +4049,16 @@ class XComModelView(AirflowModelView):
         "map_index",
         # "execution_date", # execution_date sorting is not working and crashing the UI, disabled for now.
     ]
+    label_columns = {
+        "dag_id":"프로세스 ID",
+        "task_id":"작업 ID",
+        "key":"키",
+        "value":"값",
+        "timestamp":"기록 시간",
+        "run_id":"실행 ID",
+        "map_index":"맵 인덱스",
+        "execution_date":"실행 일자",
+    }
 
     base_filters = [["dag_id", DagFilter, list]]
 
@@ -4136,7 +4146,7 @@ class ConnectionModelView(AirflowModelView):
     """View to show records from Connections table."""
 
     route_base = "/connection"
-
+    list_title = '연결 관리'
     datamodel = AirflowModelView.CustomSQLAInterface(Connection)  # type: ignore
 
     class_permission_name = permissions.RESOURCE_CONNECTION
@@ -4166,6 +4176,7 @@ class ConnectionModelView(AirflowModelView):
         "is_encrypted",
         "is_extra_encrypted",
     ]
+    
 
     # The real add_columns and edit_columns are dynamically generated at runtime
     # so we can delay calculating entries relying on providers to make webserver
@@ -4182,10 +4193,20 @@ class ConnectionModelView(AirflowModelView):
         "extra",
     ]
 
+    label_columns = {
+        "conn_id":"연결 ID",
+        "conn_type":"연결 유형",
+        "description": "설명",
+        "host": "호스트",
+        "port": "포트",
+        "is_encrypted":"암호화 여부",
+        "is_extra_encrypted":"추가 암호화 여부",
+    }
+
     # We will generate the actual ConnectionForm when it is actually needed,
     # i.e. when the web form views are displayed and submitted.
     add_form = edit_form = ConnectionFormProxy
-
+    edit_title = '연결 편집'
     add_template = "airflow/conn_create.html"
     edit_template = "airflow/conn_edit.html"
 
@@ -4454,7 +4475,7 @@ class PluginView(AirflowBaseView):
 
             plugins.append(plugin_data)
 
-        title = "Airflow Plugins"
+        title = "플러그인"
         doc_url = get_docs_url("plugins.html")
         return self.render_template(
             "airflow/plugin.html",
@@ -4497,7 +4518,7 @@ class ProviderView(AirflowBaseView):
             }
             providers.append(provider_data)
 
-        title = "Providers"
+        title = "제공자"
         doc_url = get_docs_url("apache-airflow-providers/index.html")
         return self.render_template(
             "airflow/providers.html",
@@ -4528,8 +4549,9 @@ class PoolModelView(AirflowModelView):
     """View to show records from Pool table."""
 
     route_base = "/pool"
-
+    list_title = '풀(병행 실행 작업 제한)'
     list_template = "airflow/pool_list.html"
+    edit_title = '풀(병행 실행 작업 제한) 편집'
 
     datamodel = AirflowModelView.CustomSQLAInterface(models.Pool)  # type: ignore
 
@@ -4561,6 +4583,17 @@ class PoolModelView(AirflowModelView):
     ]
     add_columns = ["pool", "slots", "description", "include_deferred"]
     edit_columns = ["pool", "slots", "description", "include_deferred"]
+
+    label_columns = {
+        "pool": "풀 이름",
+        "slots": "슬롯 수",
+        "description":"설명",
+        "include_deferred": "지연 작업 포함 여부",
+        "running_slots":"실행 중인 슬롯",
+        "queued_slots":"로드된 슬롯",
+        "scheduled_slots":"예약된 슬롯",
+        "deferred_slots":"지연된 슬롯",
+    }
 
     # include_deferred is non-nullable, but as a checkbox in the resulting form we want to allow it unchecked
     include_deferred_field = BooleanField(
@@ -4663,9 +4696,11 @@ class VariableModelView(AirflowModelView):
     """View to show records from Variable table."""
 
     route_base = "/variable"
-
+    list_title = '매개 변수'
     list_template = "airflow/variable_list.html"
+    edit_title = '매개 변수 편집'
     edit_template = "airflow/variable_edit.html"
+    show_title = '매개 변수 상세조회'
     show_template = "airflow/variable_show.html"
 
     show_widget = AirflowVariableShowWidget
@@ -4695,6 +4730,12 @@ class VariableModelView(AirflowModelView):
     edit_columns = ["key", "val", "description"]
     show_columns = ["key", "val", "description"]
     search_columns = ["key", "val"]
+    label_columns = {
+        "key":"매개 변수명",
+        "val":"값",
+        "description":"설명",
+        "is_encrypted":"암호화 여부",
+    }
 
     base_order = ("key", "asc")
 
@@ -4824,7 +4865,8 @@ class JobModelView(AirflowModelView):
     """View to show records from Job table."""
 
     route_base = "/job"
-
+    list_title = '작업 로그'
+    edit_title = '작업 로그 수정'
     datamodel = AirflowModelView.CustomSQLAInterface(Job)  # type: ignore
 
     class_permission_name = permissions.RESOURCE_JOB
@@ -4860,6 +4902,18 @@ class JobModelView(AirflowModelView):
         "hostname",
         "unixname",
     ]
+    label_columns = {
+        "id": "ID",
+        "dag_id": "프로세스 ID",
+        "state": "상태",
+        "job_type": "작업 타입",
+        "start_date": "시작 일자",
+        "end_date": "종료 일자",
+        "latest_heartbeat": "최근 실행시간",
+        "executor_class": "실행 클래스",
+        "hostname": "호스트명",
+        "unixname": "유닉스명",
+    }
 
     base_order = ("start_date", "desc")
 
@@ -4880,7 +4934,8 @@ class DagRunModelView(AirflowModelView):
     route_base = "/dagrun"
 
     datamodel = wwwutils.DagRunCustomSQLAInterface(models.DagRun)  # type: ignore
-
+    list_title = "프로세스 실행 로그"
+    edit_title = "프로세스 실행 로그 편집"
     class_permission_name = permissions.RESOURCE_DAG_RUN
     method_permission_name = {
         "delete": "delete",
@@ -4926,9 +4981,8 @@ class DagRunModelView(AirflowModelView):
         "note",
         "external_trigger",
     ]
-    label_columns = {
-        "execution_date": "Logical Date",
-    }
+    
+
     edit_columns = [
         "state",
         "dag_id",
@@ -4954,7 +5008,20 @@ class DagRunModelView(AirflowModelView):
         "external_trigger",
         "conf",
     ]
-
+    label_columns = {
+    "state": "상태",
+    "dag_id": "프로세스 ID",
+    "execution_date": "실행 날짜",
+    "run_id": "실행 ID",
+    "run_type": "실행 타입",
+    "queued_at": "로드된 시간",
+    "start_date": "시작 날짜",
+    "end_date": "종료 날짜",
+    "note": "메모",
+    "external_trigger": "외부 트리거",
+    "conf": "설정값",
+    "duration": "경과 시간",
+    }
     base_order = ("execution_date", "desc")
 
     base_filters = [["dag_id", DagFilter, list]]
@@ -5114,8 +5181,8 @@ class DagRunModelView(AirflowModelView):
 class LogModelView(AirflowModelView):
     """View to show records from Log table."""
 
-    route_base = "/log"
-
+    route_base = "/log" 
+    list_title = '감사 로그'
     datamodel = AirflowModelView.CustomSQLAInterface(Log)  # type:ignore
 
     class_permission_name = permissions.RESOURCE_AUDIT_LOG
@@ -5152,9 +5219,16 @@ class LogModelView(AirflowModelView):
     ]
 
     label_columns = {
-        "execution_date": "Logical Date",
-        "owner": "Owner ID",
-        "owner_display_name": "Owner Name",
+        "id":"ID",
+        "dttm": "기록 일자",
+        "dag_id" : "프로세스 ID",
+        "task_id" : "작업 ID",
+        "run_id" : "실행 ID",
+        "event" : "이벤트",
+        "extra": "상세 정보",
+        "execution_date": "전체 실행 일자",
+        "owner": "사용자ID",
+        "owner_display_name": "사용자 명",
     }
 
     base_order = ("dttm", "desc")
@@ -5172,7 +5246,7 @@ class TaskRescheduleModelView(AirflowModelView):
     """View to show records from Task Reschedule table."""
 
     route_base = "/taskreschedule"
-
+    list_title = '작업 재조정'
     datamodel = AirflowModelView.CustomSQLAInterface(models.TaskReschedule)  # type: ignore
     related_views = [DagRunModelView]
 
@@ -5242,7 +5316,7 @@ class TriggerModelView(AirflowModelView):
     """View to show records from Task Reschedule table."""
 
     route_base = "/triggerview"
-
+    list_title = '트리거'
     datamodel = AirflowModelView.CustomSQLAInterface(models.Trigger)  # type: ignore
 
     class_permission_name = permissions.RESOURCE_TRIGGER
@@ -5280,7 +5354,8 @@ class TaskInstanceModelView(AirflowModelView):
     """View to show records from TaskInstance table."""
 
     route_base = "/taskinstance"
-
+    list_title = '작업 인스턴스 로그'
+    edit_title ='작업 인스턴스 로그 편집'
     datamodel = AirflowModelView.CustomSQLAInterface(models.TaskInstance)  # type: ignore
 
     class_permission_name = permissions.RESOURCE_TASK_INSTANCE
@@ -5352,7 +5427,6 @@ class TaskInstanceModelView(AirflowModelView):
         "queued_by_job_id",
     ]
     # todo: don't use prev_attempted_tries; just use try_number
-    label_columns = {"dag_run.execution_date": "Logical Date", "prev_attempted_tries": "Try Number"}
 
     search_columns = [
         "state",
@@ -5384,6 +5458,33 @@ class TaskInstanceModelView(AirflowModelView):
         "state",
         "note",
     ]
+
+    label_columns = {
+        "dag_run.execution_date": "Logical Date", 
+        "prev_attempted_tries": "Try Number",
+        "state": "상태",
+        "dag_id" :"프로세스 ID",
+        "task_id": "작업 ID",
+        "run_id": "실행 ID",
+        "map_index" : "매핑 인덱스",
+        "dag_run.execution_date" : "전체 실행 일자",
+        "operator" : "오퍼레이터",
+        "start_date" : "시작 일자",
+        "end_date" : "종료 일자",
+        "duration" : "경과 시간",
+        "note" : "메모",
+        "job_id" : "작업 ID",
+        "hostname" : "호스트명",
+        "unixname" : "유닉스명",
+        "priority_weight" : "우선순위 가중치",
+        "queue" : "큐",
+        "queued_dttm" : "로드된 시간",
+        "prev_attempted_tries" : "작업 실행 수",
+        "pool" : "풀",
+        "queued_by_job_id" : "작업 ID 로드",
+        "external_executor_id" : "외부 실행 ID",
+        "log_url" : "로그 URL",
+        }
 
     add_exclude_columns = ["next_method", "next_kwargs", "trigger_id"]
 
@@ -5691,7 +5792,7 @@ class DagDependenciesView(AirflowBaseView):
     @gzipped
     def list(self):
         """Display DAG dependencies."""
-        title = "DAG Dependencies"
+        title = "프로세스 종속성"
 
         if not self.nodes or not self.edges:
             self._calculate_graph()

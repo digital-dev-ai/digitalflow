@@ -526,6 +526,7 @@ class FabAirflowSecurityManagerOverride(AirflowSecurityManagerV2):
                 category="Security",
                 category_label=trs_label.get("providers_fab_auth_manager_security_manager_override", {}).get("category"),
             )
+        self.appbuilder.menu.menu.insert(-1, self.appbuilder.menu.menu.pop()) 
 
     @property
     def get_session(self):

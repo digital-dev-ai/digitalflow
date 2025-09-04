@@ -88,7 +88,6 @@ class FieldConverter(object):
                 default=self.default,
             )
         for type_marker, field, widget in self.conversion_table:
-            print("===---type_marker:",type_marker)
             if getattr(self.datamodel, type_marker)(self.colname):
                 if widget:
                     return field(
