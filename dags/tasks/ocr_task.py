@@ -74,7 +74,8 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
         img_np_bgr,result_map = separate_area_util.separate_area(original_image, data_type="file_path", output_type="np_bgr", step_info=separate_area_step_info)
         area_x, area_y = result_map["_area"]
         print(section_name,"separate_area completed:")
-        block_map = {"block_id": section_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]],"section_class_id":section_class_id,"section_name":section_name}
+        block_map = {"block_id": section_name, "block_box": [area_x, area_y, img_np_bgr.shape[1], img_np_bgr.shape[0]],
+                     "section_class_id":section_class_id,"section_name":section_name,"section_type":section_type, "page_num":file_info["page_num"]}
         block_data = (img_np_bgr,block_map)
         draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
             step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}])
@@ -104,18 +105,18 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
             #cleansing
             cleansing_step_info = json.loads(section_info["cleansing"])
             block_data = ocr_cleansing_util.ocr_cleansing((block_img_np_bgr, block_map), step_info=cleansing_step_info, result_map={"folder_path":section_name}) # 정제 데이터가 추가된 block_map 반환
+            print("ddddddddddddddddddd",block_data[1])
             ocr_list.append(block_data[1])
             table_map.append(block_data)
         # #ocr 디버깅용
         #file_info.setdefault("ocr_results", {})[section_name] = ocr_list
 
-        if section_info.get("structuring", "") == "":
+        if section_info.get("structuring", "{}") == "{}":
             structuring_step_info = {"name":f"{section_name} structuring","type":"structuring_step_list",
-                                    "step_list":[{"name":"structuring_by_type","param":{"section_class_id":section_class_id,"section_name":section_name,"section_type":section_type}}]}
+                                    "step_list":[{"name":"structuring_by_type","param":{}}]}
         else:
             structuring_step_info = json.loads(section_info["structuring"])
             
-
         try:
             structed_section = structuring_util.structuring(table_map, step_info=structuring_step_info) # {table1:[{col1:val1,...},{col1:val1,...},...],table2:[...]}
         except Exception as e:
@@ -129,21 +130,25 @@ def ocr_task(file_info: Dict, target_key: Dict[str, Any], **context) -> Dict[str
                 error_file_name = parts[0].strip()
                 error_json_path = str(error_folder / f"{error_file_name}.json")
                 error_img_path = str(error_folder / f"{error_file_name}.png")
-                file_util.file_copy(original_image,error_img_path)
+                box_img = draw_block_box_util.draw_block_box_step_list((original_image, [block_map]), input_img_type="file_path", 
+                    step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": False}}])
+        
+                file_util.file_copy(box_img,error_img_path)
                 json_util.save(error_json_path,file_info)
             raise
         
         #draw_block_box_util.draw_block_box_step_list((original_image, ocr_list), input_img_type="file_path", step_list=[{"name": "draw_block_box_xywh", "param": {"box_color": 2, "iter_save": True}}])
         print(f"structed_section : {structed_section}")
-
-        for key, list_of_dicts in structed_section.items():
+        
+        #현재 구역의 구조화된 데이터를 레이아웃 구조화 데이터로 취
+        for key, list_of_dicts in structed_section.items(): #building_info , [{"bild_id":{"structed_text":"123","box":[1,2,3,4],...},"b...},{"bild_id":{"st...}} }]
             # key가 빈 값이거나 "null"일 경우 넘어감
             if not key or key == "null" or key is None:
                 continue
             # merged에 해당 key가 아직 없으면 그대로 리스트 복사
             if not structed_layout[key]:
                 structed_layout[key] = [{} for _ in range(len(list_of_dicts))]
-            for i, item_dict in enumerate(list_of_dicts):
+            for i, item_dict in enumerate(list_of_dicts): # 0, {"bild_id":{"structed_text":"123","box":[1,2,3,4],...},"b...}
                 # 여러 dict가 있으면 각각 인덱스 딕셔너리에 병합
                 structed_layout[key][i].update(item_dict)
         
@@ -210,8 +215,10 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
     for file_id, items in file_groups.items():
         # 2) page_num 순 정렬
         items_sorted = sorted(items, key=lambda x: x['page_num'])
+        doc_class_id = None
         if len(items_sorted)>0:
             entry = items_sorted[0]
+            doc_class_id = entry["doc_class_id"]
             if "_origindoc" in entry.get("file_path", {}):
                 origin_path = {"_originfile": entry.get("file_path", {}).get("_origindoc")} 
             elif "_origin" in entry.get("file_path", {}):
@@ -220,6 +227,15 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
 
         # 3) structed 병합 준비
         merged_structed = defaultdict(list)  # table명: list of dict(row)
+        parecnt_table_info = {}
+        keynum = defaultdict(int)  # table명: list of dict(row)
+        table_list = dococr_query_util.select_list_map("selectTableList",params=(doc_class_id,))
+        
+        for table_info in table_list:
+            keynum[table_info["table_name"]] = 1
+            parecnt_table_info[table_info["table_name"]] = table_info["parent_table_name"]
+        
+        
         page_infos = []
         layout_class_ids = []
         for entry in items_sorted:
@@ -229,23 +245,28 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
                 "page_num": entry["page_num"],
                 "file_path": {"_normalize":entry.get("file_path", {}).get("_normalize", "")},
                 "layout_class_id": entry["layout_class_id"],
-                "doc_class_id": entry["doc_class_id"]
+                "doc_class_id": doc_class_id
             })
             
             print("222222222",structed)
+            
             for table_name, rows in structed.items():
                 if table_name not in merged_structed:
                     print("33333333333333",table_name)
+                    for row in rows:
+                        row["id"] = keynum[table_name]
+                        row["par_id"] = keynum[parecnt_table_info[table_name]]
+                        keynum[table_name] += 1
                     merged_structed[table_name] = deepcopy(rows)
                 else:
-                    # 이미 있는 행들과 병합 로직 수행
+                    # 입력하려는 row들의 기존의 입력된 row들과 병합 여부를 확인
+                    row_num = len(rows)
                     existing_rows = merged_structed[table_name]
-                    # 첫 번째 기존 행과 키 겹침 여부 판단
-                    first_existing_row = existing_rows[0]
-                    # rows 내 임의의 row 중 첫 번째 new_row와만 비교해도 무방하다 판단 시
-                    # 아니면 전체 rows와 상관없이 첫 행만으로 결정
-                    # first_existing_row 의 키 집합
-                    first_existing_keys = set(first_existing_row.keys())
+                    # 기존의 입력된 row들의 최근 row들을 조회(입력하려는 row들과 동일한 row 추출)
+                    last_existing_rows = existing_rows[-row_num:]
+                    # 일괄 처리 작업이므로 전체 rows와 상관없이 첫 행만 체크하여 진행
+                    # last_existing_rows 의 키 집합
+                    last_existing_keys = set(last_existing_rows[0].keys())
 
                     # 우선 rows 중 첫번째 행을 기준으로 판단 (or 그냥 첫 행만 비교)
                     # 이 예시는 첫 row 기준 비교해서 overlapped 여부 판단
@@ -253,23 +274,31 @@ def aggregate_ocr_results_task(file_infos:list[dict],**context):
                     # 전체 rows가 아닌, 첫 new_row 만 검사
                     if not rows:
                         continue
+                    # 입력하려는 row들의 첫번째 키값들과 최근 row들의 첫번째 키값들을 비교하여 동일한 키가 있는지 확인
                     first_new_row = rows[0]
-                    if first_existing_keys & set(first_new_row.keys()):
+                    if last_existing_keys & set(first_new_row.keys()):
                         overlapped = True
 
                     # 결정된 overlapped 결과를 모든 new_row에 적용
                     if overlapped:
                         # 키 겹침으로 판단 → 모든 new_row append
                         for new_row in rows:
+                            new_row["id"] = keynum[table_name]
+                            new_row["par_id"] = keynum[parecnt_table_info[table_name]]
+                            keynum[table_name] += 1
                             existing_rows.append(deepcopy(new_row))
                     else:
                         # 키 겹치지 않음 → 같은 인덱스끼리 병합 시도
-                        for idx, new_row in enumerate(rows):
-                            if idx < len(existing_rows):
-                                merged_row = dict(existing_rows[idx])  # 복사
+                        if len(rows) == len(last_existing_rows):
+                            for idx, new_row in enumerate(rows):
+                                merged_row = dict(last_existing_rows[idx])  # 복사
                                 merged_row.update(new_row)
-                                existing_rows[idx] = merged_row
-                            else:
+                                last_existing_rows[idx] = merged_row
+                        else:
+                            for new_row in rows:
+                                new_row["id"] = keynum[table_name]
+                                new_row["par_id"] = keynum[parecnt_table_info[table_name]]
+                                keynum[table_name] += 1
                                 existing_rows.append(deepcopy(new_row))
         doc_class_id = dococr_query_util.select_doc_class_id(params=layout_class_ids)
         # 결과 조립

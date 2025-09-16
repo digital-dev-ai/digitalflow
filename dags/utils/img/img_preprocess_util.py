@@ -420,8 +420,10 @@ def del_blank_set2( # del_blank_set2만 수정
             file_path = type_convert_util.convert_type(horizontal_lines, "np_gray", "file_path")
             save(file_path, "del_blank_set2_horizontal_lines")
         rows, _ = np.where(horizontal_lines > 0)
-        if rows.size > 0:
-            y_start, y_end = np.min(rows), np.max(rows)
+        margin_y_px = int(h * 0.01)
+        valid_rows = rows[(rows >= margin_y_px) & (rows < h - margin_y_px)]
+        if valid_rows.size > 0:
+            y_start, y_end = np.min(valid_rows), np.max(valid_rows)
         else:
             print("del_blank_set2: 긴 수평선을 찾을 수 없습니다.")
 
@@ -436,8 +438,11 @@ def del_blank_set2( # del_blank_set2만 수정
             file_path = type_convert_util.convert_type(vertical_lines, "np_gray", "file_path")
             save(file_path, "del_blank_set2_vertical_lines")
         _, cols = np.where(vertical_lines > 0)
-        if cols.size > 0:
-            x_start, x_end = np.min(cols), np.max(cols)
+        # 좌우 1% 범위 제외
+        margin_x_px = int(w * 0.01)
+        valid_cols = cols[(cols >= margin_x_px) & (cols < w - margin_x_px)]
+        if valid_cols.size > 0:
+            x_start, x_end = np.min(valid_cols), np.max(valid_cols)
         else:
             print("del_blank_set2: 긴 수직선을 찾을 수 없습니다.")
 

@@ -227,6 +227,7 @@ function_map = {
     "tesseract_data_to_json": {"function": tesseract_data_to_json, "input_type": "any", "output_type": "any", "param": ""},
     
 }
+
 CV_COLOR_MAP = {
     0: (0, 255, 0),  # 녹색
     1: (255, 0, 0),  # 파란색

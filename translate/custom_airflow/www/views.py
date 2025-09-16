@@ -3696,7 +3696,7 @@ class ConfigurationView(AirflowBaseView):
     def conf(self):
         """Show configuration."""
         raw = request.args.get("raw") == "true"
-        title = "설정값"
+        title = "구성"
         expose_config = conf.get("webserver", "expose_config").lower()
 
         # TODO remove "if raw" usage in Airflow 3.0. Configuration can be fetched via the REST API.
@@ -4019,7 +4019,7 @@ class XComModelView(AirflowModelView):
 
     route_base = "/xcom"
 
-    list_title = "크로스 커뮤니케이션(XCom) 목록"
+    list_title = "처리 결과 목록"
 
     datamodel = AirflowModelView.CustomSQLAInterface(XCom)
 

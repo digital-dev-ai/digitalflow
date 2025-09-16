@@ -17,7 +17,7 @@ docker exec -it --user airflow digitalflow-airflow-worker-1 bash
 docker exec -it --user airflow digitalflow-airflow-webserver-1 bash
 docker exec -it --user airflow digitalflow-airflow-triggerer-1 bash
 docker exec -it --user airflow digitalflow-airflow-scheduler-1 bash
-docker exec -it --user airflow digitalflow-postgres-1 bash
+docker exec -it digitalflow-postgres-1 bash
 docker exec -it --user airflow digitalflow-redis-1 bash
 
 
@@ -41,6 +41,7 @@ airflow connections add "maria_db_conn" --conn-type "mysql" --conn-host "192.168
 
 #로그 출력용
 docker logs --tail 300 digitalflow-airflow-webserver-1
+docker logs --tail 300 digitalflow-airflow-scheduler-1
 
 #tranaslate 복사(bash)
 docker cp /home/digital-033/work/docker/digitalflow/translate/custom_airflow/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/airflow/
@@ -63,7 +64,7 @@ docker cp digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/si
 # 1. 작업 디렉토리로 이동
 cd /home/digital-033/work/docker/digitalflow
 # 2. 프로젝트 내에서 설정파일을 기반으로 키워드 수집
-pybabel extract -F ./plugins/translations/babel.cfg -o ./plugins/translations/plugins.pot ./plugins
+pybabel extract -k _ -k lazy_gettext -F ./plugins/translations/babel.cfg -o ./plugins/translations/plugins.pot .
 # 3. 수집된 키워드를 기반으로 언어별 PO파일 업데이트(ko)
 pybabel update -i ./plugins/translations/plugins.pot -d ./plugins/translations -l ko
   # 3-1. 파일이 없는 경우 init 사용
@@ -73,9 +74,20 @@ pybabel update -i ./plugins/translations/plugins.pot -d ./plugins/translations -
 msgcat --use-first ./translate/custom_flask_appbuilder/translations/ko/LC_MESSAGES/messages.po ./plugins/translations/ko/LC_MESSAGES/messages.po -o ./translate/custom_flask_appbuilder/translations/ko/LC_MESSAGES/messages.po
 # 6. 편집된 PO파일을 기반으로 MO파일 생성
 pybabel compile -d ./translate/custom_flask_appbuilder/translations -l ko
+# 7. mo 파일 적용
+docker cp /home/digital-033/work/docker/digitalflow/translate/custom_flask_appbuilder/. digitalflow-airflow-webserver-1:/home/airflow/.local/lib/python3.12/site-packages/flask_appbuilder/
+# 8. docker 재시작
+~/rs_digitalflow.sh
 
-#
 
+# airflow postgresql 접속방법
+# 1. docker 컨테이너 접속
+docker exec -it digitalflow-postgres-1 bash
+# 2. psql 접속
+psql -U airflow -d airflow
+# 3. ab_user 조회
+select * from ab_user;
+UPDATE ab_user SET active = 't' WHERE username = 'D.SmartExtractAI';
 
 ; #custom_static에 있는 파일들을 docker에 복사
 ; cd /home/digital-033/work/docker/digitalflow/translate/www_custom

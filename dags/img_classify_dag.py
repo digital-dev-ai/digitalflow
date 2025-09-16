@@ -80,8 +80,6 @@ with DAG(
     # 3-3. 실패한 작업 처리
     t_fail_classify = failed_result_task.expand(file_info=t_img_classify_failed_results)
     
-    
-
     # 3-4. 분류 AI 작업 취합 및 분석 후 클래스 결정
     t_classify_result_task = aggregate_classify_results_task(t_img_classify_success_results, class_keys=class_keys)
     

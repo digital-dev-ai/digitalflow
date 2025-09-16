@@ -32,7 +32,7 @@ trs_label = {
         "provider_label": "제공자",
         "sla_miss_label": "서비스 계약 수준 미달",
         "plugin_label": "플러그인",
-        "xcom_label": "크로스 커뮤니케이션",
+        "xcom_label": "처리 결과 목록",
         "dag_dependency_label": "프로세스 종속성"
     },
     "www_static_css_main": {},

@@ -21,7 +21,7 @@
 {% from 'airflow/dataset_next_run_modal.html' import dataset_next_run_modal %}
 {% from 'appbuilder/dag_docs.html' import dag_docs %}
 
-{% block page_title %}{{ dag.dag_display_name }} - {{ appbuilder.app_name }}{% endblock %}
+{% block page_title %}{{ dag.dag_display_name }} - {{ "D.SmartExtractAI" }}{% endblock %}
 
 {% block head_css %}
   {{ super() }}
@@ -113,7 +113,7 @@
   {% if dag.parent_dag is defined and dag.parent_dag %}
     <a href="{{ url_for('Airflow.' + dag.default_view, dag_id=dag.parent_dag.dag_id, base_date=base_date_arg, execution_date=execution_date_arg) }}" title="Go to parent DAG">
       <span class="material-icons" aria-hidden="true">keyboard_arrow_up</span>
-      배치명: <span title="{{ dag.parent_dag.dag_id }}">{{ dag.parent_dag.dag_display_name }}</span></a>
+      프로세스명: <span title="{{ dag.parent_dag.dag_id }}">{{ dag.parent_dag.dag_display_name }}</span></a>
   {% endif %}
 
   <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -123,7 +123,7 @@
           <span class="text-muted">SUBDAG:</span> {{ dag.dag_id }}
         {% else %}
           {% if can_edit_dag %}
-            {% set switch_tooltip = '배치 정지/실행' %}
+            {% set switch_tooltip = '프로세스 정지/실행' %}
           {% else %}
             {% set switch_tooltip = 'DAG is Paused' if dag_is_paused else 'DAG is Active' %}
           {% endif %}
@@ -134,7 +134,7 @@
                    {{ " disabled" if not can_edit_dag else "" }}>
             <span class="switch" aria-hidden="true"></span>
           </label>
-          <span class="text-muted">배치:</span> <span title="{{ dag.dag_id }}">{{ dag.dag_display_name }}</span>
+          <span class="text-muted">프로세스:</span> <span title="{{ dag.dag_id }}">{{ dag.dag_display_name }}</span>
           <small class="text-muted">{{ dag.description[0:150] + '…' if dag.description and dag.description|length > 150 else dag.description|default('', true) }}</small>
           {% if dag_model is defined and dag_model.max_consecutive_failed_dag_runs is defined and  dag_model.max_consecutive_failed_dag_runs > 0  %}
            <span class="material-icons text-muted js-tooltip" aria-hidden="true" data-original-title="Auto Pauses: After {{ dag_model.max_consecutive_failed_dag_runs|string }} consecutive failures">motion_photos_paused</span>
@@ -191,7 +191,7 @@
       <div class="btn-group">
         {% if show_trigger_form_if_no_params %}
         <div class="dropdown">
-          <a aria-label="배치 실행 기록" class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_trigger }} trigger-dropdown-btn" data-toggle="dropdown">
+          <a aria-label="프로세스 실행 기록" class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_trigger }} trigger-dropdown-btn" data-toggle="dropdown">
             <span class="material-icons" aria-hidden="true">play_arrow</span>
             </a>
           <ul class="dropdown-menu trigger-dropdown-menu">
@@ -226,21 +226,21 @@
           <a href="{{ url_for('Airflow.trigger', dag_id=dag.dag_id, origin=url_for(request.endpoint, dag_id=dag.dag_id, **request.args)) }}"
         {% endif %}
             onclick="return {{ 'triggerDag' if not appbuilder.require_confirmation_dag_change else 'confirmTriggerDag' }}(this, '{{ dag.dag_id }}')"
-            title="워크플로&nbsp;실행"
-            aria-label="배치 실행"
+            title="프로세스&nbsp;실행"
+            aria-label="프로세스 실행"
             class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_trigger }} trigger-dropdown-btn">
             <span class="material-icons" aria-hidden="true">play_arrow</span>
         </a>
         {% endif %}
         <a href="{{ url_for('Airflow.parse_dag', file_token=dag_file_token, redirect_url=url_for(request.endpoint, dag_id=dag.dag_id)) }}"
-           title="워크플로&nbsp;최신화"
-           aria-label="배치 최신화"
+           title="프로세스&nbsp;최신화"
+           aria-label="프로세스 최신화"
            class="btn btn-default btn-icon-only {{ ' disabled' if not dag.can_edit }}">
           <span class="material-icons">restore_page</span>
         </a>
         <a href="{{ url_for('Airflow.delete', dag_id=dag.dag_id, redirect_url=url_for(request.endpoint, dag_id=dag.dag_id)) }}"
-          title="워크플로&nbsp;삭제"
-          aria-label="배치 삭제"
+          title="프로세스&nbsp;삭제"
+          aria-label="프로세스 삭제"
           class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_delete }}"
           onclick="return confirmDeleteDag(this, '{{ dag.safe_dag_id }}')">
           <span class="material-icons text-danger" aria-hidden="true">delete_outline</span>

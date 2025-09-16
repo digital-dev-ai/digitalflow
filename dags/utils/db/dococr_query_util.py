@@ -8,7 +8,7 @@ def insert_map(key, params:Union[list,tuple]=None, fetch:bool=False, return_id:b
         "insertRun":"INSERT INTO TB_AF_RUN(dag_id, run_id, start_date, status) VALUES (%s, %s, current_timestamp(), 'P')", # W 대기, P 진행중
         "insertTargetFile":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
         "insertClassifyResult":"INSERT INTO TB_AF_TARGET(run_id, target_id, content) VALUES (%s, %s, %s)",
-        "insertTranslateLog":"INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)",
+        "insertTranslateLog":"INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NM, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)",
         "insertComplete":"INSERT INTO TB_AF_COMPLETE (RUN_ID,CONTENT,USE_YN) VALUES (%s,%s,'Y')",
         "insertCompleteMap":"INSERT INTO TB_AF_COMPLETE_MAP (COMPLETE_ID, TABLE_ID, PK_VALUE) VALUES (%s, %s, %s)"
     }
@@ -35,18 +35,18 @@ def update_map(key, params:tuple=None):
 
 def select_list_map(key, params:tuple=None, dictionary:bool=False):
     map = {
-        "selectLayoutList": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NAME, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "+
+        "selectLayoutList": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NM, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "+
                 "FROM TB_DI_LAYOUT_CLASS AS A "+
-                "ORDER BY A.LAYOUT_ORDER, A.LAYOUT_CLASS_ID "
+                "ORDER BY A.LAYOUT_ORDR, A.LAYOUT_CLASS_ID "
             ,['layout_class_id','layout_name','doc_class_id','img_preprocess_info','classify_ai_info']
         ),
-        "selectSectionList": ("SELECT A.SECTION_CLASS_ID, A.SECTION_NAME, A.SECTION_TYPE, A.SEPARATE_AREA_INFO, A.SEPARATE_BLOCK_INFO, A.OCR_INFO, A.CLEANSING_INFO, A.STRUCTURING_INFO "+
+        "selectSectionList": ("SELECT A.SECTION_CLASS_ID, A.SECTION_NM, A.SECTION_TYPE, A.SEPARATE_SECTION_INFO, A.SEPARATE_BLOCK_INFO, A.OCR_INFO, A.CLEANSING_INFO, A.STRUCTURING_INFO "+
                 "FROM TB_DI_SECTION_CLASS AS A "+
                 "WHERE A.LAYOUT_CLASS_ID = %s "+
-                "ORDER BY A.SECTION_ORDER, A.SECTION_CLASS_ID "
+                "ORDER BY A.SECTION_ORDR, A.SECTION_CLASS_ID "
             ,['section_class_id','section_name','section_type','separate_area','separate_block','ocr','cleansing','structuring']
         ),
-        "selectBlockList": ("SELECT A.BLOCK_ROW_NUM, A.BLOCK_COL_NUM, A.BLOCK_TYPE, A.DEFAULT_TEXT, C.TABLE_NAME, B.COLUMN_NAME "+
+        "selectBlockList": ("SELECT A.BLOCK_ROW_NUM, A.BLOCK_COL_NUM, A.BLOCK_TYPE, A.DEFAULT_TEXT, C.TABLE_NM, B.COLUMN_NM "+
                 "FROM TB_DI_BLOCK_CLASS A LEFT OUTER JOIN TB_DS_COLUMN B ON A.COLUMN_ID =B.COLUMN_ID "+
                 "LEFT OUTER JOIN TB_DS_TABLE C ON B.TABLE_ID=C.TABLE_ID "+
                 "WHERE A.SECTION_CLASS_ID = %s "+
@@ -57,21 +57,25 @@ def select_list_map(key, params:tuple=None, dictionary:bool=False):
                 "FROM TB_DI_COMMON_CRCTN A "
             ,['error_text','crrct_text']
         ),
-        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "+
-                "FROM VW_DI_DOC_LAYOUT_SECTION A "+
+        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "
+                "FROM VW_DI_DOC_LAYOUT_SECTION A "
                 "WHERE A.SECTION_CLASS_ID = %s "
                 ,['doc_class_id','layout_class_id']
         ),
-        "selectSectiontypelist": ("SELECT A.SECTION_CLASS_ID, A.SECTION_TYPE "+
-                "FROM TB_DI_SECTION_CLASS A "+
+        "selectSectiontypelist": ("SELECT A.SECTION_CLASS_ID, A.SECTION_TYPE "
+                "FROM TB_DI_SECTION_CLASS A "
                 "WHERE A.LAYOUT_CLASS_ID = %s "
                 ,['section_class_id','section_type']
         ),
-        "selectMultiRowInfo": ("SELECT MIN(B.BLOCK_ROW_NUM) AS minnum,MAX(B.BLOCK_ROW_NUM) AS maxnum " +
-                "FROM TB_DI_SECTION_CLASS A LEFT OUTER JOIN TB_DI_BLOCK_CLASS B ON A.SECTION_CLASS_ID=B.SECTION_CLASS_ID AND B.BLOCK_TYPE='val' "+
-                "WHERE A.SECTION_TYPE='MULTI_ROW' AND A.SECTION_CLASS_ID=%s "
-                ,['minnum','maxnum']
+        "selectTablelist": ("SELECT DICTINCT A.TABLE_ID, A.TABLE_NM, A.PARENT_TABLE_ID, B.TABLE_NM AS PARENT_TABLE_NM "
+                "FROM TB_DS_TABLE A LEFT JOIN TB_DS_TABLE B ON A.PARENT_TABLE_ID=B.TABLE_ID "
+                "INNER JOIN TB_DS_COLUMN C ON A.TABLE_ID=C.TABLE_ID "
+                "INNER JOIN TB_DI_BLOCK_CLASS D ON C.COLUMN_ID=D.COLUMN_ID "
+                "INNER JOIN VW_DI_DOC_LAYOUT_SECTION E ON D.SECTION_CLASS_ID=E.SECTION_CLASS_ID "
+                "WHERE E.DOC_CLASS_ID = %s "
+                ,['table_id','table_name','parent_table_id','parent_table_name']
         ),
+        
     }
     print(" query : ",map[key][0],params)
     result = execute(map[key][0], params=params, fetch=True, dictionary=dictionary)
@@ -83,17 +87,28 @@ def select_list_map(key, params:tuple=None, dictionary:bool=False):
 
 def select_row_map(key, params:tuple=None, dictionary:bool=False):
     map = {
-        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "+
-                "FROM VW_DI_DOC_LAYOUT_SECTION A "+
+        "selectSectionParent": ("SELECT A.DOC_CLASS_ID, A.LAYOUT_CLASS_ID "
+                "FROM VW_DI_DOC_LAYOUT_SECTION A "
                 "WHERE A.SECTION_CLASS_ID = %s "
                 ,['doc_class_id','layout_class_id']
         ),
-        "selectLayoutInfo": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NAME, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "+
-                "FROM TB_DI_LAYOUT_CLASS AS A "+
+        "selectLayoutInfo": ("SELECT A.LAYOUT_CLASS_ID, A.LAYOUT_NM, A.DOC_CLASS_ID, A.IMG_PREPROCESS_INFO, A.CLASSIFY_AI_INFO "
+                "FROM TB_DI_LAYOUT_CLASS AS A "
                 "WHERE A.DOC_CLASS_ID = %s AND A.LAYOUT_CLASS_ID = %s"
             ,['layout_class_id','layout_name','doc_class_id','img_preprocess_info','classify_ai_info']
-        )
-        
+        ),
+        "selectSectionInfo": ("SELECT A.SECTION_CLASS_ID,A.LAYOUT_CLASS_ID,A.SECTION_NM,A.SECTION_DESC,A.SEPARATE_SECTION_INFO, "
+                "A.SEPARATE_BLOCK_INFO,A.OCR_INFO,A.CLEANSING_INFO,A.RGDT,A.UPDT,A.SECTION_ORDR,A.STRUCTURING_INFO,A.SECTION_TYPE "
+                "FROM TB_DI_SECTION_CLASS AS A "
+                "WHERE A.SECTION_CLASS_ID = %s "
+            ,['section_class_id','layout_class_id','section_nm','section_desc','separate_section_info','separate_block_info',
+                'ocr_info','cleansing_info','rgdt','updt','section_ordr','structuring_info','section_type']
+        ),
+        "selectMultiRowInfo": ("SELECT MIN(B.BLOCK_ROW_NUM) AS minnum,MAX(B.BLOCK_ROW_NUM) AS maxnum " +
+                "FROM TB_DI_SECTION_CLASS A LEFT OUTER JOIN TB_DI_BLOCK_CLASS B ON A.SECTION_CLASS_ID=B.SECTION_CLASS_ID AND B.BLOCK_TYPE='val' "+
+                "WHERE A.SECTION_TYPE='MULTI_ROW' AND A.SECTION_CLASS_ID=%s "
+                ,['minnum','maxnum']
+        ),
     }
     print(" query : ",map[key][0],params)
     result = execute(map[key][0], params=params, fetch=True, dictionary=dictionary)
@@ -109,10 +124,10 @@ def select_one_map(key, params:tuple=None):
                 "FROM TB_DS_COLUMN A INNER JOIN TB_DI_BLOCK_CLASS B ON A.COLUMN_ID=B.COLUMN_ID "+
                 "WHERE B.SECTION_CLASS_ID = %s AND BLOCK_ROW_NUM= %s AND BLOCK_COL_NUM = %s "+
                 "ORDER BY B.BLOCK_CLASS_ID DESC LIMIT 1 ",
-        "selectBlockCrctnMatched":"SELECT A.CRRCT_TEXT  "+
-                "FROM TB_DI_BLOCK_CRCTN A INNER JOIN TB_DI_BLOCK_CLASS B ON A.BLOCK_CLASS_ID=B.BLOCK_CLASS_ID "+
-                "WHERE B.SECTION_CLASS_ID=%s AND B.BLOCK_ROW_NUM=%s AND B.BLOCK_COL_NUM=%s AND A.ERROR_TEXT=%s " +
-                "ORDER BY CRCTN_ORDER DESC LIMIT 1 ",
+        "selectBlockCrctnMatched":"SELECT NVL(B.CRRCT_TEXT,%s) AS TEXT "+
+                "FROM TB_DI_BLOCK_CLASS A LEFT JOIN TB_DI_BLOCK_CRCTN B ON A.BLOCK_CLASS_ID=B.BLOCK_CLASS_ID AND B.ERROR_TEXT=%s "+
+                "WHERE A.SECTION_CLASS_ID=%s AND A.BLOCK_ROW_NUM=%s AND A.BLOCK_COL_NUM=%s " +
+                "ORDER BY B.CRCTN_ORDR DESC LIMIT 1 ",
     }
     print(" query : ",map[key], params)
     result = execute(map[key], params=params, fetch=True)
@@ -122,6 +137,7 @@ def select_one_map(key, params:tuple=None):
     else:
         return None 
 
+#공통
 def tuples_to_dicts(rows, columns):
     """
     튜플 기반 결과를 딕셔너리 리스트로 변환합니다.
@@ -159,7 +175,7 @@ def select_doc_class_id(params:list) -> int:
 
 def insert_structed_ocr_result(doc_class_id:str, structed_doc:dict=None, complete_id:int=None):
     select_query = """
-        SELECT B.TABLE_ID, B.TABLE_NAME, A.COLUMN_NAME AS PK, C.TABLE_NAME AS PARENT_TABLE_NAME, D.COLUMN_NAME AS PARENT_PK 
+        SELECT B.TABLE_ID, B.TABLE_NM, A.COLUMN_NM AS PK, C.TABLE_NM AS PARENT_TABLE_NM, D.COLUMN_NM AS PARENT_PK 
             FROM TB_DS_COLUMN A 
             INNER JOIN TB_DS_TABLE B ON A.TABLE_ID=B.TABLE_ID 
             LEFT OUTER JOIN (TB_DS_TABLE C INNER JOIN TB_DS_COLUMN D ON C.TABLE_ID=D.TABLE_ID AND D.IS_PK='Y') 
@@ -205,7 +221,7 @@ def insert_structed_ocr_result(doc_class_id:str, structed_doc:dict=None, complet
             insert_sql = f"INSERT INTO `{table_name}` ({col_names_quoted}) VALUES ({col_placeholders})"
             print(insert_sql)
             for record in records:
-                col_values = [record.get(col, None) for col in col_list]
+                col_values = [record.get(col, {}).get("text", "") for col in col_list]
                 pk_value = execute(insert_sql, params=col_values, return_id=True)
                 pk_map.setdefault(table_name, {}).setdefault(pk_name, []).append(pk_value)
                 if complete_id:
@@ -251,7 +267,7 @@ def insert_structed_ocr_result(doc_class_id:str, structed_doc:dict=None, complet
                     bulk_map_list.append((complete_id, table_id, pk_value))
     # TB_AF_COMPLETE_MAP 벌크 삽입
     if len(bulk_map_list) > 0:
-        complete_map_sql = "INSERT INTO TB_AF_COMPLETE_MAP (COMPLETE_ID, TABLE_ID, PK_VALUE) VALUES (%s, %s, %s)"
+        complete_map_sql = "INSERT INTO TB_AF_COMPLETE_MAP (COMPLETE_ID, TABLE_ID, PK_VAL) VALUES (%s, %s, %s)"
         execute_many(complete_map_sql, params_list=bulk_map_list)
 
     
@@ -266,7 +282,7 @@ def select_translate_target_list(table_name: str, id_col_name: str):
     FROM {table_name} B
     LEFT JOIN TB_OCR_TRN_LOG A 
     ON B.{id_col_name} = A.TRN_TABLE_PK 
-    AND A.TRN_TABLE_NAME = %s
+    AND A.TRN_TABLE_NM = %s
     WHERE A.TRN_TABLE_PK IS NULL;
     """
     print(" query : ",query, col_values)
@@ -279,7 +295,7 @@ def select_complete_map_data(complete_id:str):
     :return: 번역 대상 테이블과 컬럼의 리스트
     """
     select_complete_query = """
-    SELECT DISTINCT M.TABLE_ID, T.TABLE_NAME, C.COLUMN_NAME
+    SELECT DISTINCT M.TABLE_ID, T.TABLE_NM, C.COLUMN_NM
     FROM TB_AF_COMPLETE_MAP M
     INNER JOIN TB_DS_TABLE T ON M.TABLE_ID = T.TABLE_ID
     INNER JOIN TB_DS_COLUMN C ON C.TABLE_ID = T.TABLE_ID AND C.IS_PK = 'Y'
@@ -289,12 +305,12 @@ def select_complete_map_data(complete_id:str):
     data_map = {}
     for table_info in table_list:
         table_id = table_info["TABLE_ID"]
-        table_name = table_info["TABLE_NAME"]
-        pk_column_name = table_info["COLUMN_NAME"]
+        table_name = table_info["TABLE_NM"]
+        pk_column_name = table_info["COLUMN_NM"]
         query = f"""
         SELECT B.*
         FROM TB_AF_COMPLETE_MAP A
-        INNER JOIN {table_name} B ON B.{pk_column_name} = A.PK_VALUE
+        INNER JOIN {table_name} B ON B.{pk_column_name} = A.PK_VAL
         WHERE A.COMPLETE_ID = %s and A.TABLE_ID = %s 
         """
         col_values = (complete_id, table_id)
@@ -318,7 +334,7 @@ def update_for_translate(table_name: str, id_col_name:str, latest_id: str, updat
         update_values = set_values + [latest_id]
         execute(update_query, params=update_values)
 
-    insert_log_query = "INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NAME, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
+    insert_log_query = "INSERT INTO TB_OCR_TRN_LOG (TRN_TABLE_NM, TRN_TABLE_PK, TRN_COL_ID, ORI_TEXT, TRN_TEXT) VALUES (%s, %s, %s, %s, %s)"
     params_list = [
         (table_name, latest_id, col, ori_text, trn_text)
         for col, (ori_text, trn_text) in update_target.items()

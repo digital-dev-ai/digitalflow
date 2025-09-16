@@ -43,3 +43,11 @@
         {% endif %}
     </div>
 {% endmacro %}
+
+{% macro lnk_separate_area(my_href) %}
+    <a href="{{my_href}}" class="btn btn-sm btn-default" data-toggle="tooltip" rel="tooltip"
+       title="{{_('영역분리')}}">
+        <span class="sr-only">{{ _('영역분리') }}</span>
+        <i class="fa fa-th-large"></i>
+    </a>
+{% endmacro %}

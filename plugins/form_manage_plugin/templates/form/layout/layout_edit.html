@@ -1,0 +1,87 @@
+{% extends "appbuilder/base.html" %}
+{% import 'appbuilder/general/lib.html' as lib %}
+{% block content %}
+{{ lib.panel_begin(title, "edit") }}
+
+{% block edit_form %}
+<div id="Home" class="tab-pane active">
+    <form id="model_form" action="" method="post" enctype="multipart/form-data">
+        {% if csrf_token %}
+        <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}">
+        {% endif %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <td class="col-lg-2">
+                        <label for="layout_name" control-label="">레이아웃명<strong style="color: red">*</strong></label>
+                    </td>
+                    <td>
+                        <input class="form-control" id="layout_name" name="layout_name" placeholder="레이아웃명" required="" type="text" value="{{ item.layout_name }}">
+                        <span class="help-block">레이아웃 이름을 입력하세요.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2">
+                        <label for="doc_class_id" control-label="">문서서식ID<strong style="color: red">*</strong></label>
+                    </td>
+                    <td>
+                        <input class="form-control" id="doc_class_id" name="doc_class_id" placeholder="문서서식ID" required="" type="text" value="{{ item.doc_class_id }}">
+                        <span class="help-block">연결된 문서서식 ID를 입력하세요.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2">
+                        <label for="layout_desc" control-label="">설명</label>
+                    </td>
+                    <td>
+                        <input class="form-control" id="layout_desc" name="layout_desc" placeholder="설명" type="text" value="{{ item.layout_desc }}">
+                        <span class="help-block">레이아웃 설명</span>
+                    </td>
+                </tr>
+                    <tr>
+                    <td class="col-lg-2">
+                        <label for="layout_order" control-label="">순서</label>
+                    </td>
+                    <td>
+                        <input class="form-control" id="layout_order" name="layout_order" placeholder="순서" type="text" value="{{ item.layout_order }}">
+                        <span class="help-block">레이아웃 순서</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2">
+                        <label for="img_preprocess_info" control-label="">이미지 전처리 정보</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="img_preprocess_info" name="img_preprocess_info" placeholder="이미지 전처리 정보" rows="3">{{ item.img_preprocess_info }}</textarea>
+                        <span class="help-block">이미지 전처리 관련 세부 정보 입력</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2">
+                        <label for="classify_ai_info" control-label="">분류 AI 정보</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="classify_ai_info" name="classify_ai_info" placeholder="분류 AI 정보" rows="3">{{ item.classify_ai_info }}</textarea>
+                        <span class="help-block">AI 분류 정보 입력</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="well well-sm">
+            <button type="submit" class="btn btn-sm btn-primary">저장 <i class="fa fa-save"></i></button>
+            <a href="/back" class="btn btn-sm btn-default" data-toggle="tooltip" rel="tooltip" title="뒤로">
+            <span class="sr-only">뒤로</span>
+            <i class="fa fa-arrow-left"></i>
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}<!--edit_form-->
+
+{{ lib.panel_end() }}
+{% endblock %}<!--content-->
+
+{% block add_tail_js %}
+<script src="{{url_for('appbuilder.static',filename='js/ab_keep_tab.js')}}" nonce="{{ baselib.get_nonce() }}"></script>
+{% endblock %}<!--add_tail_js-->

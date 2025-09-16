@@ -69,15 +69,23 @@ def structuring_step_list(block_list: list[tuple[Any,dict]], step_list:dict=None
 
 def structuring_by_type(
     block_list: list[tuple[Any,dict]],
-    section_class_id:int,
-    section_name:str="section_name",
-    section_type:str="MULTI_ROW",
+    # section_class_id: int,
+    # section_name: str,
+    # section_type: str,
     result_map: dict = None,
     **kwargs
 ) :
+    section_class_id = block_list[0][1].get("section_class_id",-1)
+    section_name = block_list[0][1].get("section_name","unknown_section")
+    section_type = block_list[0][1].get("section_type","MULTI_ROW")
+
+    print("kkkkkkkkkkkkkkkkkkkkkkkkkdd",block_list[0][1].get("page_num",-1))
     templete_block_list = dococr_query_util.select_list_map("selectBlockList",(section_class_id,))
-    
-    if section_type == "ONE_ROW":
+        
+    #구역 타입에 따라 처리(STATIC_TEXT,ONE_ROW,MULTI_ROW)
+    if section_type == "STATIC_TEXT": # 구조화할 정보 없음
+        return block_list
+    elif section_type == "ONE_ROW": # 1건의 row로 구성된 구역
         tmp_map = defaultdict(dict) 
         
         table_map = defaultdict(dict) 
@@ -92,10 +100,13 @@ def structuring_by_type(
             table_name = template_block["table_name"]
             column_name = template_block["column_name"]
             default_text = template_block["default_text"]
-            
+
             block_data = table_map.get(block_row_num,{}).get(block_col_num,None)
             if block_data is None:
-                _save_no_block_error(section_class_id,section_name,table_map,template_block,result_map)
+                _save_no_block_error(section_class_id,section_name,block_list,template_block,result_map)
+            # 실제 저장 및 출력되는 데이터 맵
+            text_info = _get_text_info(block_data[1])
+            
             block_text = block_data[1].get("ocr",{}).get("text","")
             if block_type == "key":
                 if block_text != default_text:
@@ -103,8 +114,8 @@ def structuring_by_type(
                 else:
                     print(";;;;;;;;;;데이터일치",block_text, default_text)
             elif block_type == "val":
-                tmp_map[table_name][column_name] = block_text
-                print("값출력*******", column_name," : ",block_text)
+                tmp_map[table_name][column_name] = text_info
+                print("값출력*******", column_name," : ",text_info)
         for table_name, data_map in tmp_map.items():
             if data_map:  # 빈 dict가 아니라면
                 result_list[table_name].append(data_map)
@@ -112,7 +123,7 @@ def structuring_by_type(
         result_map["result"] = result_list
         print("...................",result_list)
         return block_list
-    elif section_type == "MULTI_ROW":
+    elif section_type == "MULTI_ROW": # 다중 row로 구성된 구역(목록)
         # 반복할 템플릿 블록 목록 생성
         max_rownum, loop_min_rownum, loop_max_rownum = 0, 999999, 0
         loop_templete_block_list = []
@@ -157,7 +168,10 @@ def structuring_by_type(
             curr_num = block_row_num
             block_data = table_map.get(block_row_num,{}).get(block_col_num,None)
             if block_data is None:
-                _save_no_block_error(section_class_id,section_name,tmp_map,template_block,result_map)
+                _save_no_block_error(section_class_id,section_name,block_list,template_block,result_map)
+            # 실제 저장 및 출력되는 데이터 맵
+            text_info = _get_text_info(block_data[1])
+            
             block_text = block_data[1].get("ocr",{}).get("text","")
             if block_type == "key":
                 if block_text != default_text:
@@ -169,8 +183,8 @@ def structuring_by_type(
                 if tmp_map[table_name].get(column_name,None):
                     result_list[table_name].append(tmp_map[table_name])
                     tmp_map[table_name] = defaultdict(dict)
-                tmp_map[table_name][column_name] = block_text
-                print("값출력*******", column_name," : ",block_text)
+                tmp_map[table_name][column_name] = text_info
+                print("값출력*******", column_name," : ",text_info)
         for table_name, data_map in tmp_map.items():
             if data_map:  # 빈 dict가 아니라면
                 result_list[table_name].append(data_map)
@@ -181,7 +195,18 @@ def structuring_by_type(
     else:
         raise Exception("올바른 섹션 타입이 아닙니다.")
 
+def _get_text_info(block_map):
+    text_info = {}
+    text_info["page_num"] = block_map.get("page_num",-1)
+    text_info["block_box"] = block_map.get("block_box",[-1,-1,-1,-1])
+    text_info["section_class_id"] = block_map.get("section_class_id",-1)
+    text_info["section_row"] = block_map.get("row",-1)
+    text_info["section_col"] = block_map.get("col",-1)
+    text_info["structed_text"] = block_map.get("ocr",{}).get("text","")
+    return text_info
+
 def _save_block_check_error(section_class_id,section_name,block_data,template_block,block_text,result_map):
+    print("=]=[========데이터불일치",block_text, template_block["default_text"])
     block_row_num = int(template_block["block_row_num"])
     block_col_num = int(template_block["block_col_num"])
     default_text = template_block["default_text"]
@@ -198,14 +223,18 @@ def _save_block_check_error(section_class_id,section_name,block_data,template_bl
     json_util.save(error_json_path,error_json)
     #raise Exception("양식과 다른 곳이 발견되어 작업을 중단합니다. 관리자에게 문의하시기 바랍니다.")
 
-def _save_no_block_error(section_class_id,section_name,table_map,template_block,result_map):
+def _save_no_block_error(section_class_id,section_name,block_list,template_block,result_map):
     block_row_num = int(template_block["block_row_num"])
     block_col_num = int(template_block["block_col_num"])
     default_text = template_block["default_text"]
-
+    
     error_folder = Path(CLASS_FOLDER) / "error" / f"{section_class_id}_{section_name}"
-    error_json_path = error_folder / f"no_block_{block_row_num}_{block_col_num}_{result_map["process_id"]}.json"
-    error_json = table_map
+    error_json_path = error_folder / f"no_block_{block_row_num}_{block_col_num}_{result_map['process_id']}.json"
+    error_json = defaultdict(dict)
+    for block_data in block_list:
+        row = block_data[1].get("row",-1)
+        col = block_data[1].get("col",-1)
+        error_json[row][col] = block_data[1]
     error_json["error_info"] = {"section_class_id":section_class_id,"section_name":section_name,
                                     "block_row_num":block_row_num,"block_col_num":block_col_num,"default_text":default_text}
     json_util.save(str(error_json_path),error_json)

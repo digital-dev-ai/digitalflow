@@ -4,23 +4,39 @@ from sqlalchemy import create_engine, text
 from flask_appbuilder._compat import as_unicode
 from flask_appbuilder.const import FLAMSG_ERR_SEC_ACCESS_DENIED
 from flask_appbuilder.models.filters import BaseFilterConverter, Filters
+from flask_appbuilder.fieldwidgets import BS3TextAreaFieldWidget,BS3TextFieldWidget,DatePickerWidget,DateTimePickerWidget
 from flask_wtf import FlaskForm
-from wtforms import (
-    BooleanField,
-    DateField,
-    DateTimeField,
-    DecimalField,
-    FloatField,
-    IntegerField,
-    StringField,
-    TextAreaField,
-)
-from wtforms.validators import DataRequired
+from wtforms import BooleanField,DateField,DateTimeField,DecimalField,FloatField,IntegerField,StringField,TextAreaField
+from wtforms import validators, widgets
 from airflow.configuration import conf
 from typing import Any, Type, List, Dict, Optional
+from markupsafe import Markup
+from plugins.form_manage_plugin.util.widget import wtforms_fildwidgets
+
+
 
 PAGE_SIZE = conf.getint("webserver", "page_size")
 class FormManageModelView(AppBuilderBaseView):
+    
+    
+
+    conversion_map = {
+        "text":(TextAreaField, BS3TextAreaFieldWidget),
+        "binary":(TextAreaField, BS3TextAreaFieldWidget),
+        "string":(StringField, BS3TextFieldWidget),
+        "integer":(IntegerField, BS3TextFieldWidget),
+        "numeric":(DecimalField, BS3TextFieldWidget),
+        "float":(FloatField, BS3TextFieldWidget),
+        "boolean":(BooleanField, None),
+        "date":(DateField, DatePickerWidget),
+        "datetime":(DateTimeField, DateTimePickerWidget),
+    }
+    edit_form = None
+    add_form = None
+    show_form = None
+    delete_form = None
+    list_form = None
+    
     template_folder = "/opt/airflow/plugins/form_manage_plugin/templates"
     default_page_size = PAGE_SIZE
 
@@ -48,6 +64,15 @@ class FormManageModelView(AppBuilderBaseView):
     @has_access
     def delete(self, pk):
         pass
+
+    # formatter 생성기
+    def normal_format(attr_name):
+        """formatters_columns = {"doc_name": normal_format("doc_name") } """
+        def normal_col(item):
+            f = item.get(attr_name)
+            return Markup('<p>{}</p>').format(f)
+        return normal_col
+
     
     def create_form(
         self,
@@ -55,6 +80,8 @@ class FormManageModelView(AppBuilderBaseView):
         inc_columns=None,
         description_columns=None,
         validators_columns=None,
+        type_columns=None,
+        default_columns=None,
     ):
         label_columns = label_columns or {} # 편집 폼의 라벨 목록
         inc_columns = inc_columns or [] # 편집 가능 필드 목록
@@ -64,39 +91,42 @@ class FormManageModelView(AppBuilderBaseView):
         for col_name in inc_columns:
             self._convert_col(
                 col_name,
-                self._get_label(col_name, label_columns),
-                self._get_description(col_name, description_columns),
-                self._get_validators(col_name, validators_columns),
-                self.edit_form_query_rel_fields,
+                label_columns[col_name],
+                description_columns.get(col_name,[]),
+                validators_columns.get(col_name,[]),
+                type_columns[col_name],
+                default_columns[col_name],
                 form_props,
             )
+        return type("DynamicForm", (DynamicForm,), form_props)
     def _convert_col(
         self,
         col_name,
         label,
         description,
         validators,
-        query_rel_fields,
+        type_nm,
+        default,
         form_props,
     ):
-        conversion_table = (
-            ("image", ImageUploadField, BS3ImageUploadFieldWidget),
-            ("file", FileUploadField, BS3FileUploadFieldWidget),
-            ("gridfs_file", MongoFileField, BS3FileUploadFieldWidget),
-            ("gridfs_image", MongoImageField, BS3ImageUploadFieldWidget),
-            ("text", TextAreaField, BS3TextAreaFieldWidget),
-            ("binary", TextAreaField, BS3TextAreaFieldWidget),
-            ("string", StringField, BS3TextFieldWidget),
-            ("integer", IntegerField, BS3TextFieldWidget),
-            ("numeric", DecimalField, BS3TextFieldWidget),
-            ("float", FloatField, BS3TextFieldWidget),
-            ("boolean", BooleanField, None),
-            ("date", DateField, DatePickerWidget),
-            ("datetime", DateTimeField, DateTimePickerWidget),
-        )
-        # 기본적으로 StringField로 변환
-        form_props[col_name] = StringField(label, description=description, validators=validators)
+        field, widget = self.conversion_map[type_nm]
+        if widget:
+            form_props[col_name] = field(
+                label,
+                description=description,
+                validators=validators,
+                widget=widget(),
+                default=default,
+            )
+        else:
+            form_props[col_name] = field(
+                label,
+                description=description,
+                validators=validators,
+                default=default,
+            )
         return form_props
+
     
     
     def prefill_show(self, item):
@@ -172,15 +202,16 @@ class FormManageModelView(AppBuilderBaseView):
         이 특성을 활용해 삭제에 대해 더 복잡한 로직을 구현할 수 있습니다.
         예를 들어, 오브젝트의 원래 생성자만 삭제를 허용하는 경우 등입니다.
         """
+        
 
     def post_delete(self, item):
         """
         이 메서드를 재정의하세요. 삭제 작업 후에 호출됩니다.
         """
 
-    def post_edit_redirect(self):
+    def post_action_redirect(self):
         """Override this function to control the
-        redirect after edit endpoint is called."""
+        redirect after add endpoint is called."""
         return redirect(self.get_redirect())
 
 # class FormManageFilter(object):
@@ -192,10 +223,14 @@ class DynamicForm(FlaskForm):
     """
     Refresh method will force select field to refresh
     """
-    doc_name = StringField("문서 이름", validators=[DataRequired()])
-    is_active = BooleanField("활성화 여부")
-
     @classmethod
-    def refresh(self, obj=None):
-        form = self(obj=obj)
+    def refresh(cls, obj=None, data=None):
+        if data is not None:
+            form = cls(data=data)
+        elif obj is not None:
+            form = cls(obj=obj)
+        else:
+            form = cls()
+        print(f"refresh called with data: {form}")  # 로그 출력
         return form
+

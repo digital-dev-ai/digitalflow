@@ -196,34 +196,19 @@ def apply_block_dictionary(
         if text in dictionary:
             text = dictionary[text]
     elif dic_prc == "db":
-        result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,block_row,block_col,text))
+        result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(text,text,section_class_id,block_row,block_col))
+        # 섹션에 해당 블록 정보가 없을 경우
         if not result:
-            # 반복되는 행 처리
-            # 여러 줄이 감지된 경우, 특정 행을 선택하여 치환
-            minmax_row_list = dococr_query_util.select_list_map("selectMultiRowInfo",(section_class_id,))
-            print(minmax_row_list)
-            min_row_num = 0
-            max_row_num = 0
-            # 리스트에 결과가 있고, 첫 번째 항목이 딕셔너리인지 확인
-            if minmax_row_list and isinstance(minmax_row_list[0], dict):
-                minmax_row_dict = minmax_row_list[0]
-                
-                # 딕셔너리에서 값을 가져올 때 None인 경우 0으로 대체
-                # dict.get() 메서드는 키가 없으면 기본값을 반환하지만,
-                # 키가 있어도 값이 None일 수 있으므로 추가로 확인
-                if minmax_row_dict.get("minnum") is not None:
-                    min_row_num = minmax_row_dict.get("minnum")
-                
-                if minmax_row_dict.get("maxnum") is not None:
-                    max_row_num = minmax_row_dict.get("maxnum")
-            
-            # 만약 minmax_row_list 자체가 비어있거나, 값이 None이라면,
-            # min_row_num과 max_row_num은 초기값인 0으로 유지됩니다.
-            
-            selected_row = max_row_num - min_row_num + 1 # ocr결과에서 감지된 여러 줄의 전체 행 개수를 계산
-            index_num = (max_row_num - min_row_num)%selected_row # 여러 줄 중 특정 행을 선택하기 위해 인덱스 추출,1줄짜리면 0만 나옴, 2줄 짜리면 0,1
-            final_row = index_num + min_row_num #쿼리에 사용할 특정 행 번호 계산
-            result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(section_class_id,final_row,block_col,text))
+            repeat_row_info = dococr_query_util.select_row_map("selectMultiRowInfo",(section_class_id,))
+            if repeat_row_info:
+                min_row_num = repeat_row_info.get("minnum",None)
+                max_row_num = repeat_row_info.get("maxnum",None)
+                # 멀티로우 레이아웃인 경우 반복 블록을 계산하여 다시 치환
+                if min_row_num is not None and max_row_num is not None:
+                    repeat_row_cnt = max_row_num - min_row_num + 1  # 반복 블록의 행 개수 계산
+                    index_num = (block_row - min_row_num)%repeat_row_cnt  # 현재 행이 반복 블록의 몇번째 행인지 계산
+                    final_row = index_num + min_row_num  # 실제 검증할 행 번호 계산
+                    result = dococr_query_util.select_one_map("selectBlockCrctnMatched",(text,text,section_class_id,final_row,block_col))
         if result:
             text = result
     # 원래 위치에 넣기

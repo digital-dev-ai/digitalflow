@@ -29,7 +29,7 @@ with DAG(
     
     # 1-1. AI 생성 작업 정보 로드
     target_doc_class_id = "5"
-    target_layout_class_id = "10"
+    target_layout_class_id = "9"
     d_layout_info = dococr_query_util.select_row_map("selectLayoutInfo",(target_doc_class_id,target_layout_class_id,))
     
     # for d_layout_list_item in d_layout_list:
@@ -61,7 +61,7 @@ with DAG(
     d_model_name = "ExtraTreesClassifier"
     d_ai_dir = f"{d_classify_dir}/model/{d_model_name}"
     
-    augskip = False
+    augskip = True
     if augskip:
         augment_threshold = 1
     else:

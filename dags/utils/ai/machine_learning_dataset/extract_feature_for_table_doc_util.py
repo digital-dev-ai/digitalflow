@@ -32,14 +32,14 @@ def preprocess_image_and_extract_features(image_path: str, class_key: str):
             result_map={"folder_path": tmp_dir}
         )
         header_width, header_height = header_img.size
-        
+        # 헤더 OCR
         try:
             data = pytesseract.image_to_data(
                 header_img, output_type=pytesseract.Output.DICT, lang='kor+eng', config='--psm 6 --oem 3')
         except Exception as e:
             print(f"OCR error: {e}")
             data = {"text": [], "left": [], "top": [], "width": [], "height": []}
-
+    
     words = []
     text_box = []
     boxes = []
@@ -79,8 +79,35 @@ def preprocess_image_and_extract_features(image_path: str, class_key: str):
         cv_image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2GRAY)
     _, binary = cv2.threshold(cv_image, 180, 255, cv2.THRESH_BINARY_INV)
 
+    # horizontal_kernel_ratio = 0.8
+    # vertical_kernel_ratio = 0.038
+    # horizontal_kernel_size = max(1, int(image_width * horizontal_kernel_ratio))
+    # horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (horizontal_kernel_size, 1))
+    # detect_horizontal = cv2.morphologyEx(binary, cv2.MORPH_OPEN, horizontal_kernel, iterations=1)
+    # detect_horizontal = cv2.morphologyEx(detect_horizontal, cv2.MORPH_CLOSE, horizontal_kernel, iterations=1)
+
+    # vertical_kernel_size = max(1, int(image_height * vertical_kernel_ratio))
+    # vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, vertical_kernel_size))
+    # detect_vertical = cv2.morphologyEx(binary, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
+
+    # # 두 선 검출 결과 합치기
+    # combined_lines = cv2.bitwise_or(detect_horizontal, detect_vertical)
+    # contours_combined, _ = cv2.findContours(combined_lines, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # for cnt in contours_combined:
+    #     x, y, w, h = cv2.boundingRect(cnt)
+    #     bbox = (x, y, x + w, y + h)
+    #     norm_bbox = normalize_bbox(bbox, image_width, image_height)
+    #     words.append('─' if w> h else '│')
+    #     boxes.append(norm_bbox)
+
+    # if iter_save:
+    #     inverted_combined = cv2.bitwise_not(combined_lines)
+    #     separate_area_util.separate_area_step_list(inverted_combined, data_type='np_bgr', output_type='np_bgr',
+    #         step_list=[{"name":"save","param":{"save_key":"_combined_contour","tmp_save":True}}], result_map={"folder_path":"line_export"})
+
+
     horizontal_kernel_ratio = 0.8
-    vertical_kernel_ratio = 0.038
+    vertical_kernel_ratio = 0.04
     horizontal_kernel_size = max(1, int(image_width * horizontal_kernel_ratio))
     horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (horizontal_kernel_size, 1))
     detect_horizontal = cv2.morphologyEx(binary, cv2.MORPH_OPEN, horizontal_kernel, iterations=1)

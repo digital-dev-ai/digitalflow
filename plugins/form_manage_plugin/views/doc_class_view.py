@@ -1,98 +1,102 @@
 from typing import Any
-from flask import current_app, g, redirect, url_for, request, abort
+
+from markupsafe import Markup
+from flask import current_app, g, redirect, url_for, request, abort, flash
 from flask_appbuilder import expose, has_access
 from flask_appbuilder.widgets import FormWidget, SearchWidget, ShowWidget
 from flask_appbuilder.actions import action
 from flask_appbuilder.utils.base import get_safe_redirect, lazy_formatter_gettext
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder.urltools import get_order_args, get_page_args, get_page_size_args
-from flask_babel import _, lazy_gettext, force_locale
+from flask_babel import lazy_gettext as _, force_locale
 from sqlalchemy import inspect, text
 from werkzeug.wrappers import Response as WerkzeugResponse
-from plugins.form_manage_plugin.views.form_manage_base_view import DynamicForm, FormManageModelView
+from plugins.form_manage_plugin.views.general.form_manage_base_view import FormManageModelView
 from plugins.form_manage_plugin.util.db import manage_query_util
-from airflow.providers.fab.auth_manager.models import User
-
-
-def _roles_custom_formatter(string: str) -> str:
-    if current_app.config.get("AUTH_ROLES_SYNC_AT_LOGIN", False):
-        string += (
-            ". <div class='alert alert-warning' role='alert'>"
-            "AUTH_ROLES_SYNC_AT_LOGIN is enabled, changes to this field will "
-            "not persist between user logins."
-            "</div>"
-        )
-    return string
+from wtforms import validators
 
 class DocClassManageView(FormManageModelView):
     route_base = "/doc"
     endpoint = "doc"   
 
-    list_title = _("Doc Template List")
-    show_title = _("Doc Template Details")
-    add_title = _("Add Doc Template")
-    edit_title = _("Edit Doc Template")
+    # 타이틀
+    list_title = _("문서서식 목록")
+    show_title = _("문서서식 상세")
+    add_title = _("문서서식 추가")
+    edit_title = _("문서서식 수정")
+
+    #템플릿 경로
+    list_template = "form/doc/doc_list.html"
+    show_template = "form/doc/doc_show.html"
+    add_template = "form/doc/doc_add.html"
+    edit_template = "form/doc/doc_edit.html"
 
     #공통정보
     label_columns = {
-        "doc_name": _("Doc Template Name"),
-        "rgdt": _("Created on"),
-        "updt": _("Changed on"),
+        "doc_name": _("문서서식명"),
+        "rgdt": _("생성일"),
+        "updt": _("수정일"),
     }
-    description_columns = {
-        "doc_name": _("Enter a Doc Name For Distinction."),
+    description_columns = {"doc_name": _("구별을 위한 문서서식명을 입력하세요."),}
+    type_columns = {
+        "doc_name": "string",
+        "rgdt": "datetime",
+        "updt": "datetime",
     }
+    validators_columns = {
+        "doc_name": [validators.DataRequired()]
+    }
+    default_columns = {
+        "doc_name": "",
+    }
+    def text_formatter(value):
+        if value is not None:
+            return Markup('<p>{value}</p>').format(value=value)
+        else:
+            return Markup('<span class="label label-danger">Invalid</span>')
+    formatters_columns = {"doc_name": text_formatter}
+    
     
     #목록정보
     list_columns = ["doc_name", "rgdt", "updt"]
-    formatters_columns = {}
-    search_columns = [
-        "doc_name",
-        "rgdt",
-        "updt",
-    ]
-    #상세정보
-    show_columns = ["doc_name", "rgdt", "updt"]
-    show_fieldsets = [
-        (
-            lazy_gettext("Doc Info"),
-            {"fields": ["doc_name"]},
-        )
-    ]
-    #입력정보
-    form_columns = ["doc_name"]
-    form_fieldsets = [
-        (
-            lazy_gettext("Doc Info"),
-            {"fields": ["doc_name"]},
-        )
-    ]
-    validators_columns = {}
-    add_form_extra_fields = {}
-    edit_form_extra_fields = {}
-    add_form_query_rel_fields = {}
-    edit_form_query_rel_fields = {}
-    
+    search_columns = ["doc_name","rgdt","updt"]
 
-    add_columns = ["doc_name"]
-    edit_columns = ["doc_name"]
+    #상세 폼 정보
+    show_columns = ["doc_name", "rgdt", "updt"]
+    #show_fieldsets = [(_("문서서식 정보"), {"fields": ["doc_name"]},)]
     
-    def _init_forms(self):
-        """
-        Init forms for Add and Edit
-        """
+    
+    #등록 폼 정보
+    add_columns = ["doc_name"]
+    #add_fieldsets = [(_("문서서식 정보"), {"fields": ["doc_name"]},)]
+    add_exclude_cols = [] # 추가 시 입력불가 필드 목록
+    
+    #수정 폼 정보
+    edit_columns = ["doc_name"]
+    #edit_fieldsets = [(_("문서서식 정보"), {"fields": ["doc_name"]},)]
+    edit_exclude_cols = [] # 수정 시 수정불가 필드 목록
+    
+    
+    def __init__(self):
+        super().__init__()
         if not self.add_form:
             self.add_form = self.create_form(
                 self.label_columns,
                 self.add_columns,
                 self.description_columns,
                 self.validators_columns,
-                self.add_form_extra_fields,
-                self.add_form_query_rel_fields,
+                self.type_columns,
+                self.default_columns,
             )
         if not self.edit_form:
-            
-            self.edit_form = type("DynamicForm", (DynamicForm,), form_props)
+            self.edit_form = self.create_form(
+                self.label_columns,
+                self.edit_columns,
+                self.description_columns,
+                self.validators_columns,
+                self.type_columns,
+                self.default_columns,
+            )
 
     @expose("/list/")
     @has_access
@@ -113,7 +117,7 @@ class DocClassManageView(FormManageModelView):
         
         self.update_redirect()
         return self.render_template(
-            "form/doc/doc_list.html",
+            self.list_template,
             appbuilder=self.appbuilder,
             title=self.list_title,
             label_columns=self.label_columns,
@@ -128,20 +132,55 @@ class DocClassManageView(FormManageModelView):
             modelview_name=self.__class__.__name__,
         )
     
+    @expose("/add", methods=["GET", "POST"])
+    @has_access
+    def add(self):
+        is_valid_form = True
+        form = self.add_form.refresh()
+        
+        if request.method == "POST":
+            if form.validate():
+                self.process_form(form, True)
+                item = {}
+
+                try:
+                    for key, value in form.data.items():
+                        item[key] = value
+                    self.pre_add(item)
+                except Exception as e:
+                    flash(str(e), "danger")
+                else:
+                    param = (item["doc_name"],)
+                    manage_query_util.insert_map("insertDocClass",param) # update 쿼리 실행
+                    self.post_add(item)
+                    flash("정상적으로 처리되었습니다.", "success")
+                finally:
+                    return self.post_action_redirect() # 수정 후 이전 화면으로 이동
+            else:
+                is_valid_form = False
+        
+        widgets = {}
+        widgets["add"] = FormWidget(
+            route_base=self.route_base,
+            form=form,
+            include_cols=self.add_columns,
+            exclude_cols=self.add_exclude_cols,
+            #fieldsets=self.add_fieldsets,
+        )
+        if is_valid_form:
+            self.update_redirect()
+        if not widgets:
+            return self.post_action_redirect()
+        else:
+            return self.render_template(
+                self.add_template, 
+                title=self.add_title, 
+                widgets=widgets
+            )
+
     @expose("/show/<pk>", methods=["GET"])
     @has_access
     def show(self, pk):
-        widgets = self._show(pk)
-        return self.render_template(
-            "form/doc/doc_show.html",
-            pk=pk,
-            title=self.show_title,
-            widgets=widgets,
-        )
-    def _show(self, pk):
-        # pages = get_page_args()
-        # page_sizes = get_page_size_args()
-        # orders = get_order_args()
         item = manage_query_util.select_row_map("selectDocClass",(pk,))
         if not item:
             abort(404)
@@ -149,7 +188,6 @@ class DocClassManageView(FormManageModelView):
         
         widgets = {}
         actions = {}
-        show_fieldsets = self.show_fieldsets
         value_columns = [item[col] for col in self.show_columns]
         widgets["show"] = ShowWidget(
             pk=pk,
@@ -158,88 +196,112 @@ class DocClassManageView(FormManageModelView):
             value_columns=value_columns,
             formatters_columns=self.formatters_columns,
             actions=actions,
-            fieldsets=show_fieldsets,
+            #fieldsets=self.show_fieldsets,
             modelview_name=self.__class__.__name__,
         )
-        self.update_redirect()
-        return widgets
+        self.update_redirect() # post_action_redirect를 위한 기록
+        return self.render_template(
+            self.show_template,
+            pk=pk,
+            title=self.show_title,
+            widgets=widgets,
+        )
     
     @expose("/edit/<pk>", methods=["GET", "POST"])
     @has_access
     def edit(self, pk):
         """
         Edit view.
-
-        Same implementation as
-        https://github.com/dpgaspar/Flask-AppBuilder/blob/1c3af9b665ed9a3daf36673fee3327d0abf43e5b/flask_appbuilder/views.py#L602
-
         Override it to use a custom ``has_access_with_pk`` decorator to take into consideration resource for
         fined-grained access.
         """
-        widgets = self._edit(pk)
+        is_valid_form = True
+        
+        item = manage_query_util.select_row_map("selectDocClass",(pk,))
+        if request.method == "POST":
+            print("POST method")
+            form = self.edit_form.refresh(obj=request.form)
+            # 수정 예외 컬럼은 db값 그대로 update하기 위한 처리
+            for filter_key in self.edit_exclude_cols:
+                form[filter_key].data = item.get(filter_key)
+            # trick to pass unique validation
+            form._id = pk
+            if form.validate():
+                self.process_form(form, False) # form 정보를 item에 넣기 전에 추가 처리(보통은 안 함)
+                try:
+                    for key, value in form.data.items():
+                        item[key] = value
+                    self.pre_update(item) # item 정보를 DB에 넣기 전에 추가 처리
+                except Exception as e:
+                    flash(str(e), "danger")
+                else:
+                    param = (item["doc_name"],item["doc_class_id"],)
+                    manage_query_util.update_map("updateDocClass",param) # update 쿼리 실행
+                    self.post_update(item) # item 정보를 DB에 넣은 후에 추가 처리
+                    flash("정상적으로 처리되었습니다.", "success")
+                finally:
+                    return self.post_action_redirect() # 수정 후 이전 화면으로 이동
+            else:
+                is_valid_form = False
+        else:
+            print("GET method")
+            print(f"edit item : {item}")
+            # Only force form refresh for select cascade events
+            form = self.edit_form.refresh(data=item)
+            # Perform additional actions to pre-fill the edit form.
+            self.prefill_form(form, pk) # item 정보를 form에 넣기 전에 추가 처리
+
+        widgets = {}
+        widgets["edit"] = FormWidget(
+            route_base=self.route_base,
+            form=form,
+            include_cols=self.edit_columns,
+            exclude_cols=self.edit_exclude_cols,
+            #fieldsets=self.edit_fieldsets,
+        )
+        if is_valid_form:
+            self.update_redirect()
         if not widgets:
-            return self.post_edit_redirect()
+            return self.post_action_redirect()
         else:
             return self.render_template(
                 self.edit_template,
                 title=self.edit_title,
                 widgets=widgets,
             )
-    def _edit(self, pk):
-        """
-        Edit function logic, override to implement different logic
-        returns Edit widget and related list or None
-        """
-        is_valid_form = True
-        pages = get_page_args()
-        page_sizes = get_page_size_args()
-        orders = get_order_args()
-        
-        get_filter_args(self._filters, disallow_if_not_in_search=False)
-        exclude_cols = self._filters.get_relation_cols()
-
-        item = self.datamodel.get(pk, self._base_filters)
+    
+    
+    @expose("/delete/<pk>", methods=["POST"])
+    @has_access
+    def delete(self, pk):
+        item = manage_query_util.select_row_map("selectDocClass",(pk,))
         if not item:
             abort(404)
-        # convert pk to correct type, if pk is non string type.
-        pk = self.datamodel.get_pk_value(item)
-
-        if request.method == "POST":
-            form = self.edit_form.refresh(request.form)
-            # fill the form with the suppressed cols, generated from exclude_cols
-            self._fill_form_exclude_cols(exclude_cols, form)
-            # trick to pass unique validation
-            form._id = pk
-            if form.validate():
-                self.process_form(form, False)
-                try:
-                    form.populate_obj(item)
-                    self.pre_update(item)
-                except Exception as e:
-                    flash(str(e), "danger")
-                else:
-                    if self.datamodel.edit(item):
-                        self.post_update(item)
-                    flash(*self.datamodel.message)
-                finally:
-                    return None
-            else:
-                is_valid_form = False
+        try:
+            self.pre_delete(item)
+        except Exception as e:
+            flash(str(e), "danger")
         else:
-            # Only force form refresh for select cascade events
-            form = self.edit_form.refresh(obj=item)
-            # Perform additional actions to pre-fill the edit form.
-            self.prefill_form(form, pk)
-
-        exclude_cols = exclude_cols or []
-        widgets = {}
-        widgets["edit"] = FormWidget(
-            route_base=self.route_base,
-            form=form,
-            include_cols=self.form_columns,
-            exclude_cols=exclude_cols,
-            fieldsets=self.form_fieldsets,
-        )
-        if is_valid_form:
+            param = (item["doc_class_id"],)
+            manage_query_util.delete_map("deleteDocClass",param) # update 쿼리 실행
+            self.post_delete(item)
+            flash("정상적으로 처리되었습니다.", "success")
             self.update_redirect()
-        return widgets
+        return self.post_action_redirect()
+    
+    def pre_delete(self, item):
+        doc_class_id = item.get("doc_class_id")
+        result = manage_query_util.check_map("checkDelDocClass",(doc_class_id,))
+        if result > 0:
+            raise Exception("레이아웃이 존재하는 문서템플릿은 삭제할 수 없습니다.")
+        
+
+    @expose("/download/<string:filename>")
+    @has_access
+    def download(self, filename):
+        pass
+        # return send_file(
+        #     op.join(self.appbuilder.app.config["UPLOAD_FOLDER"], filename),
+        #     download_name=uuid_originalname(filename),
+        #     as_attachment=True,
+        # )

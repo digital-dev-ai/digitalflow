@@ -799,10 +799,9 @@ msgstr "로그인"
 msgid "Welcome"
 msgstr "환영합니다"
 
-#: build/lib/flask_appbuilder/templates/appbuilder/general/confirm.html:6
-#: flask_appbuilder/templates/appbuilder/general/confirm.html:6
+#: translate/original_flask_appbuilder/templates/appbuilder/general/confirm.html:6
 msgid "User confirmation needed"
-msgstr ""
+msgstr "경고"
 
 #: build/lib/flask_appbuilder/templates/appbuilder/general/lib.html:40
 #: flask_appbuilder/templates/appbuilder/general/lib.html:40
@@ -1043,3 +1042,204 @@ msgstr "문서서식명"
 #: plugins/form_manage_plugin/views/doc_class_view.py:42
 msgid "Enter a Doc Template Name For Distinction."
 msgstr "구별을 위한 문서서식명을 입력하세요."
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:24
+msgid "문서서식 목록"
+msgstr "문서서식 목록"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:25
+msgid "문서서식 상세"
+msgstr "문서서식 상세"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:26
+msgid "문서서식 추가"
+msgstr "문서서식 추가"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:27
+msgid "문서서식 수정"
+msgstr "문서서식 수정"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:37
+msgid "문서서식명"
+msgstr "문서서식명"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:38
+msgid "생성일"
+msgstr "생성일"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:39
+msgid "수정일"
+msgstr "수정일"
+
+#: plugins/form_manage_plugin/views/doc_class_view.py:57
+#, fuzzy
+msgid "구별을 위한 문서서식명을 입력하세요."
+msgstr "구별을 위한 문서서식명을 입력하세요."
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/lib.html:383
+msgid "Add"
+msgstr "추가"
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/lib.html:391
+msgid "Edit"
+msgstr "수정"
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/lib.html:399
+msgid "Show"
+msgstr "보기"
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/lib.html:412
+msgid "Delete"
+msgstr "삭제"
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/lib.html:419
+msgid "Are you sure you want to delete this item?"
+msgstr "이 항목을 삭제하시겠습니까?"
+
+#: translate/original_flask_appbuilder/templates/appbuilder/general/security/login_oauth.html:20
+msgid "Sign In with "
+msgstr "다음을 사용하여 로그인"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:24
+msgid "레이아웃 목록"
+msgstr "레이아웃 목록"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:25
+msgid "레이아웃 상세"
+msgstr "레이아웃 상세"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:26
+msgid "레이아웃 추가"
+msgstr "레이아웃 추가"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:27
+msgid "레이아웃 수정"
+msgstr "레이아웃 수정"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:37
+msgid "레이아웃명"
+msgstr "레이아웃명"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:38
+#, fuzzy
+msgid "문서서식ID"
+msgstr "문서서식명"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:39
+msgid "설명"
+msgstr "설명"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:40
+msgid "순서"
+msgstr "순서"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:43
+msgid "이미지 전처리 정보"
+msgstr "이미지 전처리 정보"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:44
+msgid "분류 AI 정보"
+msgstr "분류 AI 정보"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:48
+msgid "레이아웃 이름을 입력하세요."
+msgstr "레이아웃 이름을 입력하세요."
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:49
+#, fuzzy
+msgid "연결된 문서서식 ID를 입력하세요."
+msgstr "연결된 문서서식 ID를 입력하세요."
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:50
+msgid "레이아웃 설명"
+msgstr "레이아웃 설명"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:51
+msgid "레이아웃 순서"
+msgstr "레이아웃 순서"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:52
+msgid "이미지 전처리 관련 세부 정보 입력"
+msgstr "이미지 전처리 관련 세부 정보 입력"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:53
+msgid "AI 분류 정보 입력"
+msgstr "AI 분류 정보 입력"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:41
+msgid "List Actions"
+msgstr "활동 목록"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:42
+msgid "Show Action"
+msgstr "활동 상세보기"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:43
+msgid "Add Action"
+msgstr "활동 추가"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:44
+msgid "Edit Action"
+msgstr "활동 수정"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:61
+msgid "List Permissions"
+msgstr "권한 목록"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:62
+msgid "Show Permission"
+msgstr "권한 상세보기"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:63
+msgid "Add Permission"
+msgstr "권한 추가"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:64
+msgid "Edit Permission"
+msgstr "권한 수정"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:67
+msgid "Action"
+msgstr "활동"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:68
+msgid "Resource"
+msgstr "리소스"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:85
+msgid "List Resources"
+msgstr "리소스 목록"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:86
+msgid "Show Resource"
+msgstr "리소스 상세보기"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:87
+msgid "Add Resource"
+msgstr "리소스 추가"
+
+#: translate/original_airflow/providers/fab/auth_manager/views/permissions.py:88
+msgid "Edit Resource"
+msgstr "리소스 수정"
+
+#: plugins/form_manage_plugin/views/layout_class_view.py:40
+#, fuzzy
+msgid "문서서식"
+msgstr "문서서식명"
+
+#: plugins/form_manage_plugin/templates/general/lib.html:49
+#: plugins/form_manage_plugin/templates/general/lib.html:50
+msgid "영역분리"
+msgstr ""
+
+#~ msgid "Section"
+#~ msgstr "설정 항목"
+
+#~ msgid "Key"
+#~ msgstr "키"
+
+#~ msgid "Value"
+#~ msgstr "값"
+
+#~ msgid "Source"
+#~ msgstr "설정 출처"
